@@ -1,6 +1,126 @@
-# BP SS25-B5 Urban-Bio-Space-Simulator
+# BP WS25-B5 Urban-Bio-Space-Simulator
+
+Hier finden sich grundlegende Angaben zu den Abgaben, welche im Rahmen des oben genannten IMI-Projektes am Ende des Bearbeitungszeitraumes den Betreuern zur Verfügung gestellt werden müssen um eine Bewertung des Projektes zu ermöglichen.
+
+## Entwicklung
+Die Entwicklungsarbeit soll gesammelt im dafür vorgesehenen Ordner abgelegt werden. Dabei ist darauf zu achten, dass eine passende .gitignore-Datei verwendet wird um unnötige Uploads wie z.B. Build-Ordner zu vermeiden. Für verschiedene Projekte, wie z.B. Unity-Projekte, findet man entsprechende .gitignore-Vorlagen im Netz.
+
+Sollten für ein Projekt mehrere Repros benötigt werden, z.B. weil ein Projekt aus mehreren Komponenten besteht, können für das Projekt eine Projektgruppe mit mehreren Repros angelegt werden. In den Beschreibungen muss dann klargestellt werden welches das Hauptrepro mit der Dokumentation und diesem Dokument ist.
 
 
+Ordner für die Entwicklungsarbeiten:
+<br>[/development](/development) 
+
+
+## Dokumentation
+Für den Abschluss des Projektes soll eine Dokumentation erstellt werden, diese dient sowohl der Dokumentation des Projektprozesses, als auch der Dokumentation der verwendete Technologien, benutzten Ressourcen und Anleitung zum Aufsetzen des Projektes (Deployment-Sheet).
+
+Die Dokumentation enthält u.a. folgende Punkte:
+
+1. Allgemeines (Teamvorstellung (inkl. Studi-Mailadressen), Worum ging es in dem Projekt, Link zur Showtimewebseite, ...)
+2. Prozess (Projekt-Meilensteine, genutzte UND verworfene Konzepte/Technologien (gerne mit Links), technische Herausforderungen, ...)
+3. Konzeptentwicklung und Konzeptergebnis
+4. Wichtigste Rechercheergebnisse (eingeflossene Publikationen etc., Darstellung von MockUps etc.)
+5. Implementierung (Softwarearchitektur, wichtigste Klassen, wie könnten wir Code erweitern (z.B. neue APIs), ...)
+6. Probleme/Lösungen (Welche Probleme sind euch bekannt/wie kann man die beheben?, Bekannte Fehlermeldungen, wichtige Einstellungen, etc.)
+7. Reflexion (Was hat gut funktioniert?, Was weniger?, Was könnte man beim nächsten Mal besser machen?, Ausblick für potenzielle Folgeprojekte, ...)
+   1. Individuelle Reflexion (Bitte jede(r) individuell die eigene Arbeit und die eigene Rolle im Team reflektieren - max 1/2 Seite pro Person)
+8. **Deployment** (Wie kann eine komplett unwissende Person das Projekt wie es hier im GitLab vorliegt das Projekt in Betrieb nehmen)
+   1. Zur Projektzeit verwendete Hardware
+   2. Softwareanforderungen/Unity-Version/Accounts für APIs/...?
+   3. Wo müssen im Projekt Anpassungen durchgeführt werden für den Einsatz z.B. IP-Adressen in Config-Datei o.ä.)
+
+Alle Punkte in der neutralen Form geschrieben, Punkt 7 kann in der Ich/Wir-Form geschrieben werden.
+
+Dokumentation kann im Wiki vom Repo erstellt werden, abgegeben werden muss als eine PDF-Datei (Kapitel 1-8)
+<br>ZUSÄTZLICH **Deployment** als eine eigene Datei (Kapitel 8)
+<br>
+Kapitel in der Dokumentation bitte eindeutig durchnummerieren. Es kann die Nummerierung der obigen Liste verwendet werden, es kann aber auch davon abgewichen werden.
+
+Ordner für die Dokumentation des Projektes:
+<br>[/documentation](/documentation)
+
+Wiki des Projektes:
+<br>[/-/wikis/home](../../wikis/home)
+
+
+## Medien
+Für die Präsentation der im Rahmen vom FKI/FG Creative Media begleiteten Projekte sollen passende Medien in einem getrennten Ordner zur Verfügung gestellt werden. Diese müssen unter einer zeitlich unbeschränkten Nutzungslizenz zur nicht-kommerziellen Präsentation und Vervielfälltigung stehen, u.a. damit sie auf externe Datenträger für Präsentationen kopiert werden dürfen.
+
+- Kurze Beschreibung des Projektes (1-2 Absätze)
+- Nachvollziehbare Bilder (Screenshots, Fotos der Showtime, ggf. relevante technische Bilder)
+- Wenn für die Showtime angefertigt: Vorstellungsvideo des Projektes, Posterdateien etc.
+
+Wichtig: die visuelle Darstellung soll AUCH das umgesetzte Projekt zeigen, also nicht NUR MockUps oder Design-Entwürfe.
+
+Für sehr große Daten kann auf Nachfrage ein Nextcloud-Ordner als Cloudspeicher der Forschungsgruppe zur Verfügung gestellt werden.
+
+Medien des Projektes im Ordner
+<br>[/media](/media)
+
+
+## Lizenz
+Für das Projekt soll eine geeignete Lizenz gewählt werden, welche sowohl die Nutzung, als auch die Weiterentwicklung des Projektes ermöglichen. Darüber hinaus soll dokumentiert werden welche Lizenzen ggf. verwendet bzw. benötigt werden für eingesetzte externe Ressourcen (Assets, API-Zugänge etc.). Damit soll sichergestellt werden, dass bekannt ist welchen Lizenzeinschränkungen das Projekt unterliegt oder welche Lizenzen für eine weitere Verwendung in Anspruch genommen werden müssen.
+
+Dokumentation der Lizenzen im Ordner
+<br>[/licence](/licence)
+
+
+## Abgabe
+### Build
+Ansonsten möchten wir am Ende:
+Mindestens einen Ordner (z.B. als .zip) mit einem fertigen Build je Zielplattform (wenn anwendbar, z.B. .apk)
+<br>[/build](/build)
+
+### Code
+
+Ins Gitlab: finale Codeversion inkl. verständlicher Readme (Kurze Einführung in das Projekt und wo findet man die wichtigsten Sachen) und .gitignore (die ihr hoffentlich bereits habt ;))
+- Untertitel des Projektes MUSS für das Repro im Gitlab eingetragen werden, das kann man in den Einstellungen im Repo tun. Bitte kurzen aber aussagekräftigen Titel verwenden... also z.B. nicht "B.3 Team Ninja" (oder so)
+- Bei mehreren Repos (z.B. für verschiedene Komponenten) kann nach Rücksprache eine Repro-Gruppe angelegt werden, dabei auf eine nachvollziehbare Gruppen- und Sub-Repobezeichnung basierend auf der Bezeichnung von diesem Repo achten.
+
+WICHTIG: Endabgabe MUSS im MAIN-Zweig des Repros erfolgen.
+
+## Sonstiges
+Vergesst auch nicht die Rückgabe der ausgeliehenen Hardware 
+- Zurückgesetzt, ohne persönliche Accounts
+- Lauffähige Version kann nach Rücksprache auf dem Gerät verbleiben
+- Entfernt aus alles Device-Portalen, z.B. bei Apple
+- Kein eigen-gesetztes Passwort
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+## Check-List
+
+- [ ] Dokumentation
+   - [ ] Alle Themen-Punkte umgesetzt
+   - [ ] PDF für Dokumentation im Ordner
+   - [ ] PDF für Deployment im Ordner
+   - [ ] Formale Vorgaben für die Dokumentation eingehalten
+- [ ] Medienordner bestückt
+   - [ ] Kurzbeschreibung des Projektes
+   - [ ] Bilder (inkl. Projektvisualisierung)
+   - [ ] Copyright-Angaben der hinterlegten Bilder
+- [ ] Lizenz
+   - [ ] Angabe zur Lizensierung des Projektes
+   - [ ] Angabe zu den Lizenzen von extern verwendeten Inhalten
+- [ ] Abgabe des Projektes 
+   - [ ] Build
+   - [ ] Code
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+
+----
+**Im folgenden die Original-readME zum Einstieg in dieses Repo:**
 
 ## Getting started
 
@@ -15,14 +135,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://code.fki.htw-berlin.de/cm/studierendenprojekte/bp-ss25-b5-urban-bio-space-simulator.git
+git remote add origin https://code.fki.htw-berlin.de/cm/studierendenprojekte/bp-ws24_25-b3-feuerwehr.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://code.fki.htw-berlin.de/cm/studierendenprojekte/bp-ss25-b5-urban-bio-space-simulator/-/settings/integrations)
+- [ ] [Set up project integrations](https://code.fki.htw-berlin.de/cm/studierendenprojekte/bp-ws24_25-b3-feuerwehr/-/settings/integrations)
 
 ## Collaborate with your team
 
@@ -36,7 +156,7 @@ git push -uf origin main
 
 Use the built-in continuous integration in GitLab.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
+- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
 - [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
 - [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
 - [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
@@ -57,37 +177,3 @@ Choose a self-explaining name for your project.
 
 ## Description
 Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
