@@ -1,0 +1,33 @@
+﻿Urban-Bio-Space-Simulator: 
+Dienstag, 22.04.2025
+
+
+Spielmechanik:
+
+* Matrix basiert, Stadt ist vorgegeben und du musst dich anpassen
+* Zufallsgenerator optional, wenn Zeit da ist
+* Ebenen einbauen: U-bahn schächte, Keller?
+→ evtl. einfach auf Ort in Spielwelt klicken und “Pseudo-Layer” erscheint
+* Supermarkt-Funktion:
+* Stadt kann in bestimmten Radius von SM versorgt werden. Je weiter, desto ineffizienter
+* Verlassene Gebäude können genutzt / umfunktioniert werden
+* Integration der Produktionen innerhalb der Stadt
+* Zeit-mechanik: Gebäude ändern sich und dadurch die Benutzbarkeit 
+(nur Dach, gar nicht mehr, etc, Wahrscheinlichkeit des Spawnens wird von Platz beeinflusst)
+→ Stadt “lebt” - verändert sich und wird größer mit Zeitverlauf
+* Straßensystem: eventuell auf den Rasterlinien anlegen, welche sich automatisch verbinden - Effizienz der Straßen einfügen
+* Eventuell Drohnen einbauen? (automatisierte Aberntung auf Häuserdächern)
+→ Kombination von Beiden
+
+
+Git:
+
+* GL-123 
+* Merge-Request: Nachschauen, bevor mergen
+* Main Branch: nur fast forwarden, kein merge
+* Merge-Konflikte: Rebase & force push
+* wenn re-base; global refere konfigurieren
+* Bei Fragen an Tobias
+* Issue erzeugen und richtig benennen (kann mit commands noch umbenannt werden → Tobias melden
+* Bildpipeline: Ja oder nein? Für Desktop evtl. nicht so wichtig, da im Editor teilweise möglich. Manchmal Bild nützlich
+* Szenen in verschiedene Objekte aufteilen (prefabs), sind eigenständige Objekte und können einzeln verändert werden, ohne dass Szene geändert wird (Vermeidung Merge-Konflikte) → wenn doch passiert, wird eine Arbeit genommen und die andere muss eingearbeitet werden. Möglichkeit prefabs zu sperren
