@@ -102,4 +102,16 @@ public class PlacementSystem : MonoBehaviour
         }
         
     }
+
+    public void placeRandom()
+    {
+        // welches Object wird platziert
+        int objectID = 0;
+        var data = database.objectsData[objectID];
+
+
+        RandomPlacing placer = new RandomPlacing(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+
+        placer.RandomPlace(5, 20, 20);
+    }
 }
