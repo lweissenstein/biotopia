@@ -110,8 +110,32 @@ public class PlacementSystem : MonoBehaviour
         var data = database.objectsData[objectID];
 
 
-        RandomPlacing placer = new RandomPlacing(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
 
         placer.RandomPlace(5, 20, 20);
+    }
+
+    public void weightedPlaceRandom()
+    {
+        // welches Object wird platziert
+        int objectID = 0;
+        var data = database.objectsData[objectID];
+
+
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+
+        placer.RandomWheightedPlace(5, 20, 20);
+    }
+
+    public void upgradeRandom()
+    {
+        // welches Object wird platziert
+        int objectID = 2;
+        var data = database.objectsData[objectID];
+
+
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+
+        placer.RandomUpgrade(1, 20, 20);
     }
 }

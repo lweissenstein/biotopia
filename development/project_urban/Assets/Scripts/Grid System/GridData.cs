@@ -58,6 +58,23 @@ public class GridData
             placedObjects.Remove(pos);
         }
     }
+
+    // returns the ID of the prefab
+    public int GetObjectIDAt(Vector3Int pos)
+    {
+        if (placedObjects.TryGetValue(pos, out PlacementData data))
+        {
+            return data.ID;
+        }
+        return -1;
+    }
+
+    // returns all occupied grid positions
+    public IEnumerable<Vector3Int> GetAllOccupiedPositions()
+    {
+        return placedObjects.Keys;
+    }
+
 }
 
 public class PlacementData
