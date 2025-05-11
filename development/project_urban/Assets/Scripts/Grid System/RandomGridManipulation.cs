@@ -55,11 +55,18 @@ public class RandomGridManipulation
 
     public void RandomWheightedPlace(int toPlace, int maxX, int maxZ)
     {
-        // create an empty list
-        List<Vector3Int> noNeighbor = new();
-		List<Vector3Int> hasNeighbor = new();
 
-        // add all valid positions
+		// leere Listen für die freien Positionen
+		var placeablesLists = new (int weight, List<Vector3Int> list)[]
+		{
+			(1, new List<Vector3Int>()), // 0 neighbors
+			(20, new List<Vector3Int>()), // 1 neighbor
+			(8, new List<Vector3Int>()), // 2 neighbors
+			(30, new List<Vector3Int>()), // 3 neighbors
+			(40, new List<Vector3Int>()), // 4 neighbors
+		};
+
+        // add all valid positions to the lists based on number of neighbors
         for (int x = -maxX / 2; x < maxX / 2; x++)
         {
             for (int z = -maxZ / 2; z < maxZ / 2; z++)
@@ -67,67 +74,62 @@ public class RandomGridManipulation
                 Vector3Int testPos = new Vector3Int(x, 0, z);
                 if (gridData.CanPlaceObjectAt(testPos, objectSize))
                 {
-					if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(1, 0, 0), objectSize) ||
-                        !gridData.CanPlaceObjectAt(testPos + new Vector3Int(-1, 0, 0), objectSize) ||
-                        !gridData.CanPlaceObjectAt(testPos + new Vector3Int(0, 0, 1), objectSize) ||
-                        !gridData.CanPlaceObjectAt(testPos + new Vector3Int(0, 0, -1), objectSize))
-					{
-                        hasNeighbor.Add(testPos);
-                    } 
-					else
-					{
-						noNeighbor.Add(testPos);
-                    }
+					int numNeighbors = 0;
+
+					if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(1, 0, 0), objectSize)) numNeighbors++;
+					if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(-1, 0, 0), objectSize)) numNeighbors++;
+                    if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(0, 0, 1), objectSize)) numNeighbors++;
+                    if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(0, 0, -1), objectSize)) numNeighbors++;
+
+					placeablesLists[numNeighbors].list.Add(testPos);
                 }
             }
         }
 
-        // shuffle the list
-        Shuffle(noNeighbor);
-        Shuffle(hasNeighbor);
+		// shuffle the lists
+		foreach (var list in placeablesLists)
+			Shuffle(list.list);
 
-		int rnd = 0;
-		int noIndex = 0;
-		int hasIndex = 0;
+		// place objects in positions based on weighted probabilities
+		int placed = 0;
+		while (placed < toPlace)
+		{
+			int probabilityMax = 0;
+			foreach (var item in placeablesLists)
+				if (item.list.Count != 0)
+					probabilityMax += item.weight;
 
-        // take the first x positions according to toPlace if possible
-        int validAmount = Mathf.Min(toPlace, noNeighbor.Count + hasNeighbor.Count);
-        for (int i = 0; i < validAmount; i++)
-        {
-			if (hasNeighbor.Count == 0)
+			if (probabilityMax == 0) break;
+
+			int rnd = Random.Range(0, probabilityMax);
+			int cumulative = 0;
+			int chosenIndex = -1;
+
+			// randomely choose a list
+			for (int i = 0; i < placeablesLists.Length; i++) 
 			{
-                Vector3Int pos = noNeighbor[noIndex];
-				noIndex++;
-                int index = objectPlacer.PlaceObject(prefab, grid.CellToWorld(pos));
-                gridData.AddObjectAt(pos, objectSize, objectID, index);
-			}
-			else if (noNeighbor.Count == 0)
-            {
-                Vector3Int pos = hasNeighbor[hasIndex];
-                hasIndex++;
-                int index = objectPlacer.PlaceObject(prefab, grid.CellToWorld(pos));
-                gridData.AddObjectAt(pos, objectSize, objectID, index);
-            }
-			else
-			{
-				rnd = Random.Range(0, 10);
+				if (placeablesLists[i].list.Count == 0) continue;
 
-				if (rnd > 1)
+				cumulative += placeablesLists[i].weight;
+				if (rnd < cumulative)
 				{
-					Vector3Int pos = hasNeighbor[hasIndex];
-					hasIndex++;
-					int index = objectPlacer.PlaceObject(prefab, grid.CellToWorld(pos));
-					gridData.AddObjectAt(pos, objectSize, objectID, index);
-				}
-				else
-				{
-					Vector3Int pos = noNeighbor[noIndex];
-					noIndex++;
-					int index = objectPlacer.PlaceObject(prefab, grid.CellToWorld(pos));
-					gridData.AddObjectAt(pos, objectSize, objectID, index);
+					chosenIndex = i;
+					break;
 				}
 			}
-        }
+
+			// safety check
+			if (chosenIndex == -1)
+				continue;
+
+			Vector3Int pos = placeablesLists[chosenIndex].list[0];
+			placeablesLists[chosenIndex].list.RemoveAt(0);
+
+			int index = objectPlacer.PlaceObject(prefab, grid.CellToWorld(pos));
+			gridData.AddObjectAt(pos, objectSize, objectID, index);
+
+			placed++;
+		}	
     }
 
     public void RandomUpgrade(int toUpgrade, int maxX, int maxZ)
