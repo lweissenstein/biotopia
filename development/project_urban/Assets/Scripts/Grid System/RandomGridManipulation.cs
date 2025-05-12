@@ -134,16 +134,13 @@ public class RandomGridManipulation
 
     public void RandomUpgrade(int toUpgrade, int maxX, int maxZ)
 	{
-		// create an empty list
-		List<Vector3Int> validUpgradeables = new();
+        // empty list for all valid positions
+        List<Vector3Int> validUpgradeables = new();
 
 		// add all valid upgradeable positions
 		foreach (var pos in gridData.GetAllOccupiedPositions())
 		{
-			if (gridData.GetObjectIDAt(pos) == 0)
-			{
-				validUpgradeables.Add(pos);
-			}		
+			if (gridData.GetObjectIDAt(pos) == 0) validUpgradeables.Add(pos);
 		}
 
 		// shuffle the list
@@ -162,11 +159,61 @@ public class RandomGridManipulation
             int index = objectPlacer.PlaceObject(prefab, grid.CellToWorld(pos));
             gridData.AddObjectAt(pos, objectSize, 2, index);
         }
-
 	}
 
-	// Fisher-Yates shuffle function
-	private void Shuffle(List<Vector3Int> list) 
+    public void RandomWheightedUpgrade(int toUpgrade, int maxX, int maxZ)
+    {
+
+        // empty list for all valid positions and all fully encased positions
+        List<Vector3Int> validUpgradeables = new();
+        List<Vector3Int> encasedUpgradeables = new();
+
+        foreach (var pos in gridData.GetAllOccupiedPositions())
+        {
+            if (gridData.GetObjectIDAt(pos) == 0) validUpgradeables.Add(pos);
+        }
+
+		foreach (var pos in validUpgradeables)
+		{
+            bool encased = true;
+
+            for (int offsetX = -1; offsetX < 2; offsetX++)
+            {
+                for (int offsetZ = -1; offsetZ < 2; offsetZ++)
+                {
+                    if (gridData.CanPlaceObjectAt(pos + new Vector3Int(offsetX, 0, offsetZ), objectSize))
+                    {
+                        encased = false;
+                        break;
+                    }
+                }
+
+                if (!encased) break;
+            }
+
+            if (encased) encasedUpgradeables.Add(pos);
+        }
+
+        // shuffle the list
+        Shuffle(encasedUpgradeables);
+
+        // replace the first n objects with objects of ID 2
+        int validAmount = Mathf.Min(toUpgrade, encasedUpgradeables.Count);
+        for (int i = 0; i < validAmount; i++)
+        {
+            Vector3Int pos = encasedUpgradeables[i];
+            int representationIndex = gridData.GetRepresentationIndex(pos);
+
+            objectPlacer.RemoveObjectAt(representationIndex);
+            gridData.RemoveObjectAt(pos);
+
+            int index = objectPlacer.PlaceObject(prefab, grid.CellToWorld(pos));
+            gridData.AddObjectAt(pos, objectSize, 2, index);
+        }
+    }
+
+    // Fisher-Yates shuffle function
+    private void Shuffle(List<Vector3Int> list) 
 	{
 		for (int i = 0; i < list.Count; i++) 
 		{
@@ -174,6 +221,4 @@ public class RandomGridManipulation
 			(list[i], list[rand]) = (list[rand], list[i]);
 		}
 	}
-
-	
 }

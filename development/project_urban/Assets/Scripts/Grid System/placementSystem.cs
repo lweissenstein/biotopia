@@ -103,9 +103,9 @@ public class PlacementSystem : MonoBehaviour
         
     }
 
+    // uses randomPlace to randomely place objects
     public void placeRandom()
     {
-        // welches Object wird platziert
         int objectID = 0;
         var data = database.objectsData[objectID];
 
@@ -115,9 +115,9 @@ public class PlacementSystem : MonoBehaviour
         placer.RandomPlace(5, 20, 20);
     }
 
+    // uses RandomWeightedPlace to randomely place objects
     public void weightedPlaceRandom()
     {
-        // welches Object wird platziert
         int objectID = 0;
         var data = database.objectsData[objectID];
 
@@ -127,9 +127,9 @@ public class PlacementSystem : MonoBehaviour
         placer.RandomWheightedPlace(5, 20, 20);
     }
 
+    // uses RandomUpgrade to randomely upgrade objects
     public void upgradeRandom()
     {
-        // welches Object wird platziert
         int objectID = 2;
         var data = database.objectsData[objectID];
 
@@ -137,5 +137,58 @@ public class PlacementSystem : MonoBehaviour
         RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
 
         placer.RandomUpgrade(1, 20, 20);
+    }
+
+    // uses RandomWeightedUpgrade to randomely upgrade objects
+    public void weightedUpgradeRandom()
+    {
+        int objectID = 2;
+        var data = database.objectsData[objectID];
+
+
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+
+        placer.RandomWheightedUpgrade(1, 20, 20);
+    }
+
+    // either creates a base city using RandomPlace and RandomUpgrade in the center, or grows the City if there is already one using RandomWeightedPlace and RandomWeightedUpgrade
+    public void SimulateGrowth()
+    {
+        bool empty = true;
+
+        foreach (var pos in furnitureData.GetAllOccupiedPositions())
+        {
+            empty = false;
+            break;
+        }
+
+        if (empty)
+        {
+            int objectID = 0;
+            var data = database.objectsData[objectID];
+
+            RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+            placer.RandomPlace(10, 20 / 3, 20 / 3);
+
+            int upgradeID = 2;
+            var upgradeData = database.objectsData[upgradeID];
+
+            RandomGridManipulation upgradePlacer = new RandomGridManipulation(grid, furnitureData, objectPlacer, upgradeData.Prefab, upgradeData.Size);
+            upgradePlacer.RandomUpgrade(3, 20, 20);
+        }
+        else
+        {
+            int objectID = 0;
+            var data = database.objectsData[objectID];
+
+            RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+            placer.RandomWheightedPlace(3, 20, 20);
+
+            int upgradeID = 2;
+            var upgradeData = database.objectsData[upgradeID];
+
+            RandomGridManipulation upgradePlacer = new RandomGridManipulation(grid, furnitureData, objectPlacer, upgradeData.Prefab, upgradeData.Size);
+            upgradePlacer.RandomWheightedUpgrade(1, 20, 20);
+        }            
     }
 }
