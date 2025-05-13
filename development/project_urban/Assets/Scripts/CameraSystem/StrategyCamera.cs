@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CameraRigController : MonoBehaviour
@@ -12,20 +13,57 @@ public class CameraRigController : MonoBehaviour
     private float currentYRotation = 0f; // startrotation Y
     private float rotationStep = 90f;     
     private float rotationSpeed = 360f; // drehgeschwindigkeit pro sekunde
+    private bool isTopDown = false;
+    private Vector3 oldCameraPos;
+    private Vector3 oldRigPos;
+    private Quaternion oldCameraRot;
+    private Quaternion oldRigRot;
 
     private Camera cam;
 
     void Start()
     {
         cam = cameraTransform.GetComponent<Camera>();
+
     }
 
     void Update()
     {
         HandleZoom();
         HandlePan();
-        HandleRotation();
-        ApplyRotation();
+        HandleTopDown();
+        if (!isTopDown)
+        {
+            HandleRotation();
+            ApplyRotation();
+        }
+        
+    }
+
+    void HandleTopDown()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!isTopDown)
+            {
+                isTopDown = true;
+                oldCameraPos = cam.transform.position;
+                oldCameraRot = cam.transform.rotation;
+                oldRigPos = cameraRigTransform.position;
+
+                cameraRigTransform.position = new Vector3(0, 10, 0);
+                cam.transform.position = new Vector3(0, 9, 0);
+                cam.transform.rotation = Quaternion.Euler(90, 0, 0);
+
+            }
+            else if (isTopDown)
+            {
+                isTopDown = false;
+                cameraRigTransform.position = oldRigPos;
+                cam.transform.position = oldCameraPos;
+                cam.transform.rotation = oldCameraRot;
+            }
+        }
     }
 
     void HandleZoom()  // ändert die orthographic size der camera => dadurch, dass orthographic die entfernung der kamera ignoriert, muss man die size ändern für einen zoom effekt
