@@ -24,6 +24,10 @@ Assets/AssetStoreTools*
 # Visual Studio cache directory
 .vs/
 
+# Editor configurations
+.idea/
+.vscode/
+
 # Gradle cache directory
 .gradle/
 

@@ -4690,6 +4690,7 @@ GameObject:
   - component: {fileID: 2094735080}
   - component: {fileID: 2094735082}
   - component: {fileID: 2094735083}
+  - component: {fileID: 2094735084}
   m_Layer: 7
   m_Name: Penis
   m_TagString: Untagged
@@ -4760,6 +4761,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiElement: {fileID: 33948478}
   currentUI: {fileID: 1978123117}
+--- !u!114 &2094735084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094735079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc79162c0a6f4770b867c19b62ba2809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDebug: 0
 --- !u!1 &2103735863
 GameObject:
   m_ObjectHideFlags: 0
