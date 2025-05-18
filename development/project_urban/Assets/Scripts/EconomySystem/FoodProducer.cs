@@ -7,18 +7,17 @@ namespace EconomySystem
 {
     public class FoodProducer : MonoBehaviour
     {
-        public static event Action<int> ProduceFood;
-        public int foodProductionPerFrame = 30;
+        public static event Action<float> ProduceFood;
+        public int foodProductionPerSecond = 30;
 
         private void Start()
         {
-            Debug.Log($"this building produces {foodProductionPerFrame}/frame.");
+            Debug.Log($"this building produces {foodProductionPerSecond}/second.");
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
-            ProduceFood?.Invoke(foodProductionPerFrame);
-            Timer.OncePerSecondDebugLog($"FOOD: produce {foodProductionPerFrame}/frame");
+            ProduceFood?.Invoke(foodProductionPerSecond * Time.fixedDeltaTime);
         }
     }
 }

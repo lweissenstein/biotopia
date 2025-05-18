@@ -8,9 +8,9 @@ namespace EconomySystem
     {
         private static FoodEconomy _instance = null;
 
-        private int _currentProteinAmount;
-        private int _totalConsumption;
-        private int _totalProduction;
+        private float _currentProteinAmount;
+        private float _totalConsumption;
+        private float _totalProduction;
 
         private FoodEconomy()
         {
@@ -22,16 +22,16 @@ namespace EconomySystem
             FoodProducer.ProduceFood += OnProduceFood;
         }
 
-        private void OnConsumeFood(int consumptionPerFrame)
+        private void OnConsumeFood(float consumptionPerFixedUpdate)
         {
-            _currentProteinAmount = Math.Max(0, _currentProteinAmount - consumptionPerFrame);
-            _totalConsumption += consumptionPerFrame;
+            _currentProteinAmount = Math.Max(0, _currentProteinAmount - consumptionPerFixedUpdate);
+            _totalConsumption += consumptionPerFixedUpdate;
         }
 
-        private void OnProduceFood(int productionPerFrame)
+        private void OnProduceFood(float productionPerFixedUpdate)
         {
-            _currentProteinAmount = Math.Min(1_000_000, _currentProteinAmount + productionPerFrame);
-            _totalProduction += productionPerFrame;
+            _currentProteinAmount = Math.Min(1_000_000, _currentProteinAmount + productionPerFixedUpdate);
+            _totalProduction += productionPerFixedUpdate;
         }
 
         public string Report()

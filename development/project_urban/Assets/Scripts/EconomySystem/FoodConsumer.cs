@@ -1,24 +1,24 @@
 using System;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Util;
 
 namespace EconomySystem
 {
     public class FoodConsumer : MonoBehaviour
     {
-        public static event Action<int> ConsumeFood;
-        public int foodConsumptionPerFrame = 10;
+        public static event Action<float> ConsumeFood;
+        public int foodConsumptionPerSecond = 10;
 
         public void Start()
         {
-            Debug.Log($"This building consumes {foodConsumptionPerFrame}/frame.");
+            Debug.Log($"This building consumes {foodConsumptionPerSecond}/second.");
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
-            ConsumeFood?.Invoke(foodConsumptionPerFrame);
-            Timer.OncePerSecondDebugLog($"FOOD: consume {foodConsumptionPerFrame}/frame.");
+            ConsumeFood?.Invoke(foodConsumptionPerSecond * Time.fixedDeltaTime);
         }
     }
 }
