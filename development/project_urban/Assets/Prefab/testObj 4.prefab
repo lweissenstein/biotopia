@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7505680835630738584}
   - component: {fileID: 710748370503626377}
   - component: {fileID: 3477969429563608760}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 2620101806498216974}
   - component: {fileID: 3309351747050004993}
   - component: {fileID: 1181554472637888646}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 5504754420996309428}
   - component: {fileID: 1953795922949476653}
   - component: {fileID: 2669362683022605443}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,8 @@ GameObject:
   - component: {fileID: 2932406809232721597}
   - component: {fileID: 3256003131292604888}
   - component: {fileID: 8168162246737695170}
-  m_Layer: 0
+  - component: {fileID: -4626927663728851183}
+  m_Layer: 7
   m_Name: testObj 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +369,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4809059401213230736}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bf99dda1c8ac104ea172f1fccb3bfa2, type: 3}
   m_Name: 
@@ -388,6 +389,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodConsumptionPerFrame: 10
+--- !u!114 &-4626927663728851183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4809059401213230736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1a74d72fa075b489f373db81110ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiElement: {fileID: 0}
+  currentUI: {fileID: 0}
 --- !u!1 &4890790108107870605
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +415,7 @@ GameObject:
   - component: {fileID: 4467406369501531047}
   - component: {fileID: 8531069562948018577}
   - component: {fileID: 2540957365846775166}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

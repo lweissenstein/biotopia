@@ -110,7 +110,7 @@ public class PlacementSystem : MonoBehaviour
         var data = database.objectsData[objectID];
 
 
-        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
 
         placer.RandomPlace(5, 20, 20);
     }
@@ -122,7 +122,7 @@ public class PlacementSystem : MonoBehaviour
         var data = database.objectsData[objectID];
 
 
-        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
 
         placer.RandomWheightedPlace(5, 20, 20);
     }
@@ -134,7 +134,7 @@ public class PlacementSystem : MonoBehaviour
         var data = database.objectsData[objectID];
 
 
-        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
 
         placer.RandomUpgrade(1, 20, 20);
     }
@@ -146,7 +146,7 @@ public class PlacementSystem : MonoBehaviour
         var data = database.objectsData[objectID];
 
 
-        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
 
         placer.RandomWheightedUpgrade(1, 20, 20);
     }
@@ -167,13 +167,13 @@ public class PlacementSystem : MonoBehaviour
             int objectID = 0;
             var data = database.objectsData[objectID];
 
-            RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+            RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
             placer.RandomPlace(10, 20 / 3, 20 / 3);
 
             int upgradeID = 2;
             var upgradeData = database.objectsData[upgradeID];
 
-            RandomGridManipulation upgradePlacer = new RandomGridManipulation(grid, furnitureData, objectPlacer, upgradeData.Prefab, upgradeData.Size);
+            RandomGridManipulation upgradePlacer = new RandomGridManipulation(grid, furnitureData, objectPlacer, upgradeData.Prefab, upgradeData.UIWindow, upgradeData.Size);
             upgradePlacer.RandomUpgrade(3, 20, 20);
         }
         else
@@ -181,13 +181,13 @@ public class PlacementSystem : MonoBehaviour
             int objectID = 0;
             var data = database.objectsData[objectID];
 
-            RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.Size);
+            RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
             placer.RandomWheightedPlace(3, 20, 20);
 
             int upgradeID = 2;
             var upgradeData = database.objectsData[upgradeID];
 
-            RandomGridManipulation upgradePlacer = new RandomGridManipulation(grid, furnitureData, objectPlacer, upgradeData.Prefab, upgradeData.Size);
+            RandomGridManipulation upgradePlacer = new RandomGridManipulation(grid, furnitureData, objectPlacer, upgradeData.Prefab, upgradeData.UIWindow, upgradeData.Size);
             upgradePlacer.RandomWheightedUpgrade(1, 20, 20);
         }            
     }

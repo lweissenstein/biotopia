@@ -4556,6 +4556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedGameObject: []
+  currentUI: {fileID: 1978123117}
 --- !u!4 &2001416089
 Transform:
   m_ObjectHideFlags: 0

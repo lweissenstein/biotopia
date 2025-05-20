@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class ClickHandler : MonoBehaviour, IPointerClickHandler
 { 
-    [SerializeField] GameObject uiElement;
+    [SerializeField] public GameObject uiElement;
     public GameObject currentUI;
     UIHandler handler;
 

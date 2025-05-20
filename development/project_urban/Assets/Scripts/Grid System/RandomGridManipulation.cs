@@ -10,15 +10,17 @@ public class RandomGridManipulation
 	private GridData gridData;
 	private ObjectPlacer objectPlacer;
 	private GameObject prefab;
+	private GameObject uiWindow;
 	private Vector2Int objectSize;
 	private int objectID = 0;
 
-	public RandomGridManipulation(Grid grid, GridData gridData, ObjectPlacer objectPlacer, GameObject prefab, Vector2Int objectSize)
+	public RandomGridManipulation(Grid grid, GridData gridData, ObjectPlacer objectPlacer, GameObject prefab, GameObject uiWindow, Vector2Int objectSize)
 	{
 		this.grid = grid;
 		this.gridData = gridData;
 		this.objectPlacer = objectPlacer;
 		this.prefab = prefab;
+		this.uiWindow = uiWindow;
 		this.objectSize = objectSize;
 	}
 
@@ -48,7 +50,7 @@ public class RandomGridManipulation
 		for (int i = 0; i < validAmount; i++)
 		{
 			Vector3Int pos = validPositions[i];
-			int index = objectPlacer.PlaceObject(prefab, grid.CellToWorld(pos));
+			int index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(pos));
 			gridData.AddObjectAt(pos, objectSize, objectID, index);
 		}
 	}
@@ -125,7 +127,7 @@ public class RandomGridManipulation
 			Vector3Int pos = placeablesLists[chosenIndex].list[0];
 			placeablesLists[chosenIndex].list.RemoveAt(0);
 
-			int index = objectPlacer.PlaceObject(prefab, grid.CellToWorld(pos));
+			int index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(pos));
 			gridData.AddObjectAt(pos, objectSize, objectID, index);
 
 			placed++;
@@ -156,7 +158,7 @@ public class RandomGridManipulation
 			objectPlacer.RemoveObjectAt(representationIndex);
 			gridData.RemoveObjectAt(pos);
 
-            int index = objectPlacer.PlaceObject(prefab, grid.CellToWorld(pos));
+            int index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(pos));
             gridData.AddObjectAt(pos, objectSize, 2, index);
         }
 	}
@@ -207,7 +209,7 @@ public class RandomGridManipulation
             objectPlacer.RemoveObjectAt(representationIndex);
             gridData.RemoveObjectAt(pos);
 
-            int index = objectPlacer.PlaceObject(prefab, grid.CellToWorld(pos));
+            int index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(pos));
             gridData.AddObjectAt(pos, objectSize, 2, index);
         }
     }

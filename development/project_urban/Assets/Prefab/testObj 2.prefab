@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2932406809232721597}
   - component: {fileID: 3365421445591800575}
-  m_Layer: 0
+  - component: {fileID: 7725302641251748294}
+  m_Layer: 7
   m_Name: testObj 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,13 +41,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4809059401213230736}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bf99dda1c8ac104ea172f1fccb3bfa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectToChangeLayer: {fileID: 4809059401213230736}
   layerNumber: 7
+--- !u!114 &7725302641251748294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4809059401213230736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1a74d72fa075b489f373db81110ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiElement: {fileID: 0}
+  currentUI: {fileID: 0}
 --- !u!1 &5221580930186588424
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +74,7 @@ GameObject:
   - component: {fileID: 1018130517087809906}
   - component: {fileID: 1503400107285861470}
   - component: {fileID: 2425957545181468078}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
