@@ -2,31 +2,25 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class RandomGridManipulation
 {
-    private Grid grid;
-	private GridData gridData;
+	private Grid grid;
 	private ObjectPlacer objectPlacer;
-	private GameObject prefab;
-	private GameObject uiWindow;
-	private Vector2Int objectSize;
-	private int objectID;
-
-	public RandomGridManipulation(Grid grid, GridData gridData, ObjectPlacer objectPlacer, int objectID, GameObject prefab, GameObject uiWindow, Vector2Int objectSize)
+	[SerializeField] private ObjectsDatabaseSO dataBase;
+	
+	public RandomGridManipulation(Grid grid, ObjectPlacer objectPlacer, ObjectsDatabaseSO dataBase)
 	{
 		this.grid = grid;
-		this.gridData = gridData;
 		this.objectPlacer = objectPlacer;
-		this.objectID = objectID;
-		this.prefab = prefab;
-		this.uiWindow = uiWindow;
-		this.objectSize = objectSize;
+		this.dataBase = dataBase;
 	}
 
-	public void RandomPlace(int toPlace, int maxX, int maxZ)
+	public void RandomPlace(int toPlace, int maxX, int maxZ, GridData gridData, int objectID)
 	{
 		// create an empty list
 		List<Vector3Int> validPositions = new();
@@ -37,7 +31,7 @@ public class RandomGridManipulation
 			for (int z = -maxZ / 2; z < maxZ / 2; z++)
 			{
 				Vector3Int testPos = new Vector3Int(x, 0, z);
-				if (gridData.CanPlaceObjectAt(testPos, objectSize))
+				if (gridData.CanPlaceObjectAt(testPos, dataBase.objectsData[objectID].Size))
 				{
 					validPositions.Add(testPos);
 				}
@@ -51,13 +45,13 @@ public class RandomGridManipulation
 		int validAmount = Mathf.Min(toPlace, validPositions.Count);
 		for (int i = 0; i < validAmount; i++)
 		{
-			Vector3Int pos = validPositions[i];
-			int index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(pos));
-			gridData.AddObjectAt(pos, objectSize, objectID, index);
+            Vector3Int pos = validPositions[i];
+			int index = objectPlacer.PlaceObject(dataBase.objectsData[objectID].Prefab, dataBase.objectsData[objectID].UIWindow, grid.CellToWorld(pos));
+			gridData.AddObjectAt(pos, dataBase.objectsData[objectID].Size, objectID, index);
 		}
 	}
 
-    public void RandomWheightedPlace(int toPlace, int maxX, int maxZ)
+    public void RandomWheightedPlace(int toPlace, int maxX, int maxZ, GridData gridData, int objectID)
     {
 
 		// leere Listen für die freien Positionen
@@ -76,14 +70,14 @@ public class RandomGridManipulation
             for (int z = -maxZ / 2; z < maxZ / 2; z++)
             {
                 Vector3Int testPos = new Vector3Int(x, 0, z);
-                if (gridData.CanPlaceObjectAt(testPos, objectSize))
+                if (gridData.CanPlaceObjectAt(testPos, dataBase.objectsData[objectID].Size))
                 {
 					int numNeighbors = 0;
 
-					if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(1, 0, 0), objectSize)) numNeighbors++;
-					if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(-1, 0, 0), objectSize)) numNeighbors++;
-                    if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(0, 0, 1), objectSize)) numNeighbors++;
-                    if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(0, 0, -1), objectSize)) numNeighbors++;
+					if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(1, 0, 0), dataBase.objectsData[objectID].Size)) numNeighbors++;
+					if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(-1, 0, 0), dataBase.objectsData[objectID].Size)) numNeighbors++;
+                    if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(0, 0, 1), dataBase.objectsData[objectID].Size)) numNeighbors++;
+                    if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(0, 0, -1), dataBase.objectsData[objectID].Size)) numNeighbors++;
 
 					placeablesLists[numNeighbors].list.Add(testPos);
                 }
@@ -129,14 +123,14 @@ public class RandomGridManipulation
 			Vector3Int pos = placeablesLists[chosenIndex].list[0];
 			placeablesLists[chosenIndex].list.RemoveAt(0);
 
-			int index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(pos));
-			gridData.AddObjectAt(pos, objectSize, objectID, index);
+			int index = objectPlacer.PlaceObject(dataBase.objectsData[objectID].Prefab, dataBase.objectsData[objectID].UIWindow, grid.CellToWorld(pos));
+			gridData.AddObjectAt(pos, dataBase.objectsData[objectID].Size, objectID, index);
 
 			placed++;
 		}	
     }
 
-    public void RandomUpgrade(int toUpgrade, int maxX, int maxZ)
+    public void RandomUpgrade(int toUpgrade, int maxX, int maxZ, GridData gridData, int objectID)
 	{
         // empty list for all valid positions
         List<Vector3Int> validUpgradeables = new();
@@ -144,7 +138,7 @@ public class RandomGridManipulation
 		// add all valid upgradeable positions
 		foreach (var pos in gridData.GetAllOccupiedPositions())
 		{
-			if (gridData.GetObjectIDAt(pos) == 0) validUpgradeables.Add(pos);
+			if (gridData.GetObjectIDAt(pos) == objectID - 1) validUpgradeables.Add(pos);
 		}
 
 		// shuffle the list
@@ -160,65 +154,119 @@ public class RandomGridManipulation
 			objectPlacer.RemoveObjectAt(representationIndex);
 			gridData.RemoveObjectAt(pos);
 
-            int index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(pos));
-            gridData.AddObjectAt(pos, objectSize, 2, index);
+            int index = objectPlacer.PlaceObject(dataBase.objectsData[objectID].Prefab, dataBase.objectsData[objectID].UIWindow, grid.CellToWorld(pos));
+            gridData.AddObjectAt(pos, dataBase.objectsData[objectID].Size, objectID, index);
         }
 	}
 
-    public void RandomWheightedUpgrade(int toUpgrade, int maxX, int maxZ)
+    public void RandomWheightedUpgrade(int toUpgrade, int maxX, int maxZ, GridData gridData, int objectID)
     {
 
         // empty list for all valid positions and all fully encased positions
+		List<Vector3Int> upgradeables = new();
         List<Vector3Int> validUpgradeables = new();
         List<Vector3Int> encasedUpgradeables = new();
 
+        var upgradeablesLists = new (int weight, List<Vector3Int> list)[]
+        {
+            (1, new List<Vector3Int>()), // 4 valid neighbors
+			(20, new List<Vector3Int>()), // 5 valid neighbor
+			(8, new List<Vector3Int>()), // 6 valid neighbors
+			(30, new List<Vector3Int>()), // 7 valid neighbors
+			(40, new List<Vector3Int>()), // 8 valid neighbors
+		};
+
         foreach (var pos in gridData.GetAllOccupiedPositions())
         {
-            if (gridData.GetObjectIDAt(pos) == 0) validUpgradeables.Add(pos);
+            if (gridData.GetObjectIDAt(pos) == objectID - 1) upgradeables.Add(pos);
         }
 
-		foreach (var pos in validUpgradeables)
+		foreach (var pos in upgradeables)
 		{
-            bool encased = true;
+			int numDirectNeighbors = 0;
 
-            for (int offsetX = -1; offsetX < 2; offsetX++)
-            {
-                for (int offsetZ = -1; offsetZ < 2; offsetZ++)
-                {
-                    if (gridData.CanPlaceObjectAt(pos + new Vector3Int(offsetX, 0, offsetZ), objectSize))
-                    {
-                        encased = false;
-                        break;
-                    }
-                }
+			if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(1, 0, 0), dataBase.objectsData[objectID].Size) && 
+				gridData.GetObjectIDAt(pos + new Vector3Int(1, 0, 0)) >= objectID - 1) numDirectNeighbors++;
+			if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(-1, 0, 0), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(-1, 0, 0)) >= objectID - 1) numDirectNeighbors++;
+			if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(0, 0, 1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(0, 0, 1)) >= objectID - 1) numDirectNeighbors++;
+			if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(0, 0, -1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(0, 0, -1)) >= objectID - 1) numDirectNeighbors++;
 
-                if (!encased) break;
-            }
+			if (numDirectNeighbors == 4)
+			{
+				validUpgradeables.Add(pos);
+			}
+		}    
 
-            if (encased) encasedUpgradeables.Add(pos);
+        foreach (var pos in validUpgradeables)
+		{
+            int numNeighbors = 0;
+
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(1, 0, 1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(1, 0, 1)) >= objectID - 1) numNeighbors++;
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(-1, 0, 1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(-1, 0, 1)) >= objectID - 1) numNeighbors++;
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(-1, 0, 1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(-1, 0, 1)) >= objectID - 1) numNeighbors++;
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(-1, 0, -1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(-1, 0, -1)) >= objectID - 1) numNeighbors++;
+
+            upgradeablesLists[numNeighbors].list.Add(pos);
         }
 
         // shuffle the list
-        Shuffle(encasedUpgradeables);
+        foreach (var list in  upgradeablesLists)
+			Shuffle(list.list);
 
-        // replace the first n objects with objects of ID 2
-        int validAmount = Mathf.Min(toUpgrade, encasedUpgradeables.Count);
-        for (int i = 0; i < validAmount; i++)
+        // upgrade objects in positions based on weighted probabilities
+        int upgraded = 0;
+        while (upgraded < toUpgrade)
         {
-            Vector3Int pos = encasedUpgradeables[i];
+            int probabilityMax = 0;
+            foreach (var item in upgradeablesLists)
+                if (item.list.Count != 0)
+                    probabilityMax += item.weight;
+
+            if (probabilityMax == 0) break;
+
+            int rnd = Random.Range(0, probabilityMax);
+            int cumulative = 0;
+            int chosenIndex = -1;
+
+            // randomely choose a list
+            for (int i = 0; i < upgradeablesLists.Length; i++)
+            {
+                if (upgradeablesLists[i].list.Count == 0) continue;
+
+                cumulative += upgradeablesLists[i].weight;
+                if (rnd < cumulative)
+                {
+                    chosenIndex = i;
+                    break;
+                }
+            }
+
+            // safety check
+            if (chosenIndex == -1)
+                continue;
+
+            Vector3Int pos = upgradeablesLists[chosenIndex].list[0];
             int representationIndex = gridData.GetRepresentationIndex(pos);
+            upgradeablesLists[chosenIndex].list.RemoveAt(0);
 
             objectPlacer.RemoveObjectAt(representationIndex);
             gridData.RemoveObjectAt(pos);
 
-            int index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(pos));
-            gridData.AddObjectAt(pos, objectSize, 2, index);
+            int index = objectPlacer.PlaceObject(dataBase.objectsData[objectID].Prefab, dataBase.objectsData[objectID].UIWindow, grid.CellToWorld(pos));
+            gridData.AddObjectAt(pos, dataBase.objectsData[objectID].Size, objectID, index);
+
+            upgraded++;
         }
-
-
     }
 
-	public void GenerateRiver(int maxX, int maxZ) 
+	public void GenerateRiver(int maxX, int maxZ, GridData gridData, int objectID) 
 	{
 		int borderLength = maxX * 2 + maxZ * 2 - 4;
 		int innerBorderLength = maxX + maxZ - 4;
@@ -260,10 +308,10 @@ public class RandomGridManipulation
 		{
 			while (riverFlow != riverPoints[i])
 			{
-                if (gridData.CanPlaceObjectAt(riverFlow, objectSize))
+				if (gridData.CanPlaceObjectAt(riverFlow, dataBase.objectsData[objectID].Size))
                 {
-                    index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(riverFlow));
-                    gridData.AddObjectAt(riverFlow, objectSize, objectID, index);
+                    index = objectPlacer.PlaceObject(dataBase.objectsData[objectID].Prefab, dataBase.objectsData[objectID].UIWindow, grid.CellToWorld(riverFlow));
+                    gridData.AddObjectAt(riverFlow, dataBase.objectsData[objectID].Size, objectID, index);
                 }
 
                 int dx = Math.Abs(riverFlow.x - riverPoints[i].x);
@@ -281,10 +329,10 @@ public class RandomGridManipulation
                 }
             }
 		}
-		if (gridData.CanPlaceObjectAt(riverFlow, objectSize))
+		if (gridData.CanPlaceObjectAt(riverFlow, dataBase.objectsData[objectID].Size))
 		{
-			index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(riverFlow));
-			gridData.AddObjectAt(riverFlow, objectSize, objectID, index);
+			index = objectPlacer.PlaceObject(dataBase.objectsData[objectID].Prefab, dataBase.objectsData[objectID].UIWindow, grid.CellToWorld(riverFlow));
+			gridData.AddObjectAt(riverFlow, dataBase.objectsData[objectID].Size, objectID, index);
 		}      
     }
 
