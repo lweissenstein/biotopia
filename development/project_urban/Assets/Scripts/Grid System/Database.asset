@@ -18,9 +18,9 @@ MonoBehaviour:
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 4809059401213230736, guid: 53270b9888567c84ea2bda97f510d3d7, type: 3}
     <UIWindow>k__BackingField: {fileID: 6201712967621462662, guid: da2f04179bcbb8c4988c6e44bb7172d8, type: 3}
-  - <Name>k__BackingField: 1x2
+  - <Name>k__BackingField: 1x1 Medium
     <ID>k__BackingField: 1
-    <Size>k__BackingField: {x: 2, y: 1}
+    <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 4809059401213230736, guid: 8ed08680b5ffa114a8116de77c38f344, type: 3}
     <UIWindow>k__BackingField: {fileID: 6201712967621462662, guid: 68c425f4f91fa2149b6ad4291d524f8f, type: 3}
   - <Name>k__BackingField: 1x1 High
@@ -28,8 +28,8 @@ MonoBehaviour:
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 4809059401213230736, guid: 74ec4a7d92d6ed643bdaeb30442a1bdb, type: 3}
     <UIWindow>k__BackingField: {fileID: 6201712967621462662, guid: 49c0921b40811634fba182f3fceccef6, type: 3}
-  - <Name>k__BackingField: 3x3 Ring
+  - <Name>k__BackingField: water
     <ID>k__BackingField: 3
-    <Size>k__BackingField: {x: 3, y: 3}
+    <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 4809059401213230736, guid: 5aaa1559d1c6952438463b68da989f18, type: 3}
     <UIWindow>k__BackingField: {fileID: 6201712967621462662, guid: af4c2880c2a5da34da5ff17ec1a31ed6, type: 3}

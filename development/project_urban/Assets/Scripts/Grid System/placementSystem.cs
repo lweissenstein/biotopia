@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.LightTransport;
 
@@ -110,7 +111,7 @@ public class PlacementSystem : MonoBehaviour
         var data = database.objectsData[objectID];
 
 
-        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, objectID, data.Prefab, data.UIWindow, data.Size);
 
         placer.RandomPlace(5, 20, 20);
     }
@@ -122,7 +123,7 @@ public class PlacementSystem : MonoBehaviour
         var data = database.objectsData[objectID];
 
 
-        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, objectID, data.Prefab, data.UIWindow, data.Size);
 
         placer.RandomWheightedPlace(5, 20, 20);
     }
@@ -134,7 +135,7 @@ public class PlacementSystem : MonoBehaviour
         var data = database.objectsData[objectID];
 
 
-        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, objectID, data.Prefab, data.UIWindow, data.Size);
 
         placer.RandomUpgrade(1, 20, 20);
     }
@@ -146,7 +147,7 @@ public class PlacementSystem : MonoBehaviour
         var data = database.objectsData[objectID];
 
 
-        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
+        RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, objectID, data.Prefab, data.UIWindow, data.Size);
 
         placer.RandomWheightedUpgrade(1, 20, 20);
     }
@@ -164,16 +165,22 @@ public class PlacementSystem : MonoBehaviour
 
         if (empty)
         {
+            int riverID = 3;
+            var riverData = database.objectsData[riverID];
+
+            RandomGridManipulation riverPlacer = new RandomGridManipulation(grid, furnitureData, objectPlacer, riverID, riverData.Prefab, riverData.UIWindow, riverData.Size);
+            riverPlacer.GenerateRiver(20, 20);
+
             int objectID = 0;
             var data = database.objectsData[objectID];
 
-            RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
+            RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, objectID, data.Prefab, data.UIWindow, data.Size);
             placer.RandomPlace(10, 20 / 3, 20 / 3);
 
             int upgradeID = 2;
             var upgradeData = database.objectsData[upgradeID];
 
-            RandomGridManipulation upgradePlacer = new RandomGridManipulation(grid, furnitureData, objectPlacer, upgradeData.Prefab, upgradeData.UIWindow, upgradeData.Size);
+            RandomGridManipulation upgradePlacer = new RandomGridManipulation(grid, furnitureData, objectPlacer, upgradeID, upgradeData.Prefab, upgradeData.UIWindow, upgradeData.Size);
             upgradePlacer.RandomUpgrade(3, 20, 20);
         }
         else
@@ -181,14 +188,31 @@ public class PlacementSystem : MonoBehaviour
             int objectID = 0;
             var data = database.objectsData[objectID];
 
-            RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, data.Prefab, data.UIWindow, data.Size);
+            RandomGridManipulation placer = new RandomGridManipulation(grid, furnitureData, objectPlacer, objectID, data.Prefab, data.UIWindow, data.Size);
             placer.RandomWheightedPlace(3, 20, 20);
 
             int upgradeID = 2;
             var upgradeData = database.objectsData[upgradeID];
 
-            RandomGridManipulation upgradePlacer = new RandomGridManipulation(grid, furnitureData, objectPlacer, upgradeData.Prefab, upgradeData.UIWindow, upgradeData.Size);
+            RandomGridManipulation upgradePlacer = new RandomGridManipulation(grid, furnitureData, objectPlacer, upgradeID, upgradeData.Prefab, upgradeData.UIWindow, upgradeData.Size);
             upgradePlacer.RandomWheightedUpgrade(1, 20, 20);
         }            
+    }
+
+    public void ClearGrid()
+    {
+        int numObjects = 0;
+
+        foreach (var pos in furnitureData.GetAllOccupiedPositions()) numObjects++;
+
+        for (int i = 0; i < numObjects; i++)
+        {
+            foreach (var pos in furnitureData.GetAllOccupiedPositions())
+            {
+                objectPlacer.RemoveObjectAt(furnitureData.GetRepresentationIndex(pos));
+                furnitureData.RemoveObjectAt(pos);
+                break;
+            }
+        }             
     }
 }

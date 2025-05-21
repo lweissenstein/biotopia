@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,13 +13,14 @@ public class RandomGridManipulation
 	private GameObject prefab;
 	private GameObject uiWindow;
 	private Vector2Int objectSize;
-	private int objectID = 0;
+	private int objectID;
 
-	public RandomGridManipulation(Grid grid, GridData gridData, ObjectPlacer objectPlacer, GameObject prefab, GameObject uiWindow, Vector2Int objectSize)
+	public RandomGridManipulation(Grid grid, GridData gridData, ObjectPlacer objectPlacer, int objectID, GameObject prefab, GameObject uiWindow, Vector2Int objectSize)
 	{
 		this.grid = grid;
 		this.gridData = gridData;
 		this.objectPlacer = objectPlacer;
+		this.objectID = objectID;
 		this.prefab = prefab;
 		this.uiWindow = uiWindow;
 		this.objectSize = objectSize;
@@ -212,6 +214,78 @@ public class RandomGridManipulation
             int index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(pos));
             gridData.AddObjectAt(pos, objectSize, 2, index);
         }
+
+
+    }
+
+	public void GenerateRiver(int maxX, int maxZ) 
+	{
+		int borderLength = maxX * 2 + maxZ * 2 - 4;
+		int innerBorderLength = maxX + maxZ - 4;
+		int steps;
+		int index;
+
+        steps = Random.Range(0, borderLength);
+        Vector3Int pos0 = iterateOverEdge(steps, maxX - 1, 0, 0) + new Vector3Int(- maxX / 2, 0,- maxZ / 2);
+
+		steps = Random.Range((int)(0 + borderLength / 3) , (int)(borderLength / 3 * 2)) + steps;
+        Vector3Int pos3 = iterateOverEdge(steps, maxX - 1, 0, 0) + new Vector3Int(-maxX / 2, 0, -maxZ / 2);
+
+        steps = Random.Range(0, innerBorderLength);
+		Vector3Int pos2 = iterateOverEdge(steps, maxX / 2 - 1, 0, 0) + new Vector3Int(- maxX / 2 + maxX / 4, 0,- maxZ / 2 + maxZ / 4);
+
+        steps = Random.Range(steps + maxX / 4, innerBorderLength - maxX / 2);
+        Vector3Int pos1 = iterateOverEdge(steps, maxX / 2 - 1, 0, 0) + new Vector3Int(- maxX / 2 + maxX / 4, 0, -maxZ / 2 + maxZ / 4);
+
+        double distanceTo1 = Math.Sqrt((pos0.x - pos1.x) * (pos0.x - pos1.x) + (pos0.z - pos1.z) * (pos0.z - pos1.z));
+		double distanceTo2 = Math.Sqrt((pos0.x - pos2.x) * (pos0.x - pos2.x) + (pos0.z - pos2.z) * (pos0.z - pos2.z));
+
+		Vector3Int[] riverPoints = new Vector3Int[3];
+		riverPoints[2] = pos3;
+
+        if (distanceTo1 > distanceTo2)
+		{
+			riverPoints[0] = pos2;
+			riverPoints[1] = pos1;
+		} 
+		else
+		{
+			riverPoints[0] = pos1;
+			riverPoints[1] = pos2;
+		}
+
+		Vector3Int riverFlow = pos0;
+
+		for (int i = 0; i < 3; i++)
+		{
+			while (riverFlow != riverPoints[i])
+			{
+                if (gridData.CanPlaceObjectAt(riverFlow, objectSize))
+                {
+                    index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(riverFlow));
+                    gridData.AddObjectAt(riverFlow, objectSize, objectID, index);
+                }
+
+                int dx = Math.Abs(riverFlow.x - riverPoints[i].x);
+                int dz = Math.Abs(riverFlow.z - riverPoints[i].z);
+
+                bool moveX = dx > dz || (dx == dz && Random.value > 0.5f);
+
+                if (moveX)
+                {
+                    riverFlow.x += (riverFlow.x < riverPoints[i].x) ? 1 : -1;
+                }
+                else
+                {
+                    riverFlow.z += (riverFlow.z < riverPoints[i].z) ? 1 : -1;
+                }
+            }
+		}
+		if (gridData.CanPlaceObjectAt(riverFlow, objectSize))
+		{
+			index = objectPlacer.PlaceObject(prefab, uiWindow, grid.CellToWorld(riverFlow));
+			gridData.AddObjectAt(riverFlow, objectSize, objectID, index);
+		}      
     }
 
     // Fisher-Yates shuffle function
@@ -223,4 +297,35 @@ public class RandomGridManipulation
 			(list[i], list[rand]) = (list[rand], list[i]);
 		}
 	}
+
+    private Vector3Int iterateOverEdge(int steps, int edgeLength, int startX, int startY)
+    {
+        int perimeter = edgeLength * 4;
+        steps %= perimeter;
+
+        int x = startX;
+        int z = startY;
+
+        for (int i = 0; i < steps; i++)
+        {
+            if (z == 0 && x < edgeLength)
+            {
+                x++;
+            }
+            else if (x == edgeLength && z < edgeLength)
+            {
+                z++;
+            }
+            else if (z == edgeLength && x > 0)
+            {
+                x--;
+            }
+            else if (x == 0 && z > 0)
+            {
+                z--;
+            }
+        }
+
+        return new Vector3Int(x, 0, z);
+    }
 }
