@@ -8,7 +8,7 @@ namespace EconomySystem
     public class FoodProducer : MonoBehaviour
     {
         public static event Action<float> ProduceFood;
-        public int foodProductionPerSecond = 30;
+        [SerializeField] private int foodProductionPerSecond = 30;
 
         private void Start()
         {

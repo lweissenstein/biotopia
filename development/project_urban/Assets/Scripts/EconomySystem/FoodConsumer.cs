@@ -9,7 +9,7 @@ namespace EconomySystem
     public class FoodConsumer : MonoBehaviour
     {
         public static event Action<float> ConsumeFood;
-        public int foodConsumptionPerSecond = 10;
+        [SerializeField] private int foodConsumptionPerSecond = 10;
 
         public void Start()
         {

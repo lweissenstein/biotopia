@@ -1,5 +1,3 @@
-using System;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 using Util;
 
@@ -8,7 +6,8 @@ namespace EconomySystem
     public class Economy : MonoBehaviour
     {
         private readonly FoodEconomy _foodEconomy = FoodEconomy.Instance;
-        public bool isDebug = false;
+        private readonly Timer _timer = new();
+        [SerializeField] private bool isDebug = false;
 
         private void Start()
         {
@@ -22,7 +21,7 @@ namespace EconomySystem
         {
             if (isDebug)
             {
-                Timer.OncePerSecondDebugLog($"FOOD: {_foodEconomy.Report()}");
+                _timer.OncePerSecondDebugLog($"FOOD: {_foodEconomy.Report()}");
             }
         }
     }
