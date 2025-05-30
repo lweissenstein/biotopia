@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Util;
 
 namespace EconomySystem
 {
@@ -8,13 +7,17 @@ namespace EconomySystem
     {
         private static FoodEconomy _instance = null;
 
-        private float _currentProteinAmount;
         private float _totalConsumption;
         private float _totalProduction;
+        public float CurrentProteinAmount { get; private set; }
+        public float MaxProteinAmount { get; private set; }
+        public float MinProteinAmount { get; private set; }
 
         private FoodEconomy()
         {
-            _currentProteinAmount = 1000;
+            CurrentProteinAmount = 10_000;
+            MaxProteinAmount = 10_000;
+            MinProteinAmount = 0;
             _totalConsumption = 0;
             _totalProduction = 0;
 
@@ -24,14 +27,16 @@ namespace EconomySystem
 
         private void OnConsumeFood(float consumptionPerFixedUpdate)
         {
-            _currentProteinAmount = Math.Max(0, _currentProteinAmount - consumptionPerFixedUpdate);
-            _totalConsumption += consumptionPerFixedUpdate;
+            var nextProteinAmount = Math.Max(MinProteinAmount, CurrentProteinAmount - consumptionPerFixedUpdate);
+            _totalConsumption += CurrentProteinAmount - nextProteinAmount;
+            CurrentProteinAmount = nextProteinAmount;
         }
 
         private void OnProduceFood(float productionPerFixedUpdate)
         {
-            _currentProteinAmount = Math.Min(1_000_000, _currentProteinAmount + productionPerFixedUpdate);
-            _totalProduction += productionPerFixedUpdate;
+            var nextProteinAmount = Math.Min(MaxProteinAmount, CurrentProteinAmount + productionPerFixedUpdate);
+            _totalProduction += nextProteinAmount - CurrentProteinAmount;
+            CurrentProteinAmount = nextProteinAmount;
         }
 
         public string Report()

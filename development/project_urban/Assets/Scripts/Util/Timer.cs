@@ -21,7 +21,7 @@ namespace Util
         [SuppressMessage("ReSharper", "ExplicitCallerInfoArgument")]
         [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
         public void OncePerSecondDebugLog(
-            string message,
+            object message,
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0
         ) => OncePerSecond(() => Debug.Log(message), sourceFilePath, sourceLineNumber);
