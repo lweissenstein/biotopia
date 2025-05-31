@@ -58,7 +58,7 @@ public class PlacementState : IBuildingState
             //soundFeedback.PlaySound(SoundType.wrongPlacement);
             return;
         soundFeedback.PlaySound(SoundType.Place);
-        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, database.objectsData[selectedObjectIndex].UIWindow, grid.CellToWorld(gridPosition));
+        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition));
 
         GridData selectedData = database.objectsData[selectedObjectIndex].ID == 4 ? floorData : furnitureData;
         selectedData.AddObjectAt(gridPosition,
@@ -70,7 +70,7 @@ public class PlacementState : IBuildingState
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
-        GridData selectedData = database.objectsData[selectedObjectIndex].ID == 4 ? floorData : furnitureData;
+        GridData selectedData = database.objectsData[selectedObjectIndex].ID == 9999 ? floorData : furnitureData;
 
         return selectedData.CanPlaceObjectAt(gridPosition, database.objectsData[selectedObjectIndex].Size);
     }

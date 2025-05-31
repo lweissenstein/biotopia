@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2932406809232721597}
   - component: {fileID: 3256003131292604888}
   - component: {fileID: 8168162246737695170}
-  - component: {fileID: -4626927663728851183}
   m_Layer: 7
   m_Name: testObj 4
   m_TagString: Untagged
@@ -62,20 +61,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodConsumptionPerSecond: 10
---- !u!114 &-4626927663728851183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4809059401213230736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1a74d72fa075b489f373db81110ae9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiElement: {fileID: 0}
-  currentUI: {fileID: 0}
 --- !u!1 &4890790108107870605
 GameObject:
   m_ObjectHideFlags: 0

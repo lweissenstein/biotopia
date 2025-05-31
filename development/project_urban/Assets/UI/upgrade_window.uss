@@ -1,0 +1,7 @@
+.window {
+}
+
+.labels {
+    font-size: 30px;
+    -unity-font-style: bold;
+}

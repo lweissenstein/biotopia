@@ -27,6 +27,21 @@ public class PlacementSystem : MonoBehaviour
 
     private RandomGridManipulation randomPlacer;
 
+    [SerializeField] private GameObject gridObject;
+
+    int gridSizeX;
+    int gridSizeZ;
+
+    private void Awake()
+    {
+        if (gridObject != null)
+        {
+            gridSizeX = Mathf.RoundToInt(gridObject.transform.localScale.x*10);
+            gridSizeZ = Mathf.RoundToInt(gridObject.transform.localScale.z*10);
+        }
+        Debug.Log($"Grid size: {gridSizeX}x{gridSizeZ} cells");
+    }
+
     private void Start()
     {
         StopPlacement();
@@ -110,25 +125,26 @@ public class PlacementSystem : MonoBehaviour
     // uses randomPlace to randomely place objects
     public void placeRandom()
     {
-        randomPlacer.RandomPlace(5, 20, 20, furnitureData, 0);
+        randomPlacer.RandomPlace(5, gridSizeX, gridSizeZ, furnitureData, 0);
     }
 
     // uses RandomWeightedPlace to randomely place objects
     public void weightedPlaceRandom()
     {
-        randomPlacer.RandomWheightedPlace(5, 20, 20, furnitureData, 0);
+        randomPlacer.RandomWheightedPlace(5, gridSizeX, gridSizeZ, furnitureData, 0);
     }
 
     // uses RandomUpgrade to randomely upgrade objects
     public void upgradeRandom()
     {
-        randomPlacer.RandomUpgrade(1, 20, 20, furnitureData, 1);
+        randomPlacer.RandomUpgrade(2, gridSizeX, gridSizeZ, furnitureData, 1);
+        randomPlacer.RandomUpgrade(1, gridSizeX, gridSizeZ, furnitureData, 2);
     }
 
     // uses RandomWeightedUpgrade to randomely upgrade objects
     public void weightedUpgradeRandom()
     {
-        randomPlacer.RandomWheightedUpgrade(1, 20, 20, furnitureData, 1);
+        randomPlacer.RandomWheightedUpgrade(1, gridSizeX, gridSizeZ, furnitureData, 1);
     }
 
     // either creates a base city using RandomPlace and RandomUpgrade in the center, or grows the City if there is already one using RandomWeightedPlace and RandomWeightedUpgrade
@@ -144,16 +160,16 @@ public class PlacementSystem : MonoBehaviour
 
         if (empty)
         {
-            randomPlacer.GenerateRiver(20, 20, furnitureData, 3);
-            randomPlacer.RandomPlace(10, 20 / 3, 20 / 3, furnitureData, 0);
-            randomPlacer.RandomUpgrade(3, 20, 20, furnitureData, 1);
-            randomPlacer.RandomUpgrade(1, 20, 20, furnitureData, 2);
+            randomPlacer.GenerateRiver(gridSizeX, gridSizeZ, furnitureData, 3);
+            randomPlacer.RandomPlace(10, gridSizeX / 3, gridSizeZ / 3, furnitureData, 0);
+            randomPlacer.RandomUpgrade(3, gridSizeX, gridSizeZ, furnitureData, 1);
+            randomPlacer.RandomUpgrade(1, gridSizeX, gridSizeZ, furnitureData, 2);
         }
         else
         {
-            randomPlacer.RandomWheightedPlace(5, 20, 20, furnitureData, 0);
-            randomPlacer.RandomWheightedUpgrade(2, 20, 20, furnitureData, 1);
-            randomPlacer.RandomWheightedUpgrade(2, 20, 20, furnitureData, 2);
+            randomPlacer.RandomWheightedPlace(5, gridSizeX, gridSizeZ, furnitureData, 0);
+            randomPlacer.RandomWheightedUpgrade(2, gridSizeX, gridSizeZ, furnitureData, 1);
+            randomPlacer.RandomWheightedUpgrade(2, gridSizeX, gridSizeZ, furnitureData, 2);
         }            
     }
 

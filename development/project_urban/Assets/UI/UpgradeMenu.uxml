@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/upgrade_window.uss?fileID=7433441132597879392&amp;guid=6221bca7458d58a44a96960c0b9622e6&amp;type=3#upgrade_window" />
+    <ui:VisualElement name="BuildingPanel" class="window" style="flex-grow: 1; background-color: rgb(136, 121, 228); background-size: 300px 500px; width: 300px; height: 500px; min-width: 300px; min-height: 500px; max-width: 300px; max-height: 500px;">
+        <ui:Button text="Button" name="UpgradeButton" />
+        <ui:Label text="Label" name="BuildingName" class="labels" />
+        <ui:Label text="Label" name="BuildingLevel" class="labels" />
+        <ui:Label text="Label" name="BuildingProduction" class="labels" />
+    </ui:VisualElement>
+</ui:UXML>

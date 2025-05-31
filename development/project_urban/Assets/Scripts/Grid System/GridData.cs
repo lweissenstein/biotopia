@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridData
 {
-    Dictionary<Vector3Int, PlacementData> placedObjects = new();
+    public Dictionary<Vector3Int, PlacementData> placedObjects = new();
     public void AddObjectAt(Vector3Int gridPosition,
                             Vector2Int objectSize,
                             int ID,
@@ -44,6 +44,8 @@ public class GridData
         return true;
     }
 
+
+
     internal int GetRepresentationIndex(Vector3Int gridPosition)
     {
         if (placedObjects.ContainsKey(gridPosition) == false)
@@ -57,6 +59,12 @@ public class GridData
         {
             placedObjects.Remove(pos);
         }
+    }
+
+    public void UpdateObjectIDAt(Vector3Int pos, int newID)
+    {
+        if (placedObjects.TryGetValue(pos, out var data))
+            data.ID = newID;
     }
 
     // returns the ID of the prefab
@@ -77,10 +85,11 @@ public class GridData
 
 }
 
+
 public class PlacementData
 {
     public List<Vector3Int> occupiedPositions;
-    public int ID { get; private set; }
+    public int ID { get; internal set; }
     public int PlacedObjectIndex { get; private set; }
 
     public PlacementData(List<Vector3Int> occupiedPositions, int iD, int placedObjectIndex)
@@ -89,4 +98,6 @@ public class PlacementData
         ID = iD;
         PlacedObjectIndex = placedObjectIndex;
     }
+
+
 }

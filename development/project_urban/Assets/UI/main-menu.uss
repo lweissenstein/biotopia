@@ -1,0 +1,29 @@
+.panel {
+    background-color: rgba(0, 255, 215, 0.6);
+    width: 80%;
+    height: 80%;
+}
+
+.menu {
+    max-height: 80%;
+    max-width: 80%;
+    min-width: 40%;
+    min-height: 80%;
+    align-self: center;
+    align-content: auto;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+}
+
+.unity-button {
+}
+
+.unity-text-element {
+}
+
+.unity-button:hover {
+    background-color: rgb(0, 178, 255);
+    -unity-font-style: bold;
+}
+
