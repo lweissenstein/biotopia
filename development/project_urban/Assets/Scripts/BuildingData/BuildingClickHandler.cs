@@ -1,16 +1,19 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class BuildingClickHandler : MonoBehaviour
 {
     [SerializeField] private Camera sceneCamera;
     [SerializeField] private LayerMask buildingLayer;
+   
 
     void Update()
     {
-if (Input.GetMouseButtonDown(0))
-{
-    Debug.Log("Klick registriert");
+
+        if (Input.GetMouseButtonDown(0))
+           {
+            Debug.Log("Klick registriert");
 
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             {

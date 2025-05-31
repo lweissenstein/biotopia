@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235bd43388804275b4ffb1577e34159e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodConsumptionPerSecond: 10
+  foodConsumptionPerSecond: 0.043
 --- !u!1 &4890790108107870605
 GameObject:
   m_ObjectHideFlags: 0
