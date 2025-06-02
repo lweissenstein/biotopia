@@ -21,8 +21,8 @@ namespace EconomySystem
             _totalConsumption = 0;
             _totalProduction = 0;
 
-            FoodConsumer.ConsumeFood += OnConsumeFood;
-            FoodProducer.ProduceFood += OnProduceFood;
+            BuildingInstance.ConsumeFood += OnConsumeFood;
+            BuildingInstance.ProduceFood += OnProduceFood;
         }
 
         private void OnConsumeFood(float consumptionPerFixedUpdate)

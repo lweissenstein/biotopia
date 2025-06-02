@@ -5,3 +5,6 @@
     font-size: 30px;
     -unity-font-style: bold;
 }
+
+.previw {
+}

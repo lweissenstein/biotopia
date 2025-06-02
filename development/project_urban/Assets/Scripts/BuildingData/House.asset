@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Hochhaus
   buildingDescription: Ein einfaches Wohnhaus
   buildingCost: 200
-  baseConumption: 10
+  baseConsumption: 0.21
   baseProduction: 2
   baseResidents: 5
   algeCompartmentProduction: 10

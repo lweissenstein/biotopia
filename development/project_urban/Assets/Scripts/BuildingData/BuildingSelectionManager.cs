@@ -5,6 +5,9 @@ public class BuildingSelectionManager : MonoBehaviour
 {
     public UIDocument uiDocument;
 
+    private VisualElement previewElement;
+    public RenderTexture previewTexture; // vom Inspector zugewiesen
+
     private Label nameLabel;
     private Label levelLabel;
     private Label productionLabel;
@@ -27,6 +30,7 @@ public class BuildingSelectionManager : MonoBehaviour
             {
                 selected.Upgrade();
                 UpdateUI(selected);
+                SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
             }
         };
 
@@ -42,9 +46,25 @@ public class BuildingSelectionManager : MonoBehaviour
 
     void UpdateUI(BuildingInstance building)
     {
+        // Gut kombinierbar mit "if" statements, um verschiedene ELemente zu aktivieren oder deaktivieren bei unterschiedlichen gebäuden
+        //element.SetEnabled(false/true); - deaktiviert nur, ist aber noch ausgegraut existent
+        //element.style.display = DisplayStyle.None; - blendet das element vollständig aus und gibt den platz frei
+        //element.style.display = DisplayStyle.Flex; - blende das element wieder ein
+        //element.style.visibility = Visibility.Hidden; - blendet aus, aber lässt den Platz bestehen - keine interaktion möglich
+        //element.style.visibility = Visibility.Visible; - blendet wieder ein
+
         nameLabel.text = selected.data.buildingName;
         levelLabel.text = "Level: " + selected.level;
-        productionLabel.text = "Production: " + selected.GetProduction();
+        productionLabel.text = "Production: " + selected.GetConsumption();
+
+        if (building.previewPrefab != null)
+        {
+            var previewManager = FindFirstObjectByType<BuildingPreviewManager>();
+            if (previewManager != null)
+            {
+                previewManager.ShowPreview(building.previewPrefab, building.level);
+            }
+        }
 
         var level = building.level;
         Color background = Color.gray;
@@ -63,6 +83,9 @@ public class BuildingSelectionManager : MonoBehaviour
 
     public void Deselect()
     {
+
+        var previewManager = FindFirstObjectByType<BuildingPreviewManager>();
+        previewManager?.ClearPreview();
         HideUI();
     }
 

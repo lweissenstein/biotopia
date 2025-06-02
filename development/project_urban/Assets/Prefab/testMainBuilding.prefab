@@ -323,6 +323,10 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 0185353c8f96ff746b2723accd140ec2, type: 2}
   level: 1
   algenCompartments: 0
+  residents: 0
+  previewPrefab: {fileID: 5226563333350985071}
+  foodConsumptionPerSecond: 0
+  foodProductionPerSecond: 0
 --- !u!65 &3744316266569386482
 BoxCollider:
   m_ObjectHideFlags: 0
