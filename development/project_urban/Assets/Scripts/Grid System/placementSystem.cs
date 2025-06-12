@@ -1,8 +1,12 @@
 using NUnit.Framework;
 using System;
 using System.Linq;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.LightTransport;
+using Util;
+using Timer = Util.Timer;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -27,6 +31,12 @@ public class PlacementSystem : MonoBehaviour
 
     private RandomGridManipulation randomPlacer;
 
+    private int smallPlaceTimer = 1;
+    private int smallToMediumTimer = 3;
+    private int mediumToLargeTimer = 5;
+
+    private Timer _timer = new();
+
     [SerializeField] private GameObject gridObject;
 
     int gridSizeX;
@@ -48,6 +58,10 @@ public class PlacementSystem : MonoBehaviour
         floorData = new();
         furnitureData = new();
         randomPlacer = new RandomGridManipulation(grid, objectPlacer, database);
+
+        randomPlacer.GenerateRiver(gridSizeX, gridSizeZ, furnitureData, 3);
+        randomPlacer.RandomPlace(15, gridSizeX / 3, gridSizeZ / 3, furnitureData, 0);
+        randomPlacer.RandomUpgrade(3, gridSizeX, gridSizeZ, furnitureData, 1);
     }
 
     //public void StartPlacement(int ID)
@@ -160,30 +174,20 @@ public class PlacementSystem : MonoBehaviour
         randomPlacer.RandomWheightedUpgrade(1, gridSizeX, gridSizeZ, furnitureData, level);
     }
 
-    // either creates a base city using RandomPlace and RandomUpgrade in the center, or grows the City if there is already one using RandomWeightedPlace and RandomWeightedUpgrade
-    public void SimulateGrowth()  //vroschlag: create random numbers for random amount of objects 
+    // grows the City using RandomWeightedPlace and RandomWeightedUpgrade
+    public void SimulateGrowth()  //vorschlag: create random numbers for random amount of objects 
     {
-        bool empty = true;
+        randomPlacer.RandomWheightedPlace(5, gridSizeX, gridSizeZ, furnitureData, 0);
+        randomPlacer.RandomWheightedUpgrade(2, gridSizeX, gridSizeZ, furnitureData, 1);
+        randomPlacer.RandomWheightedUpgrade(2, gridSizeX, gridSizeZ, furnitureData, 2);
+    }
 
-        foreach (var pos in furnitureData.GetAllOccupiedPositions())
-        {
-            empty = false;
-            break;
-        }
-
-        if (empty)
-        {
-            randomPlacer.GenerateRiver(gridSizeX, gridSizeZ, furnitureData, 3);
-            randomPlacer.RandomPlace(10, gridSizeX / 3, gridSizeZ / 3, furnitureData, 0);
-            randomPlacer.RandomUpgrade(3, gridSizeX, gridSizeZ, furnitureData, 1);
-            randomPlacer.RandomUpgrade(1, gridSizeX, gridSizeZ, furnitureData, 2);
-        }
-        else
-        {
-            randomPlacer.RandomWheightedPlace(5, gridSizeX, gridSizeZ, furnitureData, 0);
-            randomPlacer.RandomWheightedUpgrade(2, gridSizeX, gridSizeZ, furnitureData, 1);
-            randomPlacer.RandomWheightedUpgrade(2, gridSizeX, gridSizeZ, furnitureData, 2);
-        }            
+    // generates a river and creates a base city using RandomPlace and RandomUpgrade in the center
+    public void createBaseCity()
+    {
+        randomPlacer.GenerateRiver(gridSizeX, gridSizeZ, furnitureData, 3);
+        randomPlacer.RandomWheightedPlace(15, gridSizeX / 3, gridSizeZ / 3, furnitureData, 0);
+        randomPlacer.RandomUpgrade(3, gridSizeX, gridSizeZ, furnitureData, 1);
     }
 
     public void ClearGrid()
@@ -202,4 +206,48 @@ public class PlacementSystem : MonoBehaviour
             }
         }             
     }
+
+    public void perSecondUpdate()
+    {
+        bool empty = true;
+
+        foreach (var pos in furnitureData.GetAllOccupiedPositions())
+        {
+            empty = false;
+            break;
+        }
+
+        if (empty)
+        {
+            createBaseCity();
+        }
+        else
+        {
+            if (smallPlaceTimer == 0)
+            {
+                randomPlacer.RandomWheightedPlace(5, gridSizeX, gridSizeZ, furnitureData, 0);
+                smallPlaceTimer = 1;
+            }
+            if (smallToMediumTimer == 0)
+            {
+                randomPlacer.RandomWheightedUpgrade(2, gridSizeX, gridSizeZ, furnitureData, 1);
+                smallToMediumTimer = 1;
+            }
+            if (mediumToLargeTimer == 0)
+            {
+                randomPlacer.RandomWheightedUpgrade(2, gridSizeX, gridSizeZ, furnitureData, 2);
+                mediumToLargeTimer = 1;
+            }
+        }
+
+        smallPlaceTimer--;
+        smallToMediumTimer--;
+        mediumToLargeTimer--;
+    }
+
+    void Update()
+    {
+        _timer.OncePerSecond(perSecondUpdate);
+    }
+
 }
