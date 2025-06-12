@@ -207,6 +207,30 @@ public class PlacementSystem : MonoBehaviour
         }             
     }
 
+    int getNumParks()
+    {
+        int numParks = 0;
+
+        foreach (var pos in furnitureData.GetAllOccupiedPositions())
+        {
+            if (furnitureData.GetRepresentationIndex(pos) == 4) numParks++;
+        }
+
+        return numParks;
+    }
+
+    int getNumBuildings()
+    {
+        int numBuildings = 0;
+
+        foreach (var pos in furnitureData.GetAllOccupiedPositions())
+        {
+            if (furnitureData.GetRepresentationIndex(pos) != 3 || furnitureData.GetRepresentationIndex(pos) != 4) numBuildings++;
+        }
+
+        return numBuildings;
+    }
+
     public void perSecondUpdate()
     {
         bool empty = true;
@@ -243,6 +267,8 @@ public class PlacementSystem : MonoBehaviour
         smallPlaceTimer--;
         smallToMediumTimer--;
         mediumToLargeTimer--;
+
+        if (getNumParks() < getNumBuildings() / 10) randomPlacer.RandomParkPlace(gridSizeX, gridSizeZ, furnitureData);
     }
 
     void Update()

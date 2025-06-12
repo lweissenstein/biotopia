@@ -395,6 +395,54 @@ public class RandomGridManipulation
         }
     }
 
+    public void RandomParkPlace(int maxX, int maxZ, GridData gridData)
+    {
+        // Listen für Positionen mit 1-4 Nachbarn, jeweils mit Gewicht
+        List<Vector3Int> one =   new(); // 1 Nachbar
+        List<Vector3Int> two =   new(); // 2 Nachbarn
+        List<Vector3Int> three = new(); // 3 Nachbarn
+        List<Vector3Int> four =  new(); // 4 Nachbarn
+        
+        List<Vector3Int>[] placeablesLists = {one, two, three, four};
+
+        // Alle möglichen Positionen im Grid durchgehen
+        for (int x = -maxX / 2; x < maxX / 2; x++)
+        {
+            for (int z = -maxZ / 2; z < maxZ / 2; z++)
+            {
+                Vector3Int testPos = new Vector3Int(x, 0, z);
+                if (gridData.CanPlaceObjectAt(testPos, dataBase.objectsData[4].Size))
+                {
+                    // Nachbarn zählen (direkt angrenzende Felder)
+                    int numNeighbors = -1;
+                    if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(1, 0, 0),  dataBase.objectsData[4].Size)) numNeighbors++;
+                    if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(-1, 0, 0), dataBase.objectsData[4].Size)) numNeighbors++;
+                    if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(0, 0, 1),  dataBase.objectsData[4].Size)) numNeighbors++;
+                    if (!gridData.CanPlaceObjectAt(testPos + new Vector3Int(0, 0, -1), dataBase.objectsData[4].Size)) numNeighbors++;
+
+                    // Position in die entsprechende Liste einfügen
+                    if (numNeighbors > -1) placeablesLists[numNeighbors].Add(testPos);
+                }
+            }
+        }
+
+        // Jede Liste mischen
+        foreach (var list in placeablesLists)
+            Shuffle(list);
+
+        List<Vector3Int> manyToFew = new();
+        foreach (var viablePos in four)  manyToFew.Add(viablePos);
+        foreach (var viablePos in three) manyToFew.Add(viablePos);
+        foreach (var viablePos in two)   manyToFew.Add(viablePos);
+        foreach (var viablePos in one)   manyToFew.Add(viablePos);
+
+        // Platzieren mit Priorität auf Position mit mehr Nachbarn
+        Vector3Int pos = manyToFew[0];
+
+        int index = objectPlacer.PlaceObject(dataBase.objectsData[4].Prefab, grid.CellToWorld(pos));
+        gridData.AddObjectAt(pos, dataBase.objectsData[4].Size, 4, index);
+    }
+
     /// <summary>
     /// Mischt eine Liste mit dem Fisher-Yates-Algorithmus.
     /// Wird für zufällige Platzierung verwendet.
