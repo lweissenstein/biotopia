@@ -60,6 +60,8 @@ public class PlacementSystem : MonoBehaviour
         randomPlacer = new RandomGridManipulation(grid, objectPlacer, database);
 
         randomPlacer.GenerateRiver(gridSizeX, gridSizeZ, furnitureData, 3);
+        randomPlacer.RandomPlaceOnBorder(gridSizeX, gridSizeZ, furnitureData, 5, 0.8);
+        randomPlacer.RandomPlace(1, gridSizeX / 4, gridSizeZ / 4, furnitureData, 6);
         randomPlacer.RandomPlace(15, gridSizeX / 3, gridSizeZ / 3, furnitureData, 0);
         randomPlacer.RandomUpgrade(3, gridSizeX, gridSizeZ, furnitureData, 1);
     }

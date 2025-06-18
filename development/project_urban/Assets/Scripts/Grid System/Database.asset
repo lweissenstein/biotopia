@@ -33,3 +33,11 @@ MonoBehaviour:
     <ID>k__BackingField: 4
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 3792453454251778318, guid: c8bebabe156f42244a804b08af10bb2b, type: 3}
+  - <Name>k__BackingField: therme
+    <ID>k__BackingField: 5
+    <Size>k__BackingField: {x: 2, y: 2}
+    <Prefab>k__BackingField: {fileID: 7299153431594702042, guid: 7a7c7608687360a48bcb400fb49434e3, type: 3}
+  - <Name>k__BackingField: factory
+    <ID>k__BackingField: 6
+    <Size>k__BackingField: {x: 2, y: 2}
+    <Prefab>k__BackingField: {fileID: 1365723258120024273, guid: cb7d644ceb7cc81418fa335a6cce041f, type: 3}

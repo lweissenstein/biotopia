@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -441,6 +442,34 @@ public class RandomGridManipulation
 
         int index = objectPlacer.PlaceObject(dataBase.objectsData[4].Prefab, grid.CellToWorld(pos));
         gridData.AddObjectAt(pos, dataBase.objectsData[4].Size, 4, index);
+    }
+
+    public void RandomPlaceOnBorder(int maxX, int maxZ, GridData gridData, int ID, double borderScaleToMax)
+    {
+        int objSize = dataBase.objectsData[ID].Size.x;
+        int edgeLength = (int)(maxX * borderScaleToMax) - (objSize - 1);
+        int offset = (int)((maxX - edgeLength) / 2);
+        int perimiter = edgeLength * 4 - 4;
+        int stuckCounter = 10;
+        bool placeable = false;
+        Vector3Int pos = new(0, 0, 0);
+
+        while(!placeable && stuckCounter > 0)
+        {
+            stuckCounter--;
+            
+            int rnd = Random.Range(0, edgeLength * 4 - 4);
+            pos = iterateOverEdge(rnd, edgeLength - 1, 0, 0);
+            pos += new Vector3Int(offset - (int)(maxX / 2), 0, offset - (int)(maxZ / 2));
+
+            if (gridData.CanPlaceObjectAt(pos, dataBase.objectsData[ID].Size)) placeable = true;
+        }
+
+        if (placeable)
+        {
+            int index = objectPlacer.PlaceObject(dataBase.objectsData[ID].Prefab, grid.CellToWorld(pos));
+            gridData.AddObjectAt(pos, dataBase.objectsData[ID].Size, ID, index);
+        }    
     }
 
     /// <summary>
