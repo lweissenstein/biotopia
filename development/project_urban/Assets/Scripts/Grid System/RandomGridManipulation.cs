@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 using Random = UnityEngine.Random;

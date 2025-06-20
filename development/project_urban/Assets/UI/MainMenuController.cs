@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.VFX;
 
 public class MainMenuController : MonoBehaviour
 {

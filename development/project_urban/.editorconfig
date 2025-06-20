@@ -1,0 +1,3 @@
+[*.cs]
+# "Remove unnecessary using directives" (they break our android builds) https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0005?pivots=lang-csharp-vb
+dotnet_diagnostic.IDE0005.severity = error

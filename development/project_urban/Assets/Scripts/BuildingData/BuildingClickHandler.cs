@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using System;
 
 public class BuildingClickHandler : MonoBehaviour
 {

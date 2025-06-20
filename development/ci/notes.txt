@@ -1,0 +1,24 @@
+gcloud init
+
+gcloud services enable \
+    cloudkms.googleapis.com \
+    compute.googleapis.com \
+    iam.googleapis.com \
+    cloudresourcemanager.googleapis.com \
+    iamcredentials.googleapis.com \
+    oslogin.googleapis.com
+
+gcloud compute project-info add-metadata --metadata google-compute-default-region=europe-west1,google-compute-default-zone=europe-west1-b
+
+
+
+terraform init
+
+terraform plan -var runner_token="glrt-t3_LymUQeRoWz8Vz5_6paqo" -out plan.out
+
+terraform apply plan.out
+
+
+
+gcloud compute ssh --zone "europe-west1-b" "ubss-grit-runner-manager" --project "ubss-ci-gitlab-runner"
+

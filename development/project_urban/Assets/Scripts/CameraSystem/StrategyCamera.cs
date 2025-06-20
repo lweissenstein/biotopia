@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class CameraRigController : MonoBehaviour
@@ -9,7 +8,7 @@ public class CameraRigController : MonoBehaviour
     [SerializeField] private float zoomSpeed = 2f;
     [SerializeField] private float minZoom = 2f;
     [SerializeField] private float maxZoom = 20f;
-    [SerializeField, Tooltip("1 für RMB und 2 für MMB")] private int mouseButton = 1;
+    [SerializeField, Tooltip("1 fï¿½r RMB und 2 fï¿½r MMB")] private int mouseButton = 1;
     private float currentYRotation = 0f; // startrotation Y
     private float rotationStep = 90f;     
     private float rotationSpeed = 360f; // drehgeschwindigkeit pro sekunde
@@ -66,7 +65,7 @@ public class CameraRigController : MonoBehaviour
         }
     }
 
-    void HandleZoom()  // ändert die orthographic size der camera => dadurch, dass orthographic die entfernung der kamera ignoriert, muss man die size ändern für einen zoom effekt
+    void HandleZoom()  // ï¿½ndert die orthographic size der camera => dadurch, dass orthographic die entfernung der kamera ignoriert, muss man die size ï¿½ndern fï¿½r einen zoom effekt
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0f)
@@ -91,7 +90,7 @@ public class CameraRigController : MonoBehaviour
         {
             float mouseX = -Input.GetAxis("Mouse X");
             float mouseY = -Input.GetAxis("Mouse Y");
-            float dragSpeed = cam.orthographicSize * 0.4f; // abhängig vom Zoom-Level
+            float dragSpeed = cam.orthographicSize * 0.4f; // abhï¿½ngig vom Zoom-Level
             move += (cameraTransform.right * mouseX + cameraTransform.up * mouseY) * dragSpeed;
         }
 
