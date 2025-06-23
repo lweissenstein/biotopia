@@ -1,0 +1,13 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/ressourceUI.uss?fileID=7433441132597879392&amp;guid=67924519c4b023a439f412cee3d577d0&amp;type=3#ressourceUI" />
+    <engine:VisualElement name="main" style="flex-grow: 1; flex-direction: row; align-self: auto; align-content: auto; justify-content: flex-start; width: 55%; height: 67px; padding-top: 90px; background-size: 100% 100%; max-height: 10px; align-items: auto; position: absolute; top: 80px; left: 546px;">
+        <engine:VisualElement name="algen" style="flex-grow: 1; background-color: rgb(0, 118, 23); min-width: 50px; min-height: 50px; max-width: 50px; max-height: 50px; width: 50px; margin-right: 0;" />
+        <engine:Label text="0" name="algenLabel" class="buttons" style="margin-right: 20px; flex-direction: column; align-self: auto; justify-content: flex-start; align-content: flex-end; -unity-text-align: upper-center; white-space: nowrap; text-overflow: clip; height: 45px; width: 45px;" />
+        <engine:VisualElement name="quallen" style="flex-grow: 1; background-color: rgb(0, 54, 255); height: 50px; min-width: 50px; min-height: 50px; max-height: 50px; max-width: 50px; width: 50px; margin-right: 0;" />
+        <engine:Label text="0" name="quallenLabel" class="buttons" style="margin-right: 20px; height: 45px; -unity-text-align: upper-center; width: 45px;" />
+        <engine:VisualElement name="salzpflanzen" style="flex-grow: 1; background-color: rgb(111, 255, 0); min-width: 50px; min-height: 50px; max-height: 50px; max-width: 50px; width: 50px; height: 50px; margin-right: 0;" />
+        <engine:Label text="0" name="salzpflanzenLabel" class="buttons" style="margin-right: 20px; height: 45px; width: 45px; -unity-text-align: upper-center;" />
+        <engine:VisualElement name="grillen" style="flex-grow: 1; -unity-background-image-tint-color: rgb(255, 158, 0); background-color: rgb(255, 145, 13); width: 50px; height: 50px; min-width: 50px; min-height: 50px; max-width: 50px; max-height: 50px; margin-right: 0;" />
+        <engine:Label text="0" name="grillenLabel" class="buttons" style="margin-right: 20px; height: 45px; width: 45px; -unity-text-align: upper-center;" />
+    </engine:VisualElement>
+</engine:UXML>

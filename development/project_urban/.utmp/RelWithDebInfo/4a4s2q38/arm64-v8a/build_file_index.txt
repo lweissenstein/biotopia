@@ -1,0 +1,2 @@
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

@@ -1,0 +1,17 @@
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\GAToUnityCallbacks.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\MacroEnd.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\MacroHeaderBegin.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\MacroSourceBegin.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGAApplication.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGAConfiguration.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGADebug.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGAEvents.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGAInput.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGASoftKeyboard.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGASoftKeyboardCallbacks.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGATypes.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGAVersion.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UnityToGACallbacks.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UnityToGAConfigurationCallbacks.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UnityToGAKeyEventCallbacks.h
+X:\Unity Projects\bp-ss25-b5-urban-bio-space-simulator\development\project_urban\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UnityToGAMotionEventCallbacks.h

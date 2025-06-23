@@ -12,11 +12,11 @@ public class BuildingClickHandler : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
            {
-            Debug.Log("Klick registriert");
+            //Debug.Log("Klick registriert");
 
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             {
-                Debug.Log("Klick auf UI ignorieren");
+                //Debug.Log("Klick auf UI ignorieren");
                 return;
             }
 
@@ -24,23 +24,23 @@ public class BuildingClickHandler : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit, 100f, buildingLayer))
             {
-                Debug.Log("Clicked on: " + hit.collider.name);
+                //Debug.Log("Clicked on: " + hit.collider.name);
 
                 var instance = hit.collider.GetComponent<BuildingInstance>();
                 if (instance != null)
                 {
-                    Debug.Log("BuildingInstance gefunden! Leite an SelectionManager weiter.");
+                    //Debug.Log("BuildingInstance gefunden! Leite an SelectionManager weiter.");
                     FindFirstObjectByType<BuildingSelectionManager>()?.SelectBuilding(instance);
                 }
                 else
                 {
-                    Debug.Log("Kein BuildingInstance angetroffen.");
+                    //Debug.Log("Kein BuildingInstance angetroffen.");
                     FindFirstObjectByType<BuildingSelectionManager>()?.Deselect();
                 }
             }
             else
             {
-                Debug.Log("Raycast hat nichts getroffen.");
+                //Debug.Log("Raycast hat nichts getroffen.");
                 
                 FindFirstObjectByType<BuildingSelectionManager>()?.Deselect();
             }

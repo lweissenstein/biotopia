@@ -1,0 +1,10 @@
+# ninja log v5
+29	1501	7722157120665614	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	400280503729b5e7
+23	1531	7722157120859318	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	220b236ce2cc5414
+5	1545	7722157120953677	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	5cc58691f5c14751
+43	1548	7722157121132482	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	c4606119e80e35a6
+10	1593	7722157121698683	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	c79b80e4f9ddad5a
+36	1644	7722157122220181	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	5a40ebb2764948cc
+16	1851	7722157124306201	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	ec03c88f4a17cf04
+0	1921	7722157124996551	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	7e92966cc042d07e
+1922	2118	7722157125955114	X:/Unity Projects/bp-ss25-b5-urban-bio-space-simulator/development/project_urban/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4a4s2q38/obj/arm64-v8a/libgame.so	3df9bfebc7bc0899

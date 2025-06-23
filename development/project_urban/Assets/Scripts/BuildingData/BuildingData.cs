@@ -4,8 +4,4 @@ public class BuildingData : ScriptableObject
 {
     public string buildingName;
     public string buildingDescription;
-    public int buildingCost;
-    public float baseConsumption;
-    public float baseProduction;
-
 }

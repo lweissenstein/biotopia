@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -183,7 +182,7 @@ public class RandomGridManipulation
 
                 var building = go.GetComponent<BuildingInstance>();
                 if (building != null)
-                    building.Upgrade();
+                    building.UpgradeHouse();
             }
 
             gridData.UpdateObjectIDAt(pos, objectID);
@@ -304,7 +303,7 @@ public class RandomGridManipulation
 
                 var building = go.GetComponent<BuildingInstance>();
                 if (building != null)
-                    building.Upgrade();
+                    building.UpgradeHouse();
             }
             gridData.UpdateObjectIDAt(pos, objectID);
             upgraded++;

@@ -24,6 +24,15 @@ public class BuildingPreviewManager : MonoBehaviour
 
         // Nur das Child für das richtige Level aktivieren
         SetActiveChild(currentPreview.transform, level-1);
+
+        // BuildingInstance Script deaktivieren, damit keine Logik läuft
+        var buildingInstance = currentPreview.GetComponent<BuildingInstance>();
+        if (buildingInstance != null)
+        {
+            buildingInstance.enabled = false; // Script deaktivieren
+                                              // Oder falls du isPreview-Flag hast:
+                                              // buildingInstance.isPreview = true;
+        }
     }
 
     private void SetActiveChild(Transform moin, int activeID)
