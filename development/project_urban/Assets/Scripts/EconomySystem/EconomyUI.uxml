@@ -1,3 +1,22 @@
-<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:ProgressBar value="22" title="food:&lt;current&gt;/&lt;max&gt;" name="FoodProgressBar" style="position: relative; right: 0; left: auto; width: auto; margin-left: 50%;" />
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements"
+             xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
+             editor-extension-mode="False">
+    <Style
+        src="project://database/Assets/Scripts/EconomySystem/style.uss?fileID=7433441132597879392&amp;guid=e1edc4615a33a3be485316c5d256edf0&amp;type=3#style" />
+    <engine:VisualElement name="VisualElement"
+                          style="flex-grow: 1; left: auto; right: auto; bottom: auto; flex-direction: column; width: 30%; height: 30%; align-self: flex-end; justify-content: center; align-items: flex-start; border-left-color: rgba(7, 7, 7, 0.76); border-left-width: 1px; border-bottom-width: 1px; border-right-width: 1px; border-top-width: 1px; border-right-color: rgba(7, 7, 7, 0.76); border-top-color: rgba(7, 7, 7, 0.76); border-bottom-color: rgba(7, 7, 7, 0.76); padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; background-position-y: center 0; align-content: auto; background-color: rgba(128, 128, 128, 0.51); position: absolute;">
+        <engine:ProgressBar value="22" title="food:&lt;current&gt;/&lt;max&gt;" name="FoodProgressBar" class="food"
+                            style="position: relative; right: 0; left: auto; width: 100%; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; align-items: stretch; align-self: flex-start; justify-content: flex-start;" />
+        <engine:ProgressBar value="22" title="alge:&lt;current&gt;/&lt;max&gt;" name="AlgeProgressBar" class="alge"
+                            style="position: relative; right: 0; left: auto; width: 100%; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; align-items: stretch; align-self: flex-start; justify-content: flex-start; -unity-background-image-tint-color: rgb(4, 176, 7);" />
+        <engine:ProgressBar value="22" title="qualle:&lt;current&gt;/&lt;max&gt;" name="QualleProgressBar"
+                            class="qualle"
+                            style="position: relative; right: 0; left: auto; width: 100%; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; align-items: stretch; align-self: flex-start; justify-content: flex-start; -unity-background-image-tint-color: rgb(26, 48, 236);" />
+        <engine:ProgressBar value="22" title="salzpflanze:&lt;current&gt;/&lt;max&gt;" name="SalzPflanzeProgressBar"
+                            class="salzpflanze"
+                            style="position: relative; right: 0; left: auto; width: 100%; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; align-items: stretch; align-self: flex-start; justify-content: flex-start; -unity-background-image-tint-color: rgb(89, 241, 1);" />
+        <engine:ProgressBar value="22" title="grille:&lt;current&gt;/&lt;max&gt;" name="GrilleProgressBar"
+                            class="grille"
+                            style="position: relative; right: 0; left: auto; width: 100%; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; align-items: stretch; align-self: flex-start; justify-content: flex-start; -unity-background-image-tint-color: rgb(0, 0, 0); background-color: rgb(250, 72, 0);" />
+    </engine:VisualElement>
 </engine:UXML>

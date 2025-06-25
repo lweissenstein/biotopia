@@ -1,0 +1,22 @@
+/*
+https://docs.unity3d.com/Manual/UIE-uxml-element-ProgressBar.html
+ */
+.food .unity-progress-bar__progress {
+    background-color: yellow;
+}
+
+.alge .unity-progress-bar__progress {
+    background-color: green;
+}
+
+.qualle .unity-progress-bar__progress {
+    background-color: blue;
+}
+
+.salzpflanze .unity-progress-bar__progress {
+    background-color: lawngreen;
+}
+
+.grille .unity-progress-bar__progress {
+    background-color: orange;
+}

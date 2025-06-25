@@ -2,51 +2,43 @@ using System;
 
 namespace EconomySystem
 {
+    public record FoodResource(float Total, float Min, float Max)
+    {
+        public float Total { get; set; } = Total;
+        public float Min { get; set; } = Min;
+        public float Max { get; set; } = Max;
+    }
+
     public sealed class FoodEconomy
     {
         private static FoodEconomy _instance = null;
 
+        public readonly FoodResource Alge = new(Total: 1000, Min: 0, Max: 10_000);
+        public readonly FoodResource Qualle = new(Total: 2000, Min: 0, Max: 10_000);
+        public readonly FoodResource SalzPflanze = new(Total: 3000, Min: 0, Max: 10_000);
+        public readonly FoodResource Grille = new(Total: 4000, Min: 0, Max: 10_000);
+
         private float _totalConsumption;
         private float _totalProduction;
-        public float CurrentProteinAmount { get; private set; }
-        public float MaxProteinAmount { get; private set; }
-        public float MinProteinAmount { get; private set; }
-        public float totalAlge { get; private set; }
-        public float totalSalzpflanze { get; private set; }
-        public float totalQualle { get; private set; }
-        public float totalGrille { get; private set; }
-
-        public float maxAlgeAmount { get; private set; }
-        public float minAlgeAmount { get; private set; }
-      
-
+        public float CurrentProteinAmount { get; private set; } = 10_000;
+        public float MaxProteinAmount { get; private set; } = 10_000;
+        public float MinProteinAmount { get; private set; } = 0;
+        public float totalAlge => Alge.Total;
+        public float totalQualle => Qualle.Total;
+        public float totalSalzpflanze => SalzPflanze.Total;
+        public float totalGrille => Grille.Total;
+        public float maxAlgeAmount => Alge.Max;
+        public float minAlgeAmount => Alge.Min;
 
         private FoodEconomy()
         {
-            CurrentProteinAmount = 10_000;
-            MaxProteinAmount = 10_000;
-            MinProteinAmount = 0;
             _totalConsumption = 0;
             _totalProduction = 0;
-
-            totalAlge = 0;
-            totalSalzpflanze = 0;
-            totalQualle = 0;
-            totalGrille = 0;
-            //maxAlgeAmount = 10_000;
-            //minAlgeAmount = 0;
-            totalSalzpflanze = 0;
-            totalQualle = 0;
-            totalGrille = 0;
-
-            //BuildingInstance.ConsumeFood += OnConsumeFood;
-            //BuildingInstance.ProduceFood += OnProduceFood;
 
             BuildingInstance.ProduceAlge += OnProduceAlge;
             BuildingInstance.ProduceSalzpflanze += OnProduceSalzpflanze;
             BuildingInstance.ProduceQualle += OnProduceQualle;
             BuildingInstance.ProduceGrille += OnProduceGrille;
-
         }
 
         private void OnConsumeFood(float consumptionPerFixedUpdate)
@@ -65,26 +57,27 @@ namespace EconomySystem
 
         private void OnConsumeAlge(float consumptionPerFixedUpdate)
         {
-
         }
 
         private void OnProduceSalzpflanze(float salzpflanzeProSek)
         {
-            totalSalzpflanze += salzpflanzeProSek;
+            SalzPflanze.Total += salzpflanzeProSek;
         }
+
         private void OnProduceQualle(float qualleProSek)
         {
-            totalQualle += qualleProSek;
+            Qualle.Total += qualleProSek;
         }
+
         private void OnProduceGrille(float grilleProSek)
         {
-            totalGrille += grilleProSek;
+            Grille.Total += grilleProSek;
         }
 
         private void OnProduceAlge(float algeProSek)
         {
             // var nextAlgeAmount = Math.Min(maxAlgeAmount, totalAlge + algeProSek);
-            totalAlge += algeProSek;
+            Alge.Total += algeProSek;
         }
 
         public string Report()

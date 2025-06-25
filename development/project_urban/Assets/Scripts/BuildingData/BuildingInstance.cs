@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Util;
 
 public class BuildingInstance : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class BuildingInstance : MonoBehaviour
     //public static event Action<float> ProduceFood;
     private ObjectPlacer objectPlacer;
     private float fixedTimer = 0f;
+    private Timer _timer = new();
 
 
     // Hochhaus
@@ -72,7 +74,7 @@ public class BuildingInstance : MonoBehaviour
                 //Debug.Log("Script läuft auf: " + gameObject.name);
             }
 
-            Debug.Log("produce PerSecond: " + producePerSecond);
+            _timer.OncePerSecondDebugLog("produce PerSecond: " + producePerSecond);
         }
 
         
