@@ -1,0 +1,91 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/processUI.uss?fileID=7433441132597879392&amp;guid=ff9e13a188af09148b8debda003f0a1b&amp;type=3#processUI" />
+    <engine:VisualElement name="VisualElement" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: space-around; align-self: auto; display: flex;">
+        <engine:VisualElement style="flex-grow: 1; width: 70%; height: 70%; max-width: 70%; max-height: 70%; flex-direction: row; align-items: auto; align-self: auto; align-content: auto; justify-content: flex-start; flex-wrap: nowrap; background-color: rgb(177, 255, 207); border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+            <engine:TabView name="tabs" style="font-size: 100px; width: 50%; height: 100%; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0;">
+                <engine:Tab label="Alge" name="tabAlge" closeable="false" focusable="false" class="tabButton" style="flex-direction: column; width: 100%;">
+                    <engine:ScrollView style="flex-direction: row; align-items: auto; flex-wrap: nowrap; justify-content: space-evenly; align-self: auto; align-content: auto;">
+                        <engine:Button text="Ulva Powder" name="btnAlgePowder" class="buttonsProcess" style="width: auto; background-position-x: left 0;">
+                            <engine:Label text="50 ¤" name="algeDryPrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Kelp Fettucine" name="btnAlgeNoodle" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="200 ¤" name="algeNoodlePrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Ocean Jelly" name="btnAlgeJelly" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="500 ¤" name="algeFlourPrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Algae Patties" name="btnAlgePatty" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="1000 ¤" name="algeOilPrice" class="btnPrices" />
+                        </engine:Button>
+                    </engine:ScrollView>
+                </engine:Tab>
+                <engine:Tab label="Salz" name="tabSalzpflanze" class="tabButton" style="flex-direction: column; width: 100%;">
+                    <engine:ScrollView style="flex-direction: row; align-items: auto; flex-wrap: nowrap; justify-content: space-evenly; align-self: auto; align-content: auto;">
+                        <engine:Button text="Planty Salt" name="btnSalzpflanzeSalt" class="buttonsProcess" style="width: auto; background-position-x: left 0;">
+                            <engine:Label text="50 ¤" name="algeDryPrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Hydro Pickles" name="btnSalzpflanzePickles" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="200 ¤" name="algeNoodlePrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Sea Spread" name="btnSalzpflanzeSpread" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="500 ¤" name="algeFlourPrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Salicrisp" name="btnSalzpflanzeChips" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="1000 ¤" name="algeOilPrice" class="btnPrices" />
+                        </engine:Button>
+                    </engine:ScrollView>
+                </engine:Tab>
+                <engine:Tab label="Qualle" name="tabQualle" class="tabButton" style="flex-direction: column; width: 100%;">
+                    <engine:ScrollView style="flex-direction: row; align-items: auto; flex-wrap: nowrap; justify-content: space-evenly; align-self: auto; align-content: auto;">
+                        <engine:Button text="Jelly Noodles" name="btnQualleNoodle" class="buttonsProcess" style="width: auto; background-position-x: left 0;">
+                            <engine:Label text="50 ¤" name="algeDryPrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Medu Mayo" name="btnQualleMayo" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="200 ¤" name="algeNoodlePrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Ocean Tofu" name="btnQualleTofu" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="500 ¤" name="algeFlourPrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Lumino Bites" name="btnQualleBites" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="1000 ¤" name="algeOilPrice" class="btnPrices" />
+                        </engine:Button>
+                    </engine:ScrollView>
+                </engine:Tab>
+                <engine:Tab label="Grille" name="tabGrille" class="tabButton" style="flex-direction: column; width: 100%;">
+                    <engine:ScrollView style="flex-direction: row; align-items: auto; flex-wrap: nowrap; justify-content: space-evenly; align-self: auto; align-content: auto;">
+                        <engine:Button text="Insektiella" name="btnGrilleFlour" class="buttonsProcess" style="width: auto; background-position-x: left 0;">
+                            <engine:Label text="50 ¤" name="algeDryPrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Bugloaf" name="btnGrilleLoaf" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="200 ¤" name="algeNoodlePrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Chirp Chips" name="btnGrilleChips" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="500 ¤" name="algeFlourPrice" class="btnPrices" />
+                        </engine:Button>
+                        <engine:Button text="Crunch Bar" name="btnGrilleBar" class="buttonsProcess" style="width: auto;">
+                            <engine:Label text="1000 ¤" name="algeOilPrice" class="btnPrices" />
+                        </engine:Button>
+                    </engine:ScrollView>
+                </engine:Tab>
+            </engine:TabView>
+            <engine:VisualElement name="upgradePanel" style="flex-grow: 1; width: 50%; position: relative; top: auto; left: auto; height: 100%; flex-direction: column; font-size: 85px; max-width: 50%; max-height: 100%; padding-left: 30px; flex-wrap: wrap;">
+                <engine:Button text="X" name="enablerButton" style="width: 164px; height: 125px; border-top-left-radius: 25px; border-top-right-radius: 25px; border-bottom-right-radius: 25px; border-bottom-left-radius: 25px;" />
+                <engine:Label text="Status: Activated" name="enablerStatus" style="font-size: 52px;" />
+                <engine:Label text="Label" name="name" style="-unity-font-style: bold;" />
+                <engine:Label text="This is the Description of the Product" name="description" style="height: 358px; white-space: normal; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&quot;); -unity-font-style: normal;" />
+                <engine:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; align-self: auto; align-content: auto; justify-content: flex-start; flex-wrap: nowrap; align-items: auto;">
+                    <engine:Button text="Efficiency" name="upgEfficency" class="buttonUpgrades" style="align-items: flex-end;">
+                        <engine:Label double-click-selects-word="false" name="cntEfficency" style="width: auto; align-items: auto; font-size: 40px;" />
+                    </engine:Button>
+                    <engine:Button text="Speed" name="upgSpeed" class="buttonUpgrades" style="align-items: flex-end;">
+                        <engine:Label double-click-selects-word="false" name="cntSpeed" style="width: auto; align-items: auto; font-size: 40px;" />
+                    </engine:Button>
+                    <engine:Button text="Amount" name="upgAmount" class="buttonUpgrades" style="align-items: flex-end;">
+                        <engine:Label double-click-selects-word="false" name="cntAmount" style="width: auto; align-items: auto; font-size: 40px;" />
+                    </engine:Button>
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:Button text="X" name="closeWindow" style="position: absolute; top: 162px; left: 2249px; font-size: 80px; width: 100px; height: 100px; min-height: 100px; max-height: 100px; min-width: 100px; max-width: 100px; background-color: rgb(255, 146, 146); border-top-left-radius: 23px; border-top-right-radius: 23px; border-bottom-right-radius: 23px; border-bottom-left-radius: 23px;" />
+    </engine:VisualElement>
+</engine:UXML>

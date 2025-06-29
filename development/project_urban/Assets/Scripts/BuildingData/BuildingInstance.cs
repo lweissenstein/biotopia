@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using EconomySystem;
 using Util;
 
 public class BuildingInstance : MonoBehaviour
@@ -18,10 +19,7 @@ public class BuildingInstance : MonoBehaviour
 
     // Hochhaus
 
-    public static event Action<float> ProduceAlge;
-    public static event Action<float> ProduceSalzpflanze;
-    public static event Action<float> ProduceQualle;
-    public static event Action<float> ProduceGrille;
+    public static event Action<ResourceType, float> ProduceResource;
 
     public float countCompartmentsHouse = 0f;
     public int maxCompartments = 6;
@@ -34,7 +32,7 @@ public class BuildingInstance : MonoBehaviour
     public float produceSalzpflanzeValue = 0.05f;
     public float produceQualleValue = 0.05f;
     public float produceGrillevalue = 0.05f;
-    public float producePerSecond = 0f; // Gesamtproduktion pro Sekunde, abhängig von den Upgrades
+    public float producePerSecond = 0f; // Gesamtproduktion pro Sekunde, abhï¿½ngig von den Upgrades
 
 
     // Water
@@ -71,10 +69,8 @@ public class BuildingInstance : MonoBehaviour
             {
                 fixedTimer -= 1f; // oder -= 1f, wenn du es genauer willst
                 GetProduction();
-                //Debug.Log("Script läuft auf: " + gameObject.name);
+                //Debug.Log("Script lï¿½uft auf: " + gameObject.name);
             }
-
-            _timer.OncePerSecondDebugLog("produce PerSecond: " + producePerSecond);
         }
 
         
@@ -206,19 +202,19 @@ public class BuildingInstance : MonoBehaviour
         switch (compartmentTypeHouse)
         {
             case 3: // Alge
-                ProduceAlge?.Invoke(produceAlgeValue * countCompartmentsHouse);
+                ProduceResource?.Invoke(ResourceType.Alge, produceAlgeValue * countCompartmentsHouse);
                 break;
             case 4: // Salzpflanze
-                ProduceSalzpflanze?.Invoke(produceSalzpflanzeValue * countCompartmentsHouse);
+                ProduceResource?.Invoke(ResourceType.Salzpflanze, produceSalzpflanzeValue * countCompartmentsHouse);
                 break;
             case 5: // Qualle
-                ProduceQualle?.Invoke(produceQualleValue * countCompartmentsHouse);
+                ProduceResource?.Invoke(ResourceType.Qualle, produceQualleValue * countCompartmentsHouse);
                 break;
             case 6: // Grille
-                ProduceGrille?.Invoke(produceGrillevalue * countCompartmentsHouse);
+                ProduceResource?.Invoke(ResourceType.Grille, produceGrillevalue * countCompartmentsHouse);
                 break;
             default:
-                Debug.Log("Keine Produktion für diesen Typ: " + compartmentTypeHouse);
+                Debug.Log("Keine Produktion fï¿½r diesen Typ: " + compartmentTypeHouse);
                 break;
         }
    

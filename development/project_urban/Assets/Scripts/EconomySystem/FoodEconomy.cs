@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace EconomySystem
 {
@@ -20,25 +21,35 @@ namespace EconomySystem
 
         private float _totalConsumption;
         private float _totalProduction;
-        public float CurrentProteinAmount { get; private set; } = 10_000;
-        public float MaxProteinAmount { get; private set; } = 10_000;
-        public float MinProteinAmount { get; private set; } = 0;
-        public float totalAlge => Alge.Total;
-        public float totalQualle => Qualle.Total;
-        public float totalSalzpflanze => SalzPflanze.Total;
-        public float totalGrille => Grille.Total;
-        public float maxAlgeAmount => Alge.Max;
-        public float minAlgeAmount => Alge.Min;
+        public float CurrentProteinAmount { get; private set; }
+        public float MaxProteinAmount { get; private set; }
+        public float MinProteinAmount { get; private set; }
+
+        public Dictionary<ResourceType, float> totalResources = new Dictionary<ResourceType, float>();
+        public Dictionary<ProductType, float> totalProducts = new Dictionary<ProductType, float>();
+
 
         private FoodEconomy()
         {
             _totalConsumption = 0;
             _totalProduction = 0;
 
-            BuildingInstance.ProduceAlge += OnProduceAlge;
-            BuildingInstance.ProduceSalzpflanze += OnProduceSalzpflanze;
-            BuildingInstance.ProduceQualle += OnProduceQualle;
-            BuildingInstance.ProduceGrille += OnProduceGrille;
+            //BuildingInstance.ConsumeFood += OnConsumeFood;
+            //BuildingInstance.ProduceFood += OnProduceFood;
+
+            foreach (ResourceType type in Enum.GetValues(typeof(ResourceType)))
+            {
+                totalResources[type] = 0f;
+            }
+            foreach (ProductType type in Enum.GetValues(typeof(ProductType)))
+            {
+                totalProducts[type] = 0f;
+            }
+
+
+            BuildingInstance.ProduceResource += OnProduceResource;
+            ProcessInstance.ProduceProduct += OnProduceProduct;
+
         }
 
         private void OnConsumeFood(float consumptionPerFixedUpdate)
@@ -55,30 +66,16 @@ namespace EconomySystem
             CurrentProteinAmount = nextProteinAmount;
         }
 
-        private void OnConsumeAlge(float consumptionPerFixedUpdate)
+        private void OnProduceResource(ResourceType type, float amount)
         {
+            totalResources[type] += amount;
+        }
+        private void OnProduceProduct(ProductType prod, float prodAmount, ResourceType res, float resAmount)
+        {
+            totalProducts[prod] += prodAmount;
+            totalResources[res] -= resAmount;
         }
 
-        private void OnProduceSalzpflanze(float salzpflanzeProSek)
-        {
-            SalzPflanze.Total += salzpflanzeProSek;
-        }
-
-        private void OnProduceQualle(float qualleProSek)
-        {
-            Qualle.Total += qualleProSek;
-        }
-
-        private void OnProduceGrille(float grilleProSek)
-        {
-            Grille.Total += grilleProSek;
-        }
-
-        private void OnProduceAlge(float algeProSek)
-        {
-            // var nextAlgeAmount = Math.Min(maxAlgeAmount, totalAlge + algeProSek);
-            Alge.Total += algeProSek;
-        }
 
         public string Report()
         {

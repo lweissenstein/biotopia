@@ -1,0 +1,239 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f06dce24f46f8e46b3227bed24e7001, type: 3}
+  m_Name: ProductDescriptions
+  m_EditorClassIdentifier: 
+  entries:
+  - productType: 0
+    description: "Algen pulver f\xFCr smooschis"
+    name: Ulva Powder
+    icon: {fileID: 0}
+    price: 50
+    baseSpeed: 3
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 0
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 6
+    maxUpgradesQuality: 7
+    maxUpgradesEfficiency: 5
+  - productType: 1
+    description: "Leckere Algen-Nudeln, reich an N\xE4hrstoffen."
+    name: Kelp Fettucine
+    icon: {fileID: 0}
+    price: 200
+    baseSpeed: 6
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 0
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 2
+    description: 'algen jelly und so '
+    name: Ocean Jelly
+    icon: {fileID: 0}
+    price: 500
+    baseSpeed: 9
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 0
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 3
+    description: "patty f\xFCr burgies"
+    name: Algae Patties
+    icon: {fileID: 0}
+    price: 1000
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 0
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 4
+    description: 'glasnudeln aus qualle und so '
+    name: Jelly Noodles
+    icon: {fileID: 0}
+    price: 50
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 1
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 5
+    description: mayo aus quallen fettarm
+    name: Medu Mayo
+    icon: {fileID: 0}
+    price: 200
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 1
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 6
+    description: tofu aus quallenprotein
+    name: Ocean Tofu
+    icon: {fileID: 0}
+    price: 500
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 1
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 7
+    description: 'leuchit leuchti bites bioluminiszenz und so '
+    name: Lumino Bites
+    icon: {fileID: 0}
+    price: 1000
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 1
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 8
+    description: "salzersatz w\xFCrzen ja"
+    name: Planty Salt
+    icon: {fileID: 0}
+    price: 50
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 2
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 9
+    description: pickles aus halophytes
+    name: Hydro Pickles
+    icon: {fileID: 0}
+    price: 200
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 2
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 10
+    description: 'aufstrich '
+    name: Sea SPread
+    icon: {fileID: 0}
+    price: 500
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 2
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 11
+    description: der snack aus salzpflanzen mega
+    name: Salicrisp
+    icon: {fileID: 0}
+    price: 1000
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 2
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 12
+    description: "proteinmehl aus grillen als zusatz f\xFCr protein"
+    name: Insektiella
+    icon: {fileID: 0}
+    price: 50
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 3
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 13
+    description: brot aus grillenmehl
+    name: Bugloaf
+    icon: {fileID: 0}
+    price: 200
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 3
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 14
+    description: 'Protein Chips '
+    name: Chirp Chips
+    icon: {fileID: 0}
+    price: 500
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 3
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5
+  - productType: 15
+    description: hoho der schmeckt
+    name: Crunch Bar
+    icon: {fileID: 0}
+    price: 1000
+    baseSpeed: 12
+    baseAmount: 1
+    baseQuality: 0
+    baseEfficiency: 1
+    inputResource: 3
+    maxUpgradesSpeed: 5
+    maxUpgradesAmount: 5
+    maxUpgradesQuality: 5
+    maxUpgradesEfficiency: 5

@@ -1,0 +1,102 @@
+.root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.scroller {
+}
+
+.childScroller {
+    opacity: 1;
+}
+
+VisualElement > .unity-tab-view > .unity-tab > #VisualElement > .unity-scroll-view--vertical > #unity-content-and-vertical-scroll-container > .unity-scroll-view__vertical-scroller {
+    padding-left: 0;
+    background-color: rgba(255, 0, 0, 0);
+    -unity-text-outline-color: rgb(59, 255, 0);
+    color: rgb(255, 0, 0);
+    min-width: -345px;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.buttonUpgrades {
+    width: 30%;
+    height: 200px;
+    flex-direction: column;
+    font-size: 50px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    -unity-font-style: normal;
+}
+
+.buttonsProcess {
+    font-size: 50px;
+    padding-top: 29px;
+    padding-right: 29px;
+    padding-bottom: 29px;
+    padding-left: 29px;
+    margin-top: 50px;
+    margin-right: 0;
+    margin-bottom: 50px;
+    margin-left: 0;
+    width: 80%;
+    max-width: 80%;
+    min-width: 80%;
+    align-self: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    -unity-font-style: bold;
+    border-top-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    border-left-width: 6px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-image: url("project://database/Assets/Scripts/UI/UI%20Assets/padlock.png?fileID=2800000&guid=2e5b1f1f09faf2648ba185015edf8de0&type=3#padlock");
+    background-size: 15% 80%;
+    background-position-x: left 0;
+}
+
+.btnPrices {
+    align-self: flex-end;
+    align-content: flex-end;
+    font-size: 30px;
+    -unity-text-align: lower-left;
+    top: 25px;
+    left: 20px;
+}
+
+#VisualElement > VisualElement > #tabs > #unity-tab-view__header-container > #unity-tab__header {
+    font-size: 70px;
+    background-color: rgb(127, 197, 126);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    min-width: auto;
+    width: 25%;
+    -unity-text-align: upper-center;
+    align-self: center;
+    align-content: auto;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tabButton {
+}
