@@ -66,18 +66,17 @@ module "runner_deployment" {
    disk_size    = 50
  }
 
-# uncomment for reuseable builds. they are much faster but have other issues (need lots of storage or a cleanup step)
+ runners_docker_section = <<EOS
+   pull_policy = [
+     "if-not-present"
+   ]
+ EOS
 
+
+# uncomment for reuseable builds. they are much faster but have other issues (need lots of storage or a cleanup step)
 # max_use_count = 100
 
-# runners_docker_section = <<EOS
-#   pull_policy = [
-#     "if-not-present"
-#   ]
-# EOS
-
 }
-  
 
 output "runner_manager_external_ip" {
   value = module.runner_deployment.runner_manager_external_ip

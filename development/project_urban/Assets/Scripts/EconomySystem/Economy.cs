@@ -30,6 +30,9 @@ namespace EconomySystem
             _grilleProgressBar = economyUI?.rootVisualElement?.Q<ProgressBar>("GrilleProgressBar");
             _salzPflanzeProgressBar = economyUI?.rootVisualElement?.Q<ProgressBar>("SalzPflanzeProgressBar");
 
+            // hide economyUI for now
+            economyUI.rootVisualElement.style.display = DisplayStyle.None;
+
             if (isDebug)
             {
                 Debug.Log("starting economy");

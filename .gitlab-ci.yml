@@ -15,7 +15,7 @@ variables:
   VERSION_NUMBER_VAR: $CI_COMMIT_REF_SLUG-$CI_PIPELINE_ID-$CI_JOB_ID
   VERSION_BUILD_VAR: $CI_PIPELINE_IID
 
-image: $IMAGE:$UNITY_VERSION-base-$IMAGE_VERSION
+image: $IMAGE:$UNITY_VERSION-android-$IMAGE_VERSION
 
 get-unity-version:
   image: alpine
@@ -73,7 +73,6 @@ get-unity-version:
 
 build-android:
   <<: *build
-  image: $IMAGE:$UNITY_VERSION-android-$IMAGE_VERSION
   variables:
     BUILD_TARGET: Android
     BUILD_APP_BUNDLE: "false"
@@ -82,9 +81,6 @@ build-android:
 
 workflow:
   rules:
-    - if: $CI_MERGE_REQUEST_ID
-      when: never
-    - if: $CI_COMMIT_TAG
-      when: never
-    - when: always
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 

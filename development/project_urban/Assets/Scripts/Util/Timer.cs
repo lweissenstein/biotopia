@@ -77,6 +77,9 @@ namespace Util
         [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
         private void CallIfTimeElapsed(string id, Action callable, int ms)
         {
+            // Early return in case the game is frozen.
+            if (GamePauser.IsPaused) return;
+
             var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
             // add the caller id on the first call
