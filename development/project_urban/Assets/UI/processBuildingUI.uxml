@@ -6,64 +6,64 @@
                 <engine:Tab label="Alge" name="tabAlge" closeable="false" focusable="false" class="tabButton" style="flex-direction: column; width: 100%;">
                     <engine:ScrollView style="flex-direction: row; align-items: auto; flex-wrap: nowrap; justify-content: space-evenly; align-self: auto; align-content: auto;">
                         <engine:Button text="Ulva Powder" name="btnAlgePowder" class="buttonsProcess" style="width: auto; background-position-x: left 0;">
-                            <engine:Label text="50 ¤" name="algeDryPrice" class="btnPrices" />
+                            <engine:Label text="50 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Kelp Fettucine" name="btnAlgeNoodle" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="200 ¤" name="algeNoodlePrice" class="btnPrices" />
+                            <engine:Label text="200 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Ocean Jelly" name="btnAlgeJelly" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="500 ¤" name="algeFlourPrice" class="btnPrices" />
+                            <engine:Label text="500 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Algae Patties" name="btnAlgePatty" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="1000 ¤" name="algeOilPrice" class="btnPrices" />
+                            <engine:Label text="1000 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                     </engine:ScrollView>
                 </engine:Tab>
                 <engine:Tab label="Salz" name="tabSalzpflanze" class="tabButton" style="flex-direction: column; width: 100%;">
                     <engine:ScrollView style="flex-direction: row; align-items: auto; flex-wrap: nowrap; justify-content: space-evenly; align-self: auto; align-content: auto;">
                         <engine:Button text="Planty Salt" name="btnSalzpflanzeSalt" class="buttonsProcess" style="width: auto; background-position-x: left 0;">
-                            <engine:Label text="50 ¤" name="algeDryPrice" class="btnPrices" />
+                            <engine:Label text="50 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Hydro Pickles" name="btnSalzpflanzePickles" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="200 ¤" name="algeNoodlePrice" class="btnPrices" />
+                            <engine:Label text="200 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Sea Spread" name="btnSalzpflanzeSpread" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="500 ¤" name="algeFlourPrice" class="btnPrices" />
+                            <engine:Label text="500 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Salicrisp" name="btnSalzpflanzeChips" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="1000 ¤" name="algeOilPrice" class="btnPrices" />
+                            <engine:Label text="1000 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                     </engine:ScrollView>
                 </engine:Tab>
                 <engine:Tab label="Qualle" name="tabQualle" class="tabButton" style="flex-direction: column; width: 100%;">
                     <engine:ScrollView style="flex-direction: row; align-items: auto; flex-wrap: nowrap; justify-content: space-evenly; align-self: auto; align-content: auto;">
                         <engine:Button text="Jelly Noodles" name="btnQualleNoodle" class="buttonsProcess" style="width: auto; background-position-x: left 0;">
-                            <engine:Label text="50 ¤" name="algeDryPrice" class="btnPrices" />
+                            <engine:Label text="50 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Medu Mayo" name="btnQualleMayo" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="200 ¤" name="algeNoodlePrice" class="btnPrices" />
+                            <engine:Label text="200 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Ocean Tofu" name="btnQualleTofu" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="500 ¤" name="algeFlourPrice" class="btnPrices" />
+                            <engine:Label text="500 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Lumino Bites" name="btnQualleBites" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="1000 ¤" name="algeOilPrice" class="btnPrices" />
+                            <engine:Label text="1000 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                     </engine:ScrollView>
                 </engine:Tab>
                 <engine:Tab label="Grille" name="tabGrille" class="tabButton" style="flex-direction: column; width: 100%;">
                     <engine:ScrollView style="flex-direction: row; align-items: auto; flex-wrap: nowrap; justify-content: space-evenly; align-self: auto; align-content: auto;">
                         <engine:Button text="Insektiella" name="btnGrilleFlour" class="buttonsProcess" style="width: auto; background-position-x: left 0;">
-                            <engine:Label text="50 ¤" name="algeDryPrice" class="btnPrices" />
+                            <engine:Label text="50 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Bugloaf" name="btnGrilleLoaf" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="200 ¤" name="algeNoodlePrice" class="btnPrices" />
+                            <engine:Label text="200 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Chirp Chips" name="btnGrilleChips" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="500 ¤" name="algeFlourPrice" class="btnPrices" />
+                            <engine:Label text="500 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                         <engine:Button text="Crunch Bar" name="btnGrilleBar" class="buttonsProcess" style="width: auto;">
-                            <engine:Label text="1000 ¤" name="algeOilPrice" class="btnPrices" />
+                            <engine:Label text="1000 ¤" name="price" class="btnPrices" />
                         </engine:Button>
                     </engine:ScrollView>
                 </engine:Tab>

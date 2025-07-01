@@ -48,6 +48,7 @@ namespace EconomySystem
 
 
             BuildingInstance.ProduceResource += OnProduceResource;
+            //BuildingInstance.ConsumeProduct += OnConsumeProduct;
             ProcessInstance.ProduceProduct += OnProduceProduct;
 
         }
@@ -74,6 +75,11 @@ namespace EconomySystem
         {
             totalProducts[prod] += prodAmount;
             totalResources[res] -= resAmount;
+        }
+
+        private void OnConsumeProduct(ProductType prod, float amount)
+        {
+            totalProducts[prod] -= amount;
         }
 
 

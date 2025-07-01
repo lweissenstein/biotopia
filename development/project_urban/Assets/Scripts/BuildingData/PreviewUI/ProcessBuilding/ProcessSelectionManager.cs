@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using EconomySystem;
 using System.Collections.Generic;
+using System;
 
 public class ProcessSelectionManager : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class ProcessSelectionManager : MonoBehaviour
     private HashSet<ProductType> activatedProducts = new HashSet<ProductType>();
 
     private Dictionary<ProductType, bool> productActiveStates = new();
+    private Dictionary<ProductType, bool> purchasedProducts = new Dictionary<ProductType, bool>();
+    // Key ist eine Kombination aus selected und ProcessValue
+    private Dictionary<(ProductType, ProcessValue), int> upgradePrices = new Dictionary<(ProductType, ProcessValue), int>();
+
 
     // Dictionary für Buttons pro Produkt
     private Dictionary<ProductType, Button> productButtons = new();
@@ -73,6 +78,11 @@ public class ProcessSelectionManager : MonoBehaviour
 
         var allButtons = root.Query<Button>().Where(b => b.name.StartsWith("btn")).ToList();
 
+        foreach (ProductType productType in Enum.GetValues(typeof(ProductType)))
+        {
+            purchasedProducts[productType] = false;
+        }
+
         foreach (var btn in allButtons)
         {
             ProductType? type = btn.name switch
@@ -106,11 +116,40 @@ public class ProcessSelectionManager : MonoBehaviour
             {
                 if (btn.userData is ProductType productType)
                 {
-                    Debug.Log($"Button clicked for product: {productType}");
-                    selectedType = productType;
-                    ActivateProductLine(productType);
-                    UpdateEnableButtonVisual();
-                    UpdateUpgradeButtonVisual();
+                    var entry = productDatabase.GetEntry(productType);
+                    if (entry == null)
+                    {
+                        return;
+                    }
+
+                    int price = entry.price;
+                    bool isBought = false;
+                    purchasedProducts.TryGetValue(productType, out isBought);
+
+                    if (!isBought && CreditSystem.Instance.TrySpendCredits(price))
+                    {
+                        purchasedProducts[productType] = true;
+                        selectedType = productType;
+                        ActivateProductLine(productType);
+                        UpdateEnableButtonVisual();
+                        UpdateUpgradeButtonVisual();
+                        Label child = btn.Q<Label>("price");
+                        if (child != null)
+                        {
+                            child.style.visibility = Visibility.Hidden; // Preis-Label ausblenden
+                        }
+                    }
+                    else if (isBought)
+                    {
+                        selectedType = productType;
+                        ActivateProductLine(productType);
+                        UpdateEnableButtonVisual();
+                        UpdateUpgradeButtonVisual();
+                    }
+                    else
+                    {
+                        Debug.Log($"Nicht genug Credits für {productType}. Preis: {price}");
+                    }
                 }
             };
         }
@@ -131,23 +170,75 @@ public class ProcessSelectionManager : MonoBehaviour
 
         upgradeSpeedButton.clicked += () =>
         {
-            if (selected != null)
+            if (selected == null) return;
+
+            var key = (selectedType, ProcessValue.Speed);
+
+            if (!upgradePrices.ContainsKey(key))
+                upgradePrices[key] = 100;
+
+            int price = upgradePrices[key];
+
+            if (CreditSystem.Instance.TrySpendCredits(price))
+            {
                 selected.Upgrade(selectedType, ProcessValue.Speed);
-            cntSpeed.text = selected.GetUpgrade(selectedType, ProcessValue.Speed).ToString() + "/" + selected.GetMaxUpgrade(selectedType, ProcessValue.Speed);
+                upgradePrices[key] = (int)(price * 2);
+
+                cntSpeed.text = $"{selected.GetUpgrade(selectedType, ProcessValue.Speed)}/{selected.GetMaxUpgrade(selectedType, ProcessValue.Speed)}";
+            }
+            else
+            {
+                Debug.Log("Nicht genug Credits für Speed Upgrade");
+            }
+           
         };
 
         upgradeAmountButton.clicked += () =>
         {
-            if (selected != null)
+            if (selected == null) return;
+
+            var key = (selectedType, ProcessValue.Amount);
+
+            if (!upgradePrices.ContainsKey(key))
+                upgradePrices[key] = 150;
+
+            int price = upgradePrices[key];
+
+            if (CreditSystem.Instance.TrySpendCredits(price))
+            {
                 selected.Upgrade(selectedType, ProcessValue.Amount);
-            cntAmount.text = selected.GetUpgrade(selectedType, ProcessValue.Amount).ToString() + "/" + selected.GetMaxUpgrade(selectedType, ProcessValue.Amount);
+                upgradePrices[key] = (int)(price * 2);
+
+                cntAmount.text = $"{selected.GetUpgrade(selectedType, ProcessValue.Amount)}/{selected.GetMaxUpgrade(selectedType, ProcessValue.Amount)}";
+            }
+            else
+            {
+                Debug.Log("Nicht genug Credits für Amount Upgrade");
+            }
         };
 
         upgradeEfficiencyButton.clicked += () =>
         {
-            if (selected != null)
+            if (selected == null) return;
+
+            var key = (selectedType, ProcessValue.Efficiency);
+
+            if (!upgradePrices.ContainsKey(key))
+                upgradePrices[key] = 50;
+
+            int price = upgradePrices[key];
+
+            if (CreditSystem.Instance.TrySpendCredits(price))
+            {
                 selected.Upgrade(selectedType, ProcessValue.Efficiency);
-            cntEfficiency.text = selected.GetUpgrade(selectedType, ProcessValue.Efficiency).ToString() + "/" + selected.GetMaxUpgrade(selectedType, ProcessValue.Efficiency);
+                upgradePrices[key] = (int)(price * 2);
+
+                cntEfficiency.text = $"{selected.GetUpgrade(selectedType, ProcessValue.Efficiency)}/{selected.GetMaxUpgrade(selectedType, ProcessValue.Efficiency)}";
+            }
+            else
+            {
+                Debug.Log("Nicht genug Credits für Efficiency Upgrade");
+            }
         };
 
         foreach (var kvp in productButtons)
