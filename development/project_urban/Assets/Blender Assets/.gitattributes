@@ -1,0 +1,5 @@
+SolarPanel.fbx filter=lfs diff=lfs merge=lfs -text
+HouseTier1.fbx filter=lfs diff=lfs merge=lfs -text
+HouseTier2.fbx filter=lfs diff=lfs merge=lfs -text
+HouseTier3.fbx filter=lfs diff=lfs merge=lfs -text
+PaterNoster.fbx filter=lfs diff=lfs merge=lfs -text
