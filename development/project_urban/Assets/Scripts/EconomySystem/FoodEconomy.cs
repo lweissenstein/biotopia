@@ -34,8 +34,8 @@ namespace EconomySystem
             _totalConsumption = 0;
             _totalProduction = 0;
 
-            //BuildingInstance.ConsumeFood += OnConsumeFood;
-            //BuildingInstance.ProduceFood += OnProduceFood;
+            BuildingInstance.ConsumeFood += OnConsumeFood;
+            BuildingInstance.ProduceFood += OnProduceFood;
 
             foreach (ResourceType type in Enum.GetValues(typeof(ResourceType)))
             {
@@ -48,7 +48,7 @@ namespace EconomySystem
 
 
             BuildingInstance.ProduceResource += OnProduceResource;
-            //BuildingInstance.ConsumeProduct += OnConsumeProduct;
+            BuildingInstance.ConsumeProduct += OnConsumeProduct;
             ProcessInstance.ProduceProduct += OnProduceProduct;
 
         }

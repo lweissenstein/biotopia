@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,10 +10,11 @@ public class BuildingSelectionManager : MonoBehaviour
     public RenderTexture previewTexture; // vom Inspector zugewiesen
 
     private Label nameLabel, descriptionLabel, levelLabel, productionLabel;
-    private Button upgradeButton, algenButton, quallenButton, salzpflanzenButton, grillenButton;
+    private Button upgradeButton, algenButton, quallenButton, salzpflanzenButton, grillenButton, supermarktButton;
     private VisualElement panel;
 
     private BuildingInstance selected;
+    private List<BuildingInstance> superMarkets = new List<BuildingInstance>();
 
     void Start()
     {
@@ -27,6 +29,7 @@ public class BuildingSelectionManager : MonoBehaviour
         quallenButton = root.Q<Button>("Qualle");
         salzpflanzenButton = root.Q<Button>("Salzpflanze");
         grillenButton = root.Q<Button>("Grille");
+        supermarktButton = root.Q<Button>("Supermarkt");
 
         panel = root.Q<VisualElement>("BuildingPanel");
 
@@ -70,6 +73,19 @@ public class BuildingSelectionManager : MonoBehaviour
             }
         };
 
+        supermarktButton.clicked += () =>
+        {
+            if (selected != null)
+            {
+                selected.UpgradeSupermarkt();
+                UpdateUI(selected);
+                SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
+                if (!superMarkets.Contains(selected))
+                    superMarkets.Add(selected);
+                ToggleSuperMarketRange(true);
+            }
+        };
+
         HideUI();
     }
 
@@ -97,48 +113,73 @@ public class BuildingSelectionManager : MonoBehaviour
             if (selected.compartmentTypeHouse == 3)
             {
                 nameLabel.text = "Algen Produktion";
-
                 productionLabel.text += "\nAlge/s: " + selected.producePerSecond;
-                algenButton.SetEnabled(true);
-                quallenButton.SetEnabled(false);
-                salzpflanzenButton.SetEnabled(false);
-                grillenButton.SetEnabled(false);
+                productionLabel.style.display = DisplayStyle.Flex;
+                algenButton.style.display = DisplayStyle.Flex;
+                quallenButton.style.display = DisplayStyle.None;
+                salzpflanzenButton.style.display = DisplayStyle.None;
+                grillenButton.style.display = DisplayStyle.None;
+                supermarktButton.style.display = DisplayStyle.None;
+                ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 4)
             {
                 nameLabel.text = "Salzpflanzen Produktion";
                 productionLabel.text += "\nSalzpflanze/s: " + selected.producePerSecond;
-                algenButton.SetEnabled(false);
-                quallenButton.SetEnabled(false);
-                salzpflanzenButton.SetEnabled(true);
-                grillenButton.SetEnabled(false);
+                productionLabel.style.display = DisplayStyle.Flex;
+                algenButton.style.display = DisplayStyle.None;
+                quallenButton.style.display = DisplayStyle.None;
+                salzpflanzenButton.style.display = DisplayStyle.Flex;
+                grillenButton.style.display = DisplayStyle.None;
+                supermarktButton.style.display = DisplayStyle.None;
+                ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 5)
             {
                 nameLabel.text = "Quallen Produktion";
                 productionLabel.text += "\nQualle/s: " + selected.producePerSecond;
-                algenButton.SetEnabled(false);
-                quallenButton.SetEnabled(true);
-                salzpflanzenButton.SetEnabled(false);
-                grillenButton.SetEnabled(false);
+                productionLabel.style.display = DisplayStyle.Flex;
+                algenButton.style.display = DisplayStyle.None;
+                quallenButton.style.display = DisplayStyle.Flex;
+                salzpflanzenButton.style.display = DisplayStyle.None;
+                grillenButton.style.display = DisplayStyle.None;
+                supermarktButton.style.display = DisplayStyle.None;
+                ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 6)
             {
                 nameLabel.text = "Grillen Produktion";
                 productionLabel.text += "\nGrille/s: " + selected.producePerSecond;
-                algenButton.SetEnabled(false);
-                quallenButton.SetEnabled(false);
-                salzpflanzenButton.SetEnabled(false);
-                grillenButton.SetEnabled(true);
+                productionLabel.style.display = DisplayStyle.Flex;
+                algenButton.style.display = DisplayStyle.None;
+                quallenButton.style.display = DisplayStyle.None;
+                salzpflanzenButton.style.display = DisplayStyle.None;
+                grillenButton.style.display = DisplayStyle.Flex;
+                supermarktButton.style.display = DisplayStyle.None;
+                ToggleSuperMarketRange(false);
+            }
+            else if (building.compartmentTypeHouse == 7)
+            {
+                nameLabel.text = "Supermarkt";
+                productionLabel.style.display = DisplayStyle.None;
+                algenButton.style.display = DisplayStyle.None;
+                quallenButton.style.display = DisplayStyle.None;
+                salzpflanzenButton.style.display = DisplayStyle.None;
+                grillenButton.style.display = DisplayStyle.None;
+                supermarktButton.style.display = DisplayStyle.Flex;
+                ToggleSuperMarketRange(true);
             }
             else
             {
                 nameLabel.text = "Hochhaus";
                 productionLabel.text = "Produktion: ";
-                algenButton.SetEnabled(true);
-                quallenButton.SetEnabled(true);
-                salzpflanzenButton.SetEnabled(true);
-                grillenButton.SetEnabled(true);
+                productionLabel.style.display = DisplayStyle.Flex;
+                algenButton.style.display = DisplayStyle.Flex;
+                quallenButton.style.display = DisplayStyle.Flex;
+                salzpflanzenButton.style.display = DisplayStyle.Flex;
+                grillenButton.style.display = DisplayStyle.Flex;
+                supermarktButton.style.display = DisplayStyle.Flex;
+                ToggleSuperMarketRange(false);
             }
         }
 
@@ -181,4 +222,14 @@ public class BuildingSelectionManager : MonoBehaviour
 
     void HideUI() => uiDocument.rootVisualElement.style.display = DisplayStyle.None;
     void ShowUI() => uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+
+    public void ToggleSuperMarketRange(bool on)
+    {
+        foreach (BuildingInstance supMar in superMarkets) 
+        {
+            Transform Indicator = supMar.transform.Find("8");
+            if (Indicator != null)
+                Indicator.gameObject.SetActive(on);
+        }
+    }
 }

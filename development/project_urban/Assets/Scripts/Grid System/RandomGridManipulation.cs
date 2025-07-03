@@ -177,11 +177,11 @@ public class RandomGridManipulation
             if (go != null)
             {
                 var upgradeable = go.GetComponent<UpgradeableObject>();
-                if (upgradeable != null)
+                var building = go.GetComponent<BuildingInstance>();
+                if (upgradeable != null && building.compartmentTypeHouse != 7)
                     upgradeable.UpgradeTo(objectID);
 
-                var building = go.GetComponent<BuildingInstance>();
-                if (building != null)
+                if (building != null && building.compartmentTypeHouse != 7)
                     building.UpgradeHouse();
             }
 
@@ -298,11 +298,11 @@ public class RandomGridManipulation
             if (go != null)
             {
                 var upgradeable = go.GetComponent<UpgradeableObject>();
-                if (upgradeable != null)
+                var building = go.GetComponent<BuildingInstance>();
+                if (upgradeable != null && building.compartmentTypeHouse != 7)
                     upgradeable.UpgradeTo(objectID);
 
-                var building = go.GetComponent<BuildingInstance>();
-                if (building != null)
+                if (building != null && building.compartmentTypeHouse != 7)
                     building.UpgradeHouse();
             }
             gridData.UpdateObjectIDAt(pos, objectID);

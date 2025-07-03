@@ -37,11 +37,33 @@ public class BuildingPreviewManager : MonoBehaviour
 
     private void SetActiveChild(Transform moin, int activeID)
     {
-        for (int i = 0; i < 3; i++)
+        var buildinInstance = currentPreview.GetComponent<BuildingInstance>();
+
+        if (buildinInstance.compartmentTypeHouse != 7)
         {
-            Transform child = moin.Find(i.ToString());
+            for (int i = 0; i < 3; i++)
+            {
+                Transform child = moin.Find(i.ToString());
+                if (child != null)
+                    child.gameObject.SetActive(i == activeID);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Transform notChild = moin.Find(i.ToString());
+                if (notChild != null)
+                    notChild.gameObject.SetActive(false);
+            }
+
+            Transform child = transform.Find("7");
             if (child != null)
-                child.gameObject.SetActive(i == activeID);
+                child.gameObject.SetActive(true);
+
+            Transform childIndicator = transform.Find("8");
+            if (childIndicator != null)
+                childIndicator.gameObject.SetActive(false);
         }
     }
 

@@ -34,6 +34,7 @@ public class PlacementSystem : MonoBehaviour
 
     int gridSizeX;
     int gridSizeZ;
+    int freeTiles;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class PlacementSystem : MonoBehaviour
         {
             gridSizeX = Mathf.RoundToInt(gridObject.transform.localScale.x*10);
             gridSizeZ = Mathf.RoundToInt(gridObject.transform.localScale.z*10);
+            freeTiles = gridSizeX * gridSizeZ;
         }
         Debug.Log($"Grid size: {gridSizeX}x{gridSizeZ} cells");
     }
@@ -226,6 +228,16 @@ public class PlacementSystem : MonoBehaviour
         return numBuildings;
     }
 
+    public int GetFreeTiles()
+    {
+        int occupiedTiles = 0;
+
+        foreach (Vector3Int pos in furnitureData.GetAllOccupiedPositions())
+            occupiedTiles++;
+
+        return gridSizeX * gridSizeZ - occupiedTiles;
+    }
+
     public void perSecondUpdate()
     {
         bool empty = true;
@@ -244,7 +256,7 @@ public class PlacementSystem : MonoBehaviour
         {
             if (smallPlaceTimer == 0)
             {
-                randomPlacer.RandomWheightedPlace(5, gridSizeX, gridSizeZ, furnitureData, 0);
+                randomPlacer.RandomWheightedPlace(50, gridSizeX, gridSizeZ, furnitureData, 0);
                 smallPlaceTimer = 1;
             }
             if (smallToMediumTimer == 0)
@@ -263,7 +275,7 @@ public class PlacementSystem : MonoBehaviour
         smallToMediumTimer--;
         mediumToLargeTimer--;
 
-        if (getNumParks() < getNumBuildings() / 10) randomPlacer.RandomParkPlace(gridSizeX, gridSizeZ, furnitureData);
+        if (getNumParks() < getNumBuildings() / 10 && GetFreeTiles() != 0) randomPlacer.RandomParkPlace(gridSizeX, gridSizeZ, furnitureData);
     }
 
     void Update()

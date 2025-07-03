@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using EconomySystem;
 using Util;
+using Random = UnityEngine.Random;
 
 public class BuildingInstance : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class BuildingInstance : MonoBehaviour
     [SerializeField] private BoxCollider boxColliderHouse;
     public BuildingData data;
     public GameObject previewPrefab;
-    //public static event Action<float> ConsumeFood;
-    //public static event Action<float> ProduceFood;
+    public static event Action<float> ConsumeFood;
+    public static event Action<float> ProduceFood;
+    public static event Action<ProductType, float> ConsumeProduct;
     private ObjectPlacer objectPlacer;
     private float fixedTimer = 0f;
     private Timer _timer = new();
-
+    private ProcessSelectionManager processSelectionManager;
+    private ProductDescriptionDatabase productDescriptionDatabase;
 
     // Hochhaus
 
@@ -50,7 +53,10 @@ public class BuildingInstance : MonoBehaviour
     // General: Awake and Update
     public void Awake()
     {
-    // General
+        // General
+
+        processSelectionManager = FindFirstObjectByType<ProcessSelectionManager>();
+
     // Hochhaus
     // Water
     // Park
@@ -80,8 +86,27 @@ public class BuildingInstance : MonoBehaviour
         // Park
         // Therme
         // Supermarkt
-        //ProduceFood?.Invoke(foodProductionPerSecond);
-        //ConsumeFood?.Invoke(foodConsumptionPerSecond * Time.fixedDeltaTime);
+        ProduceFood?.Invoke(1);
+        ConsumeFood?.Invoke(1 * Time.fixedDeltaTime);
+
+        if (compartmentTypeHouse >= 3 && compartmentTypeHouse <= 6)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                int available = 0;
+
+                if (processSelectionManager.purchased[4 * i]) available++;
+                if (processSelectionManager.purchased[4 * i + 1]) available++;
+                if (processSelectionManager.purchased[4 * i + 2]) available++;
+                if (processSelectionManager.purchased[4 * i + 3]) available++;
+
+                if (available != 0)
+                {
+                    int rnd = Random.Range(0, available);
+                    ConsumeProduct?.Invoke(processSelectionManager.products[rnd + 4 * i], 1);
+                }
+            }
+        }
     }
 
     // ------------ General ------------
@@ -195,6 +220,16 @@ public class BuildingInstance : MonoBehaviour
         {
             Debug.LogWarning("Maximale Anzahl an Upgrades erreicht.");
         }
+    }
+
+    public void UpgradeSupermarkt()
+    {
+        var upgradeable =
+            GetComponent<UpgradeableObject>();
+        if (upgradeable != null)
+            upgradeable.SetToSupermarket();
+
+        compartmentTypeHouse = 7;
     }
 
     public void GetProduction()

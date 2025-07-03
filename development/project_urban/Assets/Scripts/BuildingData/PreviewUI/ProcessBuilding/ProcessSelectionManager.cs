@@ -24,15 +24,19 @@ public class ProcessSelectionManager : MonoBehaviour
     private HashSet<ProductType> activatedProducts = new HashSet<ProductType>();
 
     private Dictionary<ProductType, bool> productActiveStates = new();
-    private Dictionary<ProductType, bool> purchasedProducts = new Dictionary<ProductType, bool>();
+
+    public Dictionary<int, ProductType> products = new Dictionary<int, ProductType>();
+    public Dictionary<int, bool> purchased = new Dictionary<int, bool>();
+    public Dictionary<ProductType, int> productsMirrored = new Dictionary<ProductType, int>();
+
     // Key ist eine Kombination aus selected und ProcessValue
     private Dictionary<(ProductType, ProcessValue), int> upgradePrices = new Dictionary<(ProductType, ProcessValue), int>();
 
 
-    // Dictionary für Buttons pro Produkt
+    // Dictionary fr Buttons pro Produkt
     private Dictionary<ProductType, Button> productButtons = new();
 
-    private static readonly Color SoftGreen = new Color(0.2f, 0.5f, 0.2f);  // dunkles, sanftes Grün
+    private static readonly Color SoftGreen = new Color(0.2f, 0.5f, 0.2f);  // dunkles, sanftes Grn
     private static readonly Color SoftRed = new Color(0.6f, 0.2f, 0.2f); // sanftes rot
 
 
@@ -78,9 +82,14 @@ public class ProcessSelectionManager : MonoBehaviour
 
         var allButtons = root.Query<Button>().Where(b => b.name.StartsWith("btn")).ToList();
 
+        int i = 0;
+
         foreach (ProductType productType in Enum.GetValues(typeof(ProductType)))
         {
-            purchasedProducts[productType] = false;
+            purchased[i] = false;
+            products[i] = productType;
+            productsMirrored[productType] = i;
+            i++;
         }
 
         foreach (var btn in allButtons)
@@ -124,11 +133,12 @@ public class ProcessSelectionManager : MonoBehaviour
 
                     int price = entry.price;
                     bool isBought = false;
-                    purchasedProducts.TryGetValue(productType, out isBought);
+
+                    purchased.TryGetValue(productsMirrored[productType], out isBought);
 
                     if (!isBought && CreditSystem.Instance.TrySpendCredits(price))
                     {
-                        purchasedProducts[productType] = true;
+                        purchased[productsMirrored[productType]] = true;
                         selectedType = productType;
                         ActivateProductLine(productType);
                         UpdateEnableButtonVisual();
@@ -148,7 +158,7 @@ public class ProcessSelectionManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log($"Nicht genug Credits für {productType}. Preis: {price}");
+                        Debug.Log($"Nicht genug Credits fr {productType}. Preis: {price}");
                     }
                 }
             };
@@ -188,9 +198,9 @@ public class ProcessSelectionManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Nicht genug Credits für Speed Upgrade");
+                Debug.Log("Nicht genug Credits fr Speed Upgrade");
             }
-           
+
         };
 
         upgradeAmountButton.clicked += () =>
@@ -213,7 +223,7 @@ public class ProcessSelectionManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Nicht genug Credits für Amount Upgrade");
+                Debug.Log("Nicht genug Credits fr Amount Upgrade");
             }
         };
 
@@ -237,7 +247,7 @@ public class ProcessSelectionManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Nicht genug Credits für Efficiency Upgrade");
+                Debug.Log("Nicht genug Credits fr Efficiency Upgrade");
             }
         };
 
@@ -272,7 +282,7 @@ public class ProcessSelectionManager : MonoBehaviour
         }
         else
         {
-            // Standardfarbe, z.B. grün
+            // Standardfarbe, z.B. grn
             enablerButton.style.backgroundColor = new StyleColor(Color.green);
             enablerStatus.text = "Status: Aktiviert";
             enablerStatus.style.color = SoftGreen;
@@ -283,7 +293,7 @@ public class ProcessSelectionManager : MonoBehaviour
     {
         upgradePanel.style.display = DisplayStyle.None;
     }
-    
+
     void UpdateUpgradeButtonVisual()
     {
         if (selected == null)
@@ -303,7 +313,7 @@ public class ProcessSelectionManager : MonoBehaviour
     //{
     //    if (!productActiveStates.ContainsKey(productType))
     //    {
-    //        productActiveStates[productType] = true; // standardmäßig aktiv
+    //        productActiveStates[productType] = true; // standardmig aktiv
     //    }
 
     //    if (!activatedProducts.Contains(productType))
@@ -379,7 +389,7 @@ public class ProcessSelectionManager : MonoBehaviour
     {
         if (!productActiveStates.ContainsKey(productType))
         {
-            productActiveStates[productType] = true; // standardmäßig aktiv
+            productActiveStates[productType] = true; // standardmig aktiv
         }
 
         if (!activatedProducts.Contains(productType))
@@ -392,7 +402,7 @@ public class ProcessSelectionManager : MonoBehaviour
                 currentBtn.style.backgroundImage = null;
             }
 
-            // Nächsten Button aktivieren, falls vorhanden
+            // Nchsten Button aktivieren, falls vorhanden
             if (productChainNext.TryGetValue(productType, out var nextType) && nextType.HasValue)
             {
                 if (productButtons.TryGetValue(nextType.Value, out var nextBtn))
@@ -418,4 +428,4 @@ public class ProcessSelectionManager : MonoBehaviour
 
 
 
-  
+
