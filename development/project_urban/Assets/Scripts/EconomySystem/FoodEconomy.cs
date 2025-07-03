@@ -21,9 +21,10 @@ namespace EconomySystem
 
         private float _totalConsumption;
         private float _totalProduction;
-        public float CurrentProteinAmount { get; private set; }
-        public float MaxProteinAmount { get; private set; }
-        public float MinProteinAmount { get; private set; }
+        public float CurrentProteinAmount = 556;
+        //public float CurrentProteinAmount { get; private set; }
+        public float MaxProteinAmount = 1000;
+        public float MinProteinAmount = 0;
 
         public Dictionary<ResourceType, float> totalResources = new Dictionary<ResourceType, float>();
         public Dictionary<ProductType, float> totalProducts = new Dictionary<ProductType, float>();

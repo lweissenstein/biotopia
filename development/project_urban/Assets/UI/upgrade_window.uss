@@ -3,9 +3,17 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
 }
 
 .window {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
 }
 
 .labels {
@@ -21,4 +29,40 @@ button:hover {
 
 .button:hover {
     -unity-background-image-tint-color: rgb(255, 0, 0);
+}
+
+.titleText {
+    background-color: rgba(53, 53, 53, 0);
+    color: rgb(53, 53, 53);
+    font-size: 74px;
+    -unity-font-definition: url("project://database/Assets/Scripts/UI/UI%20Assets/JuraDemiBold.ttf?fileID=12800000&guid=4029eae5b7a872b4faba49ced1a7fcef&type=3#JuraDemiBold");
+}
+
+.buttons {
+    max-width: none;
+    width: 100%;
+    margin-top: 15px;
+    margin-right: 0;
+    margin-bottom: 15px;
+    margin-left: 0;
+    height: 170px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+}
+
+.labelButtons {
+    -unity-font-definition: url("project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&guid=69a7b60da297f0b4b934963755e57843&type=3#JuraMedium");
+    -unity-text-align: upper-left;
+}
+
+.labelDetails {
+    -unity-font-definition: url("project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&guid=69a7b60da297f0b4b934963755e57843&type=3#JuraMedium");
+    font-size: 55px;
+    -unity-text-align: upper-right;
 }

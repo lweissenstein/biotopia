@@ -1,7 +1,6 @@
 using UnityEngine.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using Util;
 
 namespace MenuSystem
@@ -9,20 +8,19 @@ namespace MenuSystem
     internal static class State
     {
         public static bool IsNewGame = true;
-        public static StyleEnum<DisplayStyle>? CreditUIDisplayStyle = null;
-        public static StyleEnum<DisplayStyle>? ResourceUIDisplayStyle = null;
         public static StyleEnum<DisplayStyle>? UpgradeWindowUIDisplayStyle = null;
         public static StyleEnum<DisplayStyle>? ProcessBuildingUIDisplayStyle = null;
+        public static StyleEnum<DisplayStyle>? EconomyUIDisplayStyle = null;
     }
 
     public class MenuUI : MonoBehaviour
     {
         public UIDocument menuUI;
-        public UIDocument creditUI;
-        public UIDocument resourceUI;
         public UIDocument upgradeWindowUI;
         public UIDocument processBuildingUI;
+        public UIDocument economyUI;
         private Button _pauseButton;
+        private Label _menuLabel;
         private Button _continueButton;
         private Button _startNewGameButton;
         private VisualElement _visualElement;
@@ -31,7 +29,9 @@ namespace MenuSystem
 
         public void Start()
         {
-            ShowGame();
+            _menuLabel = economyUI.rootVisualElement.Q<Label>("menuButtonLabel");
+            _menuLabel.RegisterCallback<ClickEvent>(Object => OnPauseButton());
+            //ShowGame();
             // pause the game on startup
             if (State.IsNewGame) OnPauseButton();
         }
@@ -39,28 +39,32 @@ namespace MenuSystem
         private void OnStartNewGameButton()
         {
             // only reload the scene if this it isn't a new game. No reason to reload a new game.
+            
             if (!State.IsNewGame) SceneManager.LoadSceneAsync(0);
             State.IsNewGame = false;
+            
             HideMenu();
-            ShowGame();
+            //ShowGame();
             ShowOtherUIs();
             GamePauser.ContinueGame();
+            economyUI.rootVisualElement.style.display = DisplayStyle.Flex;
         }
 
         private void OnPauseButton()
         {
             GamePauser.PauseGame();
-            HideGame();
+            //HideGame();
             HideOtherUIs();
             ShowMenu();
         }
 
         private void OnContinueButton()
         {
+            economyUI.rootVisualElement.style.display = DisplayStyle.Flex;
             // do nothing if this is a new game.
             if (State.IsNewGame) return;
             HideMenu();
-            ShowGame();
+            //ShowGame();
             ShowOtherUIs();
             GamePauser.ContinueGame();
         }
@@ -68,21 +72,18 @@ namespace MenuSystem
         private void HideOtherUIs()
         {
             // backup
-            State.ResourceUIDisplayStyle = resourceUI.rootVisualElement.style.display;
-            State.CreditUIDisplayStyle = creditUI.rootVisualElement.style.display;
+            State.EconomyUIDisplayStyle = economyUI.rootVisualElement.style.display;
             State.UpgradeWindowUIDisplayStyle = upgradeWindowUI.rootVisualElement.style.display;
             State.ProcessBuildingUIDisplayStyle = processBuildingUI.rootVisualElement.style.display;
 
-            resourceUI.rootVisualElement.style.display = DisplayStyle.None;
-            creditUI.rootVisualElement.style.display = DisplayStyle.None;
+            economyUI.rootVisualElement.style.display = DisplayStyle.None;
             upgradeWindowUI.rootVisualElement.style.display = DisplayStyle.None;
             processBuildingUI.rootVisualElement.style.display = DisplayStyle.None;
         }
 
         private void ShowOtherUIs()
         {
-            ShowOtherUITemplate(resourceUI, State.ResourceUIDisplayStyle);
-            ShowOtherUITemplate(creditUI, State.CreditUIDisplayStyle);
+            economyUI.rootVisualElement.style.display = DisplayStyle.Flex;
             ShowOtherUITemplate(upgradeWindowUI, State.UpgradeWindowUIDisplayStyle);
             ShowOtherUITemplate(processBuildingUI, State.ProcessBuildingUIDisplayStyle);
             return;
@@ -97,28 +98,16 @@ namespace MenuSystem
         }
 
 
-        private void ShowGame()
-        {
-            _pauseButton = new Button
-            {
-                text = "Pause",
-                name = "PauseButton",
-                style =
-                {
-                    alignSelf = Align.FlexEnd,
-                    marginTop = Length.Auto(),
-                    width = Length.Percent(10),
-                }
-            };
+        //private void ShowGame()
+        //{
+        //    _pauseButton.clicked += OnPauseButton;
+        //    menuUI?.rootVisualElement?.Add(_pauseButton);
+        //}
 
-            _pauseButton.clicked += OnPauseButton;
-            menuUI?.rootVisualElement?.Add(_pauseButton);
-        }
-
-        private void HideGame()
-        {
-            menuUI?.rootVisualElement?.Remove(_pauseButton);
-        }
+        //private void HideGame()
+        //{
+        //    menuUI?.rootVisualElement?.Remove(_pauseButton);
+        //}
 
         private void ShowMenu()
         {

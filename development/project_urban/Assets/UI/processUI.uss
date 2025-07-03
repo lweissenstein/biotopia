@@ -43,17 +43,17 @@ VisualElement > .unity-tab-view > .unity-tab > #VisualElement > .unity-scroll-vi
 
 .buttonsProcess {
     font-size: 50px;
-    padding-top: 29px;
-    padding-right: 29px;
-    padding-bottom: 29px;
-    padding-left: 29px;
-    margin-top: 50px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 15px;
     margin-right: 0;
-    margin-bottom: 50px;
+    margin-bottom: 15px;
     margin-left: 0;
-    width: 80%;
-    max-width: 80%;
-    min-width: 80%;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
     align-self: center;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -68,9 +68,10 @@ VisualElement > .unity-tab-view > .unity-tab > #VisualElement > .unity-scroll-vi
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
-    background-image: url("project://database/Assets/Scripts/UI/UI%20Assets/padlock.png?fileID=2800000&guid=2e5b1f1f09faf2648ba185015edf8de0&type=3#padlock");
-    background-size: 15% 80%;
+    background-image: url("project://database/Assets/Scripts/UI/UI%20Assets/lock.png?fileID=2800000&guid=c1d8dc7e51996c3458701596ace239ca&type=3#lock");
+    background-size: 15% 64%;
     background-position-x: left 0;
+    height: 150px;
 }
 
 .btnPrices {
@@ -83,20 +84,56 @@ VisualElement > .unity-tab-view > .unity-tab > #VisualElement > .unity-scroll-vi
 }
 
 #VisualElement > VisualElement > #tabs > #unity-tab-view__header-container > #unity-tab__header {
-    font-size: 70px;
-    background-color: rgb(127, 197, 126);
+    font-size: 52px;
+    background-color: rgba(127, 197, 126, 0);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     min-width: auto;
     width: 25%;
-    -unity-text-align: upper-center;
+    -unity-text-align: middle-left;
     align-self: center;
     align-content: auto;
     align-items: center;
     flex-direction: column;
+    background-image: url("project://database/Assets/Scripts/UI/UI%20Assets/tabView.png?fileID=2800000&guid=675c10cd972af23468a8d78a2e5d0c64&type=3#tabView");
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 12px;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    height: 107px;
 }
 
 .tabButton {
+}
+
+#VisualElement > VisualElement > #tabs > #unity-tab-view__header-container {
+    margin-left: 0;
+    margin-right: 0;
+    width: 70%;
+    font-size: 16px;
+}
+
+#VisualElement > VisualElement > #tabs > #unity-tab-view__content-container {
+    width: 700px;
+    min-width: 700px;
+    max-width: 700px;
+    flex-direction: row;
+}
+
+#VisualElement > VisualElement > #tabs > #tabAlge > #unity-tab__content-container {
+    height: 100%;
+    min-height: 151px;
+    max-height: 124%;
+    flex-direction: row;
+    width: 100%;
+}
+
+.labelButtons {
+    font-size: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

@@ -1,5 +1,6 @@
-using System;
+
 using UnityEngine;
+
 using UnityEngine.UIElements;
 using Util;
 
@@ -17,9 +18,14 @@ namespace EconomySystem
         private ProgressBar _algeProgressBar;
         private ProgressBar _grilleProgressBar;
         private ProgressBar _salzPflanzeProgressBar;
+        private float timeElapsed, timeElapsedFood;
+        private int lastDisplayedSeconds;
+        private float lastProteinAmount;
+        private int proteinsPerSecond = 0;
 
 
-        private Label algeLabel, qualleLabel, salzpflanzeLabel, grilleLabel;
+        private Label algeLabel, qualleLabel, salzpflanzeLabel, grilleLabel, creditsLabel, mainMenu, timeLabel, foodPerSecondLabel, foodTotalLabel;
+        private VisualElement resourcePanel, showResources;
 
         private void Start()
         {
@@ -31,107 +37,172 @@ namespace EconomySystem
             _salzPflanzeProgressBar = economyUI?.rootVisualElement?.Q<ProgressBar>("SalzPflanzeProgressBar");
 
             // hide economyUI for now
-            economyUI.rootVisualElement.style.display = DisplayStyle.None;
+            economyUI.rootVisualElement.style.display = DisplayStyle.Flex;
 
             if (isDebug)
             {
                 Debug.Log("starting economy");
             }
 
+            var root = economyUI.rootVisualElement;
+            algeLabel = root.Q<Label>("algeAmountLabel");
+            qualleLabel = root.Q<Label>("qualleAmountLabel");
+            salzpflanzeLabel = root.Q<Label>("salzpflanzeAmountLabel");
+            grilleLabel = root.Q<Label>("grilleAmountLabel");
+            creditsLabel = root.Q<Label>("creditsLabel");
+            resourcePanel = root.Q<VisualElement>("ressourcePanel");
+            mainMenu = root.Q<Label>("menuButtonLabel");
+            showResources = root.Q<VisualElement>("showResources");
+            timeLabel = root.Q<Label>("timeLabel");
+            foodPerSecondLabel = root.Q<Label>("foodPerSecondLabel");
+            foodTotalLabel = root.Q<Label>("foodTotalLabel");
 
-            if (ressourceUI == null)
+            showResources.RegisterCallback<ClickEvent>(Object => ToggleResourcePanel());
+
+            CreditSystem.Instance.OnCreditsChanged += UpdateCreditDisplay;
+            UpdateCreditDisplay(CreditSystem.Instance.currentCredits);
+            HideResourcePanel();
+
+            //HideUI();
+
+        }
+
+        private void ToggleResourcePanel()
+        {
+            if (resourcePanel.style.display == DisplayStyle.Flex)
             {
-                Debug.LogError("ressourceUI ist null!");
+                HideResourcePanel();
             }
             else
             {
-                var root = ressourceUI.rootVisualElement;
-                algeLabel = root.Q<Label>("algenLabel");
-                qualleLabel = root.Q<Label>("quallenLabel");
-                salzpflanzeLabel = root.Q<Label>("salzpflanzenLabel");
-                grilleLabel = root.Q<Label>("grillenLabel");
-
-                if (algeLabel == null)
-                {
-                    Debug.LogError("algeLabel wurde nicht gefunden! Name korrekt?");
-                }
+                resourcePanel.style.display = DisplayStyle.Flex;
             }
+            
         }
 
-        //private void FixedUpdate()
-        //{
-        //    // pro sekunde
+      
+        void HideUI() => economyUI.rootVisualElement.style.display = DisplayStyle.None;
+        void HideResourcePanel() => resourcePanel.style.display = DisplayStyle.None;
 
 
-        //    if (_foodProgressBar is not null) // no idea why, sometimes it's null and logs a NullPointerException
-        //    {
-        //        _foodProgressBar.title = $"food:{(int)Math.Round(_foodEconomy.CurrentProteinAmount)}/{(int)Math.Round(_foodEconomy.MaxProteinAmount)}";
-        //        _foodProgressBar.highValue = _foodEconomy.MaxProteinAmount;
-        //        _foodProgressBar.lowValue = _foodEconomy.MinProteinAmount;
-        //        _foodProgressBar.value = _foodEconomy.CurrentProteinAmount;
-        //    }
 
-        //    Debug.Log("------------------------------------------");
+        private void FixedUpdate()
+        {
+            timeElapsed += Time.fixedDeltaTime;
+            timeElapsedFood = timeElapsed; // reset every second
 
-        //    Debug.Log("Algen: " + _foodEconomy.totalResources[ResourceType.Alge] + 
-        //              "  Quallen: " + _foodEconomy.totalResources[ResourceType.Qualle] + 
-        //              "  Salzpflanzen: " + _foodEconomy.totalResources[ResourceType.Salzpflanze] + 
-        //              "  Grillen: " + _foodEconomy.totalResources[ResourceType.Grille]);
+            int totalSeconds = Mathf.FloorToInt(timeElapsed);
+            if (totalSeconds != lastDisplayedSeconds)
+            {
+                lastDisplayedSeconds = totalSeconds;
+                int minutes = totalSeconds / 60;
+                int seconds = totalSeconds % 60;
+
+                timeLabel.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            }
+
+            if(timeElapsedFood >= 1f)
+            {
+                float delta = _foodEconomy.CurrentProteinAmount - lastProteinAmount;
+                proteinsPerSecond = Mathf.RoundToInt(delta / timeElapsed);
+                lastProteinAmount = _foodEconomy.CurrentProteinAmount;
+                timeElapsedFood = 0f;
+                UpdateFoodPerSecond();
+            }
+
+
+            UpdateEconomyUI();
             
-        //    Debug.Log("AlgePowder: " + _foodEconomy.totalProducts[ProductType.AlgePowder] +
-        //              "  AlgeNoodle: " + _foodEconomy.totalProducts[ProductType.AlgeNoodle] +
-        //              "  AlgeJelly: " + _foodEconomy.totalProducts[ProductType.AlgeJelly] +
-        //              "  AlgePatty: " + _foodEconomy.totalProducts[ProductType.AlgePatty]);
 
-        //    Debug.Log("QualleNoodle: " + _foodEconomy.totalProducts[ProductType.QualleNoodle] +
-        //                "  QualleMayo: " + _foodEconomy.totalProducts[ProductType.QualleMayo] +
-        //                "  QualleTofu: " + _foodEconomy.totalProducts[ProductType.QualleTofu] +
-        //                "  QualleBites: " + _foodEconomy.totalProducts[ProductType.QualleBites]);
+            //Debug.Log("------------------------------------------");
 
-        //    Debug.Log("SalzpflanzeSalt: " + _foodEconomy.totalProducts[ProductType.SalzpflanzeSalt] +
-        //                "  SalzpflanzePickles: " + _foodEconomy.totalProducts[ProductType.SalzpflanzePickles] +
-        //                "  SalzpflanzeSpread: " + _foodEconomy.totalProducts[ProductType.SalzpflanzeSpread] +
-        //                "  SalzpflanzeChips: " + _foodEconomy.totalProducts[ProductType.SalzpflanzeChips]);
+            //Debug.Log("Algen: " + _foodEconomy.totalResources[ResourceType.Alge] +
+            //          "  Quallen: " + _foodEconomy.totalResources[ResourceType.Qualle] +
+            //          "  Salzpflanzen: " + _foodEconomy.totalResources[ResourceType.Salzpflanze] +
+            //          "  Grillen: " + _foodEconomy.totalResources[ResourceType.Grille]);
 
-        //    Debug.Log("GrilleFlour: " + _foodEconomy.totalProducts[ProductType.GrilleFlour] +
-        //                "  GrilleLoaf: " + _foodEconomy.totalProducts[ProductType.GrilleLoaf] +
-        //                "  GrilleChips: " + _foodEconomy.totalProducts[ProductType.GrilleChips] +
-        //                "  GrilleBar: " + _foodEconomy.totalProducts[ProductType.GrilleBar]);
+            //Debug.Log("AlgePowder: " + _foodEconomy.totalProducts[ProductType.AlgePowder] +
+            //          "  AlgeNoodle: " + _foodEconomy.totalProducts[ProductType.AlgeNoodle] +
+            //          "  AlgeJelly: " + _foodEconomy.totalProducts[ProductType.AlgeJelly] +
+            //          "  AlgePatty: " + _foodEconomy.totalProducts[ProductType.AlgePatty]);
 
-        //    algeLabel.text = "" + (int)_foodEconomy.totalResources[ResourceType.Alge];
-        //    qualleLabel.text = "" + (int) _foodEconomy.totalResources[ResourceType.Qualle];
-        //    salzpflanzeLabel.text = "" + (int) _foodEconomy.totalResources[ResourceType.Salzpflanze];
-        //    grilleLabel.text = "" + (int) _foodEconomy.totalResources[ResourceType.Grille];
+            //Debug.Log("QualleNoodle: " + _foodEconomy.totalProducts[ProductType.QualleNoodle] +
+            //            "  QualleMayo: " + _foodEconomy.totalProducts[ProductType.QualleMayo] +
+            //            "  QualleTofu: " + _foodEconomy.totalProducts[ProductType.QualleTofu] +
+            //            "  QualleBites: " + _foodEconomy.totalProducts[ProductType.QualleBites]);
 
-        //    if (isDebug)
-        //    {
-        //        _timer.OncePerSecondDebugLog(_foodEconomy.Report());
-        //    }
-        //}
+            //Debug.Log("SalzpflanzeSalt: " + _foodEconomy.totalProducts[ProductType.SalzpflanzeSalt] +
+            //            "  SalzpflanzePickles: " + _foodEconomy.totalProducts[ProductType.SalzpflanzePickles] +
+            //            "  SalzpflanzeSpread: " + _foodEconomy.totalProducts[ProductType.SalzpflanzeSpread] +
+            //            "  SalzpflanzeChips: " + _foodEconomy.totalProducts[ProductType.SalzpflanzeChips]);
+
+            //Debug.Log("GrilleFlour: " + _foodEconomy.totalProducts[ProductType.GrilleFlour] +
+            //            "  GrilleLoaf: " + _foodEconomy.totalProducts[ProductType.GrilleLoaf] +
+            //            "  GrilleChips: " + _foodEconomy.totalProducts[ProductType.GrilleChips] +
+            //            "  GrilleBar: " + _foodEconomy.totalProducts[ProductType.GrilleBar]);
+
+            algeLabel.text = "" + (int)_foodEconomy.totalResources[ResourceType.Alge];
+            qualleLabel.text = "" + (int)_foodEconomy.totalResources[ResourceType.Qualle];
+            salzpflanzeLabel.text = "" + (int)_foodEconomy.totalResources[ResourceType.Salzpflanze];
+            grilleLabel.text = "" + (int)_foodEconomy.totalResources[ResourceType.Grille];
+
+            if (isDebug)
+            {
+                _timer.OncePerSecondDebugLog(_foodEconomy.Report());
+            }
+        }
 
         private void UpdateEconomyUI()
         {
             if (_foodProgressBar is not null) // no idea why, sometimes it's null and logs a NullPointerException
             {
-                _foodProgressBar.title = $"food:{(int)Math.Round(_foodEconomy.CurrentProteinAmount)}/{(int)Math.Round(_foodEconomy.MaxProteinAmount)}";
                 _foodProgressBar.highValue = _foodEconomy.MaxProteinAmount;
                 _foodProgressBar.lowValue = _foodEconomy.MinProteinAmount;
                 _foodProgressBar.value = _foodEconomy.CurrentProteinAmount;
+                foodTotalLabel.text = $"{_foodEconomy.CurrentProteinAmount}/{_foodEconomy.MaxProteinAmount}";
+
             }
 
-            UpdateProgressBarTemplate(_qualleProgressBar, $"qualle:<TOTAL>", _foodEconomy.Qualle);
-            UpdateProgressBarTemplate(_algeProgressBar, $"alge:<TOTAL>", _foodEconomy.Alge);
-            UpdateProgressBarTemplate(_grilleProgressBar, $"grille:<TOTAL>", _foodEconomy.Grille);
-            UpdateProgressBarTemplate(_salzPflanzeProgressBar, $"salzPflanze:<TOTAL>", _foodEconomy.SalzPflanze);
+            UpdateProgressBarTemplate(_qualleProgressBar, ResourceType.Qualle);
+            UpdateProgressBarTemplate(_algeProgressBar, ResourceType.Alge);
+            UpdateProgressBarTemplate(_grilleProgressBar, ResourceType.Grille);
+            UpdateProgressBarTemplate(_salzPflanzeProgressBar, ResourceType.Salzpflanze);
         }
 
-        private void UpdateProgressBarTemplate(ProgressBar progressBar, string title, FoodResource food)
+        private void UpdateProgressBarTemplate(ProgressBar progressBar, ResourceType food)
         {
             if (progressBar is null) return;
-            progressBar.title = title.Replace("<TOTAL>", ((int)Math.Round(food.Total)).ToString());
-            progressBar.highValue = food.Max;
-            progressBar.lowValue = food.Min;
-            progressBar.value = food.Total;
+            progressBar.highValue = 100;
+            progressBar.lowValue = 0;
+            progressBar.value = _foodEconomy.totalResources[food];
+
+        }
+
+        private void UpdateCreditDisplay(int currentCredits)
+        {
+            if (creditsLabel != null)
+            {
+                creditsLabel.text = $"€ {currentCredits}";
+            }
+            else
+            {
+                Debug.LogWarning("Credit label not found in the UI document.");
+            }
+        }
+
+        private void UpdateFoodPerSecond()
+        {
+            if (foodPerSecondLabel != null)
+            {
+                if(proteinsPerSecond >= 0)
+                    foodPerSecondLabel.text = $"+{proteinsPerSecond}/s";
+                else if (proteinsPerSecond < 0)
+                    foodPerSecondLabel.text = $"-{proteinsPerSecond}/s";
+            }
+            else
+            {
+                Debug.LogWarning("FoodPErSecond label not found in the UI document.");
+            }
         }
     }
 }
