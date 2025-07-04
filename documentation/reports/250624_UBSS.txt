@@ -1,0 +1,48 @@
+# UBSS: 24.06.25
+
+# Stand:
+- Spielentwicklung eines "ernsthaften "Spiels, welches Organismen darstellt
+- Erklärung entlang der Präsentation
+- Erkenntnis: Präsi ist nicht up2date & nicht allen klar was/wie Teil des spiels ist (aktueller Stand)
+- 
+
+# Grillen-Spezial:
+- Wie sehen die Boxen im Endeffekt aus? bzw. wie sieht die Produktion aus?
+- im Labor: anders als in Industrie, bisher nicht vviele Beispiele
+- insketen brauchen ca. 35-37 Grad
+- Plastikboxen aus Ikea, Deckel ersetzt, brauchen gute Lüftung
+- natürlich dürfen sie nicht entkommen
+- Futterquelle & Wasserquelle (Obst, Gemüse), Eierpappen
+- Boxen sind in Klimakammer, damit Temperatur i.O.
+- (Insekten essen auch die Eier)
+- in Industrie mit großen Boxen, in großem Raum
+- Dauer hängt von Insekten ab. Zum Beispiel Mehlwürmer, brauchen erwachsenene nur für Reproduktion
+- Grillen: 2 Monate (vlt 3 mit eier bis ausgewachsen) --> verbessertes Wachstum bei höheren Temperaturen (Tech-Tree?)
+- Grillen-Ernährung: Nährstoffquelle mit 20% Proteingehalt, dann 10%, gesunde Stoffe wie Calcium, etc (recht ähnlich zu uns), Fette eher nicht, aber Kohlenhydrate als Energiequelle, im Prinzip können Abfälle genutzt werden, Nährstoffbedarf muss aber gedeckt sein, Gefahr von Kontiminierung
+- Grillen meist als Futtermittel, aber viele Produkte, Können ganz verzehrt werden, als Paste, Insektenmehl, Grillen zur Extraktion von Fetten & Proteinen, Kosmetik, Medizin,
+- Insekten, wenn Exkremente essen nicht für Lebensmittel geeignet, dafür fette z.B. als Bio-Diesel, Plastik
+- Wie sieht Zyklus aus: beides möglich, boxen komplett entleeren, es kann jedoch auch konitnuierliche Produktion erschaffen werden, Insekten sehr aggressiv, fressen Eier etc.
+- im größeren: Teilung in 3 Teile: Eier, junge Grillen, erwachsene Grillen separiert
+- Insekten können direkt eingefroren werden (tot nach 2 Stunden) --> bestmögliche Qualität für Lebensmittel
+- entpsricht Gesetzen, muss natürlich eingehalten werden
+- Kochen (90 Grad) andere Möglichkeit, für einige bevorzugt, auf Grund bakterieller Belastung
+- (Kombination ist möglich)
+- 3. Möglichkeit, ersticken lassen --> NICHT bevorzugt
+- Wasserquelle: Wie viel brauchen sie? nicht viel - kann Gemüse sein
+- kleine (sehr kleine) Petrischalen, Hydrogel Lösung, damit nicht ertrinken, Tropfschale welche für Vögel geeignet ist, oder z.B. Handtuch
+- Licht: Insekten brauchen kein Licht, aber es ist gut, wenn sie bekommen (Nachtaktiv), überleben besser, wenn unter UVB Bestrahlung (Licht): mehr Fette, mehr Proteine (Techtree?)
+- Boxen sollen durchscheinend sein, Deckel auch, Gute Belüftung notwendig, Teil vom Deckel durch Netz ersetzt
+- BILDER vorhanden? Ja --> wird geschickt
+- REINIIGUNG: bei Marios Versuch erst beim Wechsel, Industrie mag anders sein
+- ERTRAG: schwer einzuschätzen, viele Variablen
+- VERGLEICH: Ressourcen pro 1kg Protein, 1kg Insekten Protein im Vergleich zu 1kg Rinderprotein, im vergleich recht nachhaltig, besonders bei Treibhausgaus Emissionen
+- Hohe Verwertbarkeit, eigentlich alles essbar
+- Zukunftspotential besonders als Futtermittel, Medizin, Kraftstoff
+
+# Gameplay:
+
+# Modelle & Design:
+
+# Ausblick To-Do:
+- Bilder von Versuchaufbau von Marios zur Orientierung, nicht zur Veröffentlichung (wenn ja, unbedingt copyrights)
+- Folien von Marios kommen

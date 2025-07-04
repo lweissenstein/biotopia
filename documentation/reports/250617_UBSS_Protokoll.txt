@@ -1,0 +1,64 @@
+# UBSS: 17.06.2025 
+
+# Organisatorisches:
+
+- Nächste Woche Janosch dabei (Zoom)
+- Sommerfest Bad Saarow:
+	- Termin: 4. Juli, nachmittags
+	- Wer ist da?
+	- Prototyp vorhanden?
+	- 1 Person sollte da sein
+	- Variante 1: Prototyp da, als Unit Test ansehen
+	- Variante 2: Vortrag machen
+	- Variante 3: Jette unterstützen
+	- Falls spielbarer Prototyp: Tablets können gestellt werden (Notfall auch mit Laptop)
+	- Wie Umfragen gestalten? (Fragebogen, Lime-Survey, Gespräch)
+	- Lime Survey vorhanden, wahrscheinlich zu viel. Evtl. Google Forms reicht
+	- Papier evtl. auch gute Möglichkeit
+	- Idee: Wenn Spiel durchgespielt ist, wird Form direkt geöffnet
+
+- Showtime: 
+	- Fragen / Ideen / Materialien --> rechtzeitig melden (Tablets, Screens, Tannenbaum, etc...)
+	- bisschen Geld für Poster o.Ä. (nur etwa 50€)
+	- Food4Future Materialien
+	- Bad Saarow Event in Präsi integrieren (Bilder, Ansatz, ...) Auswertung nur optional, da auch andere Version, etc.. GROßES PLUS
+
+# Stand:
+
+- Paternoster, Algenfarm gemodelt
+- Parks im Grid (Model aus Asset store)
+- Upgrade System fehlt
+- Bestimmte Gebäude sind effektiver für Organismen
+- 1 Therme spawned am Rand
+- Problem: Großteil Organismen verwenden Salzwasser, jedoch hauptsächlich Algen in Therme
+- Speichern erstmal verworfen, Idee: Beispiel Spielstand nach längerer Spielzeit (Notfall: Screenshot)
+- Touch-Steuerung implementiert
+- Gebäude anklickbar
+- Stadt wächst selber
+- 
+
+# Fragen:
+
+- Tutorial notwendig, wenn Spiel sehr einfach? --> Grundidee muss erklärt werden
+	- evtl. wie bei mobile Game: Fokus auf ein Teil, Rest ausgegraut
+
+# Showtime: 
+
+- Poster für evtl. für Spielelemente machen
+- Hinweise dem Publikum geben: Das, das, das kann man machen --> Betreuung der Spielenden am Stand
+- Feedback Möglichkeit bei der Showtime ermöglichen
+- Usability Fragebogen nur wenn Sinnhaftigkeit gegeben
+- 2 Wochen vor Showtime fertiger Stand (Balancing, Bug Fixing, Präsentation, Stand)
+
+# To-Do's:
+
+- Welchen f4f Merch gibt es? Poster, Roll-Ups, Essen?
+- Saarow Therme modeln (Außenbecken)
+- Prototyp fertig machen zeitnah, damit Feedback gegeben werden kann
+- Menü (simpel)
+- Was würden wir bis zum Termin in Bad Saarow fertig haben wollen?
+- Martin für User-Experience Bögen etc. fragen
+- food 4 future Logo visible sein
+- Gameplay muss ersichtlicher sein
+
+

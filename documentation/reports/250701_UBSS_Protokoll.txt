@@ -1,0 +1,45 @@
+
+# Was ist das "Sommerfest" ?
+- offen, vermutlich Foyer
+- Die meisten haben noch nichts von f4f gehört
+- Anfang mit Vorträgen, dann "Begehung"
+- Wir als Teil von f4f, am selben Stand# UBSS: 01.07.2025
+
+# Stand:
+- Slides müssen bis heute abend gemacht und versendet werden (Bad Saarow)
+- Economy system und basic UI implementiert
+- 4 Food Slider: Endprodukte der einzelnen Compartments
+- Weiter an Modelle gearbeitet
+- Prototyp muss bis Donnerstag stehen
+
+# To-Do's essential Bad Saarow:
+- User Test / Fragebogen fertig stellen (Welche Erkenntnisse brauchen wir?)
+- Modelle "fertig" machen und im Spiel implementieren
+
+
+
+
+# Ideen für Freitag:
+- Fragen, welche Gerichte können gemacht werden
+- Ideen für die Showtime
+- viele Bilder machen, evtl. Bildrechte klären
+- Eventuell Geschehen vom Tablet auf Bildschirm streamen
+- Klemmbrett
+
+# Take-Aways Meeting
+- User test sehr gute Möglichkeit: Rückmeldung für uns & gut für Showtime --> User Experience Questionaire anschauen und mit Ergänzung verwenden (reduzierte Variante)
+- Evtl. Frage: was ist speziell hängengeblieben? 
+	- Was besonders gut gefallen?
+	- Was nicht gut gefallen?
+	- Was ist inhaltlich hängen geblieben?
+- Keine Gamerspezifische Sprache verwenden (Zielpublikum)
+- Bad Saarow Therme Modell für Präsi hübscher machen (Alternative Version)
+- Food gegen null --> Failure Mechanik --> benötigt klaren Indikator davor
+- Zweites Tablet wäre gut. Am Donnerstag abholen?
+
+# Was fehlt:
+- Supermarkt
+- Spielgeschwindigkeit fraglich
+- Modelle noch nicht eingefügt
+- Stakes für Spielinteresse
+- 
