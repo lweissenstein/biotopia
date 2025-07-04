@@ -191,7 +191,6 @@ public class RandomGridManipulation
 
     public void UpdateSupermarketRange(Vector3 pos, GridData gridData)
     {
-        
         for (int x = -5; x <= 5; x++)
         {
             for (int z = -5; z <= 5; z++)
@@ -200,27 +199,57 @@ public class RandomGridManipulation
                 {
                     break;  // Skip the center position
                 }
-                Vector3 posNew = new Vector3(pos.x + x, pos.y, pos.z + z);
-                if (!gridData.CanPlaceObjectAt(new Vector3Int((int)posNew.x, (int)posNew.y, (int)posNew.z), new Vector2Int (1,1))){
-                    if (gridData.GetObjectIDAt(new Vector3Int((int)posNew.x, (int)posNew.y, (int)posNew.z)) <= 2)
+                Vector3Int posNew = new Vector3Int((int)pos.x + x, (int)pos.y, (int)pos.z + z);
+                if (!gridData.CanPlaceObjectAt(posNew, new Vector2Int (1,1))){
+                    if (gridData.GetObjectIDAt(posNew) <= 2)
                     {
-                        
-                        int representationIndex = gridData.GetRepresentationIndex(new Vector3Int((int)posNew.x, (int)posNew.y, (int)posNew.z));
+                        int representationIndex = gridData.GetRepresentationIndex(posNew);
                         GameObject go = objectPlacer.placedGameObject[representationIndex];
                         var building = go.GetComponent<BuildingInstance>();
+
                         if (building != null)
                         {
-
                             building.hasSupermarket = true;
-                            Debug.Log(building.hasSupermarket);
                         }
-                        Debug.Log("du huan");
                     }
                 }
-
-
             }
         }
+    }
+
+    public bool SearchForSupermarket(Vector3 pos, GridData gridData)
+    {
+        bool hasSupermarket = false;
+        for (int x = -5; x <= 5; x++)
+        {
+            for (int z = -5; z <= 5; z++)
+            {
+                if (x == 0 && z == 0)
+                {
+                    break;  // Skip self
+                }
+                Vector3Int posNew = new Vector3Int((int)pos.x + x, (int)pos.y, (int)pos.z + z);
+                if (!gridData.CanPlaceObjectAt(posNew, new Vector2Int(1, 1)))
+                {
+                    if (gridData.GetObjectIDAt(posNew) <= 2)
+                    {
+                        int representationIndex = gridData.GetRepresentationIndex(posNew);
+                        GameObject go = objectPlacer.placedGameObject[representationIndex];
+                        var building = go.GetComponent<BuildingInstance>();
+                        
+                        if (building != null)
+                        {
+                            if (building.compartmentTypeHouse == 7)
+                            {
+                                hasSupermarket = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return hasSupermarket;
     }
 
     /// <summary>
@@ -232,15 +261,23 @@ public class RandomGridManipulation
         // Listen für upgradebare Positionen
         List<Vector3Int> upgradeables = new();
         List<Vector3Int> validUpgradeables = new();
+        List<Vector3Int> backupUpgradeables1 = new();
+        List<Vector3Int> backupUpgradeables2 = new();
 
         // Listen für verschiedene Nachbarschaftsbedingungen mit Gewicht
         var upgradeablesLists = new (int weight, List<Vector3Int> list)[]
         {
-            (1, new List<Vector3Int>()),   // 4 gültige Nachbarn
-            (20, new List<Vector3Int>()),  // 5 gültige Nachbarn
-            (8, new List<Vector3Int>()),   // 6 gültige Nachbarn
-            (30, new List<Vector3Int>()),  // 7 gültige Nachbarn
-            (40, new List<Vector3Int>()),  // 8 gültige Nachbarn
+
+            (1, new List<Vector3Int>()),    // 2
+            (2, new List<Vector3Int>()),    // 2 + 1 
+            (3, new List<Vector3Int>()),    // 3 
+            (4, new List<Vector3Int>()),    // 3 + 1
+            (5, new List<Vector3Int>()),    // 3 + 2
+            (10, new List<Vector3Int>()),   // 4
+            (200, new List<Vector3Int>()),  // 4 + 1
+            (80, new List<Vector3Int>()),   // 4 + 2
+            (300, new List<Vector3Int>()),  // 4 + 3
+            (400, new List<Vector3Int>()),  // 4 + 2
         };
 
         // Alle belegten Positionen mit passender ID sammeln
@@ -263,11 +300,12 @@ public class RandomGridManipulation
             if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(0, 0, -1), dataBase.objectsData[objectID].Size) &&
                 gridData.GetObjectIDAt(pos + new Vector3Int(0, 0, -1)) >= objectID - 1) numDirectNeighbors++;
 
-            // Nur Positionen mit 4 direkten Nachbarn werden weiter betrachtet
-            if (numDirectNeighbors == 4)
-            {
-                validUpgradeables.Add(pos);
-            }
+            // Nur Positionen mit 4 direkten Nachbarn werden weiter
+            
+            if (numDirectNeighbors == 2) backupUpgradeables1.Add(pos);
+            if (numDirectNeighbors == 3) backupUpgradeables2.Add(pos);
+            if (numDirectNeighbors == 4) validUpgradeables.Add(pos);
+            
         }
 
         // Weitere Nachbarn prüfen (diagonal)
@@ -285,8 +323,41 @@ public class RandomGridManipulation
                 gridData.GetObjectIDAt(pos + new Vector3Int(-1, 0, -1)) >= objectID - 1) numNeighbors++;
 
             // Position in die entsprechende Liste einfügen
+            upgradeablesLists[numNeighbors + 5].list.Add(pos);
+        }
+        foreach (var pos in backupUpgradeables1)
+        {
+            int numNeighbors = 0;
+
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(1, 0, 1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(1, 0, 1)) >= objectID - 1) numNeighbors++;
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(-1, 0, 1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(-1, 0, 1)) >= objectID - 1) numNeighbors++;
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(-1, 0, 1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(-1, 0, 1)) >= objectID - 1) numNeighbors++;
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(-1, 0, -1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(-1, 0, -1)) >= objectID - 1) numNeighbors++;
+
+            // Position in die entsprechende Liste einfügen
+            upgradeablesLists[numNeighbors + 2].list.Add(pos);
+        }
+        foreach (var pos in backupUpgradeables2)
+        {
+            int numNeighbors = 0;
+
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(1, 0, 1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(1, 0, 1)) >= objectID - 1) numNeighbors++;
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(-1, 0, 1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(-1, 0, 1)) >= objectID - 1) numNeighbors++;
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(-1, 0, 1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(-1, 0, 1)) >= objectID - 1) numNeighbors++;
+            if (!gridData.CanPlaceObjectAt(pos + new Vector3Int(-1, 0, -1), dataBase.objectsData[objectID].Size) &&
+                gridData.GetObjectIDAt(pos + new Vector3Int(-1, 0, -1)) >= objectID - 1) numNeighbors++;
+
+            // Position in die entsprechende Liste einfügen
             upgradeablesLists[numNeighbors].list.Add(pos);
         }
+
 
         // Listen mischen
         foreach (var list in upgradeablesLists)
@@ -468,11 +539,14 @@ public class RandomGridManipulation
         foreach (var viablePos in two)   manyToFew.Add(viablePos);
         foreach (var viablePos in one)   manyToFew.Add(viablePos);
 
-        // Platzieren mit Priorität auf Position mit mehr Nachbarn
-        Vector3Int pos = manyToFew[0];
+        // Platzieren mit Priorität auf Position mit mehr
+        if (manyToFew.Count > 0)
+        {
+            Vector3Int pos = manyToFew[0];
 
-        int index = objectPlacer.PlaceObject(dataBase.objectsData[4].Prefab, grid.CellToWorld(pos));
-        gridData.AddObjectAt(pos, dataBase.objectsData[4].Size, 4, index);
+            int index = objectPlacer.PlaceObject(dataBase.objectsData[4].Prefab, grid.CellToWorld(pos));
+            gridData.AddObjectAt(pos, dataBase.objectsData[4].Size, 4, index);
+        }        
     }
 
     public void RandomPlaceOnBorder(int maxX, int maxZ, GridData gridData, int ID, double borderScaleToMax)

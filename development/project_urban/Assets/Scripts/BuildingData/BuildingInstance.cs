@@ -36,7 +36,7 @@ public class BuildingInstance : MonoBehaviour
     public int height = 1;
     public int compartmentTypeHouse = 0; // 7 = supermarkt, 3 = alge, 4 = salzpflanze, 5 = qualle, 6 = grille
     private bool isProducing = false;
-    public bool hasSupermarket = false;
+    public bool hasSupermarket;
 
     public float produceAlgeValue = 0.05f;
     public float produceSalzpflanzeValue = 0.05f;
@@ -65,6 +65,8 @@ public class BuildingInstance : MonoBehaviour
         foodEconomy = FoodEconomy.Instance;
         processSelectionManager = FindFirstObjectByType<ProcessSelectionManager>();
         placementSystem = FindFirstObjectByType<PlacementSystem>();
+
+        //hasSupermarket = placementSystem.SearchForSupermarket(pos);
 
         // Hochhaus
 
