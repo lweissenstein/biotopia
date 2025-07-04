@@ -50,11 +50,11 @@
                 <ui:VisualElement style="flex-grow: 1; padding-top: 35px; padding-right: 35px; padding-bottom: 35px; padding-left: 35px; background-color: rgba(128, 184, 121, 0);">
                     <ui:VisualElement name="anzeigeCompartment" style="flex-grow: 1; background-color: rgb(128, 184, 121); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; align-items: center; padding-top: 60px; padding-right: 60px; padding-bottom: 60px; padding-left: 60px;">
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: auto;">
-                            <ui:VisualElement enabled="true" style="flex-grow: 1; height: 0; display: flex; flex-direction: row; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
+                            <ui:VisualElement enabled="true" style="flex-grow: 1; height: 851px; display: flex; flex-direction: row; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; min-height: 851px; max-height: 851px;">
                                 <ui:VisualElement name="BuildingPreview" enabled="true" class="previw" style="flex-grow: 1; background-color: rgb(0, 0, 0); min-width: 512px; min-height: 512px; max-width: 512px; max-height: 512px; background-image: url(&quot;project://database/Assets/UI/PreviewTexture.renderTexture?fileID=8400000&amp;guid=041a9652164365c429cf63ce5f994dea&amp;type=2#PreviewTexture&quot;);" />
-                                <ui:Label text="Preview&#10;Work in Progress" style="font-size: 65px;" />
+                                <ui:Label text="Knusprig, nussig, unglaublich effizient – Grillen liefern hochwertiges Protein, Vitamine und gesunde Fette. Sie brauchen wenig Platz, kaum Wasser und stoßen kaum CO₂ aus. Was sie leisten? Mehr als man denkt: Als Snack, Mehl oder Fleischersatz sind sie die leisen Superhelden der Ernährung. Klein, aber oho – Insekten sind nicht die Zukunft. Sie sind die Gegenwart." name="descriptionText" style="font-size: 34px; width: 621px; white-space: normal; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;); -unity-font-style: bold; height: 804px; padding-top: 14px; padding-right: 14px; padding-bottom: 14px; padding-left: 14px;" />
                             </ui:VisualElement>
-                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; min-height: 315px; max-height: 315px; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; min-height: 320px; max-height: 221px; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
                                 <ui:VisualElement style="flex-grow: 1; width: 50%;">
                                     <ui:Label text="Compartment:&#10;" class="labelDetails" />
                                     <ui:Label text="Anzahl:" class="labelDetails" />
@@ -62,14 +62,14 @@
                                     <ui:Label text="Supermarkt:" class="labelDetails" />
                                 </ui:VisualElement>
                                 <ui:VisualElement style="flex-grow: 1; width: 50%;">
-                                    <ui:Label text="Alge" class="labelDetails" />
+                                    <ui:Label text="Alge" name="compartmentType" class="labelDetails" />
                                     <ui:Label text="1/6" name="BuildingLevel" class="labelDetails" />
                                     <ui:Label text="4/s" name="BuildingProduction" class="labelDetails" />
                                     <ui:Label text="Alge" name="hasSupermarkt" class="labelDetails" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:VisualElement style="flex-grow: 1; height: 0; min-height: 225px; max-height: 225px; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
-                                <ui:Label text="meine güte schmüte sag ich da immer und so " name="Label" style="-unity-text-align: upper-left; flex-wrap: nowrap; white-space: normal; font-size: 72px; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;);" />
+                                <ui:Label name="Label" style="-unity-text-align: upper-left; flex-wrap: nowrap; white-space: normal; font-size: 31px; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;); -unity-font-style: bold;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>

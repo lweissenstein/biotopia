@@ -9,7 +9,7 @@ public class BuildingSelectionManager : MonoBehaviour
     private VisualElement previewElement;
     public RenderTexture previewTexture; // vom Inspector zugewiesen
 
-    private Label nameLabel, descriptionLabel, levelLabel, productionLabel, hasSupermarktLabel;
+    private Label nameLabel, descriptionLabel, levelLabel, productionLabel, hasSupermarktLabel, descriptionText, compartmentType;
     private Button upgradeButton, algenButton, quallenButton, salzpflanzenButton, grillenButton, supermarktButton;
     private VisualElement panel;
 
@@ -24,14 +24,14 @@ public class BuildingSelectionManager : MonoBehaviour
         levelLabel = root.Q<Label>("BuildingLevel");
         productionLabel = root.Q<Label>("BuildingProduction");
         upgradeButton = root.Q<Button>("UpgradeButton");
-
+        compartmentType = root.Q<Label>("compartmentType");
         algenButton = root.Q<Button>("Alge");
         quallenButton = root.Q<Button>("Qualle");
         salzpflanzenButton = root.Q<Button>("Salzpflanze");
         grillenButton = root.Q<Button>("Grille");
         supermarktButton = root.Q<Button>("Supermarkt");
         hasSupermarktLabel = root.Q<Label>("hasSupermarkt");
-
+        descriptionText = root.Q<Label>("descriptionText");
         panel = root.Q<VisualElement>("BuildingPanel");
 
         algenButton.clicked += () =>
@@ -108,65 +108,86 @@ public class BuildingSelectionManager : MonoBehaviour
 
         if (building.data is House house)
         {
-            levelLabel.text = "Compartments " + selected.countCompartmentsHouse;
-            productionLabel.text = "Max Comp " + selected.maxCompartments;
+            levelLabel.text = selected.countCompartmentsHouse +"/6";
 
             if (selected.compartmentTypeHouse == 3)
             {
                 nameLabel.text = "Algen Produktion";
-                productionLabel.text += "\nAlge/s: " + selected.producePerSecond;
+                compartmentType.text = "Alge";
+                productionLabel.text = selected.producePerSecond +"/s";
+                descriptionText.text = "Vom Meeresgrund auf den Teller – Algen sind echte Nährstoffbomben. Reich an Eiweiß, Jod, Eisen und Omega-3. Sie wachsen schneller als jede Landpflanze und brauchen dafür nur Licht, CO2 und Meerwasser. Ob zart wie Meersalat oder fest wie Kelp: Algen sind das Gemüse der Zukunft. Nachhaltig, vielseitig und mit einer Prise Ozean in jedem Biss.";
                 productionLabel.style.display = DisplayStyle.Flex;
+                descriptionText.style.visibility = Visibility.Visible;
+                compartmentType.style.visibility = Visibility.Visible;
+                productionLabel.style.visibility = Visibility.Visible;
                 algenButton.style.display = DisplayStyle.Flex;
                 quallenButton.style.display = DisplayStyle.None;
                 salzpflanzenButton.style.display = DisplayStyle.None;
                 grillenButton.style.display = DisplayStyle.None;
                 supermarktButton.style.display = DisplayStyle.None;
-                hasSupermarktLabel.text = "Supermarkt: " + (selected.hasSupermarket ? "Ja" : "Nein");
+                hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 4)
             {
-                nameLabel.text = "Salzpflanzen Produktion";
-                productionLabel.text += "\nSalzpflanze/s: " + selected.producePerSecond;
+                nameLabel.text = "Halophyten Produktion";
+                compartmentType.text = "Halophyt";
+                productionLabel.text = selected.producePerSecond + "/s";
+                descriptionText.text = "Salzig, knackig, robust – Halophyten wie Salicornia wachsen dort, wo andere Pflanzen aufgeben: auf salzigen Böden, in trockenen Küstenregionen, ganz ohne Süßwasser. Diese grünen Überlebenskünstler bringen Mineralstoffe, Umami-Geschmack und zarte Sukkulenz auf den Teller. Sie sind die ideale Ressource für eine Welt mit Wassermangel – und schmecken dabei wie das Meer in Pflanzenform.";
                 productionLabel.style.display = DisplayStyle.Flex;
+                descriptionText.style.visibility = Visibility.Visible;
+                compartmentType.style.visibility = Visibility.Visible;
+                productionLabel.style.visibility = Visibility.Visible;
                 algenButton.style.display = DisplayStyle.None;
                 quallenButton.style.display = DisplayStyle.None;
                 salzpflanzenButton.style.display = DisplayStyle.Flex;
                 grillenButton.style.display = DisplayStyle.None;
                 supermarktButton.style.display = DisplayStyle.None;
-                hasSupermarktLabel.text = "Supermarkt: " + (selected.hasSupermarket ? "Ja" : "Nein");
+                hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 5)
             {
                 nameLabel.text = "Quallen Produktion";
-                productionLabel.text += "\nQualle/s: " + selected.producePerSecond;
+                compartmentType.text = "Qualle";
+                productionLabel.text = selected.producePerSecond + "/s";
+                descriptionText.text = "Schwebend, transparent, fast außerirdisch – Quallen sind wahre Überlebenskünstler. Sie brauchen kaum Energie, vermehren sich rasant und bestehen zu 95% aus Wasser. Was viele nicht wissen: Sie sind auch essbar! Ihr hoher Kollagen- und Proteingehalt macht sie zur exotischen Proteinquelle der Zukunft. In der Küche? Ein Erlebnis zwischen Crunch und Glibber – für alle, die bereit sind, kulinarisches Neuland zu betreten.";
                 productionLabel.style.display = DisplayStyle.Flex;
+                descriptionText.style.visibility = Visibility.Visible;
+                compartmentType.style.visibility = Visibility.Visible;
+                productionLabel.style.visibility = Visibility.Visible;
                 algenButton.style.display = DisplayStyle.None;
                 quallenButton.style.display = DisplayStyle.Flex;
                 salzpflanzenButton.style.display = DisplayStyle.None;
                 grillenButton.style.display = DisplayStyle.None;
                 supermarktButton.style.display = DisplayStyle.None;
-                hasSupermarktLabel.text = "Supermarkt: " + (selected.hasSupermarket ? "Ja" : "Nein");
+                hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 6)
             {
                 nameLabel.text = "Grillen Produktion";
-                productionLabel.text += "\nGrille/s: " + selected.producePerSecond;
+                compartmentType.text = "Grille";
+                productionLabel.text = selected.producePerSecond + "/s";
+                descriptionText.text = "Knusprig, nussig, unglaublich effizient – Grillen liefern hochwertiges Protein, Vitamine und gesunde Fette. Sie brauchen wenig Platz, kaum Wasser und stoßen kaum CO2 aus. Was sie leisten? Mehr als man denkt. Als Snack, Mehl oder Fleischersatz sind sie die leisen Superhelden der Ernährung. Klein, aber oho – Insekten sind nicht nur die Zukunft. Sie sind die Gegenwart.\r\n\r\n";
                 productionLabel.style.display = DisplayStyle.Flex;
+                descriptionText.style.visibility = Visibility.Visible;
+                compartmentType.style.visibility = Visibility.Visible;
+                productionLabel.style.visibility = Visibility.Visible;
                 algenButton.style.display = DisplayStyle.None;
                 quallenButton.style.display = DisplayStyle.None;
                 salzpflanzenButton.style.display = DisplayStyle.None;
                 grillenButton.style.display = DisplayStyle.Flex;
                 supermarktButton.style.display = DisplayStyle.None;
-                hasSupermarktLabel.text = "Supermarkt: " + (selected.hasSupermarket ? "Ja" : "Nein");
+                hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 7)
             {
                 nameLabel.text = "Supermarkt";
-                productionLabel.style.display = DisplayStyle.None;
+                descriptionText.style.visibility = Visibility.Hidden;
+                compartmentType.style.visibility = Visibility.Hidden;
+                productionLabel.style.visibility = Visibility.Hidden;
                 algenButton.style.display = DisplayStyle.None;
                 quallenButton.style.display = DisplayStyle.None;
                 salzpflanzenButton.style.display = DisplayStyle.None;
@@ -177,14 +198,16 @@ public class BuildingSelectionManager : MonoBehaviour
             else
             {
                 nameLabel.text = "Hochhaus";
-                productionLabel.text = "Produktion: ";
-                productionLabel.style.display = DisplayStyle.Flex;
+   
+                descriptionText.style.visibility = Visibility.Hidden;
+                compartmentType.style.visibility = Visibility.Hidden;
+                productionLabel.style.visibility = Visibility.Hidden;
                 algenButton.style.display = DisplayStyle.Flex;
                 quallenButton.style.display = DisplayStyle.Flex;
                 salzpflanzenButton.style.display = DisplayStyle.Flex;
                 grillenButton.style.display = DisplayStyle.Flex;
                 supermarktButton.style.display = DisplayStyle.Flex;
-                hasSupermarktLabel.text = "Supermarkt: " + (selected.hasSupermarket ? "Ja" : "Nein");
+                hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
         }

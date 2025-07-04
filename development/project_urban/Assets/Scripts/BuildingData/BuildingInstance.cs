@@ -27,6 +27,7 @@ public class BuildingInstance : MonoBehaviour
     // Hochhaus
 
     public static event Action<ResourceType, float> ProduceResource;
+    public static event Action<int> AddCredits;
 
 
     public float countCompartmentsHouse = 0f;
@@ -108,7 +109,7 @@ public class BuildingInstance : MonoBehaviour
                         int rnd = Random.Range(0, available);
                         ConsumeProduct?.Invoke(processSelectionManager.products[rnd + 4 * i], 0.1f);
                         ProduceFood?.Invoke(0.02f);
-
+                        AddCredits?.Invoke(1); // F��gt 1 Credit hinzu, wenn ein Produkt konsumiert wird
                     }
                 }
             }

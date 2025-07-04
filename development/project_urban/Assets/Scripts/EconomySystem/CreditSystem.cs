@@ -10,6 +10,7 @@ public class CreditSystem : MonoBehaviour
     public int currentCredits { get; private set; } = 10000;
 
     public event Action<int> OnCreditsChanged;
+    
 
     // Singleton pattern to ensure only one instance of CreditSystem exists
     private void Awake()  
@@ -22,6 +23,7 @@ public class CreditSystem : MonoBehaviour
         {
             Instance = this;
         }
+            BuildingInstance.AddCredits += AddCredits;
     }
 
     // add credits to the current credits

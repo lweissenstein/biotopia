@@ -21,7 +21,7 @@ namespace EconomySystem
         private float timeElapsed, timeElapsedFood;
         private int lastDisplayedSeconds;
         private float lastProteinAmount;
-        private int proteinsPerSecond = 0;
+        private float proteinsPerSecond = 0;
 
 
         private Label algeLabel, qualleLabel, salzpflanzeLabel, grilleLabel, creditsLabel, mainMenu, timeLabel, foodPerSecondLabel, foodTotalLabel;
@@ -89,9 +89,9 @@ namespace EconomySystem
         private void FixedUpdate()
         {
             timeElapsed += Time.fixedDeltaTime;
-            timeElapsedFood = timeElapsed; // reset every second
+            timeElapsedFood += Time.fixedDeltaTime; // reset every second
 
-            int totalSeconds = Mathf.FloorToInt(timeElapsed);
+            int totalSeconds = Mathf.FloorToInt(timeElapsedFood);
             if (totalSeconds != lastDisplayedSeconds)
             {
                 lastDisplayedSeconds = totalSeconds;
@@ -159,7 +159,7 @@ namespace EconomySystem
                 _foodProgressBar.highValue = _foodEconomy.MaxProteinAmount;
                 _foodProgressBar.lowValue = _foodEconomy.MinProteinAmount;
                 _foodProgressBar.value = _foodEconomy.CurrentProteinAmount;
-                foodTotalLabel.text = $"{_foodEconomy.CurrentProteinAmount}/{_foodEconomy.MaxProteinAmount}";
+                foodTotalLabel.text = $"{(int) _foodEconomy.CurrentProteinAmount}/{_foodEconomy.MaxProteinAmount}";
 
             }
 
@@ -180,14 +180,7 @@ namespace EconomySystem
 
         private void UpdateCreditDisplay(int currentCredits)
         {
-            if (creditsLabel != null)
-            {
-                creditsLabel.text = $"€ {currentCredits}";
-            }
-            else
-            {
-                Debug.LogWarning("Credit label not found in the UI document.");
-            }
+            foodPerSecondLabel.text = $"{(proteinsPerSecond >= 0 ? "+" : "")}{proteinsPerSecond}/s";
         }
 
         private void UpdateFoodPerSecond()

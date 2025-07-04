@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entries:
   - productType: 0
-    description: "Algen pulver f\xFCr smooschis"
-    name: Ulva Powder
+    description: "Trockenes Pulver aus Meersalat\u2011Algen (Ulva). Reich an Vitaminen,
+      Jod und Proteinen \u2013 perfekt f\xFCr Smoothies oder Suppen und lehrreich
+      f\xFCr Mikron\xE4hrstoffe aus dem Meer."
+    name: Ulva Pulver
     icon: {fileID: 0}
     price: 50
     baseSpeed: 3
@@ -28,7 +30,8 @@ MonoBehaviour:
     maxUpgradesQuality: 7
     maxUpgradesEfficiency: 5
   - productType: 1
-    description: "Leckere Algen-Nudeln, reich an N\xE4hrstoffen."
+    description: "Bandnudeln aus Kelp (Braunalge) \u2013 ein innovatives Beispiel,
+      wie Nudelprodukte aus nachhaltiger Algenaufzucht erstellt werden ."
     name: Kelp Fettucine
     icon: {fileID: 0}
     price: 200
@@ -42,7 +45,8 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 2
-    description: 'algen jelly und so '
+    description: "Gelatineartige Quellpaste aus Rotalgen \u2013 zeigt, wie Alginat-Hydrogele
+      als Verdickungsmittel und nachhaltige Zutaten dienen."
     name: Ocean Jelly
     icon: {fileID: 0}
     price: 500
@@ -56,7 +60,9 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 3
-    description: "patty f\xFCr burgies"
+    description: "Herzhafte Patties aus Makroalgen. Hoher Protein- und Mineralgehalt,
+      ideal zur Veranschaulichung, wie Algen als Fleischalternative in st\xE4dtischer
+      Landwirtschaft dienen k\xF6nnen"
     name: Algae Patties
     icon: {fileID: 0}
     price: 1000
@@ -70,7 +76,10 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 4
-    description: 'glasnudeln aus qualle und so '
+    description: "Feine, transparente \u201ENudeln\u201C aus Quallenbiomasse. Sie
+      punkten mit niedrigem Kaloriengehalt, hohem Wasseranteil und einer ungew\xF6hnlichen
+      Konsistenz \u2013 ideal, um aufzuzeigen, wie Meeresorganismen als Frischwasser-los\u2013Lebensmittel
+      genutzt werden k\xF6nnen"
     name: Jelly Noodles
     icon: {fileID: 0}
     price: 50
@@ -84,7 +93,9 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 5
-    description: mayo aus quallen fettarm
+    description: "Cremiger Mayonnaise-Ersatz auf Basis von Quallenausz\xFCgen \u2013
+      demonstriert Funktionalit\xE4t von Proteinen aus dem Meer zur Emulsion und
+      zum Geschmackstr\xE4ger.\n\n"
     name: Medu Mayo
     icon: {fileID: 0}
     price: 200
@@ -98,7 +109,9 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 6
-    description: tofu aus quallenprotein
+    description: "Eiwei\xDFreiche, tofu\xE4hnliche W\xFCrfel aus Quallenprotein.
+      Sie zeigen, wie man marine Biomasse in gewohnte, pflanzliche Konsistenzen \xFCbersetzt
+      \u2013 eine Br\xFCcke zu pflanzlichen Alternativen."
     name: Ocean Tofu
     icon: {fileID: 0}
     price: 500
@@ -112,7 +125,9 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 7
-    description: 'leuchit leuchti bites bioluminiszenz und so '
+    description: "Leuchtend irisierende Jelly-Snacks, die mit UV-Licht hergestellt
+      werden. Ein spannender Weg, um \xFCber LED-basierte Indoor-Anbauverfahren und
+      die Anpassung von Inhaltsstoffen zu lehren ."
     name: Lumino Bites
     icon: {fileID: 0}
     price: 1000
@@ -126,7 +141,8 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 8
-    description: "salzersatz w\xFCrzen ja"
+    description: "Feines, mineralreiches Salzpulver gewonnen aus Halophyten \u2013
+      lehrt \xFCber Mineralstoffaufnahme und nachhaltige Salzproduktion ohne Meerwasserentnahme."
     name: Planty Salt
     icon: {fileID: 0}
     price: 50
@@ -140,7 +156,9 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 9
-    description: pickles aus halophytes
+    description: "Halophyten-Gew\xFCrze, fermentiert wie Gew\xFCrzgurken. Ein tolles
+      Beispiel f\xFCr Fermentation in neuartigen Organismen und die Nutzung ihrer
+      sekund\xE4ren Metabolite"
     name: Hydro Pickles
     icon: {fileID: 0}
     price: 200
@@ -154,8 +172,9 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 10
-    description: 'aufstrich '
-    name: Sea SPread
+    description: "Cremiger Brotaufstrich auf Basis von Salicornia pur, reich an Bioaktivstoffen
+      \u2013 ideal, um \xFCber N\xE4hrstoffvielfalt in salzliebenden Pflanzen aufzukl\xE4ren."
+    name: Sea Spread
     icon: {fileID: 0}
     price: 500
     baseSpeed: 12
@@ -168,7 +187,9 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 11
-    description: der snack aus salzpflanzen mega
+    description: "Knusprige Chips aus Salzpflanzen (Salicornia). Ein knackiger Einstieg,
+      um \xFCber salztolerante Pflanzen und deren co-kultivierte Indoor-Kultivierung
+      zu sprechen"
     name: Salicrisp
     icon: {fileID: 0}
     price: 1000
@@ -182,7 +203,9 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 12
-    description: "proteinmehl aus grillen als zusatz f\xFCr protein"
+    description: "Feines Cricket-Mehl mit neutralem Geschmack \u2013 vielseitig in
+      Backwaren, Saucen oder Smoothies. Es zeigt auf, wie Insektenmehl in Alltagsern\xE4hrung
+      integriert werden kann."
     name: Insektiella
     icon: {fileID: 0}
     price: 50
@@ -196,7 +219,9 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 13
-    description: brot aus grillenmehl
+    description: "Herzhafter \u201EInsekten-Braten\u201C aus Cricketprotein. Ein
+      gelungenes Beispiel f\xFCr Fleischalternative im Format eines klassischen Bratens
+      \u2013 ideal zum Gespr\xE4ch \xFCber Textur und Proteinquelle."
     name: Bugloaf
     icon: {fileID: 0}
     price: 200
@@ -210,7 +235,9 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 14
-    description: 'Protein Chips '
+    description: "Knusprige Chips mit Cricket-Zusatz \u2013 ein leckerer Snack, der
+      spielerisch f\xFCr Insektenprotein sensibilisiert und gleichzeitig \xFCber
+      moderne Lebensmittelinnovation bildet."
     name: Chirp Chips
     icon: {fileID: 0}
     price: 500
@@ -224,7 +251,9 @@ MonoBehaviour:
     maxUpgradesQuality: 5
     maxUpgradesEfficiency: 5
   - productType: 15
-    description: hoho der schmeckt
+    description: "Energieriegel mit gemahlenen Grillen \u2013 hoch an Protein, gesunden
+      Fetten und Chitin; verdeutlicht Insekten als ressourcenschonende, proteinreiche
+      Quelle"
     name: Crunch Bar
     icon: {fileID: 0}
     price: 1000

@@ -109,5 +109,10 @@ namespace EconomySystem
                 return _instance;
             }
         }
+
+        public static void Reset()
+        {
+            _instance = null;
+        }
     }
 }

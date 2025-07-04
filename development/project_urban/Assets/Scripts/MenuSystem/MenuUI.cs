@@ -2,6 +2,7 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Util;
+using EconomySystem;
 
 namespace MenuSystem
 {
@@ -42,7 +43,7 @@ namespace MenuSystem
             
             if (!State.IsNewGame) SceneManager.LoadSceneAsync(0);
             State.IsNewGame = false;
-            
+            FoodEconomy.Reset();
             HideMenu();
             //ShowGame();
             ShowOtherUIs();
