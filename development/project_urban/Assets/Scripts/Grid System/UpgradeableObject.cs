@@ -45,11 +45,6 @@ public class UpgradeableObject : MonoBehaviour
         if (child != null)
             child.gameObject.SetActive(true);
 
-        //Transform childIndicator = transform.Find("8");
-        //if (childIndicator != null)
-        //    childIndicator.gameObject.SetActive(true);
-
-
         for (int i = 0; i < 3; i++)
         {
             Transform notChild = transform.Find(i.ToString());

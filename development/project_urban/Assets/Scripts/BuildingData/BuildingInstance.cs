@@ -61,12 +61,10 @@ public class BuildingInstance : MonoBehaviour
     public void Awake()
     {
         // General
-
+        residents = 50;
         foodEconomy = FoodEconomy.Instance;
         processSelectionManager = FindFirstObjectByType<ProcessSelectionManager>();
         placementSystem = FindFirstObjectByType<PlacementSystem>();
-
-        //hasSupermarket = placementSystem.SearchForSupermarket(pos);
 
         // Hochhaus
 
@@ -93,7 +91,9 @@ public class BuildingInstance : MonoBehaviour
             }
 
             
-            ConsumeFood?.Invoke(0.0001f);
+            ConsumeFood?.Invoke(0.00005f * residents);
+
+            if (compartmentTypeHouse == 7) placementSystem.PingSuperMarket(pos);
 
             if (compartmentTypeHouse != 7 && hasSupermarket)
             {
@@ -109,7 +109,7 @@ public class BuildingInstance : MonoBehaviour
                     if (available != 0)
                     {
                         int rnd = Random.Range(0, available);
-                        ConsumeProduct?.Invoke(processSelectionManager.products[rnd + 4 * i], 0.1f);
+                        ConsumeProduct?.Invoke(processSelectionManager.products[rnd + 4 * i], 0.00005f * residents);
                         ProduceFood?.Invoke(0.02f);
                         AddCredits?.Invoke(1); // F��gt 1 Credit hinzu, wenn ein Produkt konsumiert wird
                     }
@@ -249,12 +249,13 @@ public class BuildingInstance : MonoBehaviour
 
     public void UpgradeSupermarkt()
     {
+        countCompartmentsHouse = maxCompartments;
         var upgradeable =
             GetComponent<UpgradeableObject>();
         if (upgradeable != null)
             upgradeable.SetToSupermarket();
         compartmentTypeHouse = 7;
-        placementSystem.AnnounceSupermarket(pos);
+        placementSystem.PingSuperMarket(pos);
     }
 
 

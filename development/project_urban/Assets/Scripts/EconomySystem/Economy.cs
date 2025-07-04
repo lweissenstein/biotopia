@@ -180,6 +180,7 @@ namespace EconomySystem
 
         private void UpdateCreditDisplay(int currentCredits)
         {
+            creditsLabel.text = $"{"€" +  currentCredits}/s";
             foodPerSecondLabel.text = $"{(proteinsPerSecond >= 0 ? "+" : "")}{proteinsPerSecond}/s";
         }
 

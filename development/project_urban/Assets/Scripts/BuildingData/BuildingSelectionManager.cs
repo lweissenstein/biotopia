@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using EconomySystem;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,16 +10,20 @@ public class BuildingSelectionManager : MonoBehaviour
     private VisualElement previewElement;
     public RenderTexture previewTexture; // vom Inspector zugewiesen
 
-    private Label nameLabel, descriptionLabel, levelLabel, productionLabel, hasSupermarktLabel, descriptionText, compartmentType;
+    private Label nameLabel, descriptionLabel, levelLabel, productionLabel, hasSupermarktLabel, descriptionText, compartmentType, buildingResidentsLabel;
     private Button upgradeButton, algenButton, quallenButton, salzpflanzenButton, grillenButton, supermarktButton;
     private VisualElement panel;
 
     private BuildingInstance selected;
     private List<BuildingInstance> superMarkets = new List<BuildingInstance>();
 
+    public CreditSystem credits;
+
     void Start()
     {
         var root = uiDocument.rootVisualElement;
+
+        credits = FindFirstObjectByType<CreditSystem>();
 
         nameLabel = root.Q<Label>("BuildingName");
         levelLabel = root.Q<Label>("BuildingLevel");
@@ -33,14 +38,19 @@ public class BuildingSelectionManager : MonoBehaviour
         hasSupermarktLabel = root.Q<Label>("hasSupermarkt");
         descriptionText = root.Q<Label>("descriptionText");
         panel = root.Q<VisualElement>("BuildingPanel");
+        buildingResidentsLabel = root.Q<Label>("BuildingResidents");
 
         algenButton.clicked += () =>
         {
             if (selected != null)
             {
-                selected.UpgradeCompartmentAlge();
-                UpdateUI(selected);
-                SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
+                if (selected.countCompartmentsHouse < selected.maxCompartments && credits.TrySpendCredits(50))
+                {
+                    selected.UpgradeCompartmentAlge();
+                    UpdateUI(selected);
+                    SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
+
+                }
             }
         };
 
@@ -48,9 +58,12 @@ public class BuildingSelectionManager : MonoBehaviour
         {
             if (selected != null)
             {
-                selected.UpgradeCompartmentQualle();
-                UpdateUI(selected);
-                SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
+                if (selected.countCompartmentsHouse < selected.maxCompartments && credits.TrySpendCredits(50))
+                {
+                    selected.UpgradeCompartmentQualle();
+                    UpdateUI(selected);
+                    SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
+                } 
             }
         };
 
@@ -58,9 +71,12 @@ public class BuildingSelectionManager : MonoBehaviour
         {
             if (selected != null)
             {
-                selected.UpgradeCompartmentSalzpflanze();
-                UpdateUI(selected);
-                SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
+                if (selected.countCompartmentsHouse < selected.maxCompartments && credits.TrySpendCredits(50))
+                {
+                    selected.UpgradeCompartmentSalzpflanze();
+                    UpdateUI(selected);
+                    SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level 
+                }
             }
         };
 
@@ -68,9 +84,12 @@ public class BuildingSelectionManager : MonoBehaviour
         {
             if (selected != null)
             {
-                selected.UpgradeCompartmentGrille();
-                UpdateUI(selected);
-                SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
+                if (selected.countCompartmentsHouse < selected.maxCompartments && credits.TrySpendCredits(50))
+                {
+                    selected.UpgradeCompartmentGrille();
+                    UpdateUI(selected);
+                    SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level 
+                }
             }
         };
 
@@ -78,12 +97,15 @@ public class BuildingSelectionManager : MonoBehaviour
         {
             if (selected != null)
             {
-                selected.UpgradeSupermarkt();
-                UpdateUI(selected);
-                SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
-                if (!superMarkets.Contains(selected))
-                    superMarkets.Add(selected);
-                ToggleSuperMarketRange(true);
+                if (selected.countCompartmentsHouse < selected.maxCompartments && credits.TrySpendCredits(100))
+                {
+                    selected.UpgradeSupermarkt();
+                    UpdateUI(selected);
+                    SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
+                    if (!superMarkets.Contains(selected))
+                        superMarkets.Add(selected);
+                    ToggleSuperMarketRange(true); 
+                }
             }
         };
 
@@ -109,6 +131,7 @@ public class BuildingSelectionManager : MonoBehaviour
         if (building.data is House house)
         {
             levelLabel.text = selected.countCompartmentsHouse +"/6";
+            buildingResidentsLabel.text = selected.residents.ToString();
 
             if (selected.compartmentTypeHouse == 3)
             {
@@ -120,11 +143,11 @@ public class BuildingSelectionManager : MonoBehaviour
                 descriptionText.style.visibility = Visibility.Visible;
                 compartmentType.style.visibility = Visibility.Visible;
                 productionLabel.style.visibility = Visibility.Visible;
-                algenButton.style.display = DisplayStyle.Flex;
-                quallenButton.style.display = DisplayStyle.None;
-                salzpflanzenButton.style.display = DisplayStyle.None;
-                grillenButton.style.display = DisplayStyle.None;
-                supermarktButton.style.display = DisplayStyle.None;
+                algenButton.style.visibility = Visibility.Visible;
+                quallenButton.style.visibility = Visibility.Hidden;
+                salzpflanzenButton.style.visibility = Visibility.Hidden;
+                grillenButton.style.visibility = Visibility.Hidden;
+                supermarktButton.style.visibility = Visibility.Hidden;
                 hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
@@ -138,11 +161,11 @@ public class BuildingSelectionManager : MonoBehaviour
                 descriptionText.style.visibility = Visibility.Visible;
                 compartmentType.style.visibility = Visibility.Visible;
                 productionLabel.style.visibility = Visibility.Visible;
-                algenButton.style.display = DisplayStyle.None;
-                quallenButton.style.display = DisplayStyle.None;
-                salzpflanzenButton.style.display = DisplayStyle.Flex;
-                grillenButton.style.display = DisplayStyle.None;
-                supermarktButton.style.display = DisplayStyle.None;
+                algenButton.style.visibility = Visibility.Hidden;
+                quallenButton.style.visibility = Visibility.Hidden;
+                salzpflanzenButton.style.visibility = Visibility.Visible;
+                grillenButton.style.visibility = Visibility.Hidden;
+                supermarktButton.style.visibility = Visibility.Hidden;
                 hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
@@ -156,11 +179,11 @@ public class BuildingSelectionManager : MonoBehaviour
                 descriptionText.style.visibility = Visibility.Visible;
                 compartmentType.style.visibility = Visibility.Visible;
                 productionLabel.style.visibility = Visibility.Visible;
-                algenButton.style.display = DisplayStyle.None;
-                quallenButton.style.display = DisplayStyle.Flex;
-                salzpflanzenButton.style.display = DisplayStyle.None;
-                grillenButton.style.display = DisplayStyle.None;
-                supermarktButton.style.display = DisplayStyle.None;
+                algenButton.style.visibility = Visibility.Hidden;
+                quallenButton.style.visibility = Visibility.Visible;
+                salzpflanzenButton.style.visibility = Visibility.Hidden;
+                grillenButton.style.visibility = Visibility.Hidden;
+                supermarktButton.style.visibility = Visibility.Hidden;
                 hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
@@ -174,11 +197,11 @@ public class BuildingSelectionManager : MonoBehaviour
                 descriptionText.style.visibility = Visibility.Visible;
                 compartmentType.style.visibility = Visibility.Visible;
                 productionLabel.style.visibility = Visibility.Visible;
-                algenButton.style.display = DisplayStyle.None;
-                quallenButton.style.display = DisplayStyle.None;
-                salzpflanzenButton.style.display = DisplayStyle.None;
-                grillenButton.style.display = DisplayStyle.Flex;
-                supermarktButton.style.display = DisplayStyle.None;
+                algenButton.style.visibility = Visibility.Hidden;
+                quallenButton.style.visibility = Visibility.Hidden;
+                salzpflanzenButton.style.visibility = Visibility.Hidden;
+                grillenButton.style.visibility = Visibility.Visible;
+                supermarktButton.style.visibility = Visibility.Hidden;
                 hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
@@ -188,11 +211,11 @@ public class BuildingSelectionManager : MonoBehaviour
                 descriptionText.style.visibility = Visibility.Hidden;
                 compartmentType.style.visibility = Visibility.Hidden;
                 productionLabel.style.visibility = Visibility.Hidden;
-                algenButton.style.display = DisplayStyle.None;
-                quallenButton.style.display = DisplayStyle.None;
-                salzpflanzenButton.style.display = DisplayStyle.None;
-                grillenButton.style.display = DisplayStyle.None;
-                supermarktButton.style.display = DisplayStyle.Flex;
+                algenButton.style.visibility = Visibility.Hidden;
+                quallenButton.style.visibility = Visibility.Hidden;
+                salzpflanzenButton.style.visibility = Visibility.Hidden;
+                grillenButton.style.visibility = Visibility.Hidden;
+                supermarktButton.style.visibility = Visibility.Visible;
                 ToggleSuperMarketRange(true);
             }
             else
@@ -202,11 +225,11 @@ public class BuildingSelectionManager : MonoBehaviour
                 descriptionText.style.visibility = Visibility.Hidden;
                 compartmentType.style.visibility = Visibility.Hidden;
                 productionLabel.style.visibility = Visibility.Hidden;
-                algenButton.style.display = DisplayStyle.Flex;
-                quallenButton.style.display = DisplayStyle.Flex;
-                salzpflanzenButton.style.display = DisplayStyle.Flex;
-                grillenButton.style.display = DisplayStyle.Flex;
-                supermarktButton.style.display = DisplayStyle.Flex;
+                algenButton.style.visibility = Visibility.Visible;
+                quallenButton.style.visibility = Visibility.Visible;
+                salzpflanzenButton.style.visibility = Visibility.Visible;
+                grillenButton.style.visibility = Visibility.Visible;
+                supermarktButton.style.visibility = Visibility.Visible;
                 hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
