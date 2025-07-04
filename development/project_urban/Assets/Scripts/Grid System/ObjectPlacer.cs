@@ -11,6 +11,11 @@ public class ObjectPlacer : MonoBehaviour
         GameObject newObject = Instantiate(prefab);
         newObject.transform.position = position;
         placedGameObject.Add(newObject);
+        if (newObject.TryGetComponent(out BuildingInstance building))
+        {
+            building.pos = position;
+        }
+
         return placedGameObject.Count - 1;
     }
 

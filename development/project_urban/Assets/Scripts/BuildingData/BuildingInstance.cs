@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class BuildingInstance : MonoBehaviour
 {
-// General
+    // General
 
     [SerializeField] private BoxCollider boxColliderHouse;
     public BuildingData data;
@@ -19,17 +19,23 @@ public class BuildingInstance : MonoBehaviour
     private Timer _timer = new();
     private ProcessSelectionManager processSelectionManager;
     private ProductDescriptionDatabase productDescriptionDatabase;
+    private FoodEconomy foodEconomy;
+    public Vector3 pos;
+    public RandomGridManipulation gridManipulation;
+    public PlacementSystem placementSystem;
 
     // Hochhaus
 
     public static event Action<ResourceType, float> ProduceResource;
 
+
     public float countCompartmentsHouse = 0f;
     public int maxCompartments = 6;
     public int residents;
     public int height = 1;
-    public int compartmentTypeHouse; // 7 = default none, 3 = alge, 4 = salzpflanze, 5 = qualle, 6 = grille
+    public int compartmentTypeHouse = 0; // 7 = supermarkt, 3 = alge, 4 = salzpflanze, 5 = qualle, 6 = grille
     private bool isProducing = false;
+    public bool hasSupermarket = false;
 
     public float produceAlgeValue = 0.05f;
     public float produceSalzpflanzeValue = 0.05f;
@@ -55,29 +61,62 @@ public class BuildingInstance : MonoBehaviour
     {
         // General
 
+        foodEconomy = FoodEconomy.Instance;
         processSelectionManager = FindFirstObjectByType<ProcessSelectionManager>();
+        placementSystem = FindFirstObjectByType<PlacementSystem>();
 
-    // Hochhaus
-    // Water
-    // Park
-    // Therme
-    // Supermarkt
+        // Hochhaus
+
+
+        // Water
+        // Park
+        // Therme
+        // Supermarkt
     }
     public void FixedUpdate()
     {
         // General
 
-        if (isProducing)
-        {
-            fixedTimer += Time.fixedDeltaTime;
 
-            if (fixedTimer >= 1f)
+        fixedTimer += Time.fixedDeltaTime;
+
+        if (fixedTimer >= 1f)
+        {
+            if (isProducing)
             {
+                fixedTimer = 0f; // Reset Timer
                 fixedTimer -= 1f; // oder -= 1f, wenn du es genauer willst
                 GetProduction();
-                //Debug.Log("Script l�uft auf: " + gameObject.name);
             }
-        }
+
+            
+            ConsumeFood?.Invoke(0.0001f);
+
+            if (compartmentTypeHouse != 7 && hasSupermarket)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    int available = 0;
+
+                    if (processSelectionManager.purchased[4 * i] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i], 1)) available++;
+                    if (processSelectionManager.purchased[4 * i + 1] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 1], 1)) available++;
+                    if (processSelectionManager.purchased[4 * i + 2] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 2], 1)) available++;
+                    if (processSelectionManager.purchased[4 * i + 3] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 3], 1)) available++;
+
+                    if (available != 0)
+                    {
+                        int rnd = Random.Range(0, available);
+                        ConsumeProduct?.Invoke(processSelectionManager.products[rnd + 4 * i], 0.1f);
+                        ProduceFood?.Invoke(0.02f);
+
+                    }
+                }
+            }
+    }
+
+            
+            
+        
 
         
 
@@ -86,27 +125,10 @@ public class BuildingInstance : MonoBehaviour
         // Park
         // Therme
         // Supermarkt
-        ProduceFood?.Invoke(1);
-        ConsumeFood?.Invoke(1 * Time.fixedDeltaTime);
+        
+       
 
-        if (compartmentTypeHouse >= 3 && compartmentTypeHouse <= 6)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                int available = 0;
-
-                if (processSelectionManager.purchased[4 * i]) available++;
-                if (processSelectionManager.purchased[4 * i + 1]) available++;
-                if (processSelectionManager.purchased[4 * i + 2]) available++;
-                if (processSelectionManager.purchased[4 * i + 3]) available++;
-
-                if (available != 0)
-                {
-                    int rnd = Random.Range(0, available);
-                    ConsumeProduct?.Invoke(processSelectionManager.products[rnd + 4 * i], 1);
-                }
-            }
-        }
+        
     }
 
     // ------------ General ------------
@@ -228,9 +250,10 @@ public class BuildingInstance : MonoBehaviour
             GetComponent<UpgradeableObject>();
         if (upgradeable != null)
             upgradeable.SetToSupermarket();
-
         compartmentTypeHouse = 7;
+        placementSystem.AnnounceSupermarket(pos);
     }
+
 
     public void GetProduction()
     {

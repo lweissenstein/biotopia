@@ -9,7 +9,7 @@ public class BuildingSelectionManager : MonoBehaviour
     private VisualElement previewElement;
     public RenderTexture previewTexture; // vom Inspector zugewiesen
 
-    private Label nameLabel, descriptionLabel, levelLabel, productionLabel;
+    private Label nameLabel, descriptionLabel, levelLabel, productionLabel, hasSupermarktLabel;
     private Button upgradeButton, algenButton, quallenButton, salzpflanzenButton, grillenButton, supermarktButton;
     private VisualElement panel;
 
@@ -30,6 +30,7 @@ public class BuildingSelectionManager : MonoBehaviour
         salzpflanzenButton = root.Q<Button>("Salzpflanze");
         grillenButton = root.Q<Button>("Grille");
         supermarktButton = root.Q<Button>("Supermarkt");
+        hasSupermarktLabel = root.Q<Label>("hasSupermarkt");
 
         panel = root.Q<VisualElement>("BuildingPanel");
 
@@ -120,6 +121,7 @@ public class BuildingSelectionManager : MonoBehaviour
                 salzpflanzenButton.style.display = DisplayStyle.None;
                 grillenButton.style.display = DisplayStyle.None;
                 supermarktButton.style.display = DisplayStyle.None;
+                hasSupermarktLabel.text = "Supermarkt: " + (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 4)
@@ -132,6 +134,7 @@ public class BuildingSelectionManager : MonoBehaviour
                 salzpflanzenButton.style.display = DisplayStyle.Flex;
                 grillenButton.style.display = DisplayStyle.None;
                 supermarktButton.style.display = DisplayStyle.None;
+                hasSupermarktLabel.text = "Supermarkt: " + (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 5)
@@ -144,6 +147,7 @@ public class BuildingSelectionManager : MonoBehaviour
                 salzpflanzenButton.style.display = DisplayStyle.None;
                 grillenButton.style.display = DisplayStyle.None;
                 supermarktButton.style.display = DisplayStyle.None;
+                hasSupermarktLabel.text = "Supermarkt: " + (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 6)
@@ -156,6 +160,7 @@ public class BuildingSelectionManager : MonoBehaviour
                 salzpflanzenButton.style.display = DisplayStyle.None;
                 grillenButton.style.display = DisplayStyle.Flex;
                 supermarktButton.style.display = DisplayStyle.None;
+                hasSupermarktLabel.text = "Supermarkt: " + (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 7)
@@ -179,6 +184,7 @@ public class BuildingSelectionManager : MonoBehaviour
                 salzpflanzenButton.style.display = DisplayStyle.Flex;
                 grillenButton.style.display = DisplayStyle.Flex;
                 supermarktButton.style.display = DisplayStyle.Flex;
+                hasSupermarktLabel.text = "Supermarkt: " + (selected.hasSupermarket ? "Ja" : "Nein");
                 ToggleSuperMarketRange(false);
             }
         }

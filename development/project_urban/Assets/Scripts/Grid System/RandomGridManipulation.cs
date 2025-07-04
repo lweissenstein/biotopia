@@ -189,6 +189,40 @@ public class RandomGridManipulation
         }
     }
 
+    public void UpdateSupermarketRange(Vector3 pos, GridData gridData)
+    {
+        
+        for (int x = -5; x <= 5; x++)
+        {
+            for (int z = -5; z <= 5; z++)
+            {
+                if(x == 0 && z == 0)
+                {
+                    break;  // Skip the center position
+                }
+                Vector3 posNew = new Vector3(pos.x + x, pos.y, pos.z + z);
+                if (!gridData.CanPlaceObjectAt(new Vector3Int((int)posNew.x, (int)posNew.y, (int)posNew.z), new Vector2Int (1,1))){
+                    if (gridData.GetObjectIDAt(new Vector3Int((int)posNew.x, (int)posNew.y, (int)posNew.z)) <= 2)
+                    {
+                        
+                        int representationIndex = gridData.GetRepresentationIndex(new Vector3Int((int)posNew.x, (int)posNew.y, (int)posNew.z));
+                        GameObject go = objectPlacer.placedGameObject[representationIndex];
+                        var building = go.GetComponent<BuildingInstance>();
+                        if (building != null)
+                        {
+
+                            building.hasSupermarket = true;
+                            Debug.Log(building.hasSupermarket);
+                        }
+                        Debug.Log("du huan");
+                    }
+                }
+
+
+            }
+        }
+    }
+
     /// <summary>
     /// Wie RandomUpgrade, aber mit Gewichtung nach Nachbarschaft.
     /// Nur Objekte mit bestimmten Nachbarbedingungen werden bevorzugt geupgradet.
@@ -309,6 +343,8 @@ public class RandomGridManipulation
             upgraded++;
         }
     }
+
+
 
     /// <summary>
     /// Generiert einen Fluss, der sich in mehreren Segmenten über das Grid schlängelt.

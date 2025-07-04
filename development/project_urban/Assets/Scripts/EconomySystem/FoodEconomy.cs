@@ -83,6 +83,11 @@ namespace EconomySystem
             totalProducts[prod] -= amount;
         }
 
+        public bool IsProductAvailable(ProductType type, float amount)
+        {
+            return totalProducts.ContainsKey(type) && totalProducts[type] >= amount;
+        }
+
 
         public string Report()
         {

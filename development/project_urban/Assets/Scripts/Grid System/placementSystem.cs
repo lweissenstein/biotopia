@@ -164,6 +164,11 @@ public class PlacementSystem : MonoBehaviour
         randomPlacer.RandomUpgrade(1, gridSizeX, gridSizeZ, furnitureData, level);
     }
 
+    public void AnnounceSupermarket(Vector3 pos)
+    {
+        randomPlacer.UpdateSupermarketRange(pos, furnitureData);
+    }
+
     // uses RandomWeightedUpgrade to randomely upgrade objects
     public void weightedUpgradeRandom()
     {
@@ -256,18 +261,18 @@ public class PlacementSystem : MonoBehaviour
         {
             if (smallPlaceTimer == 0)
             {
-                randomPlacer.RandomWheightedPlace(50, gridSizeX, gridSizeZ, furnitureData, 0);
-                smallPlaceTimer = 1;
+                randomPlacer.RandomWheightedPlace(3, gridSizeX, gridSizeZ, furnitureData, 0);
+                smallPlaceTimer = 5;
             }
             if (smallToMediumTimer == 0)
             {
                 randomPlacer.RandomWheightedUpgrade(2, gridSizeX, gridSizeZ, furnitureData, 1);
-                smallToMediumTimer = 1;
+                smallToMediumTimer = 6;
             }
             if (mediumToLargeTimer == 0)
             {
                 randomPlacer.RandomWheightedUpgrade(2, gridSizeX, gridSizeZ, furnitureData, 2);
-                mediumToLargeTimer = 1;
+                mediumToLargeTimer = 7;
             }
         }
 
@@ -275,6 +280,7 @@ public class PlacementSystem : MonoBehaviour
         smallToMediumTimer--;
         mediumToLargeTimer--;
 
+      
         if (getNumParks() < getNumBuildings() / 10 && GetFreeTiles() != 0) randomPlacer.RandomParkPlace(gridSizeX, gridSizeZ, furnitureData);
     }
 

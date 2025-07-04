@@ -117,7 +117,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2932406809232721597}
-  - component: {fileID: -3695915046080883760}
   - component: {fileID: -4924597094986722754}
   m_Layer: 7
   m_Name: Water
@@ -142,31 +141,6 @@ Transform:
   - {fileID: 135498854299103841}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3695915046080883760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4809059401213230736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb8d0e617839e664bb71b975a082cb02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxColliderHouse: {fileID: -4924597094986722754}
-  data: {fileID: 11400000, guid: 4c0facadb46c044448b8a7a757169a3f, type: 2}
-  previewPrefab: {fileID: 4809059401213230736}
-  countCompartmentsHouse: 0
-  maxCompartments: 6
-  residents: 0
-  height: 1
-  compartmentTypeHouse: 0
-  produceAlgeValue: 0.05
-  produceSalzpflanzeValue: 0.05
-  produceQualleValue: 0.05
-  produceGrillevalue: 0.05
-  producePerSecond: 0
 --- !u!65 &-4924597094986722754
 BoxCollider:
   m_ObjectHideFlags: 0

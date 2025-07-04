@@ -59,12 +59,13 @@
                                     <ui:Label text="Compartment:&#10;" class="labelDetails" />
                                     <ui:Label text="Anzahl:" class="labelDetails" />
                                     <ui:Label text="Produktion:" class="labelDetails" />
-                                    <ui:Label text="Beschreibung:" class="labelDetails" />
+                                    <ui:Label text="Supermarkt:" class="labelDetails" />
                                 </ui:VisualElement>
                                 <ui:VisualElement style="flex-grow: 1; width: 50%;">
                                     <ui:Label text="Alge" class="labelDetails" />
                                     <ui:Label text="1/6" name="BuildingLevel" class="labelDetails" />
                                     <ui:Label text="4/s" name="BuildingProduction" class="labelDetails" />
+                                    <ui:Label text="Alge" name="hasSupermarkt" class="labelDetails" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:VisualElement style="flex-grow: 1; height: 0; min-height: 225px; max-height: 225px; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
