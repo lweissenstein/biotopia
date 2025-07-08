@@ -54,15 +54,19 @@ button:hover {
     border-right-width: 7px;
     border-bottom-width: 7px;
     border-left-width: 7px;
+    font-size: 20px;
 }
 
 .labelButtons {
     -unity-font-definition: url("project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&guid=69a7b60da297f0b4b934963755e57843&type=3#JuraMedium");
     -unity-text-align: upper-left;
+    font-size: 200%;
+    text-shadow: 1.3px 1.3px 5px rgb(0, 0, 0);
+    letter-spacing: -5px;
 }
 
 .labelDetails {
     -unity-font-definition: url("project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&guid=69a7b60da297f0b4b934963755e57843&type=3#JuraMedium");
-    font-size: 55px;
+    font-size: 35px;
     -unity-text-align: upper-right;
 }

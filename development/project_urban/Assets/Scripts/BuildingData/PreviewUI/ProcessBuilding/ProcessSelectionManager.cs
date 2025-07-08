@@ -71,12 +71,12 @@ public class ProcessSelectionManager : MonoBehaviour
         closer = root.Q<Button>("closeWindow");
         upgradeAmountButton = root.Q<Button>("upgAmount");
         upgradeSpeedButton = root.Q<Button>("upgSpeed");
-        upgradeEfficiencyButton = root.Q<Button>("upgEfficency");
+        upgradeEfficiencyButton = root.Q<Button>("upgEfficiency");
         enablerButton = root.Q<Button>("enablerButton");
         cntAmount = root.Q<Label>("cntAmount");
-        cntEfficiency = root.Q<Label>("cntEfficency");
+        cntEfficiency = root.Q<Label>("cntEfficiency");
         cntSpeed = root.Q<Label>("cntSpeed");
-        enablerStatus = root.Q<Label>("enablerStatus");
+        //enablerStatus = root.Q<Label>("enablerStatus");
         nameLabel = root.Q<Label>("name");
         var tabView = root.Q<TabView>("tabs");
 
@@ -174,8 +174,6 @@ public class ProcessSelectionManager : MonoBehaviour
             selected.ToggleProducing(selectedType);
 
             enablerButton.style.backgroundColor = new StyleColor(isCurrentlyActive ? Color.red : Color.green);
-            enablerStatus.text = isCurrentlyActive ? "Status: Deaktiviert" : "Status: Aktiviert";
-            enablerStatus.style.color = isCurrentlyActive ? SoftRed : SoftGreen;
         };
 
         upgradeSpeedButton.clicked += () =>
@@ -277,15 +275,13 @@ public class ProcessSelectionManager : MonoBehaviour
         if (productActiveStates.TryGetValue(selectedType, out bool isActive))
         {
             enablerButton.style.backgroundColor = new StyleColor(isActive ? Color.green : Color.red);
-            enablerStatus.text = isActive ? "Status: Aktiviert" : "Status: Deaktiviert";
-            enablerStatus.style.color = isActive ? SoftGreen : SoftRed;
+
         }
         else
         {
             // Standardfarbe, z.B. grn
             enablerButton.style.backgroundColor = new StyleColor(Color.green);
-            enablerStatus.text = "Status: Aktiviert";
-            enablerStatus.style.color = SoftGreen;
+
         }
     }
 

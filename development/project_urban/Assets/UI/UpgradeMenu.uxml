@@ -1,75 +1,108 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/upgrade_window.uss?fileID=7433441132597879392&amp;guid=6221bca7458d58a44a96960c0b9622e6&amp;type=3#upgrade_window" />
-    <ui:VisualElement style="flex-grow: 1; background-size: 2000px 1450px; width: 2000px; height: 1450px; min-height: 1450px; max-height: 1450px; min-width: 2000px; max-width: 2000px; align-self: center; align-content: center; align-items: stretch; justify-content: flex-end; top: 360px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;">
-        <ui:VisualElement name="BuildingPanel" class="window" style="flex-grow: 1; background-color: rgb(217, 217, 217); background-size: 300px 500px; width: 100%; height: 100%; min-width: auto; min-height: auto; max-width: none; max-height: none; opacity: 1; align-content: auto; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;">
-            <ui:VisualElement style="flex-grow: 1; border-top-width: 5px; border-left-width: 5px; border-right-width: 5px; margin-left: 30px; margin-top: 30px; width: 1669px; height: 107px; min-height: 107px; max-height: 107px; border-left-color: rgb(53, 53, 53); border-right-color: rgb(53, 53, 53); border-top-color: rgb(53, 53, 53); border-bottom-color: rgb(53, 53, 53); border-bottom-width: 5px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; flex-direction: row;">
-                <ui:Label text="Hochhaus" name="BuildingName" class="labels titleText" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; width: 50%; padding-left: 35px; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraDemiBold.ttf?fileID=12800000&amp;guid=4029eae5b7a872b4faba49ced1a7fcef&amp;type=3#JuraDemiBold&quot;); -unity-font-style: normal;" />
-                <ui:Label text="Einwohner: 444" name="BuildingResidents" class="labels titleText" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; width: 50%; -unity-text-align: upper-right; padding-right: 35px; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraDemiBold.ttf?fileID=12800000&amp;guid=4029eae5b7a872b4faba49ced1a7fcef&amp;type=3#JuraDemiBold&quot;); -unity-font-style: normal;" />
-            </ui:VisualElement>
-            <ui:VisualElement name="exitButton" style="flex-grow: 1; position: absolute; height: 99px; width: 164px; top: 33px; left: 1756px; background-image: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/Rectangle%2038.png?fileID=2800000&amp;guid=18ced86feccb2ae4e87f8ea831c2594a&amp;type=3#Rectangle 38&quot;);">
-                <ui:Label text="X" selectable="false" style="-unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraDemiBold.ttf?fileID=12800000&amp;guid=4029eae5b7a872b4faba49ced1a7fcef&amp;type=3#JuraDemiBold&quot;); font-size: 91px; -unity-text-align: upper-center;" />
+    <ui:VisualElement style="flex-grow: 1; background-size: 2000px 1450px; width: 80%; height: 80%; min-height: 80%; max-height: 80%; min-width: 80%; max-width: 80%; align-self: center; align-content: center; align-items: stretch; justify-content: flex-end; top: 10%; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 0;">
+        <ui:VisualElement name="BuildingPanel" class="window" style="flex-grow: 1; background-color: rgb(217, 217, 217); background-size: 300px 500px; width: auto; height: auto; min-width: auto; min-height: auto; max-width: none; max-height: none; opacity: 1; align-content: auto; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
+            <ui:VisualElement style="flex-grow: 1; border-top-width: 5px; border-left-width: 5px; border-right-width: 5px; width: 90%; height: 10%; min-height: 10%; max-height: 10%; border-left-color: rgb(53, 53, 53); border-right-color: rgb(53, 53, 53); border-top-color: rgb(53, 53, 53); border-bottom-color: rgb(53, 53, 53); border-bottom-width: 5px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; flex-direction: row;">
+                <ui:Label text="#BuildingName" name="BuildingName" class="labels titleText" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; width: 50%; padding-left: 35px; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraDemiBold.ttf?fileID=12800000&amp;guid=4029eae5b7a872b4faba49ced1a7fcef&amp;type=3#JuraDemiBold&quot;); -unity-font-style: normal; letter-spacing: -10px; align-content: auto; -unity-text-align: middle-left;" />
+                <ui:Label text="#BuildingResidents" name="BuildingResidents" class="labels titleText" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; width: 50%; -unity-text-align: middle-right; padding-right: 35px; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraDemiBold.ttf?fileID=12800000&amp;guid=4029eae5b7a872b4faba49ced1a7fcef&amp;type=3#JuraDemiBold&quot;); -unity-font-style: normal; letter-spacing: -10px;" />
+                <ui:VisualElement name="exitLayer" style="flex-grow: 1; position: relative; top: auto; left: auto; background-image: none; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-size: 80% 100%; background-color: rgb(231, 62, 16); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-left-color: rgb(151, 42, 13); border-right-color: rgb(151, 42, 13); border-top-color: rgb(151, 42, 13); border-bottom-color: rgb(151, 42, 13); min-width: 80px; margin-left: 30px;">
+                    <ui:Label text="X" selectable="false" name="exitButton" style="-unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraDemiBold.ttf?fileID=12800000&amp;guid=4029eae5b7a872b4faba49ced1a7fcef&amp;type=3#JuraDemiBold&quot;); font-size: 70px; -unity-text-align: upper-center; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-font-style: normal;" />
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement style="flex-grow: 1; width: 50%; max-width: 699px; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;">
-                    <ui:Button name="Alge" class="buttons" style="font-size: 50px; border-left-color: rgb(59, 112, 67); border-right-color: rgb(59, 112, 67); border-top-color: rgb(59, 112, 67); border-bottom-color: rgb(59, 112, 67); background-color: rgb(233, 233, 233); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; background-image: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/compartmentAlge.png?fileID=2800000&amp;guid=4f1c189388833f345ab38f7f243272b9&amp;type=3#compartmentAlge&quot;); flex-direction: row;">
-                        <ui:VisualElement style="flex-grow: 1;" />
-                        <ui:VisualElement style="flex-grow: 1; width: 25%;">
-                            <ui:Label text="Compartment:" class="labelButtons" />
-                            <ui:Label text="Alge" class="labelButtons" />
-                        </ui:VisualElement>
-                    </ui:Button>
-                    <ui:Button name="Salzpflanze" class="buttons" style="font-size: 50px; border-left-color: rgb(60, 110, 113); border-right-color: rgb(60, 110, 113); border-top-color: rgb(60, 110, 113); border-bottom-color: rgb(60, 110, 113); background-image: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/halophytCompartment.png?fileID=2800000&amp;guid=151aac6e276698748844324a6eb790f6&amp;type=3#halophytCompartment&quot;); flex-direction: row;">
-                        <ui:VisualElement style="flex-grow: 1;" />
-                        <ui:VisualElement style="flex-grow: 1; width: 25%;">
-                            <ui:Label text="Compartment:" class="labelButtons" />
-                            <ui:Label text="Halophyt" class="labelButtons" />
-                        </ui:VisualElement>
-                    </ui:Button>
-                    <ui:Button name="Qualle" class="buttons" style="-unity-font-style: normal; font-size: 50px; border-left-color: rgb(112, 59, 106); border-right-color: rgb(112, 59, 106); border-top-color: rgb(112, 59, 106); border-bottom-color: rgb(112, 59, 106); background-image: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/qualleCompartment.png?fileID=2800000&amp;guid=4da5274e45fe5024398aa171dc27dec9&amp;type=3#qualleCompartment&quot;); flex-direction: row;">
-                        <ui:VisualElement style="flex-grow: 1;" />
-                        <ui:VisualElement style="flex-grow: 1; width: 25%;">
-                            <ui:Label text="Compartment:" class="labelButtons" />
-                            <ui:Label text="Qualle" class="labelButtons" />
-                        </ui:VisualElement>
-                    </ui:Button>
-                    <ui:Button name="Grille" class="buttons" style="font-size: 50px; border-left-color: rgb(112, 83, 59); border-right-color: rgb(112, 83, 59); border-top-color: rgb(112, 83, 59); border-bottom-color: rgb(112, 83, 59); background-image: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/grilleCompartment.png?fileID=2800000&amp;guid=a18278d7dca517e47a34e03ff8c9849c&amp;type=3#grilleCompartment&quot;); flex-direction: row;">
-                        <ui:VisualElement style="flex-grow: 1;" />
-                        <ui:VisualElement style="flex-grow: 1; width: 25%;">
-                            <ui:Label text="Compartment:" class="labelButtons" />
-                            <ui:Label text="Grille" class="labelButtons" />
-                        </ui:VisualElement>
-                    </ui:Button>
-                    <ui:Button name="Supermarkt" class="buttons" style="font-size: 50px; border-left-color: rgb(151, 42, 13); border-right-color: rgb(151, 42, 13); border-top-color: rgb(151, 42, 13); border-bottom-color: rgb(151, 42, 13); background-image: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/supermarktUpgrade.png?fileID=2800000&amp;guid=f07b5450f8180174ea20e519cb5d30c5&amp;type=3#supermarktUpgrade&quot;); margin-top: 200px; flex-direction: row;">
-                        <ui:VisualElement style="flex-grow: 1;" />
-                        <ui:VisualElement style="flex-grow: 1; width: 25%;">
-                            <ui:Label text="Umwandlung:" class="labelButtons" />
-                            <ui:Label text="Supermarkt" class="labelButtons" />
-                        </ui:VisualElement>
-                    </ui:Button>
+                <ui:VisualElement style="flex-grow: 1; width: 40%; max-width: 35%; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; background-color: rgba(111, 111, 111, 0); min-width: 35%;">
+                    <ui:VisualElement style="flex-grow: 1; background-color: rgb(126, 174, 111); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; padding-left: 15px; padding-right: 15px;">
+                        <ui:Button name="Alge" class="buttons" style="font-size: 0; border-left-color: rgb(59, 112, 67); border-right-color: rgb(59, 112, 67); border-top-color: rgb(59, 112, 67); border-bottom-color: rgb(59, 112, 67); background-color: rgb(233, 233, 233); background-image: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/compartmentAlge.png?fileID=2800000&amp;guid=4f1c189388833f345ab38f7f243272b9&amp;type=3#compartmentAlge&quot;); flex-direction: row; height: 16%; align-content: auto; align-items: stretch; -unity-text-outline-color: rgb(0, 0, 0);">
+                            <ui:VisualElement style="flex-grow: 1; width: 20%;" />
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; font-size: 20px; flex-direction: column; align-items: flex-start; justify-content: center; align-self: stretch;">
+                                <ui:Label text="Compartment:" name="Label" class="labelButtons" style="padding-top: 0; padding-bottom: 0; -unity-font-style: normal; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;); letter-spacing: -5px; text-shadow: 1.3px 1.3px 5px rgb(0, 0, 0);" />
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                                    <ui:Label text="Alge" class="labelButtons buttonLabulus" style="padding-top: 0; padding-bottom: 0; -unity-font-style: bold; margin-top: 0; -unity-text-align: upper-left; width: auto; height: auto; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;); letter-spacing: -5px; text-shadow: 1.3px 1.2px 5px rgb(0, 0, 0);" />
+                                    <ui:VisualElement name="VisualElement" style="flex-grow: 1;" />
+                                    <ui:Label text="999€&#10;" name="algePrice" class="labelButtons buttonLabulus" style="padding-top: 0; padding-bottom: 0; -unity-font-style: bold; margin-top: 0; -unity-text-align: lower-right; width: auto; height: auto; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;); letter-spacing: -5px; text-shadow: 1.3px 1.2px 5px rgb(0, 0, 0); font-size: 24px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button name="Salzpflanze" class="buttons" style="font-size: 50px; border-left-color: rgb(60, 110, 113); border-right-color: rgb(60, 110, 113); border-top-color: rgb(60, 110, 113); border-bottom-color: rgb(60, 110, 113); background-image: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/halophytCompartment.png?fileID=2800000&amp;guid=151aac6e276698748844324a6eb790f6&amp;type=3#halophytCompartment&quot;); flex-direction: row; height: 16%;">
+                            <ui:VisualElement style="flex-grow: 1; width: 20%;" />
+                            <ui:VisualElement style="flex-grow: 1; width: auto; font-size: 20px;">
+                                <ui:Label text="Compartment:" class="labelButtons" style="height: auto; padding-bottom: 0; padding-top: 0; letter-spacing: -5px;" />
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                                    <ui:Label text="Halophyt" class="labelButtons" style="-unity-font-style: bold; padding-bottom: 0; padding-top: 0; margin-top: 0; letter-spacing: -5px; -unity-paragraph-spacing: 0; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;);" />
+                                    <ui:VisualElement name="VisualElement" style="flex-grow: 1;" />
+                                    <ui:Label text="999€&#10;" name="halophytPrice" class="labelButtons buttonLabulus" style="padding-top: 0; padding-bottom: 0; -unity-font-style: bold; margin-top: 0; -unity-text-align: lower-right; width: auto; height: auto; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;); letter-spacing: -5px; text-shadow: 1.3px 1.2px 5px rgb(0, 0, 0); font-size: 24px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button name="Qualle" class="buttons" style="-unity-font-style: normal; font-size: 50px; border-left-color: rgb(112, 59, 106); border-right-color: rgb(112, 59, 106); border-top-color: rgb(112, 59, 106); border-bottom-color: rgb(112, 59, 106); background-image: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/qualleCompartment.png?fileID=2800000&amp;guid=4da5274e45fe5024398aa171dc27dec9&amp;type=3#qualleCompartment&quot;); flex-direction: row; height: 16%;">
+                            <ui:VisualElement style="flex-grow: 1; width: 20%;" />
+                            <ui:VisualElement style="flex-grow: 1; width: auto; font-size: 20px;">
+                                <ui:Label text="Compartment:" class="labelButtons" style="padding-bottom: 0; padding-top: 0; letter-spacing: -6px;" />
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                                    <ui:Label text="Qualle" class="labelButtons" style="-unity-font-style: bold; padding-bottom: 0; padding-top: 0; margin-top: 0; letter-spacing: -5px; -unity-paragraph-spacing: 0; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;);" />
+                                    <ui:VisualElement name="VisualElement" style="flex-grow: 1;" />
+                                    <ui:Label text="999€&#10;" name="quallePrice" class="labelButtons buttonLabulus" style="padding-top: 0; padding-bottom: 0; -unity-font-style: bold; margin-top: 0; -unity-text-align: lower-right; width: auto; height: auto; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;); letter-spacing: -5px; text-shadow: 1.3px 1.2px 5px rgb(0, 0, 0); font-size: 24px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button name="Grille" class="buttons" style="font-size: 50px; border-left-color: rgb(112, 83, 59); border-right-color: rgb(112, 83, 59); border-top-color: rgb(112, 83, 59); border-bottom-color: rgb(112, 83, 59); background-image: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/grilleCompartment.png?fileID=2800000&amp;guid=a18278d7dca517e47a34e03ff8c9849c&amp;type=3#grilleCompartment&quot;); flex-direction: row; height: 16%;">
+                            <ui:VisualElement style="flex-grow: 1; padding-top: 0; width: 20%;" />
+                            <ui:VisualElement style="flex-grow: 1; width: auto; font-size: 20px;">
+                                <ui:Label text="Compartment:" class="labelButtons" style="padding-top: 0; padding-bottom: 0; align-self: flex-start;" />
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                                    <ui:Label text="Grille" class="labelButtons" style="-unity-font-style: bold; padding-bottom: 0; padding-top: 0; margin-top: 0; letter-spacing: -5px; -unity-paragraph-spacing: 0; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;);" />
+                                    <ui:VisualElement name="VisualElement" style="flex-grow: 1;" />
+                                    <ui:Label text="999€&#10;" name="grillePrice" class="labelButtons buttonLabulus" style="padding-top: 0; padding-bottom: 0; -unity-font-style: bold; margin-top: 0; -unity-text-align: lower-right; width: auto; height: auto; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;); letter-spacing: -5px; text-shadow: 1.3px 1.2px 5px rgb(0, 0, 0); font-size: 24px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:VisualElement name="trennBar" style="flex-grow: 1; background-color: rgb(59, 112, 67); border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; height: 1%; min-height: 1%; max-height: 1%;" />
+                        <ui:Button name="Supermarkt" class="buttons" style="font-size: 50px; border-left-color: rgb(151, 42, 13); border-right-color: rgb(151, 42, 13); border-top-color: rgb(151, 42, 13); border-bottom-color: rgb(151, 42, 13); background-image: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/supermarktUpgrade.png?fileID=2800000&amp;guid=f07b5450f8180174ea20e519cb5d30c5&amp;type=3#supermarktUpgrade&quot;); flex-direction: row; height: 16%; align-self: auto; -unity-text-align: middle-center; justify-content: flex-start; align-items: stretch; padding-top: 10px;">
+                            <ui:VisualElement style="flex-grow: 1; width: 20%; height: auto;" />
+                            <ui:VisualElement style="flex-grow: 1; width: auto; font-size: 20px;">
+                                <ui:Label text="Umwandlung:" class="labelButtons" style="-unity-text-align: middle-left; white-space: normal; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: flex-start;" />
+                                <ui:Label text="Supermarkt" class="labelButtons" style="-unity-font-style: bold; padding-bottom: 0; padding-top: 0; padding-right: 0; padding-left: 0; margin-top: 0; align-self: flex-start;" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                    </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement style="flex-grow: 1; padding-top: 35px; padding-right: 35px; padding-bottom: 35px; padding-left: 35px; background-color: rgba(128, 184, 121, 0);">
-                    <ui:VisualElement name="anzeigeCompartment" style="flex-grow: 1; background-color: rgb(128, 184, 121); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; align-items: center; padding-top: 60px; padding-right: 60px; padding-bottom: 60px; padding-left: 60px;">
+                <ui:VisualElement style="flex-grow: 1; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 15px; background-color: rgba(128, 184, 121, 0); width: auto;">
+                    <ui:VisualElement name="anzeigeCompartment" style="flex-grow: 1; background-color: rgb(59, 112, 67); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; align-items: center; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: auto;">
-                            <ui:VisualElement enabled="true" style="flex-grow: 1; height: 851px; display: flex; flex-direction: row; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; min-height: 851px; max-height: 851px;">
-                                <ui:VisualElement name="BuildingPreview" enabled="true" class="previw" style="flex-grow: 1; background-color: rgb(0, 0, 0); min-width: 512px; min-height: 512px; max-width: 512px; max-height: 512px; background-image: url(&quot;project://database/Assets/UI/PreviewTexture.renderTexture?fileID=8400000&amp;guid=041a9652164365c429cf63ce5f994dea&amp;type=2#PreviewTexture&quot;);" />
-                                <ui:Label text="Knusprig, nussig, unglaublich effizient – Grillen liefern hochwertiges Protein, Vitamine und gesunde Fette. Sie brauchen wenig Platz, kaum Wasser und stoßen kaum CO₂ aus. Was sie leisten? Mehr als man denkt: Als Snack, Mehl oder Fleischersatz sind sie die leisen Superhelden der Ernährung. Klein, aber oho – Insekten sind nicht die Zukunft. Sie sind die Gegenwart." name="descriptionText" style="font-size: 34px; width: 621px; white-space: normal; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;); -unity-font-style: bold; height: 804px; padding-top: 14px; padding-right: 14px; padding-bottom: 14px; padding-left: 14px;" />
-                            </ui:VisualElement>
-                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; min-height: 320px; max-height: 221px; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
-                                <ui:VisualElement style="flex-grow: 1; width: 50%;">
-                                    <ui:Label text="Compartment:&#10;" class="labelDetails" />
-                                    <ui:Label text="Anzahl:" class="labelDetails" />
-                                    <ui:Label text="Produktion:" class="labelDetails" />
-                                    <ui:Label text="Supermarkt:" class="labelDetails" />
+                            <ui:VisualElement enabled="true" style="height: auto; display: flex; flex-direction: row; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; min-height: auto; max-height: none;">
+                                <ui:VisualElement name="BuildingPreview" enabled="true" class="previw" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); min-width: 256px; min-height: 256px; max-height: 256px; background-image: url(&quot;project://database/Assets/UI/PreviewTexture.renderTexture?fileID=8400000&amp;guid=041a9652164365c429cf63ce5f994dea&amp;type=2#PreviewTexture&quot;); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; width: 256px; height: 256px; max-width: 256px; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-left-color: rgb(217, 217, 217); border-right-color: rgb(217, 217, 217); border-top-color: rgb(217, 217, 217); border-bottom-color: rgb(217, 217, 217);" />
+                                <ui:VisualElement style="flex-grow: 1; width: 50%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+                                    <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: auto; height: auto; flex-wrap: nowrap; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;">
+                                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: space-between; background-color: rgb(217, 217, 217); padding-left: 10px; padding-right: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
+                                            <ui:Label text="Compartment:&#10;" class="labelDetails" />
+                                            <ui:Label text="#compartmentType" name="compartmentType" class="labelDetails" style="-unity-font-style: bold;" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
+                                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; background-color: rgb(217, 217, 217); padding-left: 10px; padding-right: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
+                                            <ui:Label text="Anzahl:" name="Label" class="labelDetails" />
+                                            <ui:Label text="#BuildingLevel" name="BuildingLevel" class="labelDetails" style="-unity-font-style: bold;" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement style="flex-direction: row; align-items: flex-end; justify-content: space-between; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
+                                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; background-color: rgb(217, 217, 217); padding-right: 10px; padding-left: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
+                                            <ui:Label text="Produktion:" class="labelDetails" />
+                                            <ui:Label text="#BuildingProduction" name="BuildingProduction" class="labelDetails" style="-unity-font-style: bold;" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement style="flex-direction: row; align-items: auto; justify-content: space-between; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
+                                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; background-color: rgb(217, 217, 217); padding-left: 10px; padding-right: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
+                                            <ui:Label text="Supermarkt:" class="labelDetails" />
+                                            <ui:Label text="#hasSupermarkt" name="hasSupermarkt" class="labelDetails" style="-unity-font-style: bold;" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
                                 </ui:VisualElement>
-                                <ui:VisualElement style="flex-grow: 1; width: 50%;">
-                                    <ui:Label text="Alge" name="compartmentType" class="labelDetails" />
-                                    <ui:Label text="1/6" name="BuildingLevel" class="labelDetails" />
-                                    <ui:Label text="4/s" name="BuildingProduction" class="labelDetails" />
-                                    <ui:Label text="Alge" name="hasSupermarkt" class="labelDetails" />
-                                </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement style="flex-grow: 1; height: 0; min-height: 225px; max-height: 225px; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
-                                <ui:Label name="Label" style="-unity-text-align: upper-left; flex-wrap: nowrap; white-space: normal; font-size: 31px; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&amp;guid=69a7b60da297f0b4b934963755e57843&amp;type=3#JuraMedium&quot;); -unity-font-style: bold;" />
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; background-color: rgba(217, 217, 217, 0); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;">
+                                <ui:VisualElement style="flex-grow: 1; background-color: rgb(217, 217, 217); border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
+                                    <ui:Label text="Beschreibung:" class="labelDetails" style="-unity-text-align: upper-left; padding-top: 0; padding-right: 15px; padding-bottom: 0; padding-left: 15px; -unity-font-style: bold; letter-spacing: -5px;" />
+                                    <ui:Label text="#descriptionText" name="descriptionText" style="font-size: 34px; width: auto; white-space: normal; -unity-font-definition: url(&quot;project://database/Assets/Scripts/UI/UI%20Assets/JuraDemiBold.ttf?fileID=12800000&amp;guid=4029eae5b7a872b4faba49ced1a7fcef&amp;type=3#JuraDemiBold&quot;); -unity-font-style: normal; height: auto; padding-top: 14px; padding-right: 14px; padding-bottom: 14px; padding-left: 14px; letter-spacing: -5px; word-spacing: -5px; -unity-paragraph-spacing: -30px; text-overflow: clip;" />
+                                </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>

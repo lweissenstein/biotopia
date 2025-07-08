@@ -14,6 +14,10 @@ public class ObjectPlacer : MonoBehaviour
         if (newObject.TryGetComponent(out BuildingInstance building))
         {
             building.pos = position;
+            if (BuildingUpdateManager.Instance != null)
+            {
+                BuildingUpdateManager.Instance.RegisterBuilding(building);
+            }
         }
 
         return placedGameObject.Count - 1;

@@ -1,26 +1,3 @@
-.root {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.scroller {
-}
-
-.childScroller {
-    opacity: 1;
-}
-
-VisualElement > .unity-tab-view > .unity-tab > #VisualElement > .unity-scroll-view--vertical > #unity-content-and-vertical-scroll-container > .unity-scroll-view__vertical-scroller {
-    padding-left: 0;
-    background-color: rgba(255, 0, 0, 0);
-    -unity-text-outline-color: rgb(59, 255, 0);
-    color: rgb(255, 0, 0);
-    min-width: -345px;
-    -unity-background-scale-mode: stretch-to-fill;
-}
-
 .buttonUpgrades {
     width: 30%;
     height: 200px;
@@ -84,56 +61,75 @@ VisualElement > .unity-tab-view > .unity-tab > #VisualElement > .unity-scroll-vi
 }
 
 #VisualElement > VisualElement > #tabs > #unity-tab-view__header-container > #unity-tab__header {
-    font-size: 52px;
-    background-color: rgba(127, 197, 126, 0);
+    font-size: 35px;
+    background-color: rgb(217, 217, 217);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     min-width: auto;
     width: 25%;
-    -unity-text-align: middle-left;
+    -unity-text-align: middle-center;
     align-self: center;
     align-content: auto;
     align-items: center;
     flex-direction: column;
-    background-image: url("project://database/Assets/Scripts/UI/UI%20Assets/tabView.png?fileID=2800000&guid=675c10cd972af23468a8d78a2e5d0c64&type=3#tabView");
+    background-image: none;
     margin-left: 10px;
-    margin-right: 10px;
-    padding-top: 12px;
+    margin-right: 5px;
+    padding-top: 20px;
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
-    height: 107px;
-}
-
-.tabButton {
+    height: 88px;
+    -unity-font-definition: url("project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&guid=69a7b60da297f0b4b934963755e57843&type=3#JuraMedium");
+    -unity-font-style: bold;
+    letter-spacing: -5px;
+    border-left-color: rgb(56, 56, 56);
+    border-right-color: rgb(56, 56, 56);
+    border-top-color: rgb(56, 56, 56);
+    border-bottom-color: rgb(56, 56, 56);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.57);
 }
 
 #VisualElement > VisualElement > #tabs > #unity-tab-view__header-container {
-    margin-left: 0;
+    margin-left: 15px;
     margin-right: 0;
-    width: 70%;
+    width: 96%;
     font-size: 16px;
+    flex-grow: 0;
+    flex-direction: row;
+    height: auto;
 }
 
 #VisualElement > VisualElement > #tabs > #unity-tab-view__content-container {
-    width: 700px;
-    min-width: 700px;
-    max-width: 700px;
     flex-direction: row;
-}
-
-#VisualElement > VisualElement > #tabs > #tabAlge > #unity-tab__content-container {
-    height: 100%;
-    min-height: 151px;
-    max-height: 124%;
-    flex-direction: row;
+    flex-grow: 0;
     width: 100%;
+    min-width: 100%;
+    max-width: 100%;
 }
 
 .labelButtons {
-    font-size: 50px;
+    font-size: 39px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.unity-tab__content-container {
+    width: 68%;
+    visibility: visible;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    overflow: visible;
+    min-width: 68%;
+    max-width: 68%;
+}
+
+.labelsShadow {
+    text-shadow: 1px 1px 5px rgb(0, 0, 0);
 }

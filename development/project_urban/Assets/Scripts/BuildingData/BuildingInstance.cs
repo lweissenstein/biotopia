@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
 using EconomySystem;
-using Util;
-using Random = UnityEngine.Random;
 
 public class BuildingInstance : MonoBehaviour
 {
@@ -16,9 +14,7 @@ public class BuildingInstance : MonoBehaviour
     public static event Action<ProductType, float> ConsumeProduct;
     private ObjectPlacer objectPlacer;
     private float fixedTimer = 0f;
-    private Timer _timer = new();
     private ProcessSelectionManager processSelectionManager;
-    private ProductDescriptionDatabase productDescriptionDatabase;
     private FoodEconomy foodEconomy;
     public Vector3 pos;
     public RandomGridManipulation gridManipulation;
@@ -74,48 +70,48 @@ public class BuildingInstance : MonoBehaviour
         // Therme
         // Supermarkt
     }
-    public void FixedUpdate()
-    {
-        // General
+    //public void FixedUpdate()
+    //{
+    //    // General
 
 
-        fixedTimer += Time.fixedDeltaTime;
+    //    fixedTimer += Time.fixedDeltaTime;
 
-        if (fixedTimer >= 1f)
-        {
-            if (isProducing)
-            {
-                fixedTimer = 0f; // Reset Timer
-                fixedTimer -= 1f; // oder -= 1f, wenn du es genauer willst
-                GetProduction();
-            }
+    //    if (fixedTimer >= 1f)
+    //    {
+    //        if (isProducing)
+    //        {
+    //            fixedTimer = 0f; // Reset Timer
+    //            fixedTimer -= 1f; // oder -= 1f, wenn du es genauer willst
+    //            GetProduction();
+    //        }
 
             
-            ConsumeFood?.Invoke(0.00005f * residents);
+    //        ConsumeFood?.Invoke(0.00005f * residents);
 
-            if (compartmentTypeHouse == 7) placementSystem.PingSuperMarket(pos);
+    //        if (compartmentTypeHouse == 7) placementSystem.PingSuperMarket(pos);
 
-            if (compartmentTypeHouse != 7 && hasSupermarket)
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    int available = 0;
+    //        if (compartmentTypeHouse != 7 && hasSupermarket)
+    //        {
+    //            for (int i = 0; i < 4; i++)
+    //            {
+    //                int available = 0;
 
-                    if (processSelectionManager.purchased[4 * i] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i], 1)) available++;
-                    if (processSelectionManager.purchased[4 * i + 1] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 1], 1)) available++;
-                    if (processSelectionManager.purchased[4 * i + 2] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 2], 1)) available++;
-                    if (processSelectionManager.purchased[4 * i + 3] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 3], 1)) available++;
+    //                if (processSelectionManager.purchased[4 * i] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i], 1)) available++;
+    //                if (processSelectionManager.purchased[4 * i + 1] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 1], 1)) available++;
+    //                if (processSelectionManager.purchased[4 * i + 2] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 2], 1)) available++;
+    //                if (processSelectionManager.purchased[4 * i + 3] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 3], 1)) available++;
 
-                    if (available != 0)
-                    {
-                        int rnd = Random.Range(0, available);
-                        ConsumeProduct?.Invoke(processSelectionManager.products[rnd + 4 * i], 0.00005f * residents);
-                        ProduceFood?.Invoke(0.02f);
-                        AddCredits?.Invoke(1); // F��gt 1 Credit hinzu, wenn ein Produkt konsumiert wird
-                    }
-                }
-            }
-    }
+    //                if (available != 0)
+    //                {
+    //                    int rnd = Random.Range(0, available);
+    //                    ConsumeProduct?.Invoke(processSelectionManager.products[rnd + 4 * i], 0.00005f * residents);
+    //                    ProduceFood?.Invoke(0.02f);
+    //                    AddCredits?.Invoke(1); // F��gt 1 Credit hinzu, wenn ein Produkt konsumiert wird
+    //                }
+    //            }
+    //        }
+    //}
 
             
             
@@ -132,9 +128,14 @@ public class BuildingInstance : MonoBehaviour
        
 
         
-    }
+    
 
     // ------------ General ------------
+
+    public void TryConsumeProduct()
+    {
+        ConsumeFood?.Invoke(1);
+    }
 
     // ------------ Hochhaus ------------
     public void UpgradeHouse()

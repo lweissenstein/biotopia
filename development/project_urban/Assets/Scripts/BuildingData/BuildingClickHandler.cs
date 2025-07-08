@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class BuildingClickHandler : MonoBehaviour
 {
@@ -10,9 +11,9 @@ public class BuildingClickHandler : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(0))
+        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
            {
-            //Debug.Log("Klick registriert");
+            Debug.Log("Klick registriert");
 
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             {
@@ -20,7 +21,8 @@ public class BuildingClickHandler : MonoBehaviour
                 return;
             }
 
-            Ray ray = sceneCamera.ScreenPointToRay(Input.mousePosition);
+            Vector2 mousePos = Touchscreen.current.primaryTouch.position.ReadValue();
+            Ray ray = sceneCamera.ScreenPointToRay(mousePos);
 
             if (Physics.Raycast(ray, out RaycastHit hit, 100f, buildingLayer))
             {
@@ -57,11 +59,6 @@ public class BuildingClickHandler : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            FindFirstObjectByType<BuildingSelectionManager>()?.Deselect();
-            FindFirstObjectByType<ProcessSelectionManager>()?.Deselect();
-        }
     }
     
 }
