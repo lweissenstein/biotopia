@@ -49,8 +49,10 @@ public class PlacementSystem : MonoBehaviour
     private void Start()
     {
         //StopPlacement();
-        floorData = new();
-        furnitureData = new();
+        // no idea why we are using a Y axis btw
+        var gridSize = new Vector3Int(gridSizeX, 1, gridSizeZ);
+        floorData = GridData.New(gridSize);
+        furnitureData = GridData.New(gridSize);
         randomPlacer = new RandomGridManipulation(grid, objectPlacer, database);
 
         randomPlacer.GenerateRiver(gridSizeX, gridSizeZ, furnitureData, 3);
