@@ -108,6 +108,7 @@ release_job:
     - echo "running release_job for $TAG"
   release:                                         # See https://docs.gitlab.com/ee/ci/yaml/#release for available properties
     tag_name: '$RELEASE_TAG'
+    name: 'Release $RELEASE_TAG'
     description: '$CI_COMMIT_MESSAGE'
     ref: '$CI_COMMIT_SHA'                          # The tag is created from the pipeline SHA.
     assets:
