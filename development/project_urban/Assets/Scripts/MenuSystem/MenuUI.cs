@@ -20,32 +20,48 @@ namespace MenuSystem
         public UIDocument upgradeWindowUI;
         public UIDocument processBuildingUI;
         public UIDocument economyUI;
-        private Button _pauseButton;
         private Label _menuLabel;
         private Button _continueButton;
         private Button _startNewGameButton;
         private VisualElement _visualElement;
+        private bool _isFirstFrame;
         private static readonly Color BackGroundColor = new(.8f, .8f, .8f, 0.5f);
 
 
         public void Start()
         {
+            _isFirstFrame = true;
             _menuLabel = economyUI.rootVisualElement.Q<Label>("menuButtonLabel");
-            _menuLabel.RegisterCallback<ClickEvent>(Object => OnPauseButton());
-            //ShowGame();
-            // pause the game on startup
-            if (State.IsNewGame) OnPauseButton();
+            _menuLabel.RegisterCallback<ClickEvent>(_ => OnPauseButton());
+        }
+
+
+        public void Update()
+        {
+            // need this because it didn't work with WaitForEndOfFrame().
+            // we need to wait for the other uis to be rendered in order to hide them properly.
+            // sorry
+            if (!_isFirstFrame) return;
+            ActualStart();
+            _isFirstFrame = false;
+
+            return;
+
+            void ActualStart()
+            {
+                // pause the game on startup
+                if (State.IsNewGame) OnPauseButton();
+            }
         }
 
         private void OnStartNewGameButton()
         {
             // only reload the scene if this it isn't a new game. No reason to reload a new game.
-            
+
             if (!State.IsNewGame) SceneManager.LoadSceneAsync(0);
             State.IsNewGame = false;
             FoodEconomy.Reset();
             HideMenu();
-            //ShowGame();
             ShowOtherUIs();
             GamePauser.ContinueGame();
             economyUI.rootVisualElement.style.display = DisplayStyle.Flex;
@@ -54,18 +70,15 @@ namespace MenuSystem
         private void OnPauseButton()
         {
             GamePauser.PauseGame();
-            //HideGame();
             HideOtherUIs();
             ShowMenu();
         }
 
         private void OnContinueButton()
         {
-            economyUI.rootVisualElement.style.display = DisplayStyle.Flex;
             // do nothing if this is a new game.
             if (State.IsNewGame) return;
             HideMenu();
-            //ShowGame();
             ShowOtherUIs();
             GamePauser.ContinueGame();
         }
@@ -84,9 +97,9 @@ namespace MenuSystem
 
         private void ShowOtherUIs()
         {
-            economyUI.rootVisualElement.style.display = DisplayStyle.Flex;
             ShowOtherUITemplate(upgradeWindowUI, State.UpgradeWindowUIDisplayStyle);
             ShowOtherUITemplate(processBuildingUI, State.ProcessBuildingUIDisplayStyle);
+            ShowOtherUITemplate(economyUI, State.EconomyUIDisplayStyle);
             return;
 
             void ShowOtherUITemplate(UIDocument ui, StyleEnum<DisplayStyle>? displayStyle)
@@ -97,18 +110,6 @@ namespace MenuSystem
                 }
             }
         }
-
-
-        //private void ShowGame()
-        //{
-        //    _pauseButton.clicked += OnPauseButton;
-        //    menuUI?.rootVisualElement?.Add(_pauseButton);
-        //}
-
-        //private void HideGame()
-        //{
-        //    menuUI?.rootVisualElement?.Remove(_pauseButton);
-        //}
 
         private void ShowMenu()
         {
