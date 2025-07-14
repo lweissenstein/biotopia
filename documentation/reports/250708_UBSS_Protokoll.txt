@@ -1,0 +1,40 @@
+# UBSS: 08.07.2025
+
+# Stand:
+- Erkenntnisse Bad Saarow: wenig fürs Spiel, aber im Endeffekt zu viel auf einmal ohne Tutorial, Umwelteinflüsse könnte eingefügt werden
+- Bierkeller wird in Bayern zur Kultivierung von Halophyten genutzt, kann z.B. für Showtime 
+
+# Play Store Food4Future
+- es gibt einen account, aber alt
+- Marino spricht mit Alex
+- Unterscheidung personal / organisatorisch
+- apk als Download auch möglich
+
+# Models & Shader:
+
+# Important To-Do's:
+
+# Input:
+- Erkenntnisse aus Bad Saarow gut framen für Showtime (z.B. nicht nutzertest --> Usability test)
+- muss nicht alles implementiert werden, aber die Gedankengänge müssen klar dargestellt werden (Skizzen, Tabellen)
+- jetzt den Teil refinen, fokus darauf und weitere Aussicht skizzieren
+- Plakat ist immer gut, teil kann Pitch sein, 
+
+#Take-Aways:
+- Einstieg ist schwer, braucht Einführung
+- sollte hooken
+- Profilen on-device
+- Profiler way to go
+
+# Vortrag Showtime
+- 5 Minuten hardcap
+- 1 Woche vorher machen bis 18.07. und mit Marino,.. absprechen
+- Stand zählt auch recht viel --> an einem Tag 30% 
+- Projekt verkaufen, zeigen was wir gemacht haben, wie wir gemacht haben (technisch, tech-Stack, Gruppenverteilung), Vision darstellen, was war Aufgabenstellung, Fotos Bad Saarow,
+- Wer hält Vortrag
+
+# Lookout:
+- bis nächste Woche sollte Präsi sein
+- 2 Wochen Zeit nach Showtime für Dokumentation
+- Termin für Präsi: 17.07. 10:00 Uhr
+
