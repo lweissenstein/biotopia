@@ -27,6 +27,16 @@ public class UpgradeableObject : MonoBehaviour
         }
     }
 
+    public void SetActiveSolarPanels(int height)
+    {
+        for (int i = 9; i < 12; i++)
+        {
+            Transform child = transform.Find((i).ToString());
+            if (child != null)
+                child.gameObject.SetActive(i == height + 8);
+        }
+    }
+
     private void ActivateAdditionalChild(int id)
     {
         if (id >= 3 && id <= 6) {

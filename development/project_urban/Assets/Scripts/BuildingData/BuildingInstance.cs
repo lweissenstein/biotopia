@@ -145,6 +145,12 @@ public class BuildingInstance : MonoBehaviour
             height = 2;
         }
         height++;
+        if (isProducing)
+        {
+            var upgradeable = GetComponent<UpgradeableObject>();
+            if (upgradeable != null)
+                upgradeable.SetActiveSolarPanels(height);
+        }
         UpdateCollider();
 
     }
@@ -155,7 +161,7 @@ public class BuildingInstance : MonoBehaviour
         {
             var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
-                upgradeable.ActivateChild(3);
+                upgradeable.SetActiveSolarPanels(height);
 
             compartmentTypeHouse = 3;
             countCompartmentsHouse++;
@@ -181,7 +187,7 @@ public class BuildingInstance : MonoBehaviour
         {
             var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
-                upgradeable.ActivateChild(4);
+                upgradeable.SetActiveSolarPanels(height);
 
             compartmentTypeHouse = 4;
             countCompartmentsHouse++;
@@ -206,7 +212,7 @@ public class BuildingInstance : MonoBehaviour
         {
             var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
-                upgradeable.ActivateChild(5);
+                upgradeable.SetActiveSolarPanels(height);
 
             compartmentTypeHouse = 5;
             countCompartmentsHouse++;
@@ -230,7 +236,7 @@ public class BuildingInstance : MonoBehaviour
         {
             var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
-                upgradeable.ActivateChild(6);
+                upgradeable.SetActiveSolarPanels(height);
 
             compartmentTypeHouse = 6;
             countCompartmentsHouse++;
@@ -247,6 +253,7 @@ public class BuildingInstance : MonoBehaviour
             Debug.LogWarning("Maximale Anzahl an Upgrades erreicht.");
         }
     }
+
 
     public void UpgradeSupermarkt()
     {
