@@ -3,7 +3,17 @@ guid: 777255074c2fe0b408cea152d34ffc27
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: solarBlue
+    second: {fileID: 2100000, guid: 06499a263a141e2499b4cb8329cda9ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: solarWhite
+    second: {fileID: 2100000, guid: 199a8fd09e33fa5438dab87080e67749, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

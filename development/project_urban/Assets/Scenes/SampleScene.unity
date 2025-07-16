@@ -1010,6 +1010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 458607761}
   - component: {fileID: 458607760}
+  - component: {fileID: 458607762}
   m_Layer: 0
   m_Name: MenuSystem
   m_TagString: Untagged
@@ -1049,6 +1050,22 @@ Transform:
   - {fileID: 1242518418}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &458607762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458607759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66a77f8354a6114f831c03265a06489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 0}
+  previewTexture: {fileID: 0}
+  SuperMarketRange: 0
+  credits: {fileID: 0}
 --- !u!1 &595828883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2038,6 +2055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiDocument: {fileID: 1570907081}
   previewTexture: {fileID: 8400000, guid: 041a9652164365c429cf63ce5f994dea, type: 2}
+  SuperMarketRange: 0
   credits: {fileID: 0}
 --- !u!1 &1673047347
 GameObject:

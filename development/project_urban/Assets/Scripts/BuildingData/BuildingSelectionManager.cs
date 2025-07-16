@@ -17,6 +17,8 @@ public class BuildingSelectionManager : MonoBehaviour
     private BuildingInstance selected;
     private List<BuildingInstance> superMarkets = new List<BuildingInstance>();
 
+    public bool SuperMarketRange = false;
+
     public CreditSystem credits;
 
     void Start()
@@ -104,7 +106,6 @@ public class BuildingSelectionManager : MonoBehaviour
                     SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
                     if (!superMarkets.Contains(selected))
                         superMarkets.Add(selected);
-                    ToggleSuperMarketRange(true); 
                 }
             }
         };
@@ -149,7 +150,6 @@ public class BuildingSelectionManager : MonoBehaviour
                 grillenButton.style.visibility = Visibility.Hidden;
                 supermarktButton.style.visibility = Visibility.Hidden;
                 hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
-                ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 4)
             {
@@ -167,7 +167,6 @@ public class BuildingSelectionManager : MonoBehaviour
                 grillenButton.style.visibility = Visibility.Hidden;
                 supermarktButton.style.visibility = Visibility.Hidden;
                 hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
-                ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 5)
             {
@@ -185,7 +184,6 @@ public class BuildingSelectionManager : MonoBehaviour
                 grillenButton.style.visibility = Visibility.Hidden;
                 supermarktButton.style.visibility = Visibility.Hidden;
                 hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
-                ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 6)
             {
@@ -203,7 +201,6 @@ public class BuildingSelectionManager : MonoBehaviour
                 grillenButton.style.visibility = Visibility.Visible;
                 supermarktButton.style.visibility = Visibility.Hidden;
                 hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
-                ToggleSuperMarketRange(false);
             }
             else if (building.compartmentTypeHouse == 7)
             {
@@ -216,7 +213,6 @@ public class BuildingSelectionManager : MonoBehaviour
                 salzpflanzenButton.style.visibility = Visibility.Hidden;
                 grillenButton.style.visibility = Visibility.Hidden;
                 supermarktButton.style.visibility = Visibility.Visible;
-                ToggleSuperMarketRange(true);
             }
             else
             {
@@ -231,7 +227,6 @@ public class BuildingSelectionManager : MonoBehaviour
                 grillenButton.style.visibility = Visibility.Visible;
                 supermarktButton.style.visibility = Visibility.Visible;
                 hasSupermarktLabel.text = (selected.hasSupermarket ? "Ja" : "Nein");
-                ToggleSuperMarketRange(false);
             }
         }
 
@@ -275,13 +270,14 @@ public class BuildingSelectionManager : MonoBehaviour
     void HideUI() => uiDocument.rootVisualElement.style.display = DisplayStyle.None;
     void ShowUI() => uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;
 
-    public void ToggleSuperMarketRange(bool on)
+    public void ToggleSuperMarketRange()
     {
+        SuperMarketRange = !SuperMarketRange;
         foreach (BuildingInstance supMar in superMarkets) 
         {
             Transform Indicator = supMar.transform.Find("8");
             if (Indicator != null)
-                Indicator.gameObject.SetActive(on);
+                Indicator.gameObject.SetActive(SuperMarketRange);
         }
     }
 }
