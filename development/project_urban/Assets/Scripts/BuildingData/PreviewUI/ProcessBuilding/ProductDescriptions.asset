@@ -98,7 +98,7 @@ MonoBehaviour:
       zum Geschmackstr\xE4ger.\n\n"
     name: Medu Mayo
     icon: {fileID: 0}
-    price: 200000
+    price: 1500
     baseSpeed: 12
     baseAmount: 1
     baseQuality: 0
@@ -114,7 +114,7 @@ MonoBehaviour:
       \u2013 eine Br\xFCcke zu pflanzlichen Alternativen."
     name: Ocean Tofu
     icon: {fileID: 0}
-    price: 500
+    price: 7500
     baseSpeed: 12
     baseAmount: 1
     baseQuality: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
       die Anpassung von Inhaltsstoffen zu lehren ."
     name: Lumino Bites
     icon: {fileID: 0}
-    price: 1000
+    price: 15000
     baseSpeed: 12
     baseAmount: 1
     baseQuality: 0

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColliderHouse: {fileID: -8283664908345444979}
-  data: {fileID: 11400000, guid: 4c0facadb46c044448b8a7a757169a3f, type: 2}
+  data: {fileID: 11400000, guid: 0185353c8f96ff746b2723accd140ec2, type: 2}
   previewPrefab: {fileID: 7299153431594702042}
   pos: {x: 0, y: 0, z: 0}
   placementSystem: {fileID: 0}

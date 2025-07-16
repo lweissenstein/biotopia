@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using EconomySystem;
+using System.Collections.Generic;
 
 public class BuildingInstance : MonoBehaviour
 {
@@ -25,6 +26,14 @@ public class BuildingInstance : MonoBehaviour
     public static event Action<ResourceType, float> ProduceResource;
     public static event Action<int> AddCredits;
 
+    public Dictionary<string, int> compartmentPrices = new Dictionary<string, int>
+{
+    { "Alge", 50 },
+    { "Qualle", 50 },
+    { "Salzpflanze", 50 },
+    { "Grille", 50 },
+    { "Supermarkt", 100 }
+};
 
     public float countCompartmentsHouse = 0f;
     public int maxCompartments = 6;

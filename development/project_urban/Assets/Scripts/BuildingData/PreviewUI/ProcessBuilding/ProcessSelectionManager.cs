@@ -8,9 +8,9 @@ public class ProcessSelectionManager : MonoBehaviour
 {
     public UIDocument uiDocument;
 
-    private Label cntEfficiency, cntSpeed, cntAmount, enablerStatus, nameLabel;
+    private Label cntEfficiency, cntSpeed, cntAmount, enablerStatus, nameLabel, enablerText, priceAmount, priceEfficiency, priceSpeed;
     private Button upgradeSpeedButton, upgradeAmountButton, upgradeQualityButton, upgradeEfficiencyButton, enablerButton;
-    private VisualElement panel;
+    private VisualElement panel, enablerVisual, descBorder, nameBorder;
     private Tab tabButton;
 
     private ProcessInstance selected;
@@ -36,9 +36,21 @@ public class ProcessSelectionManager : MonoBehaviour
     // Dictionary fr Buttons pro Produkt
     private Dictionary<ProductType, Button> productButtons = new();
 
-    private static readonly Color SoftGreen = new Color(0.2f, 0.5f, 0.2f);  // dunkles, sanftes Grn
-    private static readonly Color SoftRed = new Color(0.6f, 0.2f, 0.2f); // sanftes rot
+    // Enabler Colors
+    private static readonly Color enablerRed = new Color(231f / 255f, 62f / 255f, 17f / 255f);   // #E73E11
+    private static readonly Color enablerGreen = new Color(106f / 255f, 191f / 255f, 79f / 255f);  // #6ABF4F
+    private static readonly Color enablerRedBorder = new Color(119f / 255f, 31f / 255f, 8f / 255f);    // #771F08
+    private static readonly Color enablerGreenBorder = new Color(43f / 255f, 96f / 255f, 26f / 255f);    // #2B601A
 
+    // Background Colors
+    private static readonly Color backgroundAlge = new Color(40f / 255f, 99f / 255f, 78f / 255f);     // #28634E
+    private static readonly Color backgroundAlgeBorder = new Color(59f / 255f, 112f / 255f, 67f / 255f);    // #3B7043
+    private static readonly Color backgroundSalzpflanze = new Color(40f / 255f, 75f / 255f, 99f / 255f);     // #284B63
+    private static readonly Color backgroundSalzpflanzeBorder = new Color(60f / 255f, 110f / 255f, 113f / 255f);   // #3C6E71
+    private static readonly Color backgroundQualle = new Color(99f / 255f, 40f / 255f, 90f / 255f);     // #63285A
+    private static readonly Color backgroundQualleBorder = new Color(112f / 255f, 59f / 255f, 106f / 255f);   // #703B6A
+    private static readonly Color backgroundGrille = new Color(99f / 255f, 71f / 255f, 40f / 255f);     // #634728
+    private static readonly Color backgroundGrilleBorder = new Color(112f / 255f, 83f / 255f, 59f / 255f);    // #70533B
 
     private static readonly Dictionary<ProductType, ProductType?> productChainNext = new()
 {
@@ -73,16 +85,30 @@ public class ProcessSelectionManager : MonoBehaviour
         upgradeSpeedButton = root.Q<Button>("upgSpeed");
         upgradeEfficiencyButton = root.Q<Button>("upgEfficiency");
         enablerButton = root.Q<Button>("enablerButton");
+        enablerText = root.Q<Label>("enablerText");
+        nameBorder = root.Q<VisualElement>("nameBorder");
+        descBorder = root.Q<VisualElement>("descBorder");
         cntAmount = root.Q<Label>("cntAmount");
         cntEfficiency = root.Q<Label>("cntEfficiency");
         cntSpeed = root.Q<Label>("cntSpeed");
+        priceAmount = root.Q<Label>("priceAmount");
+        priceEfficiency = root.Q<Label>("priceEfficiency");
+        priceSpeed = root.Q<Label>("priceSpeed");
         //enablerStatus = root.Q<Label>("enablerStatus");
         nameLabel = root.Q<Label>("name");
+        enablerVisual = root.Q<VisualElement>("enablerVisual");
         var tabView = root.Q<TabView>("tabs");
 
         var allButtons = root.Query<Button>().Where(b => b.name.StartsWith("btn")).ToList();
 
         int i = 0;
+
+        foreach (ProductType type in Enum.GetValues(typeof(ProductType)))
+        {
+            upgradePrices[(type, ProcessValue.Speed)] = 500;
+            upgradePrices[(type, ProcessValue.Amount)] = 500;
+            upgradePrices[(type, ProcessValue.Efficiency)] = 500;
+        }
 
         foreach (ProductType productType in Enum.GetValues(typeof(ProductType)))
         {
@@ -94,34 +120,24 @@ public class ProcessSelectionManager : MonoBehaviour
 
         foreach (var btn in allButtons)
         {
-            ProductType? type = btn.name switch
+            if (Enum.TryParse<ProductType>(btn.name.Replace("btn", ""), out var parsedType))
             {
-                var n when n.Contains("AlgePowder") => ProductType.AlgePowder,
-                var n when n.Contains("AlgeNoodle") => ProductType.AlgeNoodle,
-                var n when n.Contains("AlgeJelly") => ProductType.AlgeJelly,
-                var n when n.Contains("AlgePatty") => ProductType.AlgePatty,
-                var n when n.Contains("SalzpflanzeSalt") => ProductType.SalzpflanzeSalt,
-                var n when n.Contains("SalzpflanzePickles") => ProductType.SalzpflanzePickles,
-                var n when n.Contains("SalzpflanzeSpread") => ProductType.SalzpflanzeSpread,
-                var n when n.Contains("SalzpflanzeChips") => ProductType.SalzpflanzeChips,
-                var n when n.Contains("QualleNoodle") => ProductType.QualleNoodle,
-                var n when n.Contains("QualleMayo") => ProductType.QualleMayo,
-                var n when n.Contains("QualleTofu") => ProductType.QualleTofu,
-                var n when n.Contains("QualleBites") => ProductType.QualleBites,
-                var n when n.Contains("GrilleFlour") => ProductType.GrilleFlour,
-                var n when n.Contains("GrilleLoaf") => ProductType.GrilleLoaf,
-                var n when n.Contains("GrilleChips") => ProductType.GrilleChips,
-                var n when n.Contains("GrilleBar") => ProductType.GrilleBar,
-                _ => (ProductType?)null
-            };
+                btn.userData = parsedType;
+                productButtons[parsedType] = btn;
 
-            if (type.HasValue)
-            {
-                btn.userData = type.Value;
-                productButtons[type.Value] = btn;
+                var entry = productDatabase.GetEntry(parsedType);
+                if (entry != null)
+                {
+                    var labelName = "price" + parsedType; 
+                    var priceLabel = btn.Q<Label>(labelName);
+                    if (priceLabel != null)
+                    {
+                        priceLabel.text = entry.price.ToString();
+                    }
+                }
             }
 
-            btn.clicked += () =>
+        btn.clicked += () =>
             {
                 if (btn.userData is ProductType productType)
                 {
@@ -143,7 +159,10 @@ public class ProcessSelectionManager : MonoBehaviour
                         ActivateProductLine(productType);
                         UpdateEnableButtonVisual();
                         UpdateUpgradeButtonVisual();
-                        Label child = btn.Q<Label>("price");
+                        UpdateColors(entry.inputResource);
+
+                        var labelName = "price" + productType;
+                        Label child = btn.Q<Label>(labelName);
                         if (child != null)
                         {
                             child.style.visibility = Visibility.Hidden; // Preis-Label ausblenden
@@ -155,6 +174,7 @@ public class ProcessSelectionManager : MonoBehaviour
                         ActivateProductLine(productType);
                         UpdateEnableButtonVisual();
                         UpdateUpgradeButtonVisual();
+                        UpdateColors(entry.inputResource);
                     }
                     else
                     {
@@ -164,88 +184,35 @@ public class ProcessSelectionManager : MonoBehaviour
             };
         }
 
+        upgradeSpeedButton.clicked += () => HandleUpgrade(ProcessValue.Speed);
+        upgradeAmountButton.clicked += () => HandleUpgrade(ProcessValue.Amount);
+        upgradeEfficiencyButton.clicked += () => HandleUpgrade(ProcessValue.Efficiency);
+
         enablerButton.clicked += () =>
         {
             if (selected == null)
                 return;
 
             bool isCurrentlyActive = productActiveStates.ContainsKey(selectedType) && productActiveStates[selectedType];
+            bool newState = !isCurrentlyActive;
             productActiveStates[selectedType] = !isCurrentlyActive;
             selected.ToggleProducing(selectedType);
 
-            enablerButton.style.backgroundColor = new StyleColor(isCurrentlyActive ? Color.red : Color.green);
-        };
+            enablerText.text = newState ? "Deaktivieren" : "Aktivieren";
+            enablerVisual.style.backgroundColor = new StyleColor(isCurrentlyActive ? enablerRed : enablerGreen);
+            SetBorderColor(enablerVisual, isCurrentlyActive ? enablerRedBorder : enablerGreenBorder);
 
-        upgradeSpeedButton.clicked += () =>
-        {
-            if (selected == null) return;
-
-            var key = (selectedType, ProcessValue.Speed);
-
-            if (!upgradePrices.ContainsKey(key))
-                upgradePrices[key] = 100;
-
-            int price = upgradePrices[key];
-
-            if (CreditSystem.Instance.TrySpendCredits(price))
+            // Update Product's activeVisual (e.g. activeAlgeNoodle)
+            if (productButtons.TryGetValue(selectedType, out var productBtn))
             {
-                selected.Upgrade(selectedType, ProcessValue.Speed);
-                upgradePrices[key] = (int)(price * 2);
+                string activeName = $"active{selectedType}";
+                VisualElement activeVisual = productBtn.Q<VisualElement>(activeName);
 
-                cntSpeed.text = $"{selected.GetUpgrade(selectedType, ProcessValue.Speed)}/{selected.GetMaxUpgrade(selectedType, ProcessValue.Speed)}";
-            }
-            else
-            {
-                Debug.Log("Nicht genug Credits fr Speed Upgrade");
-            }
-
-        };
-
-        upgradeAmountButton.clicked += () =>
-        {
-            if (selected == null) return;
-
-            var key = (selectedType, ProcessValue.Amount);
-
-            if (!upgradePrices.ContainsKey(key))
-                upgradePrices[key] = 150;
-
-            int price = upgradePrices[key];
-
-            if (CreditSystem.Instance.TrySpendCredits(price))
-            {
-                selected.Upgrade(selectedType, ProcessValue.Amount);
-                upgradePrices[key] = (int)(price * 2);
-
-                cntAmount.text = $"{selected.GetUpgrade(selectedType, ProcessValue.Amount)}/{selected.GetMaxUpgrade(selectedType, ProcessValue.Amount)}";
-            }
-            else
-            {
-                Debug.Log("Nicht genug Credits fr Amount Upgrade");
-            }
-        };
-
-        upgradeEfficiencyButton.clicked += () =>
-        {
-            if (selected == null) return;
-
-            var key = (selectedType, ProcessValue.Efficiency);
-
-            if (!upgradePrices.ContainsKey(key))
-                upgradePrices[key] = 50;
-
-            int price = upgradePrices[key];
-
-            if (CreditSystem.Instance.TrySpendCredits(price))
-            {
-                selected.Upgrade(selectedType, ProcessValue.Efficiency);
-                upgradePrices[key] = (int)(price * 2);
-
-                cntEfficiency.text = $"{selected.GetUpgrade(selectedType, ProcessValue.Efficiency)}/{selected.GetMaxUpgrade(selectedType, ProcessValue.Efficiency)}";
-            }
-            else
-            {
-                Debug.Log("Nicht genug Credits fr Efficiency Upgrade");
+                if (activeVisual != null)
+                {
+                    activeVisual.style.backgroundColor = new StyleColor(newState ? enablerGreen : enablerRed);
+                    SetBorderColor(activeVisual, newState ? enablerGreenBorder : enablerRedBorder);
+                }
             }
         };
 
@@ -270,18 +237,91 @@ public class ProcessSelectionManager : MonoBehaviour
         HideUI();
     }
 
+    private void UpdateColors(ResourceType resType)
+    {
+        switch (resType)
+        {
+            case ResourceType.Alge:
+                upgradePanel.style.backgroundColor = new StyleColor(backgroundAlge);
+                SetBorderColor(enablerButton, backgroundAlgeBorder);
+                SetBorderColor(upgradeSpeedButton, backgroundAlgeBorder);
+                SetBorderColor(upgradeAmountButton, backgroundAlgeBorder);
+                SetBorderColor(upgradeEfficiencyButton, backgroundAlgeBorder);
+                SetBorderColor(nameBorder, backgroundAlgeBorder);
+                SetBorderColor(descBorder, backgroundAlgeBorder);
+                break;
+            case ResourceType.Salzpflanze:
+                upgradePanel.style.backgroundColor = new StyleColor(backgroundSalzpflanze);
+                SetBorderColor(enablerButton, backgroundSalzpflanzeBorder);
+                SetBorderColor(upgradeSpeedButton, backgroundSalzpflanzeBorder);
+                SetBorderColor(upgradeAmountButton, backgroundSalzpflanzeBorder);
+                SetBorderColor(upgradeEfficiencyButton, backgroundSalzpflanzeBorder);
+                SetBorderColor(nameBorder, backgroundSalzpflanzeBorder);
+                SetBorderColor(descBorder, backgroundSalzpflanzeBorder);
+                break;
+            case ResourceType.Qualle:
+                upgradePanel.style.backgroundColor = new StyleColor(backgroundQualle);
+                SetBorderColor(enablerButton, backgroundQualleBorder);
+                SetBorderColor(upgradeSpeedButton, backgroundQualleBorder);
+                SetBorderColor(upgradeAmountButton, backgroundQualleBorder);
+                SetBorderColor(upgradeEfficiencyButton, backgroundQualleBorder);
+                SetBorderColor(nameBorder, backgroundQualleBorder);
+                SetBorderColor(descBorder, backgroundQualleBorder);
+                break;
+            case ResourceType.Grille:
+                upgradePanel.style.backgroundColor = new StyleColor(backgroundGrille);
+                SetBorderColor(enablerButton, backgroundGrilleBorder);
+                SetBorderColor(upgradeSpeedButton, backgroundGrilleBorder);
+                SetBorderColor(upgradeAmountButton, backgroundGrilleBorder);
+                SetBorderColor(upgradeEfficiencyButton, backgroundGrilleBorder);
+                SetBorderColor(nameBorder, backgroundGrilleBorder);
+                SetBorderColor(descBorder, backgroundGrilleBorder);
+                break;
+            default:
+                Debug.LogWarning($"Unbekannter ResourceType: {resType}");
+                break;
+
+        }
+    }
+
     private void UpdateEnableButtonVisual()
     {
         if (productActiveStates.TryGetValue(selectedType, out bool isActive))
         {
-            enablerButton.style.backgroundColor = new StyleColor(isActive ? Color.green : Color.red);
-
+            enablerText.text = isActive ? "Deaktivieren" : "Aktivieren";
+            enablerVisual.style.backgroundColor = new StyleColor(isActive ? enablerGreen : enablerRed);
+            SetBorderColor(enablerVisual, isActive ? enablerGreenBorder : enablerRedBorder);
         }
         else
         {
             // Standardfarbe, z.B. grn
-            enablerButton.style.backgroundColor = new StyleColor(Color.green);
+            enablerText.text = "Deaktivieren";
+            enablerVisual.style.backgroundColor = new StyleColor(enablerGreen);
+            SetBorderColor(enablerVisual, enablerGreenBorder);
 
+        }
+    }
+
+    void HandleUpgrade(ProcessValue value)
+    {
+        if (selected == null) return;
+
+        var key = (selectedType, value);
+        if (!upgradePrices.TryGetValue(key, out int price))
+        {
+            Debug.LogWarning($"Kein Preis für {key} gefunden.");
+            return;
+        }
+
+        if (CreditSystem.Instance.TrySpendCredits(price))
+        {
+            selected.Upgrade(selectedType, value);
+            upgradePrices[key] = (price * 2) + 250;
+            UpdateUpgradeButtonVisual();
+        }
+        else
+        {
+            Debug.Log($"Nicht genug Credits für {value} Upgrade");
         }
     }
 
@@ -297,64 +337,17 @@ public class ProcessSelectionManager : MonoBehaviour
 
         cntSpeed.text = selected.GetUpgrade(selectedType, ProcessValue.Speed).ToString() + "/" +
                         selected.GetMaxUpgrade(selectedType, ProcessValue.Speed);
+        priceSpeed.text = "€ " + upgradePrices[(selectedType, ProcessValue.Speed)].ToString();
 
         cntAmount.text = selected.GetUpgrade(selectedType, ProcessValue.Amount).ToString() + "/" +
                          selected.GetMaxUpgrade(selectedType, ProcessValue.Amount);
+        priceAmount.text = "€ " + upgradePrices[(selectedType, ProcessValue.Amount)].ToString();
 
         cntEfficiency.text = selected.GetUpgrade(selectedType, ProcessValue.Efficiency).ToString() + "/" +
                              selected.GetMaxUpgrade(selectedType, ProcessValue.Efficiency);
+        priceEfficiency.text = "€ " + upgradePrices[(selectedType, ProcessValue.Efficiency)].ToString();
     }
 
-    //private void ActivateProductLine(ProductType productType)
-    //{
-    //    if (!productActiveStates.ContainsKey(productType))
-    //    {
-    //        productActiveStates[productType] = true; // standardmig aktiv
-    //    }
-
-    //    if (!activatedProducts.Contains(productType))
-    //    {
-    //        selected.SetProductActive(productType, true);
-    //        switch (productType)
-    //        {
-    //            case ProductType.AlgePowder:
-    //                if (productButtons.TryGetValue(ProductType.AlgeNoodle, out var btnAlgeNoodle) && productButtons.TryGetValue(ProductType.AlgePowder, out var btnAlgePowder))
-    //                {
-    //                    btnAlgePowder.style.backgroundImage = null;
-    //                    btnAlgeNoodle.SetEnabled(true);
-    //                }
-    //                break;
-    //            case ProductType.AlgeNoodle:
-    //                if (productButtons.TryGetValue(ProductType.AlgeJelly, out var btnAlgeJelly) && productButtons.TryGetValue(ProductType.AlgeNoodle, out btnAlgeNoodle))
-    //                {
-    //                    btnAlgeNoodle.style.backgroundImage = null;
-    //                    btnAlgeJelly.SetEnabled(true);
-    //                }
-    //                break;
-    //            case ProductType.AlgeJelly:
-    //                if (productButtons.TryGetValue(ProductType.AlgePatty, out var btnAlgePatty) && productButtons.TryGetValue(ProductType.AlgeJelly, out btnAlgeJelly))
-    //                {
-    //                    btnAlgeJelly.style.backgroundImage = null;
-    //                    btnAlgePatty.SetEnabled(true);
-    //                }
-    //                break;
-    //            case ProductType.AlgePatty:
-    //                if (productButtons.TryGetValue(ProductType.AlgePatty, out btnAlgePatty))
-    //                {
-    //                    btnAlgePatty.style.backgroundImage = null; // AlgeOil ist das letzte Produkt, daher kein weiterer Button
-    //                }
-
-    //                break;
-    //        }
-    //        activatedProducts.Add(productType);
-    //    }
-    //    if(upgradePanel.style.display == DisplayStyle.None)
-    //    {
-    //        upgradePanel.style.display = DisplayStyle.Flex;
-    //    }
-    //    descriptionLabel.text = productDatabase.GetEntry(productType).description;
-    //    nameLabel.text = productDatabase.GetEntry(productType).name;
-    //}
 
     private bool checkPrice(ProductType productType)
     {
@@ -370,8 +363,7 @@ public class ProcessSelectionManager : MonoBehaviour
 
     void UpdateUI(ProcessInstance building)
     {
-        // Hier kann z.B. auf productButtons zugegriffen werden
-        // Beispiel: productButtons[ProductType.AlgeDry].SetEnabled(false);
+        
     }
 
     public void Deselect()
@@ -395,7 +387,8 @@ public class ProcessSelectionManager : MonoBehaviour
             // Aktuellen Button "freischalten" (Bild entfernen)
             if (productButtons.TryGetValue(productType, out var currentBtn))
             {
-                currentBtn.style.backgroundImage = null;
+                var childElement = currentBtn.Q<VisualElement>("lock");
+                childElement.style.backgroundImage = null;
             }
 
             // Nchsten Button aktivieren, falls vorhanden
@@ -413,8 +406,18 @@ public class ProcessSelectionManager : MonoBehaviour
         {
             upgradePanel.style.display = DisplayStyle.Flex;
         }
-        descriptionLabel.text = productDatabase.GetEntry(productType).description;
-        nameLabel.text = productDatabase.GetEntry(productType).name;
+        var entry = productDatabase.GetEntry(productType);
+        descriptionLabel.text = entry.description;
+        nameLabel.text = entry.name;
+    }
+
+    public void SetBorderColor(VisualElement element, Color color)
+    {
+        var styleColor = new StyleColor(color);
+        element.style.borderTopColor = styleColor;
+        element.style.borderRightColor = styleColor;
+        element.style.borderBottomColor = styleColor;
+        element.style.borderLeftColor = styleColor;
     }
 
 

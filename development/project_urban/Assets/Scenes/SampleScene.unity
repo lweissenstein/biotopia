@@ -1062,10 +1062,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66a77f8354a6114f831c03265a06489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiDocument: {fileID: 0}
-  previewTexture: {fileID: 0}
+  uiDocument: {fileID: 1570907081}
+  previewTexture: {fileID: 8400000, guid: 041a9652164365c429cf63ce5f994dea, type: 2}
   SuperMarketRange: 0
-  credits: {fileID: 0}
+  credits: {fileID: 2058116115}
 --- !u!1 &595828883
 GameObject:
   m_ObjectHideFlags: 0
