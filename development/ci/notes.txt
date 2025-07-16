@@ -6,10 +6,36 @@ gcloud services enable \
     iam.googleapis.com \
     cloudresourcemanager.googleapis.com \
     iamcredentials.googleapis.com \
-    oslogin.googleapis.com
+    oslogin.googleapis.com \
+    storage.googleapis.com \
+    artifactregistry.googleapis.com
 
 gcloud compute project-info add-metadata --metadata google-compute-default-region=europe-west1,google-compute-default-zone=europe-west1-b
 
+gcloud artifacts repositories create ubss-docker-repo \
+    --repository-format=docker \
+    --location=europe-west1 \
+    --description="Docker repository" \
+    --project=android-gitlab-runner
+
+gcloud auth configure-docker europe-west1-docker.pkg.dev
+
+docker pull unityci/editor:6000.0.40f1-android-3
+
+docker tag \
+    unityci/editor:6000.0.40f1-android-3 \
+    europe-west1-docker.pkg.dev/android-gitlab-runner/ubss-docker-repo/unityci/editor:6000.0.40f1-android-3
+
+docker push europe-west1-docker.pkg.dev/android-gitlab-runner/ubss-docker-repo/unityci/editor:6000.0.40f1-android-3
+
+
+docker pull europe-west1-docker.pkg.dev/android-gitlab-runner/ubss-docker-repo/unityci/editor:6000.0.40f1-android-3
+
+docker stuff damit ichs aufschreiben kann
+1. service user machen und key erstellen braucht read artifacts permission
+2. ~/.docker/config.json alles mit login loeschen, damit das folgende funktioniert
+3. beim key wird einem eine datei gegeben, damit cat docker login
+4. aus docker die config lesen, soll so aussehen: (auth config)
 
 
 terraform init

@@ -23,7 +23,9 @@ variables:
   VERSION_NUMBER_VAR: $CI_COMMIT_REF_SLUG-$CI_PIPELINE_ID-$CI_JOB_ID
   VERSION_BUILD_VAR: $CI_PIPELINE_IID
 
-image: $IMAGE:$UNITY_VERSION-android-$IMAGE_VERSION
+
+# this uses DOCKER_AUTH_CONFIG from ci variables
+image: europe-west1-docker.pkg.dev/android-gitlab-runner/ubss-docker-repo/$IMAGE:$UNITY_VERSION-android-$IMAGE_VERSION
 
 
 get-unity-version:
@@ -49,11 +51,20 @@ get-unity-version:
     - chmod +x ./development/ci/return_license.sh && ./development/ci/return_license.sh
 
 .cache: &cache
+# put stuff into the cache only on the main branch, all others pull. That way, we can always use the same cache. (maybe)
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      variables:
+        POLICY: pull-push
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+      variables:
+        POLICY: pull
   cache:
-    key: "$CI_PROJECT_NAMESPACE-$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$TEST_PLATFORM"
+    key: "$CI_PROJECT_NAME"
+    policy: $POLICY
     paths:
       - $UNITY_DIR/Library/
-      - $UNITY_DIR/unity-builder/
+      - $UNITY_DIR/.utmp/
 
 .license: &license
   rules:
@@ -75,9 +86,6 @@ get-unity-version:
   artifacts:
     paths:
       - $CI_PROJECT_DIR/Builds/
-  # https://gitlab.com/gableroux/unity3d-gitlab-ci-example/-/issues/83
-  # you may need to remove or replace these to fit your need if you are using your own runners
-
 
 
 build-android:

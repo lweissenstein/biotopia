@@ -19,18 +19,14 @@ variable "runner_token" {
   sensitive = true
 }
 
-variable "google_project" {
-  type      = string
-  sensitive = true
-}
-
 locals {
+  google_project = "android-gitlab-runner"
   google_region  = "europe-west1"
   google_zone    = "europe-west1-b"
 }
 
 provider "google" {
-  project = var.google_project
+  project = local.google_project
   region  = local.google_region
   zone    = local.google_zone
 }
@@ -39,12 +35,13 @@ provider "google" {
 module "runner_deployment" {
   source = "git::https://gitlab.com/gitlab-org/ci-cd/runner-tools/grit.git//scenarios/google/linux/docker-autoscaler-default"
 
-  google_project = var.google_project
+  google_project = local.google_project
   google_region  = local.google_region
   google_zone    = local.google_zone
 
   name = "ubss-grit-android"
-  runner_machine_type = "n2d-standard-2"
+
+  runner_machine_type = "n2d-standard-4"
 
   gitlab_url = "https://code.fki.htw-berlin.de"
 
@@ -55,9 +52,9 @@ module "runner_deployment" {
     {
         periods            = ["* * * * *"]
         timezone           = ""
-        scale_min = 1
-        idle_time          = "1m0s"
-        scale_factor       = 0.2
+        scale_min          = 0
+        idle_time          = "0m30s"
+        scale_factor       = 0.0
         scale_factor_limit = 8
     }
   ]
@@ -65,6 +62,7 @@ module "runner_deployment" {
  ephemeral_runner = {
    disk_size    = 50
  }
+
 
  runners_docker_section = <<EOS
    pull_policy = [
