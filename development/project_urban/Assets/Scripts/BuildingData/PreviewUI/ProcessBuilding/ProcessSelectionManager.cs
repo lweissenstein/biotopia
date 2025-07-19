@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using EconomySystem;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class ProcessSelectionManager : MonoBehaviour
 {
@@ -282,6 +283,11 @@ public class ProcessSelectionManager : MonoBehaviour
                 break;
 
         }
+    }
+
+    public List<ProductType> GetUnlockedProducts()
+    {
+        return activatedProducts.ToList();
     }
 
     private void UpdateEnableButtonVisual()

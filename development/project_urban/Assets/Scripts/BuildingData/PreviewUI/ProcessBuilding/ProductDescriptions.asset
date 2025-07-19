@@ -20,11 +20,13 @@ MonoBehaviour:
     name: Ulva Pulver
     icon: {fileID: 0}
     price: 50
-    baseSpeed: 3
+    baseSpeed: 5
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 0
+    saturation: 1
+    credits: 5
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 6
     maxUpgradesQuality: 7
@@ -35,11 +37,13 @@ MonoBehaviour:
     name: Kelp Fettucine
     icon: {fileID: 0}
     price: 200000
-    baseSpeed: 6
+    baseSpeed: 7
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 0
+    saturation: 2
+    credits: 15
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -55,6 +59,8 @@ MonoBehaviour:
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 0
+    saturation: 3
+    credits: 25
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -71,6 +77,8 @@ MonoBehaviour:
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 0
+    saturation: 4
+    credits: 35
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -83,11 +91,13 @@ MonoBehaviour:
     name: Jelly Noodles
     icon: {fileID: 0}
     price: 50
-    baseSpeed: 12
+    baseSpeed: 5
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 1
+    saturation: 1
+    credits: 5
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -99,11 +109,13 @@ MonoBehaviour:
     name: Medu Mayo
     icon: {fileID: 0}
     price: 1500
-    baseSpeed: 12
+    baseSpeed: 7
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 1
+    saturation: 2
+    credits: 15
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -115,11 +127,13 @@ MonoBehaviour:
     name: Ocean Tofu
     icon: {fileID: 0}
     price: 7500
-    baseSpeed: 12
+    baseSpeed: 9
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 1
+    saturation: 3
+    credits: 25
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -136,6 +150,8 @@ MonoBehaviour:
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 1
+    saturation: 4
+    credits: 35
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -146,11 +162,13 @@ MonoBehaviour:
     name: Planty Salt
     icon: {fileID: 0}
     price: 50
-    baseSpeed: 12
+    baseSpeed: 5
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 2
+    saturation: 1
+    credits: 5
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -162,11 +180,13 @@ MonoBehaviour:
     name: Hydro Pickles
     icon: {fileID: 0}
     price: 200000
-    baseSpeed: 12
+    baseSpeed: 7
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 2
+    saturation: 2
+    credits: 15
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -177,11 +197,13 @@ MonoBehaviour:
     name: Sea Spread
     icon: {fileID: 0}
     price: 500
-    baseSpeed: 12
+    baseSpeed: 9
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 2
+    saturation: 3
+    credits: 25
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -198,6 +220,8 @@ MonoBehaviour:
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 2
+    saturation: 4
+    credits: 35
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -209,11 +233,13 @@ MonoBehaviour:
     name: Insektiella
     icon: {fileID: 0}
     price: 50
-    baseSpeed: 12
+    baseSpeed: 5
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 3
+    saturation: 1
+    credits: 5
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -225,11 +251,13 @@ MonoBehaviour:
     name: Bugloaf
     icon: {fileID: 0}
     price: 200000
-    baseSpeed: 12
+    baseSpeed: 7
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 3
+    saturation: 2
+    credits: 15
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -241,11 +269,13 @@ MonoBehaviour:
     name: Chirp Chips
     icon: {fileID: 0}
     price: 500
-    baseSpeed: 12
+    baseSpeed: 9
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 3
+    saturation: 3
+    credits: 25
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5
@@ -262,6 +292,8 @@ MonoBehaviour:
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 3
+    saturation: 4
+    credits: 35
     maxUpgradesSpeed: 5
     maxUpgradesAmount: 5
     maxUpgradesQuality: 5

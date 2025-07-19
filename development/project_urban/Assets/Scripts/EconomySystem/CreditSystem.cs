@@ -23,7 +23,7 @@ public class CreditSystem : MonoBehaviour
         {
             Instance = this;
         }
-            BuildingInstance.AddCredits += AddCredits;
+
     }
 
     // add credits to the current credits

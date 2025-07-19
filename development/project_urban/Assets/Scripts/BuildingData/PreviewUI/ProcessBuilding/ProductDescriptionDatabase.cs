@@ -27,6 +27,10 @@ public class ProductDescriptionDatabase : ScriptableObject  // imagine name as "
         public float baseEfficiency; // controls how much resources are consumed per product produced
         public ResourceType inputResource; // the resource type that is consumed to produce this product
 
+        [Header("Produkt Werte für die Consumption")]
+        public float saturation;
+        public int credits; // how much credits you get for selling one unit of this product
+
         [Header("Upgrade Limits")]
         public int maxUpgradesSpeed;
         public int maxUpgradesAmount;

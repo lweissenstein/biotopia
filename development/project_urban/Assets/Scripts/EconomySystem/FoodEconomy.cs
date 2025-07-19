@@ -21,13 +21,14 @@ namespace EconomySystem
 
         private float _totalConsumption;
         private float _totalProduction;
-        public float CurrentProteinAmount = 556;
+        public float CurrentProteinAmount = 500;
         //public float CurrentProteinAmount { get; private set; }
         public float MaxProteinAmount = 1000;
         public float MinProteinAmount = 0;
 
+
         public Dictionary<ResourceType, float> totalResources = new Dictionary<ResourceType, float>();
-        public Dictionary<ProductType, float> totalProducts = new Dictionary<ProductType, float>();
+        public Dictionary<ProductType, int> totalProducts = new Dictionary<ProductType, int>();
 
 
         private FoodEconomy()
@@ -35,57 +36,69 @@ namespace EconomySystem
             _totalConsumption = 0;
             _totalProduction = 0;
 
-            BuildingInstance.ConsumeFood += OnConsumeFood;
-            BuildingInstance.ProduceFood += OnProduceFood;
-
             foreach (ResourceType type in Enum.GetValues(typeof(ResourceType)))
             {
                 totalResources[type] = 0f;
             }
             foreach (ProductType type in Enum.GetValues(typeof(ProductType)))
             {
-                totalProducts[type] = 0f;
+                totalProducts[type] = 0;
             }
 
 
             BuildingInstance.ProduceResource += OnProduceResource;
-            BuildingInstance.ConsumeProduct += OnConsumeProduct;
             ProcessInstance.ProduceProduct += OnProduceProduct;
 
         }
 
-        private void OnConsumeFood(float consumptionPerFixedUpdate)
+        public void OnConsumeFood(float consumption)
         {
-            var nextProteinAmount = Math.Max(MinProteinAmount, CurrentProteinAmount - consumptionPerFixedUpdate);
-            _totalConsumption += CurrentProteinAmount - nextProteinAmount;
-            CurrentProteinAmount = nextProteinAmount;
+            if (CurrentProteinAmount <= 0)
+            {
+                return; // No food to consume
+            }
+            CurrentProteinAmount -= consumption;
         }
 
-        private void OnProduceFood(float productionPerFixedUpdate)
+        public void OnProduceFood(float consumption)
         {
-            var nextProteinAmount = Math.Min(MaxProteinAmount, CurrentProteinAmount + productionPerFixedUpdate);
-            _totalProduction += nextProteinAmount - CurrentProteinAmount;
-            CurrentProteinAmount = nextProteinAmount;
+            if (CurrentProteinAmount >= MaxProteinAmount)
+            {
+                return; // Cannot produce more food than max capacity
+            }
+            CurrentProteinAmount += consumption;
         }
 
         private void OnProduceResource(ResourceType type, float amount)
         {
             totalResources[type] += amount;
         }
-        private void OnProduceProduct(ProductType prod, float prodAmount, ResourceType res, float resAmount)
+        private void OnProduceProduct(ProductType prod, int prodAmount, ResourceType res, float resAmount)
         {
             totalProducts[prod] += prodAmount;
             totalResources[res] -= resAmount;
         }
 
-        private void OnConsumeProduct(ProductType prod, float amount)
+        private void OnConsumeResource(ResourceType type, float amount)
         {
-            totalProducts[prod] -= amount;
+            if (!totalResources.ContainsKey(type)) return;
+            totalResources[type] = Math.Max(0, totalResources[type] - amount);
         }
 
-        public bool IsProductAvailable(ProductType type, float amount)
+        public void ConsumeProduct(ProductType prod, int amount)
+        {
+            if (!totalProducts.ContainsKey(prod)) return;
+            totalProducts[prod] = Math.Max(0, totalProducts[prod] - amount);
+        }
+
+        public bool IsProductAvailable(ProductType type, int amount)
         {
             return totalProducts.ContainsKey(type) && totalProducts[type] >= amount;
+        }
+
+        public bool HasProduct(ProductType type)
+        {
+            return totalProducts.TryGetValue(type, out int count) && count > 0;
         }
 
 

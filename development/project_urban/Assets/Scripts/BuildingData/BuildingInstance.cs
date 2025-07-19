@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using EconomySystem;
 using System.Collections.Generic;
+using System.Linq;
 
 public class BuildingInstance : MonoBehaviour
 {
@@ -10,21 +11,19 @@ public class BuildingInstance : MonoBehaviour
     [SerializeField] private BoxCollider boxColliderHouse;
     public BuildingData data;
     public GameObject previewPrefab;
-    public static event Action<float> ConsumeFood;
-    public static event Action<float> ProduceFood;
-    public static event Action<ProductType, float> ConsumeProduct;
+    public static event Action<ProductType> Consume;
     private ObjectPlacer objectPlacer;
-    private float fixedTimer = 0f;
     private ProcessSelectionManager processSelectionManager;
     private FoodEconomy foodEconomy;
     public Vector3 pos;
     public RandomGridManipulation gridManipulation;
     public PlacementSystem placementSystem;
+    public ProductDescriptionDatabase productDatabase;
 
     // Hochhaus
 
     public static event Action<ResourceType, float> ProduceResource;
-    public static event Action<int> AddCredits;
+    
 
     public Dictionary<string, int> compartmentPrices = new Dictionary<string, int>
 {
@@ -32,7 +31,7 @@ public class BuildingInstance : MonoBehaviour
     { "Qualle", 50 },
     { "Salzpflanze", 50 },
     { "Grille", 50 },
-    { "Supermarkt", 100 }
+    { "Supermarkt", 0 }
 };
 
     public float countCompartmentsHouse = 0f;
@@ -43,10 +42,10 @@ public class BuildingInstance : MonoBehaviour
     private bool isProducing = false;
     public bool hasSupermarket;
 
-    public float produceAlgeValue = 0.05f;
-    public float produceSalzpflanzeValue = 0.05f;
-    public float produceQualleValue = 0.05f;
-    public float produceGrillevalue = 0.05f;
+    public float produceAlgeValue = 0.5f;
+    public float produceSalzpflanzeValue = 0.5f;
+    public float produceQualleValue = 0.5f;
+    public float produceGrillevalue = 0.5f;
     public float producePerSecond = 0f; // Gesamtproduktion pro Sekunde, abh�ngig von den Upgrades
 
 
@@ -71,79 +70,72 @@ public class BuildingInstance : MonoBehaviour
         processSelectionManager = FindFirstObjectByType<ProcessSelectionManager>();
         placementSystem = FindFirstObjectByType<PlacementSystem>();
 
-        // Hochhaus
-
-
-        // Water
-        // Park
-        // Therme
-        // Supermarkt
     }
-    //public void FixedUpdate()
-    //{
-    //    // General
-
-
-    //    fixedTimer += Time.fixedDeltaTime;
-
-    //    if (fixedTimer >= 1f)
-    //    {
-    //        if (isProducing)
-    //        {
-    //            fixedTimer = 0f; // Reset Timer
-    //            fixedTimer -= 1f; // oder -= 1f, wenn du es genauer willst
-    //            GetProduction();
-    //        }
-
-            
-    //        ConsumeFood?.Invoke(0.00005f * residents);
-
-    //        if (compartmentTypeHouse == 7) placementSystem.PingSuperMarket(pos);
-
-    //        if (compartmentTypeHouse != 7 && hasSupermarket)
-    //        {
-    //            for (int i = 0; i < 4; i++)
-    //            {
-    //                int available = 0;
-
-    //                if (processSelectionManager.purchased[4 * i] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i], 1)) available++;
-    //                if (processSelectionManager.purchased[4 * i + 1] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 1], 1)) available++;
-    //                if (processSelectionManager.purchased[4 * i + 2] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 2], 1)) available++;
-    //                if (processSelectionManager.purchased[4 * i + 3] && foodEconomy.IsProductAvailable(processSelectionManager.products[4 * i + 3], 1)) available++;
-
-    //                if (available != 0)
-    //                {
-    //                    int rnd = Random.Range(0, available);
-    //                    ConsumeProduct?.Invoke(processSelectionManager.products[rnd + 4 * i], 0.00005f * residents);
-    //                    ProduceFood?.Invoke(0.02f);
-    //                    AddCredits?.Invoke(1); // F��gt 1 Credit hinzu, wenn ein Produkt konsumiert wird
-    //                }
-    //            }
-    //        }
-    //}
-
-            
-            
-        
-
-        
-
-        // Hochhaus
-        // Water
-        // Park
-        // Therme
-        // Supermarkt
-        
-       
-
-        
-    
 
     // ------------ General ------------
 
+
+
     public void TryConsumeProduct()
     {
-        ConsumeFood?.Invoke(1);
+        if (hasSupermarket)
+        {
+            var unlocked = processSelectionManager.GetUnlockedProducts();
+            var available = unlocked.Where(p => foodEconomy.HasProduct(p)).ToList();
+            if (available.Count == 0) return;
+
+            ProductType chosen = ChooseProduct(available);
+            Debug.Log($"Chosen product: {chosen}");
+            Consume?.Invoke(chosen);
+        }
+        else
+        {
+            Debug.LogWarning("Supermarkt nicht verf��gbar, kann keine Produkte konsumieren.");
+
+
+        }
+    }
+    public void ConsumeTotalSaturation()
+    {
+        foodEconomy.OnConsumeFood(0.0005f * residents);
+    }
+
+    private ProductType ChooseProduct(List<ProductType> list)
+    {
+        if (productDatabase == null)
+        {
+            Debug.LogError("productDB ist null in ChooseProduct!");
+            return list[0]; // fallback
+        }
+
+
+        foreach (var p in list)
+        {
+            if (productDatabase.GetEntry(p) == null)
+            {
+                Debug.LogError($"Kein Produkt gefunden für {p}");
+            }
+        }
+
+            // Zufällig mit leichter Gewichtung für bessere Produkte
+            var weighted = list.Select(p => new {
+            product = p,
+            weight = Mathf.Pow(productDatabase.GetEntry(p).saturation, 1.2f)
+        }).ToList();
+
+        float total = weighted.Sum(w => w.weight);
+        float rnd = UnityEngine.Random.Range(0, total);
+        float current = 0;
+
+        foreach (var w in weighted)
+        {
+            current += w.weight;
+            if (rnd <= current) { 
+                Debug.Log($"Selected product: {w.product} with weight: {w.weight}");
+                return w.product;
+            }
+        }
+        return list[0]; // fallback
     }
 
     // ------------ Hochhaus ------------

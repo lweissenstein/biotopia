@@ -7,7 +7,7 @@ public class ProcessInstance : MonoBehaviour
 {
 
     private FoodEconomy foodEconomy;
-    public static event Action<ProductType, float, ResourceType, float> ProduceProduct;
+    public static event Action<ProductType, int, ResourceType, float> ProduceProduct;
 
     // Aktivierungsstatus je Produkt
     private Dictionary<ProductType, bool> productActive = new();
