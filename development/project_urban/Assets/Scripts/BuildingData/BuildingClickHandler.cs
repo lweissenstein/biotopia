@@ -1,6 +1,14 @@
+using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+//using Finger = UnityEngine.InputSystem.EnhancedTouch.Finger;
+//using UnityEngine.InputSystem.EnhancedTouch;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+//using Finger = UnityEngine.InputSystem.EnhancedTouch.Finger;
+//using UnityEngine.InputSystem.EnhancedTouch;
 
 public class BuildingClickHandler : MonoBehaviour
 {
@@ -14,7 +22,12 @@ public class BuildingClickHandler : MonoBehaviour
 
         if (GameState.allowPlayerInput)
         {
-            if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+            var activeTouch = Touch.activeTouches;
+            if (activeTouch.Count == 0)
+            {
+                return;
+            }
+            else if (activeTouch[0].isTap)
             {
                 Debug.Log("Klick registriert");
 
@@ -23,8 +36,13 @@ public class BuildingClickHandler : MonoBehaviour
                     Debug.Log("Klick auf UI ignorieren");
                     return;
                 }
+                if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+                {
+                    Debug.Log("Klick auf UI ignorieren");
+                    return;
+                }
 
-                Vector2 mousePos = Touchscreen.current.primaryTouch.position.ReadValue();
+                Vector2 mousePos = activeTouch[0].screenPosition;
                 Ray ray = sceneCamera.ScreenPointToRay(mousePos);
 
                 if (Physics.Raycast(ray, out RaycastHit hit, 100f, buildingLayer))
@@ -78,6 +96,6 @@ public class BuildingClickHandler : MonoBehaviour
             } 
         }
 
+
     }
-    
 }
