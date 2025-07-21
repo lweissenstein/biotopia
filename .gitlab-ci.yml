@@ -25,7 +25,7 @@ variables:
 
 
 # this uses DOCKER_AUTH_CONFIG from ci variables
-image: europe-west1-docker.pkg.dev/android-gitlab-runner/ubss-docker-repo/$IMAGE:$UNITY_VERSION-android-$IMAGE_VERSION
+image: europe-west1-docker.pkg.dev/android-gitlab-runner-2/ubss-docker-repo/$IMAGE:$UNITY_VERSION-android-$IMAGE_VERSION
 
 
 get-unity-version:
