@@ -25,7 +25,7 @@ variables:
 
   # cache settings
   FF_USE_FASTZIP: "true"
-  CACHE_COMPRESSION_LEVEL: fastest
+  CACHE_COMPRESSION_LEVEL: fast
   TRANSFER_METER_FREQUENCY: 5s
 
 
