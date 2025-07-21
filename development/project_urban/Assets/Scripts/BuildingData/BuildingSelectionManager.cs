@@ -15,6 +15,7 @@ public class BuildingSelectionManager : MonoBehaviour
     private Button upgradeButton, algenButton, quallenButton, salzpflanzenButton, grillenButton, supermarktButton;
     private VisualElement panel;
 
+    private TutorialManager tutorialManager;
     private BuildingInstance selected;
     private List<BuildingInstance> superMarkets = new List<BuildingInstance>();
 
@@ -27,6 +28,7 @@ public class BuildingSelectionManager : MonoBehaviour
         var root = uiDocument.rootVisualElement;
 
         credits = FindFirstObjectByType<CreditSystem>();
+        tutorialManager = FindFirstObjectByType<TutorialManager>();
 
         nameLabel = root.Q<Label>("BuildingName");
         levelLabel = root.Q<Label>("BuildingLevel");
@@ -69,6 +71,11 @@ public class BuildingSelectionManager : MonoBehaviour
                     SelectBuilding(selected); // Aktualisiert die UI mit dem neuen Level
                     if (!superMarkets.Contains(selected))
                         superMarkets.Add(selected);
+                    if (GameState.waitForButton)
+                    {
+                        tutorialManager.NextStep();
+                        GameState.waitForButton = false; // Reset waitForClick after handling the click
+                    }
                 }
             }
         };
@@ -82,7 +89,13 @@ public class BuildingSelectionManager : MonoBehaviour
         {
             if (selected == null || selected.countCompartmentsHouse >= selected.maxCompartments)
                 return;
-
+            Debug.Log(GameState.waitForButton);
+            if (GameState.waitForButton)
+            {
+                Debug.Log("Klick im gamestate");
+                tutorialManager.NextStep();
+                GameState.waitForButton = false; // Reset waitForClick after handling the click
+            }
             int price = selected.compartmentPrices[type];
 
             if (credits.TrySpendCredits(price))
@@ -93,7 +106,7 @@ public class BuildingSelectionManager : MonoBehaviour
                 SelectBuilding(selected);
 
                 // Preis erhöhen nur nach erfolgreichem Upgrade
-                
+
             }
         };
     }
@@ -226,11 +239,23 @@ public class BuildingSelectionManager : MonoBehaviour
 
     void ShowAllProductionButtons()
     {
-        algenButton.style.visibility = Visibility.Visible;
-        quallenButton.style.visibility = Visibility.Visible;
-        salzpflanzenButton.style.visibility = Visibility.Visible;
-        grillenButton.style.visibility = Visibility.Visible;
-        supermarktButton.style.visibility = Visibility.Visible;
+        if(GameState.isTutorial)
+        {
+            if (GameState.alge)
+            {
+                algenButton.style.visibility = Visibility.Visible;
+            }
+            if (GameState.supermarkt)
+            {
+                supermarktButton.style.visibility = Visibility.Visible;
+            }
+        } else  {
+            algenButton.style.visibility = Visibility.Visible;
+            quallenButton.style.visibility = Visibility.Visible;
+            salzpflanzenButton.style.visibility = Visibility.Visible;
+            grillenButton.style.visibility = Visibility.Visible;
+            supermarktButton.style.visibility = Visibility.Visible;
+        }
     }
 
 

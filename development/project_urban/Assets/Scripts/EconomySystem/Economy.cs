@@ -26,7 +26,7 @@ namespace EconomySystem
 
         private Dictionary<ProductType, Label> _productLabels = new();
         private Label algeLabel, qualleLabel, salzpflanzeLabel, grilleLabel, creditsLabel, mainMenu, timeLabel, foodPerSecondLabel, foodTotalLabel;
-        private VisualElement resourcePanel, showResources;
+        private VisualElement resourcePanel, showResources, mainmenu, moneyVisual;
 
 
         private void Start()
@@ -59,6 +59,8 @@ namespace EconomySystem
             timeLabel = root.Q<Label>("timeLabel");
             foodPerSecondLabel = root.Q<Label>("foodPerSecondLabel");
             foodTotalLabel = root.Q<Label>("foodTotalLabel");
+            moneyVisual = root.Q<VisualElement>("moneyVisual");
+            mainmenu = root.Q<VisualElement>("mainmenu");
 
             _productLabels = new Dictionary<ProductType, Label>
                 {
@@ -89,6 +91,11 @@ namespace EconomySystem
             UpdateCreditDisplay(CreditSystem.Instance.currentCredits);
             HideResourcePanel();
 
+            if (GameState.isTutorial)
+            {
+                moneyVisual.style.visibility = Visibility.Hidden;
+                mainmenu.style.visibility = Visibility.Hidden;
+            }
             //HideUI();
 
         }
@@ -197,7 +204,7 @@ namespace EconomySystem
 
         private void UpdateCreditDisplay(int currentCredits)
         {
-            creditsLabel.text = $"{"€" +  currentCredits}";
+            creditsLabel.text = $"{"ï¿½" +  currentCredits}";
         }
 
         private void UpdateFoodPerSecond()

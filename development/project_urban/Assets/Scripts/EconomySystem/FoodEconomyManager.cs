@@ -12,6 +12,12 @@ public class FoodEconomyManager : MonoBehaviour
     {
         BuildingInstance.Consume += HandleConsumeProduct;
         foodEconomy = FoodEconomy.Instance;
+        if (GameState.isTutorial)
+        {
+            Debug.Log("jop jop");
+            foodEconomy.AddTutorial();
+        }
+
     }
 
     private void HandleConsumeProduct(ProductType prod)

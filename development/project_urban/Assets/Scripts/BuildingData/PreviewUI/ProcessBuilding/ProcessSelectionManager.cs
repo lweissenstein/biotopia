@@ -25,6 +25,7 @@ public class ProcessSelectionManager : MonoBehaviour
     private HashSet<ProductType> activatedProducts = new HashSet<ProductType>();
 
     private Dictionary<ProductType, bool> productActiveStates = new();
+    private TutorialManager tutorialManager;
 
     public Dictionary<int, ProductType> products = new Dictionary<int, ProductType>();
     public Dictionary<int, bool> purchased = new Dictionary<int, bool>();
@@ -100,6 +101,8 @@ public class ProcessSelectionManager : MonoBehaviour
         enablerVisual = root.Q<VisualElement>("enablerVisual");
         var tabView = root.Q<TabView>("tabs");
 
+        tutorialManager = FindFirstObjectByType<TutorialManager>();
+
         var allButtons = root.Query<Button>().Where(b => b.name.StartsWith("btn")).ToList();
 
         int i = 0;
@@ -150,6 +153,12 @@ public class ProcessSelectionManager : MonoBehaviour
 
                     int price = entry.price;
                     bool isBought = false;
+
+                    if (GameState.waitForButton)
+                    {
+                        tutorialManager.NextStep();
+                        GameState.waitForButton = false; // Reset waitForClick after handling the click
+                    }
 
                     purchased.TryGetValue(productsMirrored[productType], out isBought);
 

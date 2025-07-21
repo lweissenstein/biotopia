@@ -1,0 +1,938 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7349bcecd05441459ba1158bf577eaa, type: 3}
+  m_Name: TutorialSequence
+  m_EditorClassIdentifier: 
+  steps:
+  - stepType: 1
+    stepName: 360 movement
+    titleText: 
+    tutorialText: 
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 10
+    secondsToWait: 2
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: -30
+    cameraVerticalAxis: 17.5
+    cameraOrthogrpahicSize: 15
+    spinCam360: 1
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 5
+    stepName: 
+    titleText: 
+    tutorialText: Willkommen in der Stadt <color=#379B1B>BioTopia</color> !!
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 5
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 0
+    stepName: Grayout Saturation
+    titleText: Die Stadt
+    tutorialText: "Willkommen in der Stadt der <color=#379B1B>Zukunft</color>.\nDie
+      Bev\xF6lkerung w\xE4chst \u2013 und mit ihr der <b>Hunger</b>. \n\nHerk\xF6mmliche
+      Nahrung reicht nicht mehr aus, daher brauchst du <b>alternative Lebensmittelquellen</b>.\nDa
+      der Platz f\xFCr klassische Landwirtschaft begrenzt ist, musst du neue Wege
+      der Ern\xE4hrung finden. \n\nDie <color=#379B1B>S\xE4ttigung</color> der Stadt
+      sinkt mit der Zeit \u2013 behalte sie immer im Blick!"
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 0
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 1
+    isRight: 0
+    buttonLeft: 1
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 4
+    stepName: Show satu geht runter mit grayout
+    titleText: 
+    tutorialText: 
+    targetObject: {fileID: 0}
+    allowUpdates: 1
+    allowProduction: 0
+    allowSaturation: 1
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 4
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 1
+    grayOutOpen: 1
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 1
+    stepName: "Zoom auf Geb\xE4ude lvl 2"
+    titleText: 
+    tutorialText: 
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 3
+    secondsToWait: 3
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 1.5, y: 0.5, z: 2}
+    cameraHorizontalAxis: -30
+    cameraVerticalAxis: 45
+    cameraOrthogrpahicSize: 2.35
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 0
+    stepName: Wait for Click auf BuildingInstance
+    titleText: Das Hochhaus
+    tutorialText: "Dieses Geb\xE4ude ist der Wohnraum deiner Stadtbewohner.\nHochh\xE4user
+      bieten perfekten Platz, um auf engem urbanem Raum <color=#379B1B>alternative
+      Nahrungsquellen</color> zu z\xFCchten. \n\n-> <i>Klicke auf das <b>Hochhaus</b></i>"
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 1
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 0
+    waitForClick: 1
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 1
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 1
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 4
+    stepName: BUFFER
+    titleText: 
+    tutorialText: so krass man!!
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 1
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 0
+    stepName: PopupR mit Grayout Compartments Alge WFC Compartment Button
+    titleText: Compartments
+    tutorialText: "<color=#379B1B>Compartments</color> sind die Produktionsst\xE4tten
+      deiner Stadt.\n\nHier werden die vier <b>Hauptressourcen</b> gez\xFCchtet:
+      <color=#1C9B2F>Algen</color>, <color=#9B1C91>Quallen</color>, <color=#1C959B>Halophyten</color>
+      und <color=#9B641C>Grillen</color>.\n\nSie befinden sich rund um das Hochhaus
+      und m\xFCssen mit <b>Credits</b> freigeschaltet werden.\n\n<i>-> Klicke auf
+      <b>Compartment: Alge</b>, um es zu kaufen.</i>"
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 1
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 0
+    waitForClick: 0
+    waitForButton: 1
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 1
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 1
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 4
+    stepName: BUFFA 2
+    titleText: 
+    tutorialText: so krass man!!
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 1
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 0
+    stepName: PopupL mit Grayout Stats ButtonL
+    titleText: Informationen
+    tutorialText: "Hier findest du alle wichtigen <b>Infos</b> auf einen Blick:\n-
+      Anzahl der gekauften Compartments\n- Produktion pro Sekunde\n- Ob ein Supermarkt
+      in der N\xE4he ist\nUnd interessante <b>Fakten</b> zur Ressource in der Beschreibung."
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 0
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 1
+    isRight: 0
+    buttonLeft: 1
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 1
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 1
+    stepName: Close UI und move zu Fabrik
+    titleText: 
+    tutorialText: 
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 2
+    secondsToWait: 2
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: -5.5, y: -1, z: 2}
+    cameraHorizontalAxis: -30
+    cameraVerticalAxis: 45
+    cameraOrthogrpahicSize: 2.35
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 1
+    menuClose: 0
+  - stepType: 0
+    stepName: Wait for Click Fabrik und PopupR
+    titleText: Die Fabrik
+    tutorialText: "Die Rohstoffe allein reichen nicht \u2013 sie m\xFCssen verarbeitet
+      werden.\nIn der zentralen <color=#00425D>Fabrik</color> der Stadt entstehen
+      daraus fertige Produkte.\n\n<i>-> Klicke auf die <color=#00425D>Fabrik</color>.</i>"
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 1
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 0
+    waitForClick: 1
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 1
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 4
+    stepName: blackout? irgendwie sowas
+    titleText: 
+    tutorialText: so krass man!!
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 1
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 0
+    stepName: PopupR grayout ulvapulver mit wait for click on button
+    titleText: Die Produktion
+    tutorialText: "In der <color=#00425D>Fabrik</color> kannst du mit <b>Credits</b>
+      neue Produktionslinien freischalten.\nJede Linie verarbeitet eine <b>Ressource</b>
+      zu einem <b>Produkt</b>.\nDu kannst Produktionen <i>upgraden, pausieren</i>
+      oder wieder <i>aktivieren</i> \u2013 ganz nach Bedarf.\n\n<i>-> Klicke auf
+      <b>Ulva-Pulver</b>, um die Produktion zu starten.</i>"
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 0
+    waitForClick: 0
+    waitForButton: 1
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 1
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 1
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 4
+    stepName: BUFFA
+    titleText: 
+    tutorialText: 
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 1
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 0
+    stepName: poupL mit buttonL
+    titleText: Die Vielfalt
+    tutorialText: "Achte auf eine ausgewogene <color=#379B1B>Ern\xE4hrung</color>.\nProduziere
+      Produkte aus m\xF6glichst allen vier Ressourcen, um die <b>Zufriedenheit</b>
+      hochzuhalten.\n\nWenn du nur eine Ressource verwendest, gew\xF6hnen sich die
+      Bewohner schnell und wollen nicht immer das selbe essen  \u2013 die Produkte
+      verlieren an Effektivit\xE4t."
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 1
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 0
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 1
+    isRight: 0
+    buttonLeft: 1
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 1
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 0
+    stepName: "halt men\xFC und so "
+    titleText: "Die \xDCbersicht"
+    tutorialText: "Ein Klick auf den <color=#379B1B>S\xE4ttigungsbalken</color> zeigt
+      dir eine detaillierte \xDCbersicht \xFCber deine Ressourcen und Produkte.\n\nBehalte
+      alles im <b>Gleichgewicht</b> \u2013 das ist der Schl\xFCssel zu einer gesunden
+      Stadt."
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 4
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 1
+    isRight: 0
+    buttonLeft: 1
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 2
+    grayOutOpen: 1
+    menuOpen: 1
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 1
+    stepName: zoom haus 1
+    titleText: 
+    tutorialText: 
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 2
+    secondsToWait: 2
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: -0.5, z: 2}
+    cameraHorizontalAxis: -30
+    cameraVerticalAxis: 45
+    cameraOrthogrpahicSize: 2.35
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 1
+  - stepType: 0
+    stepName: "pupupR wait for click haus erkl\xE4r supermarkt"
+    titleText: Der Verkauf
+    tutorialText: "Damit Produkte die Bewohner erreichen, brauchst du <color=#E73E11>Superm\xE4rkte</color>.\nDu
+      kannst Hochh\xE4user zu <color=#E73E11>Superm\xE4rkten</color> umwandeln.\n\nNur
+      so erh\xE4ltst du <b>S\xE4ttigung</b> und verdienst gleichzeitig <b>Credits</b>
+      f\xFCr weitere Upgrades und Compartments.\n\n<i>-> Klicke auf das <b>kleine
+      Hochhaus</b> um es umzuwandeln.</i>"
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 1
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 0
+    waitForClick: 1
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 1
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 1
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 0
+    stepName: pupupR grayout supermarkt text der selbe
+    titleText: Der Supermarkt
+    tutorialText: "Jeder <color=#E73E11>Supermarkt</color> hat eine bestimmte Reichweite.\nAlle
+      Hochh\xE4user in diesem <b>Radius</b> werden mit Produkten versorgt.\nPlatziere
+      <color=#E73E11>Superm\xE4rkte</color> so, dass m\xF6glichst viele Geb\xE4ude
+      abgedeckt sind \u2013 so maximierst du <b>S\xE4ttigung</b> und <b>Einnahmen</b>.\n\n<i>->
+      Klicke auf <b>Umwandlung: Supermarkt</b>, um einen Markt zu errichten.</i>"
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 0
+    waitForClick: 0
+    waitForButton: 1
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 1
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 1
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 1
+    stepName: to default, close grayout
+    titleText: 
+    tutorialText: 
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 2
+    secondsToWait: 2
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: -30
+    cameraVerticalAxis: 35
+    cameraOrthogrpahicSize: 15
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 1
+    menuClose: 0
+  - stepType: 4
+    stepName: 'grayout saturation money, show money, close upg UI '
+    titleText: 
+    tutorialText: 
+    targetObject: {fileID: 0}
+    allowUpdates: 1
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 1
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 5
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 3
+    grayOutOpen: 1
+    menuOpen: 0
+    showMoney: 1
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 0
+    stepName: das wachstum
+    titleText: Das Wachstum
+    tutorialText: "Die Zeit l\xE4uft!\nDie Stadt w\xE4chst stetig und braucht immer
+      mehr <color=#379B1B>Nahrung</color>.\nWenn die <b>S\xE4ttigung</b> auf <b>0</b>
+      f\xE4llt, ist das Spiel vorbei. Halte die Stadt bei Laune \u2013 und satt.\n\nDu
+      kennst jetzt die Grundlagen.\nPlane clever, produziere effizient und sorge
+      f\xFCr eine zufriedene Stadt."
+    targetObject: {fileID: 0}
+    allowUpdates: 0
+    allowProduction: 0
+    allowSaturation: 0
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 0
+    cameraMoveTime: 0
+    secondsToWait: 4
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 1
+    isRight: 0
+    buttonLeft: 1
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 1
+    stepName: "rotate, stadt w\xE4chst"
+    titleText: 
+    tutorialText: 
+    targetObject: {fileID: 0}
+    allowUpdates: 1
+    allowProduction: 0
+    allowSaturation: 1
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 1
+    cameraMoveTime: 8
+    secondsToWait: 2
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: -30
+    cameraVerticalAxis: 35
+    cameraOrthogrpahicSize: 15
+    spinCam360: 1
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 5
+    stepName: blackout? irgendwie sowas
+    titleText: 
+    tutorialText: "Jetzt bist du dran! Viel Spa\xDF beim Spielen von <b><color=#379B1B>BioTopia</color></b>!"
+    targetObject: {fileID: 0}
+    allowUpdates: 1
+    allowProduction: 0
+    allowSaturation: 1
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 1
+    cameraMoveTime: 0
+    secondsToWait: 4
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0
+  - stepType: 4
+    stepName: blackout? irgendwie sowas
+    titleText: Jetzt bist du dran!
+    tutorialText: 
+    targetObject: {fileID: 0}
+    allowUpdates: 1
+    allowProduction: 0
+    allowSaturation: 1
+    allowConsumption: 0
+    allowPlayerInput: 0
+    allowBuildingSpawn: 1
+    cameraMoveTime: 0
+    secondsToWait: 4
+    waitForClick: 0
+    waitForButton: 0
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraHorizontalAxis: 0
+    cameraVerticalAxis: 0
+    cameraOrthogrpahicSize: 0
+    spinCam360: 0
+    isLeft: 0
+    isRight: 0
+    buttonLeft: 0
+    buttonRight: 0
+    alge: 0
+    supermarkt: 0
+    algePowder: 0
+    grayOutIndex: 0
+    grayOutOpen: 0
+    menuOpen: 0
+    showMoney: 0
+    processClose: 0
+    upgradeClose: 0
+    menuClose: 0

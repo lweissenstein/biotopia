@@ -54,10 +54,14 @@ public class PlacementSystem : MonoBehaviour
         floorData = GridData.New(gridSize);
         furnitureData = GridData.New(gridSize);
         randomPlacer = new RandomGridManipulation(grid, objectPlacer, database);
-
-        randomPlacer.GenerateRiver(gridSizeX, gridSizeZ, furnitureData, 3);
+        if (GameState.isTutorial)
+        {
+            randomPlacer.PlaceTutorialBuildings(furnitureData);
+            return;
+        }
         randomPlacer.RandomPlaceOnBorder(gridSizeX, gridSizeZ, furnitureData, 5, 0.8);
         randomPlacer.RandomPlace(1, gridSizeX / 4, gridSizeZ / 4, furnitureData, 6);
+        randomPlacer.GenerateRiver(gridSizeX, gridSizeZ, furnitureData, 3);
         randomPlacer.RandomPlace(15, gridSizeX / 3, gridSizeZ / 3, furnitureData, 0);
         randomPlacer.RandomUpgrade(3, gridSizeX, gridSizeZ, furnitureData, 1);
     }
@@ -153,7 +157,15 @@ public class PlacementSystem : MonoBehaviour
 
     void Update()
     {
-        _timer.OncePerSecond(perSecondUpdate);
+        if (!GameState.isTutorial)
+            _timer.OncePerSecond(perSecondUpdate);
+        else if (GameState.isTutorial && GameState.allowBuildingSpawn)
+        {
+            _timer.OncePerIntervallMilliseconds(() =>
+            {
+                    perSecondUpdate();
+            }, 20);
+        }
     }
 
 }

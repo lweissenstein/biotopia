@@ -90,7 +90,6 @@ public class BuildingInstance : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Supermarkt nicht verf��gbar, kann keine Produkte konsumieren.");
 
 
         }
@@ -285,7 +284,6 @@ public class BuildingInstance : MonoBehaviour
                 ProduceResource?.Invoke(ResourceType.Grille, produceGrillevalue * countCompartmentsHouse);
                 break;
             default:
-                Debug.Log("Keine Produktion f�r diesen Typ: " + compartmentTypeHouse);
                 break;
         }
    

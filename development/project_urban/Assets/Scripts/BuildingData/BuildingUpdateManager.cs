@@ -1,6 +1,8 @@
+using EconomySystem;
 using System.Collections.Generic;
 using UnityEngine;
 using Util;
+
 
 public class BuildingUpdateManager : MonoBehaviour
 {
@@ -9,7 +11,8 @@ public class BuildingUpdateManager : MonoBehaviour
 
     private readonly List<BuildingInstance> buildings = new();
     private int currentIndex = 0;
-
+    private FoodEconomy foodEconomy;
+    public CreditSystem creditSystem;
     public int updatesPerSecond = 20;
     private float timer = 0f;
 
@@ -30,7 +33,8 @@ public class BuildingUpdateManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(this.gameObject); // Optional, falls persistierend über Szenen hinweg
+        foodEconomy = FoodEconomy.Instance;
+
     }
 
     public void RegisterBuilding(BuildingInstance building)
@@ -40,6 +44,7 @@ public class BuildingUpdateManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!GameState.allowUpdates) return;
         if (buildings.Count == 0) return;
 
         float updatesPerFrame = updatesPerSecond * Time.fixedDeltaTime;
@@ -47,26 +52,36 @@ public class BuildingUpdateManager : MonoBehaviour
         int updatesToDo = Mathf.FloorToInt(timer);
         timer -= updatesToDo;
         int consumePerFrame = Mathf.CeilToInt(buildings.Count * 0.25f / updatesPerSecond);
+        
+        if(GameState.isTutorial)
+        {
+            if(GameState.allowConsumption)
+            {
+                Debug.Log("bin drinne");
+                creditSystem.AddCredits(1);
+                foodEconomy.OnProduceFood(0.5f);
+            }
+
+            if (GameState.allowSaturation)
+            {
+                foodEconomy.OnConsumeFood(0.2f);
+            }
+        }
+
 
         for (int j = 0; j < consumePerFrame; j++)
         {
             buildings[indexConsume].TryConsumeProduct();
             indexConsume = (indexConsume + 1) % buildings.Count;
-        }
-
+        } 
+ 
         for (int i = 0; i < updatesToDo; i++)
         {
-            // 
             buildings[indexProduction].GetProduction();
             indexProduction = (indexProduction + 1) % buildings.Count;
 
-            // 
-            
-            
-
-            //
-            
-        }
+        } 
+ 
         int saturationPerFrame = Mathf.CeilToInt(buildings.Count * 1f / updatesPerSecond);
         for (int j = 0; j < saturationPerFrame; j++)
         {
@@ -74,12 +89,15 @@ public class BuildingUpdateManager : MonoBehaviour
             indexSaturation = (indexSaturation + 1) % buildings.Count;
         }
 
+
+        
+
         timerClass.OncePerIntervallSeconds(() =>
         {
             if (diversityTracker != null)
             {
                 diversityTracker.Reset();
-                Debug.Log("DiversityTracker wurde zurückgesetzt (jede Minute).");
+                Debug.Log("DiversityTracker wurde zurï¿½ckgesetzt (jede Minute).");
             }
             else
             {

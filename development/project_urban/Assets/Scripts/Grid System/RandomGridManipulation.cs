@@ -64,6 +64,82 @@ public class RandomGridManipulation
         }
     }
 
+
+    public void PlaceTutorialBuildings(GridData gridData)
+    {
+        // Positionen (z. B. von dir festgelegt – achte auf das passende Grid-System)
+        Vector3Int[] positions = new Vector3Int[]
+        {
+        new Vector3Int(0, 0, 0),  // erstes Gebäude
+        new Vector3Int(-1, 0, -1),   // zweites Gebäude
+        new Vector3Int(-2, 0, 1),    // drittes Gebäude
+        };
+
+        int baseObjectID = 0; // alle basieren auf Gebäude mit ID 0
+
+        for (int i = 0; i < positions.Length; i++)
+        {
+            Vector3Int pos = positions[i];
+
+            // Objekt platzieren
+            GameObject prefab = dataBase.objectsData[baseObjectID].Prefab;
+            Vector3 worldPos = grid.CellToWorld(pos);
+            int index = objectPlacer.PlaceObject(prefab, worldPos);
+
+            // GridData aktualisieren
+            gridData.AddObjectAt(pos, dataBase.objectsData[baseObjectID].Size, baseObjectID, index);
+
+            // Zugriff auf das platzierte GameObject
+            GameObject placedGO = objectPlacer.placedGameObject[index];
+
+            // Upgrade-Logik (nur für Gebäude 1 & 3)
+            if (placedGO != null)
+            {
+                var upgradeable = placedGO.GetComponent<UpgradeableObject>();
+                var building = placedGO.GetComponent<BuildingInstance>();
+
+                if (upgradeable != null)
+                {
+                    if (i == 0)
+                    {
+                        upgradeable.UpgradeTo(1); // Gebäude links → Upgrade auf Stufe 1
+                        if (building != null)
+                        {
+                            building.UpgradeHouse();
+                            building.residents *= 2;
+                        }
+
+                        gridData.UpdateObjectIDAt(pos, 1);
+                    }
+                    else if (i == 2)
+                    {
+                        upgradeable.UpgradeTo(2); // Gebäude rechts → Upgrade auf Stufe 2
+                        if (building != null)
+                        {
+                            building.UpgradeHouse();
+                            building.residents *= 2;
+                        }
+
+                        gridData.UpdateObjectIDAt(pos, 2);
+                    }
+                    else
+                    {
+                        // Gebäude in der Mitte bleibt auf 0
+                        upgradeable.UpgradeTo(0);
+                        gridData.UpdateObjectIDAt(pos, 0);
+                    }
+                }
+            }
+        }
+
+        Vector3Int specialPos = new Vector3Int(-6, 0, -3);
+        int specialID = 6;
+
+        GameObject specialPrefab = dataBase.objectsData[specialID].Prefab;
+        Vector3 specialWorldPos = grid.CellToWorld(specialPos);
+        int specialIndex = objectPlacer.PlaceObject(specialPrefab, specialWorldPos);
+        gridData.AddObjectAt(specialPos, dataBase.objectsData[specialID].Size, specialID, specialIndex);
+    }
     /// <summary>
     /// Platziert Objekte zufällig, aber mit Gewichtung je nach Nachbarschaft.
     /// Positionen mit mehr Nachbarn haben eine höhere oder niedrigere Wahrscheinlichkeit, gewählt zu werden.

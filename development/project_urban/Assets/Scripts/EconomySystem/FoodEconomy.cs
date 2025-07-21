@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace EconomySystem
 {
@@ -100,6 +101,18 @@ namespace EconomySystem
         {
             return totalProducts.TryGetValue(type, out int count) && count > 0;
         }
+
+        public void AddTutorial()
+        {
+            totalProducts[ProductType.AlgePowder] += 20;
+            totalResources[ResourceType.Alge] += 10;
+        }
+        public void RemoveTutorial()
+        {
+            totalProducts[ProductType.AlgePowder] = 0;
+            totalResources[ResourceType.Alge] = 0;
+        }
+
 
 
         public string Report()
