@@ -6,9 +6,6 @@ using UnityEngine.InputSystem;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 //using Finger = UnityEngine.InputSystem.EnhancedTouch.Finger;
 //using UnityEngine.InputSystem.EnhancedTouch;
-using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
-//using Finger = UnityEngine.InputSystem.EnhancedTouch.Finger;
-//using UnityEngine.InputSystem.EnhancedTouch;
 
 public class BuildingClickHandler : MonoBehaviour
 {
