@@ -20,7 +20,7 @@ variable "runner_token" {
 }
 
 locals {
-  google_project = "android-gitlab-runner"
+  google_project = "android-gitlab-runner-2"
   google_region  = "europe-west1"
   google_zone    = "europe-west1-b"
 }
@@ -39,9 +39,9 @@ module "runner_deployment" {
   google_region  = local.google_region
   google_zone    = local.google_zone
 
-  name = "ubss-grit-android"
+  name = "ubss-android-2"
 
-  runner_machine_type = "n2d-standard-4"
+  runner_machine_type = "n2d-standard-2"
 
   gitlab_url = "https://code.fki.htw-berlin.de"
 

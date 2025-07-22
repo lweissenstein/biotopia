@@ -2,8 +2,10 @@ stages:
   - verify
   - prepare
   - build
+  - extract-apk
   - deploy
   - release
+  - deploy-playstore
 
 # If you are looking for a place where to add 'UNITY_LICENSE_FILE' and other secrets, please visit your project's gitlab page:
 # settings > CI/CD > Variables instead
@@ -12,9 +14,9 @@ variables:
   MINOR: 0
   PATCH: $CI_PIPELINE_IID  # The version is incremented per pipeline.
 
+
   RELEASE_TAG: v$MAJOR.$MINOR.$PATCH     # v0.0.133
   BUILD_NAME: ubss-$MAJOR-$MINOR-$PATCH  # ubss-0-0-133
-  PACKAGE_URL: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/build/android-${RELEASE_TAG}/${BUILD_NAME}.apk
 
   IMAGE: unityci/editor # https://hub.docker.com/r/unityci/editor
   IMAGE_VERSION: 3 # This will automatically use latest v3.x.x, see https://github.com/game-ci/docker/releases
@@ -27,6 +29,14 @@ variables:
   FF_USE_FASTZIP: "true"
   CACHE_COMPRESSION_LEVEL: fast
   TRANSFER_METER_FREQUENCY: 5s
+
+  ANDROID_BUILD_TYPE: "aab"
+  ANDROID_BUILD_APP_BUNDLE: "true"
+  ANDROID_VERSION_CODE: $CI_PIPELINE_IID
+  ANDROID_VERSION_NAME: v$MAJOR.$MINOR.$PATCH
+  ANDROID_KEYSTORE: $UNITY_DIR/android-keystore.keystore
+
+  PACKAGE_URL: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/build/android-${RELEASE_TAG}/${BUILD_NAME}.${ANDROID_BUILD_TYPE}
 
 
 # this uses DOCKER_AUTH_CONFIG from ci variables
@@ -102,13 +112,40 @@ build-android:
     - build-android
 
 
-publish:
+extract-apk:
+  stage: extract-apk
+  image: amazoncorretto:21
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/Builds/
+  rules:
+    - if: $ANDROID_BUILD_APP_BUNDLE == "true"
+  script:
+    - |
+      mkdir ./extract-apk
+      cd ./extract-apk
+      yum install -y curl unzip
+      curl -OL https://github.com/google/bundletool/releases/download/1.18.1/bundletool-all-1.18.1.jar
+      echo $ANDROID_KEYSTORE_BASE64 | base64 -d > $ANDROID_KEYSTORE
+      ls -l
+      java -jar bundletool-all-1.18.1.jar build-apks --bundle=${CI_PROJECT_DIR}/Builds/Android/${BUILD_NAME}.${ANDROID_BUILD_TYPE} --output=archive.apks --mode=universal --ks=${ANDROID_KEYSTORE} --ks-pass=pass:${ANDROID_KEYSTORE_PASS} --ks-key-alias=${ANDROID_KEY_ALIAS} --key-pass=pass:${ANDROID_KEY_PASS}
+      ls -l
+      unzip archive.apks
+      ls -l
+      cp universal.apk "${CI_PROJECT_DIR}/Builds/Android/${BUILD_NAME}.apk"
+      cd ..
+      rm -rf ./extract-apk
+
+
+publish-apk:
   stage: deploy
   image: bash:latest
   script:
     - |
       apk add curl
       curl --location --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file "${CI_PROJECT_DIR}/Builds/Android/${BUILD_NAME}.apk" "${PACKAGE_URL}"
+
+
 
 release_job:
   stage: release
@@ -126,9 +163,21 @@ release_job:
     ref: '$CI_COMMIT_SHA'                          # The tag is created from the pipeline SHA.
     assets:
       links:
-        - name: android-$RELEASE_TAG/$BUILD_NAME.apk
+        - name: android-$RELEASE_TAG/$BUILD_NAME.$ANDROID_BUILD_TYPE
           url: $PACKAGE_URL
           link_type: 'package'
+
+
+deploy_playstore:
+  stage: deploy-playstore
+  image: ruby:3.3.8
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never                                  # Do not run this job when a tag is created manually
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $ANDROID_BUILD_APP_BUNDLE == "true"
+  script:
+    - chmod +x ./development/ci/deploy-playstore.sh && ./development/ci/deploy-playstore.sh
+
 
 workflow:
   rules:

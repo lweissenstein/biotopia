@@ -3,3 +3,7 @@
 plan.out
 terraform.tfstate
 terraform.tfstate.backup
+*.jar
+*.keystore
+*.jks
+*.pem

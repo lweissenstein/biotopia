@@ -16,7 +16,7 @@ gcloud artifacts repositories create ubss-docker-repo \
     --repository-format=docker \
     --location=europe-west1 \
     --description="Docker repository" \
-    --project=android-gitlab-runner
+    --project=android-gitlab-runner-2
 
 gcloud auth configure-docker europe-west1-docker.pkg.dev
 
@@ -24,9 +24,9 @@ docker pull unityci/editor:6000.0.40f1-android-3
 
 docker tag \
     unityci/editor:6000.0.40f1-android-3 \
-    europe-west1-docker.pkg.dev/android-gitlab-runner/ubss-docker-repo/unityci/editor:6000.0.40f1-android-3
+    europe-west1-docker.pkg.dev/android-gitlab-runner-2/ubss-docker-repo/unityci/editor:6000.0.40f1-android-3
 
-docker push europe-west1-docker.pkg.dev/android-gitlab-runner/ubss-docker-repo/unityci/editor:6000.0.40f1-android-3
+docker push europe-west1-docker.pkg.dev/android-gitlab-runner-2/ubss-docker-repo/unityci/editor:6000.0.40f1-android-3
 
 
 docker pull europe-west1-docker.pkg.dev/android-gitlab-runner/ubss-docker-repo/unityci/editor:6000.0.40f1-android-3
@@ -35,7 +35,11 @@ docker stuff damit ichs aufschreiben kann
 1. service user machen und key erstellen braucht read artifacts permission
 2. ~/.docker/config.json alles mit login loeschen, damit das folgende funktioniert
 3. beim key wird einem eine datei gegeben, damit cat docker login
+ cat android-gitlab-runner-2-a8222841981a.json | docker login -u _json_key --password-stdin https://europe-west1-docker.pkg.dev
 4. aus docker die config lesen, soll so aussehen: (auth config)
+{auths:{...}}
+5. in DOCKER_AUTH_CONFIG GitLab CI/CD variable speichern (masked+hidden).
+
 
 
 terraform init
@@ -48,3 +52,42 @@ terraform apply plan.out
 
 gcloud compute ssh --zone "europe-west1-b" "ubss-grit-runner-manager" --project "ubss-ci-gitlab-runner"
 
+
+
+deploy to google play store
+
+
+1. create a keystore
+
+enable api
+androidpublisher.googleapis.com
+create service user
+fastlane-supply@android-gitlab-runner-2.iam.gserviceaccount.com
+create key for serviceuser
+invite service user in playstore
+
+install ruby
+gem install bundler
+cat <<EOF>> Gemfile
+skdfj
+
+alskdfj
+EOF
+(bundle exec fastlane run validate_play_store_json_key json_key:development/ci/secret/android-gitlab-runner-2-fastlane-8832b2199cb8.json)
+bundle exec fastlane supply --aab ${AAB_PATH} --track internal
+
+mkdir -p fastlane/metadata/android/en-US
+
+git log -n 1 | tail -n +3
+
+
+put apk back in
+
+ curl -OL https://github.com/google/bundletool/releases/download/1.18.1/bundletool-all-1.18.1.jar
+ ls
+ java -jar bundletool-all-1.18.1.jar build-apks --bundle=~/Downloads/ubss-0-0-303.aab --output=archive.apks --mode=universal
+ ls
+ unzip archive.apks
+ mv universal.apk ubss-0-0-303.apk
+ ls
+ history

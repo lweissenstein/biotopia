@@ -7,6 +7,8 @@ echo "Building \"$BUILD_NAME\" for $BUILD_TARGET"
 export BUILD_PATH=$CI_PROJECT_DIR/Builds/$BUILD_TARGET/
 mkdir -p $BUILD_PATH
 
+echo $ANDROID_KEYSTORE_BASE64 | base64 -d > $ANDROID_KEYSTORE
+
 ${UNITY_EXECUTABLE:-xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' unity-editor} \
   -projectPath $UNITY_DIR \
   -quit \
@@ -16,7 +18,7 @@ ${UNITY_EXECUTABLE:-xvfb-run --auto-servernum --server-args='-screen 0 640x480x2
   -customBuildTarget $BUILD_TARGET \
   -customBuildName $BUILD_NAME \
   -customBuildPath $BUILD_PATH \
-  -executeMethod BuildCommand.PerformBuild \
+  -executeMethod Editor.BuildCommand.PerformBuild \
   -logFile /dev/stdout
 
 UNITY_EXIT_CODE=$?
@@ -30,6 +32,8 @@ elif [ $UNITY_EXIT_CODE -eq 3 ]; then
 else
   echo "Unexpected exit code $UNITY_EXIT_CODE";
 fi
+
+rm -f $ANDROID_KEYSTORE
 
 ls -la $BUILD_PATH
 [ -n "$(ls -A $BUILD_PATH)" ] # fail job if build folder is empty
