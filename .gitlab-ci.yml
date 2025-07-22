@@ -36,7 +36,7 @@ variables:
   ANDROID_VERSION_NAME: v$MAJOR.$MINOR.$PATCH
   ANDROID_KEYSTORE: $UNITY_DIR/android-keystore.keystore
 
-  PACKAGE_URL: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/build/android-${RELEASE_TAG}/${BUILD_NAME}.${ANDROID_BUILD_TYPE}
+  PACKAGE_URL: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/build-${RELEASE_TAG}/android-${RELEASE_TAG}/${BUILD_NAME}.apk
 
 
 # this uses DOCKER_AUTH_CONFIG from ci variables
@@ -160,7 +160,7 @@ release_job:
     ref: '$CI_COMMIT_SHA'                          # The tag is created from the pipeline SHA.
     assets:
       links:
-        - name: android-$RELEASE_TAG/$BUILD_NAME.$ANDROID_BUILD_TYPE
+        - name: android-$RELEASE_TAG/$BUILD_NAME.apk
           url: $PACKAGE_URL
           link_type: 'package'
 

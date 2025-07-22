@@ -64,6 +64,10 @@ sysinfo.txt
 *.unitypackage
 *.unitypackage.meta
 *.app
+PerformanceTestRunInfo.json
+PerformanceTestRunInfo.json.meta
+PerformanceTestRunSettings.json
+PerformanceTestRunSettings.json.meta
 
 # Crashlytics generated file
 crashlytics-build.properties
