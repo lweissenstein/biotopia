@@ -16,6 +16,7 @@ git log -n 1 | tail -n +3 > ./fastlane/metadata/android/en-EN/${CI_PIPELINE_IID}
 echo ${ANDROID_FASTLANE_BASE64} | base64 -d > $JSON_KEY_FILE
 
 bundle exec fastlane supply \
+    --track internal \
     --aab "${CI_PROJECT_DIR}/Builds/Android/${BUILD_NAME}.${ANDROID_BUILD_TYPE}" \
     --json-key $JSON_KEY_FILE \
     --package_name "com.abductedrhino.biotopia" \
