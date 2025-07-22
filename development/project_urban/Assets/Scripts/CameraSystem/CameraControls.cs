@@ -21,6 +21,7 @@ public class CameraControls : MonoBehaviour
     [SerializeField, Range(1f, 60f)] float distance = 5f;
     [SerializeField] Transform focus = default;
     [SerializeField, Range(-89f, 89f)] float minVerticalAngle = -30f, maxVerticalAngle = 60f;
+    [SerializeField] float minCamSize;
     public Camera cam;
     Vector3 focusPoint;
 
@@ -48,7 +49,6 @@ public class CameraControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //focus.rotation = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up);
         Debug.Log(transform.rotation.eulerAngles.y);
 
         var activeTouches = Touch.activeTouches;
@@ -122,7 +122,7 @@ public class CameraControls : MonoBehaviour
         {
             return;
         }
-        // get the finger inputs
+
         Touch primary = Touch.activeTouches[0];
         Touch secondary = Touch.activeTouches[1];
         float x1 = primary.delta.x;
@@ -130,23 +130,17 @@ public class CameraControls : MonoBehaviour
         float y1 = primary.delta.y;
         float y2 = secondary.delta.y;
 
-        // check if none of the fingers moved, return
         if (primary.phase == TouchPhase.Moved || secondary.phase == TouchPhase.Moved)
         {
-            // if fingers have no history, then return
-            if (primary.history.Count < 1 || secondary.history.Count < 1)
+            if (primary.history.Count < 1 || secondary.history.Count < 1){
                 return;
-
-            // calculate distance before and after touch movement
+            }
             float currentDistance = Vector2.Distance(primary.screenPosition, secondary.screenPosition);
             float previousDistance = Vector2.Distance(primary.history[0].screenPosition, secondary.history[0].screenPosition);
-
-            // the zoom distance is the difference between the previous distance and the current distance
             if ((x1 <= 0.0 && x2 >= 0.0) || (x1 >= 0.0 && x2 <= 0.0))
             {
                 float pinchDistance = currentDistance - previousDistance;
                 Zoom(pinchDistance);
-
             }
             //if ((x1 <= 0.0 && x2 <= 0.0) || (x1 >= 0.0 && x2 >= 0.0))
             //{
@@ -167,6 +161,7 @@ public class CameraControls : MonoBehaviour
     {
         distance = distance * zoomModifier;
         cam.orthographicSize -= distance;
+        cam.orthographicSize = Mathf.Max(cam.orthographicSize, minCamSize);
     }
     public Vector2 normalize(Vector3 vec)
     {

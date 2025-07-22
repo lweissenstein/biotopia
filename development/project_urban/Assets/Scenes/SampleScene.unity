@@ -219,6 +219,7 @@ MonoBehaviour:
   focus: {fileID: 1859459024}
   minVerticalAngle: 27
   maxVerticalAngle: 89
+  minCamSize: 1
   cam: {fileID: 84645166}
   sphereTransform: {fileID: 84645164}
 --- !u!20 &84645166
