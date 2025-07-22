@@ -34,6 +34,98 @@ public class UpgradeableObject : MonoBehaviour
             Transform child = transform.Find((i).ToString());
             if (child != null)
                 child.gameObject.SetActive(i == height + 8);
+                
+        }
+    }
+
+    public void ChangeColor(string productionType, int height)
+    {
+        switch (height)
+        {
+            case 1:
+                ChangeColorSmall(productionType);
+                break;
+            case 2:
+                ChangeColorMedium(productionType);
+                break;
+            case 3:
+                ChangeColorLarge(productionType);
+                break;
+        }
+    }
+
+    public void ChangeColorSmall(string productionType)
+    {
+        Transform child = transform.Find((0).ToString());
+
+        switch (productionType)
+        {
+            case "Alge":
+                child.Find("House1_Body").gameObject.SetActive(false);
+                child.Find("House1_Body_Alge").gameObject.SetActive(true);
+                break;
+            case "Halophyte":
+                child.Find("House1_Body").gameObject.SetActive(false);
+                child.Find("House1_Body_Halophyte").gameObject.SetActive(true);
+                break;
+            case "Qualle":
+                child.Find("House1_Body").gameObject.SetActive(false);
+                child.Find("House1_Body_Qualle").gameObject.SetActive(true);
+                break;
+            case "Grille":
+                child.Find("House1_Body").gameObject.SetActive(false);
+                child.Find("House1_Body_Grille").gameObject.SetActive(true);
+                break;
+        }
+    }
+
+    public void ChangeColorMedium(string productionType)
+    {
+        Transform child = transform.Find((1).ToString());
+
+        switch (productionType)
+        {
+            case "Alge":
+                child.Find("House2_Body1").gameObject.SetActive(false);
+                child.Find("House2_Body1_Alge").gameObject.SetActive(true);
+                break;
+            case "Halophyte":
+                child.Find("House2_Body1").gameObject.SetActive(false);
+                child.Find("House2_Body1_Halophyte").gameObject.SetActive(true);
+                break;
+            case "Qualle":
+                child.Find("House2_Body1").gameObject.SetActive(false);
+                child.Find("House2_Body1_Qualle").gameObject.SetActive(true);
+                break;
+            case "Grille":
+                child.Find("House2_Body1").gameObject.SetActive(false);
+                child.Find("House2_Body1_Grille").gameObject.SetActive(true);
+                break;
+        }
+    }
+
+    public void ChangeColorLarge(string productionType)
+    {
+        Transform child = transform.Find((2).ToString());
+
+        switch (productionType)
+        {
+            case "Alge":
+                child.Find("House3_Body").gameObject.SetActive(false);
+                child.Find("House3_Body_Alge").gameObject.SetActive(true);
+                break;
+            case "Halophyte":
+                child.Find("House3_Body").gameObject.SetActive(false);
+                child.Find("House3_Body_Halophyte").gameObject.SetActive(true);
+                break;
+            case "Qualle":
+                child.Find("House3_Body").gameObject.SetActive(false);
+                child.Find("House3_Body_Qualle").gameObject.SetActive(true);
+                break;
+            case "Grille":
+                child.Find("House3_Body").gameObject.SetActive(false);
+                child.Find("House3_Body_Grille").gameObject.SetActive(true);
+                break;
         }
     }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 using EconomySystem;
 using System.Collections.Generic;
 using System.Linq;
+using Debug = UnityEngine.Debug;
 
 public class BuildingInstance : MonoBehaviour
 {
@@ -41,12 +42,14 @@ public class BuildingInstance : MonoBehaviour
     public int compartmentTypeHouse = 0; // 7 = supermarkt, 3 = alge, 4 = salzpflanze, 5 = qualle, 6 = grille
     private bool isProducing = false;
     public bool hasSupermarket;
+    public string productionAsString;
 
     public float produceAlgeValue = 0.5f;
     public float produceSalzpflanzeValue = 0.5f;
     public float produceQualleValue = 0.5f;
     public float produceGrillevalue = 0.5f;
     public float producePerSecond = 0f; // Gesamtproduktion pro Sekunde, abh�ngig von den Upgrades
+
 
 
     // Water
@@ -85,7 +88,7 @@ public class BuildingInstance : MonoBehaviour
             if (available.Count == 0) return;
 
             ProductType chosen = ChooseProduct(available);
-            Debug.Log($"Chosen product: {chosen}");
+            UnityEngine.Debug.Log($"Chosen product: {chosen}");
             Consume?.Invoke(chosen);
         }
         else
@@ -150,6 +153,8 @@ public class BuildingInstance : MonoBehaviour
             var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
                 upgradeable.SetActiveSolarPanels(height);
+                if (isProducing)
+                    upgradeable.ChangeColor(productionAsString, height);
         }
         UpdateCollider();
 
@@ -162,6 +167,8 @@ public class BuildingInstance : MonoBehaviour
             var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
                 upgradeable.SetActiveSolarPanels(height);
+            productionAsString = "Alge";
+                upgradeable.ChangeColor(productionAsString, height);
 
             compartmentTypeHouse = 3;
             countCompartmentsHouse++;
@@ -188,6 +195,8 @@ public class BuildingInstance : MonoBehaviour
             var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
                 upgradeable.SetActiveSolarPanels(height);
+            productionAsString = "Halophyte";
+            upgradeable.ChangeColor(productionAsString, height);
 
             compartmentTypeHouse = 4;
             countCompartmentsHouse++;
@@ -213,6 +222,8 @@ public class BuildingInstance : MonoBehaviour
             var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
                 upgradeable.SetActiveSolarPanels(height);
+            productionAsString = "Qualle";
+            upgradeable.ChangeColor(productionAsString, height);
 
             compartmentTypeHouse = 5;
             countCompartmentsHouse++;
@@ -237,6 +248,8 @@ public class BuildingInstance : MonoBehaviour
             var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
                 upgradeable.SetActiveSolarPanels(height);
+            productionAsString = "Grille";
+            upgradeable.ChangeColor(productionAsString, height);
 
             compartmentTypeHouse = 6;
             countCompartmentsHouse++;

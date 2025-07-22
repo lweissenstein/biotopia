@@ -1,2 +1,20 @@
 fileFormatVersion: 2
 guid: cb8d0e617839e664bb71b975a082cb02
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - boxColliderHouse: {instanceID: 0}
+  - data: {instanceID: 0}
+  - previewPrefab: {instanceID: 0}
+  - placementSystem: {instanceID: 0}
+  - productDatabase: {instanceID: 0}
+  - algeMaterial: {instanceID: 0}
+  - halophyteMaterial: {instanceID: 0}
+  - QualleMaterial: {instanceID: 0}
+  - GrilleMaterial: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

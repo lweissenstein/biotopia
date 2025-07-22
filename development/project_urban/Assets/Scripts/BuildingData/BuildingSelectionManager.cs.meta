@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: e66a77f8354a6114f831c03265a06489
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - uiDocument: {instanceID: 0}
+  - previewTexture: {instanceID: 0}
+  - algeMaterial: {fileID: 2100000, guid: 17984979f3cf70f44b1ab73c1e28bb08, type: 2}
+  - halophyteMaterial: {fileID: 2100000, guid: ae2458cfd411e6048b9388877e8aa28c, type: 2}
+  - QualleMaterial: {fileID: 2100000, guid: 26cfcabefe7899c4aa4f6488ef4a28d0, type: 2}
+  - GrilleMaterial: {fileID: 2100000, guid: dd8e4c392a2ef45409d44692dcd265b9, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
