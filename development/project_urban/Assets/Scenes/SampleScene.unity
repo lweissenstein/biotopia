@@ -214,9 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomModifier: 0.01
-  movementModifier: 0.01
   rotationSpeed: 1
-  distance: 21.7
+  distance: 25
   focus: {fileID: 1859459024}
   minVerticalAngle: 27
   maxVerticalAngle: 89
@@ -258,7 +257,7 @@ Camera:
   far clip plane: 1000
   field of view: 54.33381
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 16
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
