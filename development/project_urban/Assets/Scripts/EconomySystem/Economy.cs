@@ -29,7 +29,7 @@ namespace EconomySystem
         private VisualElement resourcePanel, showResources, mainmenu, moneyVisual;
         private Button enableRange;
 
-        public BuildingSelectionManager buildingSelectionManager;
+        [SerializeField] private BuildingSelectionManager buildingSelectionManager;
 
 
         private void Start()
@@ -97,7 +97,7 @@ namespace EconomySystem
 
             enableRange.clicked += () =>
             {
-                buildingSelectionManager.ToggleSuperMarketRange();
+                RangeEnabler();
             };
 
             if (GameState.isTutorial)
@@ -220,7 +220,7 @@ namespace EconomySystem
         {
             if (foodPerSecondLabel != null)
             {
-                if(proteinsPerSecond >= 0)
+                if (proteinsPerSecond >= 0)
                     foodPerSecondLabel.text = $"+{proteinsPerSecond}/s";
                 else if (proteinsPerSecond < 0)
                     foodPerSecondLabel.text = $"{proteinsPerSecond}/s";
@@ -229,6 +229,11 @@ namespace EconomySystem
             {
                 Debug.LogWarning("FoodPErSecond label not found in the UI document.");
             }
+        }
+        public void RangeEnabler()
+        {
+            buildingSelectionManager = FindFirstObjectByType<BuildingSelectionManager>();
+            buildingSelectionManager.ToggleSuperMarketRange();
         }
     }
 }

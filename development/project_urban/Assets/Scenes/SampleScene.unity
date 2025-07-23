@@ -1242,6 +1242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiDocument: {fileID: 1570907081}
   previewTexture: {fileID: 8400000, guid: 041a9652164365c429cf63ce5f994dea, type: 2}
+  superMarkets: []
   SuperMarketRange: 0
 --- !u!1 &537104334
 GameObject:
@@ -2432,6 +2433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiDocument: {fileID: 1570907081}
   previewTexture: {fileID: 8400000, guid: 041a9652164365c429cf63ce5f994dea, type: 2}
+  superMarkets: []
   SuperMarketRange: 0
 --- !u!1 &1673047347
 GameObject:

@@ -17,7 +17,7 @@ public class BuildingSelectionManager : MonoBehaviour
 
     private TutorialManager tutorialManager;
     private BuildingInstance selected;
-    private List<BuildingInstance> superMarkets = new List<BuildingInstance>();
+    public List<BuildingInstance> superMarkets = new();
 
     public bool SuperMarketRange = false;
 
@@ -63,7 +63,7 @@ public class BuildingSelectionManager : MonoBehaviour
         supermarktButton.clicked += () =>
         {
             if (selected != null)
-            {
+            { 
                 if (selected.countCompartmentsHouse < selected.maxCompartments && credits.TrySpendCredits(0))
                 {
                     selected.UpgradeSupermarkt();
@@ -273,7 +273,6 @@ public class BuildingSelectionManager : MonoBehaviour
 
     public void ToggleSuperMarketRange()
     {
-        Debug.Log("bin im toggler" + SuperMarketRange);
         SuperMarketRange = !SuperMarketRange;
         foreach (BuildingInstance supMar in superMarkets) 
         {
