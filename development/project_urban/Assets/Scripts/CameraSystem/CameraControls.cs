@@ -1,13 +1,11 @@
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 //using UnityEngine.InputSystem;
 //using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
-using UnityEngine.UIElements;
+
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
@@ -27,6 +25,8 @@ public class CameraControls : MonoBehaviour
 
     public Transform sphereTransform;
     Vector2 orbitAngles = new Vector2(45f, 0f);
+    private Quaternion lastRotation;
+    private Vector3 lastPosition;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,45 +34,47 @@ public class CameraControls : MonoBehaviour
     {
         if (!EnhancedTouchSupport.enabled)
             EnhancedTouchSupport.Enable();
+
+        Application.targetFrameRate = 60;
     }
 
 
     private void LateUpdate()
     {
-        ManualRotation();
-        
-        Vector3 focusPoint = focus.position;
-        Vector3 lookDirection = transform.forward;
-        transform.localPosition = focusPoint - lookDirection * distance;
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return; // Blockiere Kameraeingaben über UI
+        }
+
+        // Aktuellen Fokuspunkt holen
+        focusPoint = focus.position;
+
+        // Kamera-Rotation manuell aktualisieren, falls nötig
+        bool rotated = ManualRotation();
+        if (rotated)
+        {
+            ConstrainAngles();
+        }
+
+        Quaternion lookRotation = rotated ? Quaternion.Euler(orbitAngles) : transform.localRotation;
+
+        // Bewegung + Zoom
+        TwoFingerMovement();
+
+        // Neue Kamera-Position berechnen
+        Vector3 lookDirection = lookRotation * Vector3.forward;
+        Vector3 lookPosition = focusPoint - lookDirection * distance;
+
+        // Kamera nur bewegen, wenn nötig
+        if (lookRotation != lastRotation || lookPosition != lastPosition)
+        {
+            transform.SetPositionAndRotation(lookPosition, lookRotation);
+            lastRotation = lookRotation;
+            lastPosition = lookPosition;
+        }
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(transform.rotation.eulerAngles.y);
-
-        var activeTouches = Touch.activeTouches;
-        
-
-        Quaternion lookRotation;
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-        {
-            return;
-        }
-        if (ManualRotation())
-        {
-            ConstrainAngles();
-            lookRotation = Quaternion.Euler(orbitAngles);
-        }
-        else
-        {
-            lookRotation = transform.localRotation;
-        }
-        TwoFingerMovement();
-        Vector3 lookDirection = lookRotation * Vector3.forward;
-        Vector3 lookPosition = focusPoint - lookDirection * distance;
-        transform.SetPositionAndRotation(lookPosition, lookRotation);
-    }
     bool ManualRotation()
     {
         var activeTouches = Touch.activeTouches;
