@@ -142,19 +142,22 @@ public class CameraControls : MonoBehaviour
                 float pinchDistance = currentDistance - previousDistance;
                 Zoom(pinchDistance);
             }
-            //if ((x1 <= 0.0 && x2 <= 0.0) || (x1 >= 0.0 && x2 >= 0.0))
-            //{
-            //    //Vector3 movement = new Vector3(x1, 0, y1);
-            //    //float angle = transform.rotation.eulerAngles.y;
-            //    //Vector3 rotVec = new Vector3(movement.x * Mathf.Cos(angle) - movement.z * Mathf.Sin(angle), 0, movement.x * Mathf.Sin(angle) + movement.z * Mathf.Cos(angle));
+            // DER CODE ZUM VERSCHIEBEN 
+            /*
+            if ((x1 <= 0.0 && x2 <= 0.0) || (x1 >= 0.0 && x2 >= 0.0))
+            {
+                //Vector3 movement = new Vector3(x1, 0, y1);
+                //float angle = transform.rotation.eulerAngles.y;
+                //Vector3 rotVec = new Vector3(movement.x * Mathf.Cos(angle) - movement.z * Mathf.Sin(angle), 0, movement.x * Mathf.Sin(angle) + movement.z * Mathf.Cos(angle));
 
-            //    float angle = transform.rotation.eulerAngles.y;
-            //    Vector3 temp = new Vector3(-activeTouches[0].delta.x, 0, -activeTouches[0].delta.y);
-            //    //Debug.Log(temp);
-            //    Vector3 rotVec = Quaternion.AngleAxis(angle, Vector3.up) * temp;
-            //    //Debug.Log(rotVec);
-            //    focus.position = focus.position + rotVec * movementModifier;
-            //}
+                float angle = transform.rotation.eulerAngles.y;
+                Vector3 temp = new Vector3(-activeTouches[0].delta.x, 0, -activeTouches[0].delta.y);
+                //Debug.Log(temp);
+                Vector3 rotVec = Quaternion.AngleAxis(angle, Vector3.up) * temp;
+                //Debug.Log(rotVec);
+                focus.position = focus.position + rotVec * movementModifier;
+            }
+            */
         }
     }
     public void Zoom(float distance)

@@ -8,7 +8,6 @@ namespace MenuSystem
 {
     internal static class State
     {
-        public static bool IsNewGame = true;
         public static StyleEnum<DisplayStyle>? UpgradeWindowUIDisplayStyle = null;
         public static StyleEnum<DisplayStyle>? ProcessBuildingUIDisplayStyle = null;
         public static StyleEnum<DisplayStyle>? EconomyUIDisplayStyle = null;
@@ -20,10 +19,9 @@ namespace MenuSystem
         public UIDocument upgradeWindowUI;
         public UIDocument processBuildingUI;
         public UIDocument economyUI;
-        private Label _menuLabel;
-        private Button _continueButton;
-        private Button _startNewGameButton;
-        private VisualElement _visualElement;
+        public UIDocument pauseUI;
+        private Label _menuLabel, title;
+        private Button continueGame, newGame, startTutorial, quitToMenu;
         private bool _isFirstFrame;
         private static readonly Color BackGroundColor = new(.8f, .8f, .8f, 0.5f);
 
@@ -33,38 +31,57 @@ namespace MenuSystem
             _isFirstFrame = true;
             _menuLabel = economyUI.rootVisualElement.Q<Label>("menuButtonLabel");
             _menuLabel.RegisterCallback<ClickEvent>(_ => OnPauseButton());
+
+            var pauseRoot = pauseUI.rootVisualElement;
+            title = pauseRoot.Q<Label>("title");
+            title.enableRichText = true;
+            title.text = "<color=#379B1B>Bio</color>topia";
+            continueGame = pauseRoot.Q<Button>("continue");
+            continueGame.clicked += OnContinueButton;
+            newGame = pauseRoot.Q<Button>("newgame");
+            newGame.clicked += OnStartNewGameButton;
+            startTutorial = pauseRoot.Q<Button>("tutorial");
+            startTutorial.clicked += OnStartTutorialButton;
+            quitToMenu = pauseRoot.Q<Button>("quit");
+            quitToMenu.clicked += OnQuitToMenuButton;
+
+            HideMenu();
+            if (GameState.isNewGame)
+            {
+                OnStartNewGameButton();
+            }
         }
 
 
         public void Update()
         {
-            // need this because it didn't work with WaitForEndOfFrame().
-            // we need to wait for the other uis to be rendered in order to hide them properly.
-            // sorry
-            if (!_isFirstFrame) return;
-            ActualStart();
-            _isFirstFrame = false;
 
-            return;
-
-            void ActualStart()
-            {
-                // pause the game on startup
-                if (State.IsNewGame) OnPauseButton();
-            }
         }
 
         private void OnStartNewGameButton()
         {
-            // only reload the scene if this it isn't a new game. No reason to reload a new game.
-
-            if (!State.IsNewGame) SceneManager.LoadSceneAsync(0);
-            State.IsNewGame = false;
-            FoodEconomy.Reset();
+            if (!GameState.isNewGame)
+            {
+                SceneManager.LoadSceneAsync("SampleScene");
+                FoodEconomy.Reset();
+            }
+            GameState.isNewGame = false;
             HideMenu();
             ShowOtherUIs();
             GamePauser.ContinueGame();
             economyUI.rootVisualElement.style.display = DisplayStyle.Flex;
+        }
+
+        private void OnQuitToMenuButton()
+        {
+            FoodEconomy.Reset();
+            SceneManager.LoadSceneAsync("mainMenu");
+        }
+
+        private void OnStartTutorialButton()
+        {
+            GameState.isNewGame = true;
+            SceneManager.LoadSceneAsync("tutorial");
         }
 
         private void OnPauseButton()
@@ -76,8 +93,7 @@ namespace MenuSystem
 
         private void OnContinueButton()
         {
-            // do nothing if this is a new game.
-            if (State.IsNewGame) return;
+ 
             HideMenu();
             ShowOtherUIs();
             GamePauser.ContinueGame();
@@ -110,54 +126,8 @@ namespace MenuSystem
                 }
             }
         }
+        void HideMenu() => pauseUI.rootVisualElement.style.display = DisplayStyle.None;
+        void ShowMenu() => pauseUI.rootVisualElement.style.display = DisplayStyle.Flex;
 
-        private void ShowMenu()
-        {
-            _visualElement = new VisualElement
-            {
-                style =
-                {
-                    height = Length.Percent(100),
-                    width = Length.Percent(100),
-                    backgroundColor = BackGroundColor,
-                }
-            };
-
-            _startNewGameButton = new Button
-            {
-                text = "New Game",
-                name = "StartNewGameButton",
-                style =
-                {
-                    marginTop = Length.Auto(),
-                    alignSelf = Align.FlexEnd,
-                    width = Length.Percent(10),
-                }
-            };
-            _startNewGameButton.clicked += OnStartNewGameButton;
-
-            _continueButton = new Button
-            {
-                text = "Continue",
-                name = "ContinueButton",
-                style =
-                {
-                    alignSelf = Align.FlexEnd,
-                    marginTop = Length.Auto(),
-                    width = Length.Percent(10),
-                }
-            };
-            _continueButton.clicked += OnContinueButton;
-            if (State.IsNewGame) _continueButton.style.backgroundColor = BackGroundColor;
-            _visualElement.Add(_startNewGameButton);
-            _visualElement.Add(_continueButton);
-
-            menuUI?.rootVisualElement?.Add(_visualElement);
-        }
-
-        private void HideMenu()
-        {
-            menuUI?.rootVisualElement?.Remove(_visualElement);
-        }
     }
 }

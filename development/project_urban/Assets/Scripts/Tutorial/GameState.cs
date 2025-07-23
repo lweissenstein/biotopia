@@ -13,4 +13,5 @@ public static class GameState
     public static bool supermarkt = false; 
     public static bool algePowder = false;
     public static bool waitForButton = false;
+    public static bool isNewGame = false;
 }

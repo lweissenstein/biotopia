@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using EconomySystem;
-using UnityEditor;
 public class TutorialManager : MonoBehaviour
 {
     [Header("Tutorial Settings")]
