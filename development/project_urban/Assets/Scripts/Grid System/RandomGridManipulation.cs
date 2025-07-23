@@ -289,15 +289,11 @@ public class RandomGridManipulation
     }
 
     public void PingSuperMarket(Vector3 pos, GridData gridData)
-    {
+    {   
         for (int x = -5; x <= 5; x++)
         {
             for (int z = -5; z <= 5; z++)
             {
-                if(x == 0 && z == 0)
-                {
-                    break;  // Skip the center position
-                }
                 Vector3Int posNew = new Vector3Int((int)pos.x + x, (int)pos.y, (int)pos.z + z);
                 if (!gridData.CanPlaceObjectAt(posNew, new Vector2Int (1,1))){
                     if (gridData.GetObjectIDAt(posNew) <= 2)
@@ -315,6 +311,17 @@ public class RandomGridManipulation
             }
         }
     }
+
+    public void PingAll(List<BuildingInstance> markets, GridData gridData)
+    {
+        foreach (var market in markets)
+        {
+            Debug.Log("Pinging SuperMarket at position: " + market.pos);
+            PingSuperMarket(market.pos, gridData);
+      
+        }
+    }
+
 
     /// <summary>
     /// Wie RandomUpgrade, aber mit Gewichtung nach Nachbarschaft.

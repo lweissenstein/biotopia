@@ -105,7 +105,7 @@ public class BuildingSelectionManager : MonoBehaviour
                 UpdateUI(selected);
                 SelectBuilding(selected);
 
-                // Preis erhöhen nur nach erfolgreichem Upgrade
+                // Preis erhï¿½hen nur nach erfolgreichem Upgrade
 
             }
         };
@@ -122,10 +122,10 @@ public class BuildingSelectionManager : MonoBehaviour
     {
         if (building.data is House house)
         {
-            algePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"€ {selected.compartmentPrices["Alge"]}";
-            quallePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"€ {selected.compartmentPrices["Qualle"]}";
-            halophytPrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"€ {selected.compartmentPrices["Salzpflanze"]}";
-            grillePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"€ {selected.compartmentPrices["Grille"]}";
+            algePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"ï¿½ {selected.compartmentPrices["Alge"]}";
+            quallePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"ï¿½ {selected.compartmentPrices["Qualle"]}";
+            halophytPrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"ï¿½ {selected.compartmentPrices["Salzpflanze"]}";
+            grillePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"ï¿½ {selected.compartmentPrices["Grille"]}";
 
             buildingResidentsLabel.text = selected.residents.ToString();
             hasSupermarktLabel.text = selected.hasSupermarket ? "Ja" : "Nein";
@@ -138,7 +138,7 @@ public class BuildingSelectionManager : MonoBehaviour
                 case 3:
                     SetProductionUI(
                         "Algen Produktion", "Alge", selected.producePerSecond + "/s", selected.hasSupermarket,
-                        "Vom Meeresgrund auf den Teller – Algen sind echte Nährstoffbomben. Reich an Eiweiß, Jod, Eisen und Omega-3. Sie wachsen schneller als jede Landpflanze und brauchen dafür nur Licht, CO2 und Meerwasser. Ob zart wie Meersalat oder fest wie Kelp: Algen sind das Gemüse der Zukunft. Nachhaltig, vielseitig und mit einer Prise Ozean in jedem Biss." // ggf. verkürzt
+                        "Vom Meeresgrund auf den Teller ï¿½ Algen sind echte Nï¿½hrstoffbomben. Reich an Eiweiï¿½, Jod, Eisen und Omega-3. Sie wachsen schneller als jede Landpflanze und brauchen dafï¿½r nur Licht, CO2 und Meerwasser. Ob zart wie Meersalat oder fest wie Kelp: Algen sind das Gemï¿½se der Zukunft. Nachhaltig, vielseitig und mit einer Prise Ozean in jedem Biss." // ggf. verkï¿½rzt
                     );
                     algenButton.style.visibility = Visibility.Visible;
                     //ToggleSuperMarketRange(false);
@@ -147,7 +147,7 @@ public class BuildingSelectionManager : MonoBehaviour
                 case 4:
                     SetProductionUI(
                         "Halophyten Produktion", "Halophyt", selected.producePerSecond + "/s", selected.hasSupermarket, 
-                        "Salzig, knackig, robust – Halophyten wie Salicornia wachsen dort, wo andere Pflanzen aufgeben: auf salzigen Böden, in trockenen Küstenregionen, ganz ohne Süßwasser. Diese grünen Überlebenskünstler bringen Mineralstoffe, Umami-Geschmack und zarte Sukkulenz auf den Teller. Sie sind die ideale Ressource für eine Welt mit Wassermangel – und schmecken dabei wie das Meer in Pflanzenform."
+                        "Salzig, knackig, robust ï¿½ Halophyten wie Salicornia wachsen dort, wo andere Pflanzen aufgeben: auf salzigen Bï¿½den, in trockenen Kï¿½stenregionen, ganz ohne Sï¿½ï¿½wasser. Diese grï¿½nen ï¿½berlebenskï¿½nstler bringen Mineralstoffe, Umami-Geschmack und zarte Sukkulenz auf den Teller. Sie sind die ideale Ressource fï¿½r eine Welt mit Wassermangel ï¿½ und schmecken dabei wie das Meer in Pflanzenform."
                     );
                     salzpflanzenButton.style.visibility = Visibility.Visible;
                     //ToggleSuperMarketRange(false);
@@ -156,7 +156,7 @@ public class BuildingSelectionManager : MonoBehaviour
                 case 5:
                     SetProductionUI(
                         "Quallen Produktion", "Qualle", selected.producePerSecond + "/s", selected.hasSupermarket,
-                        "Schwebend, transparent, fast außerirdisch – Quallen sind wahre Überlebenskünstler. Sie brauchen kaum Energie, vermehren sich rasant und bestehen zu 95% aus Wasser. Was viele nicht wissen: Sie sind auch essbar! Ihr hoher Kollagen- und Proteingehalt macht sie zur exotischen Proteinquelle der Zukunft. In der Küche? Ein Erlebnis zwischen Crunch und Glibber – für alle, die bereit sind, kulinarisches Neuland zu betreten."
+                        "Schwebend, transparent, fast auï¿½erirdisch ï¿½ Quallen sind wahre ï¿½berlebenskï¿½nstler. Sie brauchen kaum Energie, vermehren sich rasant und bestehen zu 95% aus Wasser. Was viele nicht wissen: Sie sind auch essbar! Ihr hoher Kollagen- und Proteingehalt macht sie zur exotischen Proteinquelle der Zukunft. In der Kï¿½che? Ein Erlebnis zwischen Crunch und Glibber ï¿½ fï¿½r alle, die bereit sind, kulinarisches Neuland zu betreten."
                     );
                     quallenButton.style.visibility = Visibility.Visible;
                     //ToggleSuperMarketRange(false);
@@ -165,7 +165,7 @@ public class BuildingSelectionManager : MonoBehaviour
                 case 6:
                     SetProductionUI(
                         "Grillen Produktion", "Grille", selected.producePerSecond + "/s", selected.hasSupermarket,
-                        "Knusprig, nussig, unglaublich effizient – Grillen liefern hochwertiges Protein, Vitamine und gesunde Fette. Sie brauchen wenig Platz, kaum Wasser und stoßen kaum CO2 aus. Was sie leisten? Mehr als man denkt. Als Snack, Mehl oder Fleischersatz sind sie die leisen Superhelden der Ernährung. Klein, aber oho – Insekten sind nicht nur die Zukunft. Sie sind die Gegenwart."
+                        "Knusprig, nussig, unglaublich effizient ï¿½ Grillen liefern hochwertiges Protein, Vitamine und gesunde Fette. Sie brauchen wenig Platz, kaum Wasser und stoï¿½en kaum CO2 aus. Was sie leisten? Mehr als man denkt. Als Snack, Mehl oder Fleischersatz sind sie die leisen Superhelden der Ernï¿½hrung. Klein, aber oho ï¿½ Insekten sind nicht nur die Zukunft. Sie sind die Gegenwart."
                     );
                     grillenButton.style.visibility = Visibility.Visible;
                     //ToggleSuperMarketRange(false);

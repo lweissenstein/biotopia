@@ -73,6 +73,8 @@ public class BuildingInstance : MonoBehaviour
         processSelectionManager = FindFirstObjectByType<ProcessSelectionManager>();
         placementSystem = FindFirstObjectByType<PlacementSystem>();
 
+
+
     }
 
     // ------------ General ------------

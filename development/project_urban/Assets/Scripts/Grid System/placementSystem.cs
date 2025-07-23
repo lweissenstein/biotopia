@@ -18,6 +18,7 @@ public class PlacementSystem : MonoBehaviour
 
     [SerializeField] private ObjectPlacer objectPlacer;
 
+    public BuildingSelectionManager buildingSelectionManager;
     //IBuildingState buildingState;dsad
 
     //[SerializeField] private SoundFeedback soundFeedback;
@@ -48,6 +49,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void Start()
     {
+
         //StopPlacement();
         // no idea why we are using a Y axis btw
         var gridSize = new Vector3Int(gridSizeX, 1, gridSizeZ);
@@ -131,6 +133,10 @@ public class PlacementSystem : MonoBehaviour
             {
                 randomPlacer.RandomWheightedPlace(1, gridSizeX, gridSizeZ, furnitureData, 0);
                 smallPlaceTimer = 1;
+                buildingSelectionManager = FindAnyObjectByType<BuildingSelectionManager>();
+                Debug.Log("Building Selection Manager found: " + (buildingSelectionManager != null));
+                randomPlacer.PingAll(buildingSelectionManager.superMarkets, furnitureData);
+
             }
             if (smallToMediumTimer == 0)
             {
