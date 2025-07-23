@@ -58,6 +58,7 @@ MonoBehaviour:
   height: 1
   compartmentTypeHouse: 0
   hasSupermarket: 0
+  productionAsString: 
   produceAlgeValue: 0.05
   produceSalzpflanzeValue: 0.05
   produceQualleValue: 0.05
@@ -143,11 +144,11 @@ PrefabInstance:
     - target: {fileID: -6822706370686524278, guid: a194a5e8f78633a43882f915da006511, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 26cfcabefe7899c4aa4f6488ef4a28d0, type: 2}
+      objectReference: {fileID: 2100000, guid: 08bb8747a3e9c894a867d82921b01d39, type: 2}
     - target: {fileID: 466475512548131220, guid: a194a5e8f78633a43882f915da006511, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: dd8e4c392a2ef45409d44692dcd265b9, type: 2}
+      objectReference: {fileID: 2100000, guid: 4262bddb4bbc84346aecf106bd594741, type: 2}
     - target: {fileID: 919132149155446097, guid: a194a5e8f78633a43882f915da006511, type: 3}
       propertyPath: m_Name
       value: ThermeBadSaarow_1210Tris_Stripped
@@ -155,11 +156,11 @@ PrefabInstance:
     - target: {fileID: 1893746149289386330, guid: a194a5e8f78633a43882f915da006511, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 06499a263a141e2499b4cb8329cda9ec, type: 2}
+      objectReference: {fileID: 2100000, guid: b1daa2c835694de4d9f9f9fac7266ec0, type: 2}
     - target: {fileID: 5997295118524185482, guid: a194a5e8f78633a43882f915da006511, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ae2458cfd411e6048b9388877e8aa28c, type: 2}
+      objectReference: {fileID: 2100000, guid: 36b93ab1f8cb94848b7d799c78343027, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
