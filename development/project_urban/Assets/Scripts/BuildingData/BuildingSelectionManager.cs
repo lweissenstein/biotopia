@@ -273,6 +273,7 @@ public class BuildingSelectionManager : MonoBehaviour
 
     public void ToggleSuperMarketRange()
     {
+        Debug.Log("bin im toggler" + SuperMarketRange);
         SuperMarketRange = !SuperMarketRange;
         foreach (BuildingInstance supMar in superMarkets) 
         {

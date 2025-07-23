@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Util;
 using EconomySystem;
+using System.Collections;
 
 namespace MenuSystem
 {
@@ -20,9 +21,14 @@ namespace MenuSystem
         public UIDocument processBuildingUI;
         public UIDocument economyUI;
         public UIDocument pauseUI;
+        public UIDocument loadingScreen;
+        public UIDocument deathScreen;
         private Label _menuLabel, title;
-        private Button continueGame, newGame, startTutorial, quitToMenu;
+        private Button continueGame, newGame, startTutorial, quitToMenu, newGameDeath, startTutorialDeath, quitToMenuDeath;
+        private ProgressBar loadingBar;
         private bool _isFirstFrame;
+        private FoodEconomy foodEconomy;
+        private Timer _timer = new();
         private static readonly Color BackGroundColor = new(.8f, .8f, .8f, 0.5f);
 
 
@@ -31,6 +37,8 @@ namespace MenuSystem
             _isFirstFrame = true;
             _menuLabel = economyUI.rootVisualElement.Q<Label>("menuButtonLabel");
             _menuLabel.RegisterCallback<ClickEvent>(_ => OnPauseButton());
+
+            foodEconomy = FoodEconomy.Instance;
 
             var pauseRoot = pauseUI.rootVisualElement;
             title = pauseRoot.Q<Label>("title");
@@ -45,6 +53,18 @@ namespace MenuSystem
             quitToMenu = pauseRoot.Q<Button>("quit");
             quitToMenu.clicked += OnQuitToMenuButton;
 
+            var deathRoot = deathScreen.rootVisualElement;
+            newGameDeath = deathRoot.Q<Button>("newgame");
+            newGameDeath.clicked += OnStartNewGameButton;
+            startTutorialDeath = deathRoot.Q<Button>("tutorial");
+            startTutorialDeath.clicked += OnStartTutorialButton;
+            quitToMenuDeath = deathRoot.Q<Button>("quit");
+            quitToMenuDeath.clicked += OnQuitToMenuButton;
+            deathScreen.rootVisualElement.style.display = DisplayStyle.None;
+
+            var loadingRoot = loadingScreen.rootVisualElement;
+            loadingBar = loadingRoot.Q<ProgressBar>("loading");
+            loadingScreen.rootVisualElement.style.display = DisplayStyle.None;
             HideMenu();
             if (GameState.isNewGame)
             {
@@ -52,17 +72,25 @@ namespace MenuSystem
             }
         }
 
-
-        public void Update()
+        private void Update()
         {
+            _timer.OncePerSecond(CheckNoSaturation);
+        }
 
+        private void CheckNoSaturation()
+        {
+            if(foodEconomy.CurrentProteinAmount <= foodEconomy.MinProteinAmount)
+            {
+                deathScreen.rootVisualElement.style.display = DisplayStyle.Flex;
+                HideOtherUIs();
+            }
         }
 
         private void OnStartNewGameButton()
         {
             if (!GameState.isNewGame)
             {
-                SceneManager.LoadSceneAsync("SampleScene");
+                LoadSceneWithProgress("SampleScene");
                 FoodEconomy.Reset();
             }
             GameState.isNewGame = false;
@@ -74,14 +102,16 @@ namespace MenuSystem
 
         private void OnQuitToMenuButton()
         {
+            HideMenu();
             FoodEconomy.Reset();
-            SceneManager.LoadSceneAsync("mainMenu");
+            LoadSceneWithProgress("mainMenu");
         }
 
         private void OnStartTutorialButton()
         {
+            HideMenu();
             GameState.isNewGame = true;
-            SceneManager.LoadSceneAsync("tutorial");
+            LoadSceneWithProgress("tutorial");
         }
 
         private void OnPauseButton()
@@ -128,6 +158,32 @@ namespace MenuSystem
         }
         void HideMenu() => pauseUI.rootVisualElement.style.display = DisplayStyle.None;
         void ShowMenu() => pauseUI.rootVisualElement.style.display = DisplayStyle.Flex;
+        public void LoadSceneWithProgress(string sceneName)
+        {
+            StartCoroutine(LoadSceneAsync(sceneName));
+        }
 
+        private IEnumerator LoadSceneAsync(string sceneName)
+        {
+            loadingScreen.rootVisualElement.style.display = DisplayStyle.Flex;
+            loadingBar.value = 0;
+
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+            asyncLoad.allowSceneActivation = false;
+
+            while (!asyncLoad.isDone)
+            {
+                float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); // Bis max. 0.9
+                loadingBar.value = progress * 100f;
+
+                // Optional: Sofort aktivieren
+                if (asyncLoad.progress >= 0.9f)
+                {
+                    asyncLoad.allowSceneActivation = true;
+                }
+
+                yield return null;
+            }
+        }
     }
 }

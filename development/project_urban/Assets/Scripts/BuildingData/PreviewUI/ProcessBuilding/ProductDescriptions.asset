@@ -36,7 +36,7 @@ MonoBehaviour:
       wie Nudelprodukte aus nachhaltiger Algenaufzucht erstellt werden ."
     name: Kelp Fettucine
     icon: {fileID: 0}
-    price: 200000
+    price: 1500
     baseSpeed: 7
     baseAmount: 1
     baseQuality: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
       als Verdickungsmittel und nachhaltige Zutaten dienen."
     name: Ocean Jelly
     icon: {fileID: 0}
-    price: 500
+    price: 7500
     baseSpeed: 9
     baseAmount: 1
     baseQuality: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       Landwirtschaft dienen k\xF6nnen"
     name: Algae Patties
     icon: {fileID: 0}
-    price: 1000
+    price: 15000
     baseSpeed: 12
     baseAmount: 1
     baseQuality: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
       sekund\xE4ren Metabolite"
     name: Hydro Pickles
     icon: {fileID: 0}
-    price: 200000
+    price: 1500
     baseSpeed: 7
     baseAmount: 1
     baseQuality: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
       \u2013 ideal, um \xFCber N\xE4hrstoffvielfalt in salzliebenden Pflanzen aufzukl\xE4ren."
     name: Sea Spread
     icon: {fileID: 0}
-    price: 500
+    price: 7500
     baseSpeed: 9
     baseAmount: 1
     baseQuality: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
       zu sprechen"
     name: Salicrisp
     icon: {fileID: 0}
-    price: 1000
+    price: 15000
     baseSpeed: 12
     baseAmount: 1
     baseQuality: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
       \u2013 ideal zum Gespr\xE4ch \xFCber Textur und Proteinquelle."
     name: Bugloaf
     icon: {fileID: 0}
-    price: 200000
+    price: 1500
     baseSpeed: 7
     baseAmount: 1
     baseQuality: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
       moderne Lebensmittelinnovation bildet."
     name: Chirp Chips
     icon: {fileID: 0}
-    price: 500
+    price: 7500
     baseSpeed: 9
     baseAmount: 1
     baseQuality: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
       Quelle"
     name: Crunch Bar
     icon: {fileID: 0}
-    price: 1000
+    price: 15000
     baseSpeed: 12
     baseAmount: 1
     baseQuality: 0

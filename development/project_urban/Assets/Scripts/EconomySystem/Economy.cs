@@ -27,6 +27,9 @@ namespace EconomySystem
         private Dictionary<ProductType, Label> _productLabels = new();
         private Label algeLabel, qualleLabel, salzpflanzeLabel, grilleLabel, creditsLabel, mainMenu, timeLabel, foodPerSecondLabel, foodTotalLabel;
         private VisualElement resourcePanel, showResources, mainmenu, moneyVisual;
+        private Button enableRange;
+
+        public BuildingSelectionManager buildingSelectionManager;
 
 
         private void Start()
@@ -36,7 +39,7 @@ namespace EconomySystem
             _qualleProgressBar = economyUI?.rootVisualElement?.Q<ProgressBar>("QualleProgressBar");
             _algeProgressBar = economyUI?.rootVisualElement?.Q<ProgressBar>("AlgeProgressBar");
             _grilleProgressBar = economyUI?.rootVisualElement?.Q<ProgressBar>("GrilleProgressBar");
-            _salzPflanzeProgressBar = economyUI?.rootVisualElement?.Q<ProgressBar>("SalzPflanzeProgressBar");
+            _salzPflanzeProgressBar = economyUI?.rootVisualElement?.Q<ProgressBar>("SalzpflanzeProgressBar");
 
 
             // hide economyUI for now
@@ -61,6 +64,7 @@ namespace EconomySystem
             foodTotalLabel = root.Q<Label>("foodTotalLabel");
             moneyVisual = root.Q<VisualElement>("moneyVisual");
             mainmenu = root.Q<VisualElement>("mainmenu");
+            enableRange = root.Q<Button>("showrange");
 
             _productLabels = new Dictionary<ProductType, Label>
                 {
@@ -90,6 +94,11 @@ namespace EconomySystem
             CreditSystem.Instance.OnCreditsChanged += UpdateCreditDisplay;
             UpdateCreditDisplay(CreditSystem.Instance.currentCredits);
             HideResourcePanel();
+
+            enableRange.clicked += () =>
+            {
+                buildingSelectionManager.ToggleSuperMarketRange();
+            };
 
             if (GameState.isTutorial)
             {
@@ -204,7 +213,7 @@ namespace EconomySystem
 
         private void UpdateCreditDisplay(int currentCredits)
         {
-            creditsLabel.text = $"{"�" +  currentCredits}";
+            creditsLabel.text = $"{"€" +  currentCredits}";
         }
 
         private void UpdateFoodPerSecond()

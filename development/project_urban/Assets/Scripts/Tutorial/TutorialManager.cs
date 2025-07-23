@@ -13,10 +13,12 @@ public class TutorialManager : MonoBehaviour
     private VisualElement leftPanel, rightPanel, menuRessourcePanel, moneyVisual, bottomVisual, grayOutElement;
     private Label tutorialTextLabelR, tutorialTextLabelL, titleL, titleR, bottomText, creditsLabel;
     private Button continueLeftButton, continueRightButton;
+    public ProgressBar loadingBar;
     public UIDocument uiProcess;
     public UIDocument uiUpgrade;
     public UIDocument uiMenu;
     public UIDocument uiGrayOut;
+    public UIDocument loadingScreen;
     Sprite grayOutImage2, grayOutImage3;
 
     [Header("Camera Input Controller")]
@@ -62,6 +64,10 @@ public class TutorialManager : MonoBehaviour
 
         uiGrayOut.rootVisualElement.style.display = DisplayStyle.None;
         grayOutElement = uiGrayOut.rootVisualElement.Q<VisualElement>("grayoutElement");
+
+        var loadingRoot = loadingScreen.rootVisualElement;
+        loadingBar = loadingRoot.Q<ProgressBar>("loading");
+        loadingScreen.rootVisualElement.style.display = DisplayStyle.None;
         HideUI();
         ShowCurrentStep();
     }
@@ -173,7 +179,7 @@ public class TutorialManager : MonoBehaviour
         GameState.allowUpdates = true;
         GameState.allowConsumption = true;
         GameState.isTutorial = false;
-        SceneManager.LoadScene("SampleScene");
+        LoadSceneWithProgress("SampleScene");
         FoodEconomy.Reset();
     }
 
@@ -227,6 +233,34 @@ public class TutorialManager : MonoBehaviour
             default:
                 Debug.LogWarning($"Unknown gray out index: {stippi.grayOutIndex}");
                 return;
+        }
+    }
+
+    public void LoadSceneWithProgress(string sceneName)
+    {
+        StartCoroutine(LoadSceneAsync(sceneName));
+    }
+
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        loadingScreen.rootVisualElement.style.display = DisplayStyle.Flex;
+        loadingBar.value = 0;
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        asyncLoad.allowSceneActivation = false;
+
+        while (!asyncLoad.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); // Bis max. 0.9
+            loadingBar.value = progress * 100f;
+
+            // Optional: Sofort aktivieren
+            if (asyncLoad.progress >= 0.9f)
+            {
+                asyncLoad.allowSceneActivation = true;
+            }
+
+            yield return null;
         }
     }
 }

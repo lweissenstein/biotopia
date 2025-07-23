@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using System.Collections;
 public class MainScreen : MonoBehaviour
 {
     public UIDocument uiDocument;
+    public UIDocument loadingScreen;
     private VisualElement background;
+    private ProgressBar loadingBar;
     private Label title;
-    private Button playtutorial, play, quit;
+    private Button playtutorial, play, quit, f4f, igz;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,6 +20,8 @@ public class MainScreen : MonoBehaviour
         playtutorial = root.Q<Button>("playtutorial");
         play = root.Q<Button>("play");
         quit = root.Q<Button>("quit");
+        f4f = root.Q<Button>("f4f");
+        igz = root.Q<Button>("igz");
 
         title.enableRichText = true;
         title.text = "<color=#379B1B>Bio</color>topia";
@@ -24,12 +29,12 @@ public class MainScreen : MonoBehaviour
         playtutorial.clicked += () =>
         {
             GameState.isNewGame = true;
-            SceneManager.LoadSceneAsync("tutorial");
+            LoadSceneWithProgress("tutorial");
         }; 
         play.clicked += () =>
         {
             GameState.isNewGame = true;
-            SceneManager.LoadSceneAsync("SampleScene");
+            LoadSceneWithProgress("SampleScene");
         };
         quit.clicked += () =>
         {
@@ -39,13 +44,45 @@ public class MainScreen : MonoBehaviour
                 Application.Quit();
             #endif
         };
+        f4f.clicked += () =>
+        {
+            Application.OpenURL("https://www.food4future.de/de/home");
+        };
+        igz.clicked += () =>
+        {
+            Application.OpenURL("https://igzev.de/");
+        };
 
-
+        var loadingRoot = loadingScreen.rootVisualElement;
+        loadingBar = loadingRoot.Q<ProgressBar>("loading");
+        loadingScreen.rootVisualElement.style.display = DisplayStyle.None;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadSceneWithProgress(string sceneName)
     {
-        
+        StartCoroutine(LoadSceneAsync(sceneName));
+    }
+
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        loadingScreen.rootVisualElement.style.display = DisplayStyle.Flex;
+        loadingBar.value = 0;
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        asyncLoad.allowSceneActivation = false;
+
+        while (!asyncLoad.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); // Bis max. 0.9
+            loadingBar.value = progress * 100f;
+
+            // Optional: Sofort aktivieren
+            if (asyncLoad.progress >= 0.9f)
+            {
+                asyncLoad.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
     }
 }
