@@ -14,7 +14,7 @@ using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 public class CameraControls : MonoBehaviour
 {
     [SerializeField] public float zoomModifier;
-    //[SerializeField] public float movementModifier;
+    [SerializeField] public float movementModifier;
     [SerializeField, Range(1f, 360f)] float rotationSpeed = 90f;
     [SerializeField, Range(1f, 60f)] float distance = 5f;
     [SerializeField] Transform focus = default;
@@ -146,7 +146,7 @@ public class CameraControls : MonoBehaviour
             }
             // DER CODE ZUM VERSCHIEBEN 
             // FUNKTIONIERT NICHT WEGEN RAYCAST-PROBLEMEN
-            /*
+            
             if ((x1 <= 0.0 && x2 <= 0.0) || (x1 >= 0.0 && x2 >= 0.0))
             {
                 //Vector3 movement = new Vector3(x1, 0, y1);
@@ -160,7 +160,7 @@ public class CameraControls : MonoBehaviour
                 //Debug.Log(rotVec);
                 focus.position = focus.position + rotVec * movementModifier;
             }
-            */
+            
         }
     }
     public void Zoom(float distance)
