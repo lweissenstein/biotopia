@@ -113,6 +113,8 @@ build-android:
 
 
 extract-apk:
+  needs:
+    - build-android
   stage: extract-apk
   image: amazoncorretto:21
   artifacts:
@@ -135,6 +137,8 @@ extract-apk:
 
 
 publish-apk:
+  needs:
+    - extract-apk
   stage: deploy
   image: bash:latest
   script:
@@ -145,6 +149,9 @@ publish-apk:
 
 
 release_job:
+  allow_failure: true  # no idea why this one is flaky
+  needs: 
+    - publish-apk
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   rules:
@@ -166,9 +173,11 @@ release_job:
 
 
 deploy_playstore:
+  needs:
+    - build-android
   stage: deploy-playstore
   image: ruby:3.3.8
-  allow_failure: true  # remove when the alpha test phase is available
+  allow_failure: true
   rules:
     - if: $CI_COMMIT_TAG
       when: never                                  # Do not run this job when a tag is created manually
