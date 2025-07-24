@@ -20,6 +20,7 @@ public class BuildingInstance : MonoBehaviour
     public RandomGridManipulation gridManipulation;
     public PlacementSystem placementSystem;
     public ProductDescriptionDatabase productDatabase;
+    public SoundFeedback soundFeedback;
 
     // Hochhaus
 
@@ -72,7 +73,7 @@ public class BuildingInstance : MonoBehaviour
         foodEconomy = FoodEconomy.Instance;
         processSelectionManager = FindFirstObjectByType<ProcessSelectionManager>();
         placementSystem = FindFirstObjectByType<PlacementSystem>();
-
+        soundFeedback = FindFirstObjectByType<SoundFeedback>();
 
 
     }
@@ -176,7 +177,7 @@ public class BuildingInstance : MonoBehaviour
             countCompartmentsHouse++;
             isProducing = true;
             producePerSecond = produceAlgeValue * countCompartmentsHouse;
-
+            soundFeedback.PlaceCompartmentAlge();
         }
         else if (countCompartmentsHouse != 0 && countCompartmentsHouse < maxCompartments) { 
             countCompartmentsHouse++;
@@ -204,8 +205,7 @@ public class BuildingInstance : MonoBehaviour
             countCompartmentsHouse++;
             isProducing = true;
             producePerSecond = produceSalzpflanzeValue * countCompartmentsHouse;
-
-
+            soundFeedback.PlaceCompartmentHalophyte();
         }
         else if (countCompartmentsHouse != 0 && countCompartmentsHouse < maxCompartments) { 
             countCompartmentsHouse++;
@@ -231,7 +231,7 @@ public class BuildingInstance : MonoBehaviour
             countCompartmentsHouse++;
             isProducing = true;
             producePerSecond = produceQualleValue * countCompartmentsHouse;
-
+            soundFeedback.PlaceCompartmentQualle();
         }
         else if (countCompartmentsHouse != 0 && countCompartmentsHouse < maxCompartments) { 
             countCompartmentsHouse++;
@@ -257,7 +257,7 @@ public class BuildingInstance : MonoBehaviour
             countCompartmentsHouse++;
             isProducing = true;
             producePerSecond = produceGrillevalue * countCompartmentsHouse;
-
+            soundFeedback.PlaceCompartmentGrille();
         }
         else if (countCompartmentsHouse != 0 && countCompartmentsHouse < maxCompartments) { 
             countCompartmentsHouse++;
@@ -279,6 +279,7 @@ public class BuildingInstance : MonoBehaviour
             upgradeable.SetToSupermarket();
         compartmentTypeHouse = 7;
         placementSystem.PingSuperMarket(pos);
+        soundFeedback.PlaceCompartmentSupermarkt();
     }
 
 
