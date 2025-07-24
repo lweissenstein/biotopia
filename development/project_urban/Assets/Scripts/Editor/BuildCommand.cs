@@ -38,7 +38,7 @@ namespace Editor
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP); // TODO check
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
             PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel29; // not sure which one to target
-            PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel34; // the one the tablets have
+            PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel35;
             PlayerSettings.applicationIdentifier = "com.abductedrhino.biotopia";
             PlayerSettings.allowedAutorotateToPortrait = false;
             PlayerSettings.allowedAutorotateToPortraitUpsideDown = false;
