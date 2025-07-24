@@ -13,15 +13,19 @@ using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 [RequireComponent(typeof(Camera))]
 public class CameraControls : MonoBehaviour
 {
-    [SerializeField] public float zoomModifier;
-    [SerializeField] public float movementModifier;
+    [SerializeField, Range(0.001f, 1f)] public float zoomModifier;
+    [SerializeField, Range(0.001f, 0.01f)] public float movementModifier;
     [SerializeField, Range(1f, 360f)] float rotationSpeed = 90f;
     [SerializeField, Range(1f, 60f)] float distance = 5f;
     [SerializeField] Transform focus = default;
     [SerializeField, Range(-89f, 89f)] float minVerticalAngle = -30f, maxVerticalAngle = 60f;
     [SerializeField] float minCamSize;
+    [SerializeField] float maxCamSize;
+    private float screenSizeMultiplier = (Screen.height + Screen.width) * 0.01f;
     public Camera cam;
     Vector3 focusPoint;
+    //static float baseCamSize;
+    //static Vector3 baseCamPos;
 
     public Transform sphereTransform;
     Vector2 orbitAngles = new Vector2(45f, 0f);
@@ -36,6 +40,9 @@ public class CameraControls : MonoBehaviour
             EnhancedTouchSupport.Enable();
 
         Application.targetFrameRate = 60;
+        //    baseCamSize = cam.orthographicSize;
+        //    baseCamPos = focus.position;
+        //}
     }
 
 
@@ -58,9 +65,6 @@ public class CameraControls : MonoBehaviour
 
         Quaternion lookRotation = rotated ? Quaternion.Euler(orbitAngles) : transform.localRotation;
 
-        // Bewegung + Zoom
-        TwoFingerMovement();
-
         // Neue Kamera-Position berechnen
         Vector3 lookDirection = lookRotation * Vector3.forward;
         Vector3 lookPosition = focusPoint - lookDirection * distance;
@@ -72,6 +76,11 @@ public class CameraControls : MonoBehaviour
             lastRotation = lookRotation;
             lastPosition = lookPosition;
         }
+    }
+    private void Update()
+    {
+        // Bewegung + Zoom
+        TwoFingerMovement();
     }
 
     // Update is called once per frame
@@ -132,47 +141,56 @@ public class CameraControls : MonoBehaviour
         float y1 = primary.delta.y;
         float y2 = secondary.delta.y;
 
+        //Wenn Finger bewegt
         if (primary.phase == TouchPhase.Moved || secondary.phase == TouchPhase.Moved)
         {
+            //Wenn Finger keine Historie haben, return
             if (primary.history.Count < 1 || secondary.history.Count < 1){
                 return;
             }
+            //Distanz berechnen
             float currentDistance = Vector2.Distance(primary.screenPosition, secondary.screenPosition);
             float previousDistance = Vector2.Distance(primary.history[0].screenPosition, secondary.history[0].screenPosition);
-            if ((x1 <= 0.0 && x2 >= 0.0) || (x1 >= 0.0 && x2 <= 0.0))
+            if ((x1 <= 0.0 && x2 <= 0.0) || (x1 >= 0.0 && x2 >= 0.0))
+            {
+                float angle = transform.rotation.eulerAngles.y;
+                Vector3 temp = new Vector3(-activeTouches[0].delta.x, 0, -activeTouches[0].delta.y * 2);
+                Vector3 rotVec = Quaternion.AngleAxis(angle, Vector3.up) * temp;
+                focus.position = focus.position + rotVec * (movementModifier * screenSizeMultiplier);
+                return;
+            }            
+            if ((x1 < 5.0 && x2 > 5.0) || (x1 > 5.0 && x2 < 5.0))
             {
                 float pinchDistance = currentDistance - previousDistance;
                 Zoom(pinchDistance);
             }
-            // DER CODE ZUM VERSCHIEBEN 
-            // FUNKTIONIERT NICHT WEGEN RAYCAST-PROBLEMEN
-            
-            if ((x1 <= 0.0 && x2 <= 0.0) || (x1 >= 0.0 && x2 >= 0.0))
-            {
-                //Vector3 movement = new Vector3(x1, 0, y1);
-                //float angle = transform.rotation.eulerAngles.y;
-                //Vector3 rotVec = new Vector3(movement.x * Mathf.Cos(angle) - movement.z * Mathf.Sin(angle), 0, movement.x * Mathf.Sin(angle) + movement.z * Mathf.Cos(angle));
-
-                float angle = transform.rotation.eulerAngles.y;
-                Vector3 temp = new Vector3(-activeTouches[0].delta.x, 0, -activeTouches[0].delta.y);
-                //Debug.Log(temp);
-                Vector3 rotVec = Quaternion.AngleAxis(angle, Vector3.up) * temp;
-                //Debug.Log(rotVec);
-                focus.position = focus.position + rotVec * movementModifier;
-            }
-            
         }
     }
     public void Zoom(float distance)
     {
-        distance = distance * zoomModifier;
-        cam.orthographicSize -= distance;
-        cam.orthographicSize = Mathf.Max(cam.orthographicSize, minCamSize);
+        distance = distance * (zoomModifier * screenSizeMultiplier);
+        float temp = cam.orthographicSize - distance;
+        if (temp < maxCamSize && temp > minCamSize) 
+        {
+            cam.orthographicSize = temp;            
+        }
     }
+
     public Vector2 normalize(Vector3 vec)
     {
         float temp = Mathf.Sqrt(Mathf.Pow(vec.x, 2) + Mathf.Pow(vec.y, 2) + Mathf.Pow(vec.z, 2));
         vec = vec * (1 / temp);
         return vec;
     }
+
+    //public void resetPos()
+    //{
+    //    var activeTouches = Touch.activeTouches;
+    //    if (activeTouches.Count == 0) return;
+    //    if (activeTouches[0].tapCount == 2)
+    //    {
+    //        cam.orthographicSize = baseCamSize;
+    //        focus.position = baseCamPos;
+    //    }
+    //}
 }
