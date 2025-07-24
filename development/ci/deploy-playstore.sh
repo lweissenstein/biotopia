@@ -11,7 +11,7 @@ bundle install
 
 mkdir -p ./fastlane/metadata/android/en-US/changelogs
 #echo "No release notes." > ./fastlane/metadata/android/en-US/changelogs/default.txt
-git log -n 1 | tail -n +3 > ./fastlane/metadata/android/en-US/changelogs/${CI_PIPELINE_IID}.txt
+git log -n 1 | head -5 | tail -1 > ./fastlane/metadata/android/en-US/changelogs/${CI_PIPELINE_IID}.txt
 
 echo ${ANDROID_FASTLANE_BASE64} | base64 -d > $JSON_KEY_FILE
 

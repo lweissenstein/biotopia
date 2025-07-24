@@ -41,7 +41,7 @@ module "runner_deployment" {
 
   name = "ubss-android-2"
 
-  runner_machine_type = "n2d-standard-2"
+  runner_machine_type = "n2d-highmem-2"
 
   gitlab_url = "https://code.fki.htw-berlin.de"
 
@@ -52,9 +52,9 @@ module "runner_deployment" {
     {
         periods            = ["* * * * *"]
         timezone           = ""
-        scale_min          = 0
-        idle_time          = "0m30s"
-        scale_factor       = 0.0
+        scale_min          = 1
+        idle_time          = "2m30s"
+        scale_factor       = 0.2
         scale_factor_limit = 8
     }
   ]

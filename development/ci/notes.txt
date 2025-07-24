@@ -52,6 +52,10 @@ terraform apply plan.out
 
 gcloud compute ssh --zone "europe-west1-b" "ubss-grit-runner-manager" --project "ubss-ci-gitlab-runner"
 
+to update compute, update it and paste this where it tells you:
+allow_stopping_for_update=true
+.terraform/modules/runner_deployment/modules/google/runner/main.tf:241
+
 
 
 deploy to google play store
