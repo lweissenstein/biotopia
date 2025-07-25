@@ -670,7 +670,7 @@ MonoBehaviour:
     cameraMoveTime: 0
     secondsToWait: 0
     waitForClick: 1
-    waitForButton: 0
+    waitForButton: 1
     cameraPosition: {x: 0, y: 0, z: 0}
     cameraHorizontalAxis: 0
     cameraVerticalAxis: 0
@@ -717,7 +717,7 @@ MonoBehaviour:
     isLeft: 0
     isRight: 1
     buttonLeft: 0
-    buttonRight: 0
+    buttonRight: 1
     alge: 0
     supermarkt: 1
     algePowder: 0

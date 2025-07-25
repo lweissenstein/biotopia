@@ -19,6 +19,7 @@ public class TutorialManager : MonoBehaviour
     public UIDocument uiMenu;
     public UIDocument uiGrayOut;
     public UIDocument loadingScreen;
+    public bool tessa, anton;
     Sprite grayOutImage2, grayOutImage3;
 
     [Header("Camera Input Controller")]
@@ -181,6 +182,11 @@ public class TutorialManager : MonoBehaviour
         GameState.isTutorial = false;
         LoadSceneWithProgress("SampleScene");
         FoodEconomy.Reset();
+
+        if (tessa && anton)
+        {
+            Debug.Log("<3");
+        }
     }
 
     void HideUI() => uiDocument.rootVisualElement.style.display = DisplayStyle.None;

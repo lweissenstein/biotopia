@@ -18,6 +18,12 @@
     -unity-font-style: normal;
 }
 
+.icon-image {
+    width: 62px;
+    height: 67px;
+    flex-shrink: 0;
+}
+
 .buttonsProcess {
     font-size: 50px;
     padding-top: 0;
@@ -61,7 +67,7 @@
 }
 
 #VisualElement > VisualElement > #tabs > #unity-tab-view__header-container > #unity-tab__header {
-    font-size: 35px;
+    font-size: 34px;
     background-color: rgb(217, 217, 217);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -78,9 +84,9 @@
     margin-left: 10px;
     margin-right: 5px;
     padding-top: 20px;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
     height: 88px;
     -unity-font-definition: url("project://database/Assets/Scripts/UI/UI%20Assets/JuraMedium.ttf?fileID=12800000&guid=69a7b60da297f0b4b934963755e57843&type=3#JuraMedium");
     -unity-font-style: bold;
@@ -94,6 +100,8 @@
     border-bottom-width: 5px;
     border-left-width: 5px;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.57);
+    background-size: 100% 100%;
+    -unity-background-scale-mode: stretch-to-fill;
 }
 
 #VisualElement > VisualElement > #tabs > #unity-tab-view__header-container {

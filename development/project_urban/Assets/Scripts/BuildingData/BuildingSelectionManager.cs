@@ -122,10 +122,10 @@ public class BuildingSelectionManager : MonoBehaviour
     {
         if (building.data is House house)
         {
-            algePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"� {selected.compartmentPrices["Alge"]}";
-            quallePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"� {selected.compartmentPrices["Qualle"]}";
-            halophytPrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"� {selected.compartmentPrices["Salzpflanze"]}";
-            grillePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"� {selected.compartmentPrices["Grille"]}";
+            algePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"€ {selected.compartmentPrices["Alge"]}";
+            quallePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"€ {selected.compartmentPrices["Qualle"]}";
+            halophytPrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"€ {selected.compartmentPrices["Salzpflanze"]}";
+            grillePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"€ {selected.compartmentPrices["Grille"]}";
 
             buildingResidentsLabel.text = selected.residents.ToString();
             hasSupermarktLabel.text = selected.hasSupermarket ? "Ja" : "Nein";
@@ -137,8 +137,8 @@ public class BuildingSelectionManager : MonoBehaviour
             {
                 case 3:
                     SetProductionUI(
-                        "Algen Produktion", "Alge", selected.producePerSecond + "/s", selected.hasSupermarket,
-                        "Vom Meeresgrund auf den Teller � Algen sind echte N�hrstoffbomben. Reich an Eiwei�, Jod, Eisen und Omega-3. Sie wachsen schneller als jede Landpflanze und brauchen daf�r nur Licht, CO2 und Meerwasser. Ob zart wie Meersalat oder fest wie Kelp: Algen sind das Gem�se der Zukunft. Nachhaltig, vielseitig und mit einer Prise Ozean in jedem Biss." // ggf. verk�rzt
+                        "Makroalgen Produktion", "Makroalgen", selected.producePerSecond + "/s", selected.hasSupermarket,
+                        "Makroalgen wachsen rasant, brauchen kein Süßwasser oder Ackerland und sind reich an Proteinen, Antioxidantien und weiteren wichtigen Nährstoffen. In regionalem Sole-Wasser kultiviert, sind sie ein nachhaltiges Lebensmittel der Zukunft und vielseitig einsetzbar. Zentral um die Bevölkerung von Biotopia zu ernähren." 
                     );
                     algenButton.style.visibility = Visibility.Visible;
                     //ToggleSuperMarketRange(false);
@@ -146,8 +146,8 @@ public class BuildingSelectionManager : MonoBehaviour
 
                 case 4:
                     SetProductionUI(
-                        "Halophyten Produktion", "Halophyt", selected.producePerSecond + "/s", selected.hasSupermarket, 
-                        "Salzig, knackig, robust � Halophyten wie Salicornia wachsen dort, wo andere Pflanzen aufgeben: auf salzigen B�den, in trockenen K�stenregionen, ganz ohne S��wasser. Diese gr�nen �berlebensk�nstler bringen Mineralstoffe, Umami-Geschmack und zarte Sukkulenz auf den Teller. Sie sind die ideale Ressource f�r eine Welt mit Wassermangel � und schmecken dabei wie das Meer in Pflanzenform."
+                        "Halophyten Produktion", "Halophyten", selected.producePerSecond + "/s", selected.hasSupermarket,
+                        "Halophyten, auch Salzpflanzen genannt, wachsen dort, wo andere Pflanzen versagen: auf salzigen Böden, ganz ohne Süßwasser. Sie sind ideal für eine nachhaltige, urbane Gemüseproduktion der Zukunft und liefern wertvolle Nährstoffe mit einem Hauch von Umami."
                     );
                     salzpflanzenButton.style.visibility = Visibility.Visible;
                     //ToggleSuperMarketRange(false);
@@ -155,8 +155,8 @@ public class BuildingSelectionManager : MonoBehaviour
 
                 case 5:
                     SetProductionUI(
-                        "Quallen Produktion", "Qualle", selected.producePerSecond + "/s", selected.hasSupermarket,
-                        "Schwebend, transparent, fast au�erirdisch � Quallen sind wahre �berlebensk�nstler. Sie brauchen kaum Energie, vermehren sich rasant und bestehen zu 95% aus Wasser. Was viele nicht wissen: Sie sind auch essbar! Ihr hoher Kollagen- und Proteingehalt macht sie zur exotischen Proteinquelle der Zukunft. In der K�che? Ein Erlebnis zwischen Crunch und Glibber � f�r alle, die bereit sind, kulinarisches Neuland zu betreten."
+                        "Quallen Produktion", "Quallen", selected.producePerSecond + "/s", selected.hasSupermarket,
+                        "Quallen sind reich an Proteinen, Omega‑3‑Fettsäuren und Vitaminen, ähnlich wie andere Meeresfrüchte. Mangrovenquallen, die in Biotopia kultiviert werden, besitzen eine außergewöhnliche Eigenschaft: Durch ihre Algensymbiose produzieren sie tierisches Protein mithilfe von Photosynthese direkt aus Sonnenlicht."
                     );
                     quallenButton.style.visibility = Visibility.Visible;
                     //ToggleSuperMarketRange(false);
@@ -164,8 +164,8 @@ public class BuildingSelectionManager : MonoBehaviour
 
                 case 6:
                     SetProductionUI(
-                        "Grillen Produktion", "Grille", selected.producePerSecond + "/s", selected.hasSupermarket,
-                        "Knusprig, nussig, unglaublich effizient � Grillen liefern hochwertiges Protein, Vitamine und gesunde Fette. Sie brauchen wenig Platz, kaum Wasser und sto�en kaum CO2 aus. Was sie leisten? Mehr als man denkt. Als Snack, Mehl oder Fleischersatz sind sie die leisen Superhelden der Ern�hrung. Klein, aber oho � Insekten sind nicht nur die Zukunft. Sie sind die Gegenwart."
+                        "Grillen Produktion", "Grillen", selected.producePerSecond + "/s", selected.hasSupermarket,
+                        "Grillen liefern hochwertiges Protein, gesunde Fettsäuren und wichtige Mikronährstoffe. Im Vergleich zur konventionellen Tierhaltung benötigen sie nur einen Bruchteil an Wasser, Fläche und Futter. Ihre ressourcenschonende Kultivierung macht sie zu effizienten Alternative nachhaltiger Ernährungssysteme der Zukunft."
                     );
                     grillenButton.style.visibility = Visibility.Visible;
                     //ToggleSuperMarketRange(false);
@@ -173,8 +173,18 @@ public class BuildingSelectionManager : MonoBehaviour
 
                 case 7: // Supermarkt
                     nameLabel.text = "Supermarkt";
+                    descriptionText.text = "Hier kaufen die Bewohner von Biotopia die aus den alternativen Nahrungsquellen entstandenen Produkte und du erhältst Sättigung und Credits dafür.";
                     HideStandardFields();
                     supermarktButton.style.visibility = Visibility.Visible;
+                    //ToggleSuperMarketRange(true);
+                    break;
+
+                case 8:
+                    nameLabel.text = "Therme";
+                    descriptionText.text = "Die Therme liefert lokal verfügbares Salzwasser an die Kompartimente, um eine nachhaltige und süßwasserschonende Nahrungsmittelproduktion zu ermöglichen.\r\n";
+                    HideStandardFields();
+                    ShowAllProductionButtons();
+                    supermarktButton.style.visibility = Visibility.Hidden;
                     //ToggleSuperMarketRange(true);
                     break;
 

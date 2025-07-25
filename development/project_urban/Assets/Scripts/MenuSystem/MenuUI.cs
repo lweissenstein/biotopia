@@ -73,9 +73,9 @@ namespace MenuSystem
             }
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            _timer.OncePerSecond(CheckNoSaturation);
+            CheckNoSaturation();
         }
 
         private void CheckNoSaturation()
@@ -104,6 +104,7 @@ namespace MenuSystem
 
         private void OnQuitToMenuButton()
         {
+            deathScreen.rootVisualElement.style.display = DisplayStyle.None;
             HideMenu();
             FoodEconomy.Reset();
             LoadSceneWithProgress("mainMenu");
@@ -111,6 +112,8 @@ namespace MenuSystem
 
         private void OnStartTutorialButton()
         {
+            deathScreen.rootVisualElement.style.display = DisplayStyle.None;
+            FoodEconomy.Reset();
             HideMenu();
             GameState.isNewGame = true;
             LoadSceneWithProgress("tutorial");
