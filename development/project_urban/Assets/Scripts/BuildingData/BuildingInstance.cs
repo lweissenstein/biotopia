@@ -29,21 +29,22 @@ public class BuildingInstance : MonoBehaviour
 
     public Dictionary<string, int> compartmentPrices = new Dictionary<string, int>
 {
-    { "Alge", 50 },
-    { "Qualle", 50 },
-    { "Salzpflanze", 50 },
-    { "Grille", 50 },
-    { "Supermarkt", 0 }
+    { "Alge", 100 },
+    { "Qualle", 100 },
+    { "Salzpflanze", 100 },
+    { "Grille", 100 },
+    { "Supermarkt", 100 }
 };
 
     public float countCompartmentsHouse = 0f;
-    public int maxCompartments = 6;
+    public int maxCompartments = 1;
     public int residents;
     public int height = 1;
     public int compartmentTypeHouse = 0; // 7 = supermarkt, 3 = alge, 4 = salzpflanze, 5 = qualle, 6 = grille
     private bool isProducing = false;
     public bool hasSupermarket;
     public string productionAsString;
+    public bool compartmentUpgradeableBeaconOn = false;
 
     public float produceAlgeValue = 0.5f;
     public float produceSalzpflanzeValue = 0.5f;
@@ -102,7 +103,7 @@ public class BuildingInstance : MonoBehaviour
     }
     public void ConsumeTotalSaturation()
     {
-        foodEconomy.OnConsumeFood(0.0005f * residents);
+        foodEconomy.OnConsumeFood(0.0002f * residents);
     }
 
     private ProductType ChooseProduct(List<ProductType> list)
@@ -151,6 +152,10 @@ public class BuildingInstance : MonoBehaviour
             height = 2;
         }
         height++;
+        if (height == 2)
+            maxCompartments = 3;
+        else if (height == 3)
+            maxCompartments = 6;
         if (isProducing)
         {
             var upgradeable = GetComponent<UpgradeableObject>();
@@ -158,16 +163,25 @@ public class BuildingInstance : MonoBehaviour
                 upgradeable.SetActiveSolarPanels(height);
                 if (isProducing)
                     upgradeable.ChangeColor(productionAsString, height);
+            if (countCompartmentsHouse < maxCompartments)
+            {
+                compartmentUpgradeableBeaconOn = true;
+                upgradeable.ToggleCompartmentUpgradeableBeacon(compartmentTypeHouse, compartmentUpgradeableBeaconOn);
+            }
+            else 
+            {
+                compartmentUpgradeableBeaconOn = false;
+                upgradeable.ToggleCompartmentUpgradeableBeacon(compartmentTypeHouse, compartmentUpgradeableBeaconOn);
+            }
         }
         UpdateCollider();
-
     }
 
     public void UpgradeCompartmentAlge()
     {
+        var upgradeable = GetComponent<UpgradeableObject>();
         if (countCompartmentsHouse == 0 && countCompartmentsHouse <= maxCompartments)
         {
-            var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
                 upgradeable.SetActiveSolarPanels(height);
             productionAsString = "Alge";
@@ -188,14 +202,23 @@ public class BuildingInstance : MonoBehaviour
         {
             Debug.LogWarning("Maximale Anzahl an Upgrades erreicht.");
         }
-
+        if (countCompartmentsHouse < maxCompartments)
+        {
+            compartmentUpgradeableBeaconOn = true;
+            upgradeable.ToggleCompartmentUpgradeableBeacon(compartmentTypeHouse, compartmentUpgradeableBeaconOn);
+        }
+        else
+        {
+            compartmentUpgradeableBeaconOn = false;
+            upgradeable.ToggleCompartmentUpgradeableBeacon(compartmentTypeHouse, compartmentUpgradeableBeaconOn);
+        }
     }
 
     public void UpgradeCompartmentSalzpflanze()
     {
+        var upgradeable = GetComponent<UpgradeableObject>();
         if (countCompartmentsHouse == 0 && countCompartmentsHouse <= maxCompartments)
         {
-            var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
                 upgradeable.SetActiveSolarPanels(height);
             productionAsString = "Halophyte";
@@ -215,13 +238,23 @@ public class BuildingInstance : MonoBehaviour
         {
             Debug.LogWarning("Maximale Anzahl an Upgrades erreicht.");
         }
+        if (countCompartmentsHouse < maxCompartments)
+        {
+            compartmentUpgradeableBeaconOn = true;
+            upgradeable.ToggleCompartmentUpgradeableBeacon(compartmentTypeHouse, compartmentUpgradeableBeaconOn);
+        }
+        else
+        {
+            compartmentUpgradeableBeaconOn = false;
+            upgradeable.ToggleCompartmentUpgradeableBeacon(compartmentTypeHouse, compartmentUpgradeableBeaconOn);
+        }
     }
 
     public void UpgradeCompartmentQualle()
     {
+        var upgradeable = GetComponent<UpgradeableObject>();
         if (countCompartmentsHouse == 0 && countCompartmentsHouse <= maxCompartments)
         {
-            var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
                 upgradeable.SetActiveSolarPanels(height);
             productionAsString = "Qualle";
@@ -241,13 +274,23 @@ public class BuildingInstance : MonoBehaviour
         {
             Debug.LogWarning("Maximale Anzahl an Upgrades erreicht.");
         }
+        if (countCompartmentsHouse < maxCompartments)
+        {
+            compartmentUpgradeableBeaconOn = true;
+            upgradeable.ToggleCompartmentUpgradeableBeacon(compartmentTypeHouse, compartmentUpgradeableBeaconOn);
+        }
+        else
+        {
+            compartmentUpgradeableBeaconOn = false;
+            upgradeable.ToggleCompartmentUpgradeableBeacon(compartmentTypeHouse, compartmentUpgradeableBeaconOn);
+        }
     }
 
     public void UpgradeCompartmentGrille()
     {
+        var upgradeable = GetComponent<UpgradeableObject>();
         if (countCompartmentsHouse == 0 && countCompartmentsHouse <= maxCompartments)
         {
-            var upgradeable = GetComponent<UpgradeableObject>();
             if (upgradeable != null)
                 upgradeable.SetActiveSolarPanels(height);
             productionAsString = "Grille";
@@ -267,12 +310,23 @@ public class BuildingInstance : MonoBehaviour
         {
             Debug.LogWarning("Maximale Anzahl an Upgrades erreicht.");
         }
+        if (countCompartmentsHouse < maxCompartments)
+        {
+            compartmentUpgradeableBeaconOn = true;
+            upgradeable.ToggleCompartmentUpgradeableBeacon(compartmentTypeHouse, compartmentUpgradeableBeaconOn);
+        }
+        else
+        {
+            compartmentUpgradeableBeaconOn = false;
+            upgradeable.ToggleCompartmentUpgradeableBeacon(compartmentTypeHouse, compartmentUpgradeableBeaconOn);
+        }
     }
 
 
     public void UpgradeSupermarkt()
     {
         countCompartmentsHouse = maxCompartments;
+        residents = 0;
         var upgradeable =
             GetComponent<UpgradeableObject>();
         if (upgradeable != null)

@@ -68,19 +68,19 @@ public class ProcessInstance : MonoBehaviour
 
     private int CalculateAmount(ProductType product)
     {
-        return 1 + GetUpgrade(product, ProcessValue.Amount);
+        return 4 + GetUpgrade(product, ProcessValue.Amount);
     }
 
     private int CalculateEfficiency(ProductType product)
     {
-        return 1 + GetUpgrade(product, ProcessValue.Efficiency);
+        return 0 + GetUpgrade(product, ProcessValue.Efficiency);
     }
 
     private int CalculateInputNeeded(ProductType product)
     {
         int amount = CalculateAmount(product);
         int efficiency = CalculateEfficiency(product);
-        return Mathf.CeilToInt((float)amount / efficiency);
+        return Mathf.CeilToInt((float)amount / (1f + 0.25f * efficiency));
     }
 
     private float GetCooldown(ProductType product)
@@ -88,7 +88,7 @@ public class ProcessInstance : MonoBehaviour
         var entry = productDatabase.GetEntry(product);
         float baseTime = entry.baseSpeed;
         int speed = GetUpgrade(product, ProcessValue.Speed);
-        return baseTime / (1f + 0.2f * speed); // 20 prozent pro Upgrade-Stufe
+        return baseTime / (1f + 0.25f * speed); // 25 prozent pro Upgrade-Stufe
     }
 
     public int GetUpgrade(ProductType product, ProcessValue val)

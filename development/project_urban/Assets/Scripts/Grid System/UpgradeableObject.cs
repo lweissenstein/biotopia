@@ -38,6 +38,13 @@ public class UpgradeableObject : MonoBehaviour
         }
     }
 
+    public void ToggleCompartmentUpgradeableBeacon(int compartmentType, bool beaconOn)
+    {
+            Transform child = transform.Find((compartmentType + 9).ToString());
+            if (child != null)
+                child.gameObject.SetActive(beaconOn);        
+    }
+
     public void ChangeColor(string productionType, int height)
     {
         switch (height)

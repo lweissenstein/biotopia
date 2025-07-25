@@ -32,6 +32,7 @@ namespace MenuSystem
         private static readonly Color BackGroundColor = new(.8f, .8f, .8f, 0.5f);
 
         public SoundFeedback soundFeedback;
+        public bool loseSoundHasPlayed = false;
 
         public void Start()
         {
@@ -71,6 +72,8 @@ namespace MenuSystem
             {
                 OnStartNewGameButton();
             }
+
+            soundFeedback = FindFirstObjectByType<SoundFeedback>();
         }
 
         private void FixedUpdate()
@@ -82,7 +85,11 @@ namespace MenuSystem
         {
             if(foodEconomy.CurrentProteinAmount <= foodEconomy.MinProteinAmount)
             {
-                soundFeedback.Lose(); // this does not work for some reason
+                if (!loseSoundHasPlayed)
+                {
+                    soundFeedback.Lose();
+                    loseSoundHasPlayed = true;
+                }
                 deathScreen.rootVisualElement.style.display = DisplayStyle.Flex;
                 HideOtherUIs();
             }

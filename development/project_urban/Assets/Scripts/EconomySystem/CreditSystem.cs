@@ -7,7 +7,7 @@ public class CreditSystem : MonoBehaviour
 {
     public static CreditSystem Instance { get; private set; }
 
-    public int currentCredits { get; private set; } = 10000;
+    public int currentCredits { get; private set; } = 2000;
 
     public event Action<int> OnCreditsChanged;
     

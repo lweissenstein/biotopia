@@ -290,9 +290,9 @@ public class RandomGridManipulation
 
     public void PingSuperMarket(Vector3 pos, GridData gridData)
     {   
-        for (int x = -5; x <= 5; x++)
+        for (int x = -4; x <= 4; x++)
         {
-            for (int z = -5; z <= 5; z++)
+            for (int z = -4; z <= 4; z++)
             {
                 Vector3Int posNew = new Vector3Int((int)pos.x + x, (int)pos.y, (int)pos.z + z);
                 if (!gridData.CanPlaceObjectAt(posNew, new Vector2Int (1,1))){

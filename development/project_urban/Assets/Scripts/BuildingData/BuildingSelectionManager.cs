@@ -20,6 +20,7 @@ public class BuildingSelectionManager : MonoBehaviour
     public List<BuildingInstance> superMarkets = new();
 
     public bool SuperMarketRange = false;
+    public int superMarketPrice = 50;
 
     private CreditSystem credits;
 
@@ -64,7 +65,7 @@ public class BuildingSelectionManager : MonoBehaviour
         {
             if (selected != null)
             { 
-                if (selected.countCompartmentsHouse < selected.maxCompartments && credits.TrySpendCredits(0))
+                if (selected.countCompartmentsHouse < selected.maxCompartments && credits.TrySpendCredits(superMarketPrice))
                 {
                     selected.UpgradeSupermarkt();
                     UpdateUI(selected);
@@ -76,6 +77,9 @@ public class BuildingSelectionManager : MonoBehaviour
                         tutorialManager.NextStep();
                         GameState.waitForButton = false; // Reset waitForClick after handling the click
                     }
+                    if (SuperMarketRange)
+                        ActivateSuperMarketRange();
+                    superMarketPrice += 50;
                 }
             }
         };
@@ -101,7 +105,7 @@ public class BuildingSelectionManager : MonoBehaviour
             if (credits.TrySpendCredits(price))
             {
                 upgradeAction.Invoke();
-                selected.compartmentPrices[type] += 50;
+                selected.compartmentPrices[type] -= 5;
                 UpdateUI(selected);
                 SelectBuilding(selected);
 
@@ -192,6 +196,10 @@ public class BuildingSelectionManager : MonoBehaviour
                     nameLabel.text = "Hochhaus";
                     HideStandardFields();
                     ShowAllProductionButtons();
+                    if (building.height > 1)
+                    {
+                        supermarktButton.style.visibility = Visibility.Hidden;
+                    }
                     //ToggleSuperMarketRange(false);
                     break;
             }
@@ -212,7 +220,7 @@ public class BuildingSelectionManager : MonoBehaviour
         productionLabel.text = production;
         descriptionText.text = description;
         hasSupermarktLabel.text = hasSuper ? "Ja" : "Nein";
-        levelLabel.text = selected.countCompartmentsHouse + "/6";
+        levelLabel.text = selected.countCompartmentsHouse + "/" + selected.maxCompartments;
 
         descriptionText.style.visibility = Visibility.Visible;
         compartmentType.style.visibility = Visibility.Visible;
@@ -289,6 +297,16 @@ public class BuildingSelectionManager : MonoBehaviour
             Transform Indicator = supMar.transform.Find("8");
             if (Indicator != null)
                 Indicator.gameObject.SetActive(SuperMarketRange);
+        }
+    }
+
+    public void ActivateSuperMarketRange()
+    {
+        foreach (BuildingInstance supMar in superMarkets)
+        {
+            Transform Indicator = supMar.transform.Find("8");
+            if (Indicator != null)
+                Indicator.gameObject.SetActive(true);
         }
     }
 }

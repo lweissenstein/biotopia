@@ -336,7 +336,9 @@ MonoBehaviour:
     titleText: Informationen
     tutorialText: "Hier findest du alle wichtigen <b>Infos</b> auf einen Blick:\n-
       Anzahl der gekauften Compartments\n- Produktion pro Sekunde\n- Ob ein Supermarkt
-      in der N\xE4he ist\nUnd interessante <b>Fakten</b> zur Ressource in der Beschreibung."
+      in der N\xE4he ist\nUnd interessante <b>Fakten</b> zur Ressource in der Beschreibung.\n\nWenn
+      noch Compartments in das Haus passen, wird dir das mit einer <b>d\xFCnnen S\xE4ule</b>
+      \xFCber dem Haus angezeigt."
     targetObject: {fileID: 0}
     allowUpdates: 0
     allowProduction: 0

@@ -51,7 +51,7 @@ public class BuildingUpdateManager : MonoBehaviour
         timer += updatesPerFrame;
         int updatesToDo = Mathf.FloorToInt(timer);
         timer -= updatesToDo;
-        int consumePerFrame = Mathf.CeilToInt(buildings.Count * 0.25f / updatesPerSecond);
+        int consumePerFrame = Mathf.CeilToInt(buildings.Count * 0.0005f / updatesPerSecond);
         
         if(GameState.isTutorial)
         {

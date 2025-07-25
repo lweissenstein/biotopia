@@ -21,68 +21,68 @@ MonoBehaviour:
     icon: {fileID: 0}
     price: 50
     baseSpeed: 5
-    baseAmount: 1
+    baseAmount: 4
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 0
     saturation: 1
     credits: 5
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 6
-    maxUpgradesQuality: 7
-    maxUpgradesEfficiency: 5
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 1
     description: "Bandnudeln aus Kelp (Braunalge) \u2013 ein innovatives Beispiel,
       wie Nudelprodukte aus nachhaltiger Algenaufzucht erstellt werden ."
     name: Kelp Fettucine
     icon: {fileID: 0}
-    price: 1500
-    baseSpeed: 7
-    baseAmount: 1
+    price: 1000
+    baseSpeed: 10
+    baseAmount: 4
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 0
-    saturation: 2
+    saturation: 3
     credits: 15
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 2
     description: "Gelatineartige Quellpaste aus Rotalgen \u2013 zeigt, wie Alginat-Hydrogele
       als Verdickungsmittel und nachhaltige Zutaten dienen."
     name: Ocean Jelly
     icon: {fileID: 0}
-    price: 7500
-    baseSpeed: 9
+    price: 2500
+    baseSpeed: 15
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 0
-    saturation: 3
-    credits: 25
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    saturation: 6
+    credits: 30
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 3
     description: "Herzhafte Patties aus Makroalgen. Hoher Protein- und Mineralgehalt,
       ideal zur Veranschaulichung, wie Algen als Fleischalternative in st\xE4dtischer
       Landwirtschaft dienen k\xF6nnen"
     name: Algae Patties
     icon: {fileID: 0}
-    price: 15000
-    baseSpeed: 12
+    price: 5000
+    baseSpeed: 20
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 0
-    saturation: 4
-    credits: 35
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    saturation: 9
+    credits: 45
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 4
     description: "Feine, transparente \u201ENudeln\u201C aus Quallenbiomasse. Sie
       punkten mit niedrigem Kaloriengehalt, hohem Wasseranteil und einer ungew\xF6hnlichen
@@ -92,70 +92,70 @@ MonoBehaviour:
     icon: {fileID: 0}
     price: 50
     baseSpeed: 5
-    baseAmount: 1
+    baseAmount: 4
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 1
     saturation: 1
     credits: 5
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 5
     description: "Cremiger Mayonnaise-Ersatz auf Basis von Quallenausz\xFCgen \u2013
       demonstriert Funktionalit\xE4t von Proteinen aus dem Meer zur Emulsion und
       zum Geschmackstr\xE4ger.\n\n"
     name: Medu Mayo
     icon: {fileID: 0}
-    price: 1500
-    baseSpeed: 7
-    baseAmount: 1
+    price: 1000
+    baseSpeed: 10
+    baseAmount: 4
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 1
-    saturation: 2
+    saturation: 3
     credits: 15
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 6
     description: "Eiwei\xDFreiche, tofu\xE4hnliche W\xFCrfel aus Quallenprotein.
       Sie zeigen, wie man marine Biomasse in gewohnte, pflanzliche Konsistenzen \xFCbersetzt
       \u2013 eine Br\xFCcke zu pflanzlichen Alternativen."
     name: Ocean Tofu
     icon: {fileID: 0}
-    price: 7500
-    baseSpeed: 9
+    price: 2500
+    baseSpeed: 15
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 1
-    saturation: 3
-    credits: 25
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    saturation: 6
+    credits: 30
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 7
     description: "Leuchtend irisierende Jelly-Snacks, die mit UV-Licht hergestellt
       werden. Ein spannender Weg, um \xFCber LED-basierte Indoor-Anbauverfahren und
       die Anpassung von Inhaltsstoffen zu lehren ."
     name: Lumino Bites
     icon: {fileID: 0}
-    price: 15000
-    baseSpeed: 12
+    price: 5000
+    baseSpeed: 20
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 1
-    saturation: 4
-    credits: 35
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    saturation: 9
+    credits: 45
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 8
     description: "Feines, mineralreiches Salzpulver gewonnen aus Halophyten \u2013
       lehrt \xFCber Mineralstoffaufnahme und nachhaltige Salzproduktion ohne Meerwasserentnahme."
@@ -163,69 +163,69 @@ MonoBehaviour:
     icon: {fileID: 0}
     price: 50
     baseSpeed: 5
-    baseAmount: 1
+    baseAmount: 4
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 2
     saturation: 1
     credits: 5
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 9
     description: "Halophyten-Gew\xFCrze, fermentiert wie Gew\xFCrzgurken. Ein tolles
       Beispiel f\xFCr Fermentation in neuartigen Organismen und die Nutzung ihrer
       sekund\xE4ren Metabolite"
     name: Hydro Pickles
     icon: {fileID: 0}
-    price: 1500
-    baseSpeed: 7
-    baseAmount: 1
+    price: 1000
+    baseSpeed: 10
+    baseAmount: 4
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 2
-    saturation: 2
+    saturation: 3
     credits: 15
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 10
     description: "Cremiger Brotaufstrich auf Basis von Salicornia pur, reich an Bioaktivstoffen
       \u2013 ideal, um \xFCber N\xE4hrstoffvielfalt in salzliebenden Pflanzen aufzukl\xE4ren."
     name: Sea Spread
     icon: {fileID: 0}
-    price: 7500
-    baseSpeed: 9
+    price: 2500
+    baseSpeed: 15
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 2
-    saturation: 3
-    credits: 25
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    saturation: 6
+    credits: 30
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 11
     description: "Knusprige Chips aus Salzpflanzen (Salicornia). Ein knackiger Einstieg,
       um \xFCber salztolerante Pflanzen und deren co-kultivierte Indoor-Kultivierung
       zu sprechen"
     name: Salicrisp
     icon: {fileID: 0}
-    price: 15000
-    baseSpeed: 12
+    price: 5000
+    baseSpeed: 20
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 2
-    saturation: 4
-    credits: 35
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    saturation: 9
+    credits: 45
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 12
     description: "Feines Cricket-Mehl mit neutralem Geschmack \u2013 vielseitig in
       Backwaren, Saucen oder Smoothies. Es zeigt auf, wie Insektenmehl in Alltagsern\xE4hrung
@@ -234,67 +234,67 @@ MonoBehaviour:
     icon: {fileID: 0}
     price: 50
     baseSpeed: 5
-    baseAmount: 1
+    baseAmount: 4
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 3
     saturation: 1
     credits: 5
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 13
     description: "Herzhafter \u201EInsekten-Braten\u201C aus Cricketprotein. Ein
       gelungenes Beispiel f\xFCr Fleischalternative im Format eines klassischen Bratens
       \u2013 ideal zum Gespr\xE4ch \xFCber Textur und Proteinquelle."
     name: Bugloaf
     icon: {fileID: 0}
-    price: 1500
-    baseSpeed: 7
-    baseAmount: 1
+    price: 1000
+    baseSpeed: 10
+    baseAmount: 4
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 3
-    saturation: 2
+    saturation: 3
     credits: 15
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 14
     description: "Knusprige Chips mit Cricket-Zusatz \u2013 ein leckerer Snack, der
       spielerisch f\xFCr Insektenprotein sensibilisiert und gleichzeitig \xFCber
       moderne Lebensmittelinnovation bildet."
     name: Chirp Chips
     icon: {fileID: 0}
-    price: 7500
-    baseSpeed: 9
+    price: 2500
+    baseSpeed: 15
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 3
-    saturation: 3
-    credits: 25
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    saturation: 6
+    credits: 30
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4
   - productType: 15
     description: "Energieriegel mit gemahlenen Grillen \u2013 hoch an Protein, gesunden
       Fetten und Chitin; verdeutlicht Insekten als ressourcenschonende, proteinreiche
       Quelle"
     name: Crunch Bar
     icon: {fileID: 0}
-    price: 15000
-    baseSpeed: 12
+    price: 5000
+    baseSpeed: 20
     baseAmount: 1
     baseQuality: 0
     baseEfficiency: 1
     inputResource: 3
-    saturation: 4
-    credits: 35
-    maxUpgradesSpeed: 5
-    maxUpgradesAmount: 5
-    maxUpgradesQuality: 5
-    maxUpgradesEfficiency: 5
+    saturation: 9
+    credits: 45
+    maxUpgradesSpeed: 4
+    maxUpgradesAmount: 4
+    maxUpgradesQuality: 4
+    maxUpgradesEfficiency: 4

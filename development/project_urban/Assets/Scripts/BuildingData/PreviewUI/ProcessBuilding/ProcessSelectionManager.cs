@@ -109,9 +109,9 @@ public class ProcessSelectionManager : MonoBehaviour
 
         foreach (ProductType type in Enum.GetValues(typeof(ProductType)))
         {
-            upgradePrices[(type, ProcessValue.Speed)] = 500;
-            upgradePrices[(type, ProcessValue.Amount)] = 500;
-            upgradePrices[(type, ProcessValue.Efficiency)] = 500;
+            upgradePrices[(type, ProcessValue.Speed)] = 250;
+            upgradePrices[(type, ProcessValue.Amount)] = 250;
+            upgradePrices[(type, ProcessValue.Efficiency)] = 250;
         }
 
         foreach (ProductType productType in Enum.GetValues(typeof(ProductType)))
@@ -331,7 +331,7 @@ public class ProcessSelectionManager : MonoBehaviour
         if (CreditSystem.Instance.TrySpendCredits(price))
         {
             selected.Upgrade(selectedType, value);
-            upgradePrices[key] = (price * 2) + 250;
+            upgradePrices[key] = price + 250;
             UpdateUpgradeButtonVisual();
         }
         else
