@@ -103,7 +103,7 @@ public class BuildingInstance : MonoBehaviour
     }
     public void ConsumeTotalSaturation()
     {
-        foodEconomy.OnConsumeFood(0.0002f * residents);
+        foodEconomy.OnConsumeFood(0.00013f * residents);
     }
 
     private ProductType ChooseProduct(List<ProductType> list)
