@@ -170,6 +170,8 @@ MonoBehaviour:
   uiMenu: {fileID: 771568390}
   uiGrayOut: {fileID: 779505070}
   loadingScreen: {fileID: 1139286748}
+  tessa: 0
+  anton: 0
   cameraInputController: {fileID: 93959185}
 --- !u!1 &64385404
 GameObject:
@@ -1133,6 +1135,8 @@ MonoBehaviour:
   pauseUI: {fileID: 2021818491}
   loadingScreen: {fileID: 1139286748}
   deathScreen: {fileID: 970358349}
+  soundFeedback: {fileID: 0}
+  loseSoundHasPlayed: 0
 --- !u!4 &458607761
 Transform:
   m_ObjectHideFlags: 0
@@ -1165,6 +1169,7 @@ MonoBehaviour:
   previewTexture: {fileID: 8400000, guid: 041a9652164365c429cf63ce5f994dea, type: 2}
   superMarkets: []
   SuperMarketRange: 0
+  superMarketPrice: 50
 --- !u!1 &537104334
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,6 +2819,7 @@ MonoBehaviour:
   previewTexture: {fileID: 8400000, guid: 041a9652164365c429cf63ce5f994dea, type: 2}
   superMarkets: []
   SuperMarketRange: 0
+  superMarketPrice: 50
 --- !u!1 &1673047347
 GameObject:
   m_ObjectHideFlags: 0

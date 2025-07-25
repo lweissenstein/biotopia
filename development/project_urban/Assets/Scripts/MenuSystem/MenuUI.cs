@@ -57,7 +57,7 @@ namespace MenuSystem
 
             var deathRoot = deathScreen.rootVisualElement;
             newGameDeath = deathRoot.Q<Button>("newgame");
-            newGameDeath.clicked += OnStartNewGameButton;
+            newGameDeath.clicked += OnStartNewDeath;
             startTutorialDeath = deathRoot.Q<Button>("tutorial");
             startTutorialDeath.clicked += OnStartTutorialButton;
             quitToMenuDeath = deathRoot.Q<Button>("quit");
@@ -103,6 +103,16 @@ namespace MenuSystem
                 FoodEconomy.Reset();
             }
             GameState.isNewGame = false;
+            HideMenu();
+            ShowOtherUIs();
+            GamePauser.ContinueGame();
+            economyUI.rootVisualElement.style.display = DisplayStyle.Flex;
+        }
+
+        private void OnStartNewDeath()
+        {
+            LoadSceneWithProgress("SampleScene");
+            FoodEconomy.Reset();
             HideMenu();
             ShowOtherUIs();
             GamePauser.ContinueGame();

@@ -11,7 +11,7 @@ public class BuildingSelectionManager : MonoBehaviour
     private VisualElement previewElement;
     public RenderTexture previewTexture; // vom Inspector zugewiesen
 
-    private Label nameLabel, descriptionLabel, levelLabel, productionLabel, hasSupermarktLabel, descriptionText, compartmentType, buildingResidentsLabel, algePrice, grillePrice, quallePrice, halophytPrice, exitButton;
+    private Label nameLabel, descriptionLabel, levelLabel, productionLabel, hasSupermarktLabel, descriptionText, compartmentType, buildingResidentsLabel, algePrice, grillePrice, quallePrice, halophytPrice, exitButton, superMarketPriceLabel;
     private Button upgradeButton, algenButton, quallenButton, salzpflanzenButton, grillenButton, supermarktButton;
     private VisualElement panel;
 
@@ -50,6 +50,7 @@ public class BuildingSelectionManager : MonoBehaviour
         quallePrice = root.Q<Label>("quallePrice");
         halophytPrice = root.Q<Label>("halophytPrice");
         exitButton = root.Q<Label>("exitButton");
+        superMarketPriceLabel = root.Q<Label>("marketPrice");
 
         SetupCompartmentButton(algenButton, "Alge", () => selected.UpgradeCompartmentAlge());
         SetupCompartmentButton(quallenButton, "Qualle", () => selected.UpgradeCompartmentQualle());
@@ -130,6 +131,7 @@ public class BuildingSelectionManager : MonoBehaviour
             quallePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"€ {selected.compartmentPrices["Qualle"]}";
             halophytPrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"€ {selected.compartmentPrices["Salzpflanze"]}";
             grillePrice.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "MAX" : $"€ {selected.compartmentPrices["Grille"]}";
+            superMarketPriceLabel.text = selected.countCompartmentsHouse >= selected.maxCompartments ? "-" : $"€ {superMarketPrice}";
 
             buildingResidentsLabel.text = selected.residents.ToString();
             hasSupermarktLabel.text = selected.hasSupermarket ? "Ja" : "Nein";

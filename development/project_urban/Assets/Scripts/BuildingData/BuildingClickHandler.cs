@@ -53,13 +53,7 @@ public class BuildingClickHandler : MonoBehaviour
                         //Debug.Log("BuildingInstance gefunden! Leite an SelectionManager weiter.");
                         FindFirstObjectByType<BuildingSelectionManager>()?.SelectBuilding(instance);
                         FindAnyObjectByType<ProcessSelectionManager>()?.Deselect(); // Deselect Process if any was selected
-                        if (GameState.waitForClick)
-                        {
-                            tutorialManager.NextStep();
-                            GameState.waitForClick = false; // Reset waitForClick after handling the click
-                            Debug.Log("ressetet");// Reset waitForClick after handling the click
 
-                        }
                     }
                     else if (processor != null)
                     {
@@ -67,12 +61,7 @@ public class BuildingClickHandler : MonoBehaviour
                         //Debug.Log("ProcessInstance gefunden! Leite an SelectionManager weiter.");
                         FindFirstObjectByType<ProcessSelectionManager>()?.SelectBuilding(processor);
                         FindFirstObjectByType<BuildingSelectionManager>()?.Deselect(); // Deselect Building if any was selected
-                        if (GameState.waitForClick)
-                        {
-                            tutorialManager.NextStep();
-                            GameState.waitForClick = false;
-                            Debug.Log("ressetet");// Reset waitForClick after handling the click
-                        }
+ 
                     }
                     else
                     {

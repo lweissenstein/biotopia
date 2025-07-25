@@ -672,7 +672,7 @@ MonoBehaviour:
     cameraMoveTime: 0
     secondsToWait: 0
     waitForClick: 1
-    waitForButton: 1
+    waitForButton: 0
     cameraPosition: {x: 0, y: 0, z: 0}
     cameraHorizontalAxis: 0
     cameraVerticalAxis: 0
@@ -705,7 +705,7 @@ MonoBehaviour:
     allowProduction: 0
     allowSaturation: 0
     allowConsumption: 0
-    allowPlayerInput: 0
+    allowPlayerInput: 1
     allowBuildingSpawn: 0
     cameraMoveTime: 0
     secondsToWait: 0
