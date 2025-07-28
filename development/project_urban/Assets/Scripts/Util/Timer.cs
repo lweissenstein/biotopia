@@ -78,7 +78,8 @@ namespace Util
         private void CallIfTimeElapsed(string id, Action callable, int ms)
         {
             // Early return in case the game is frozen.
-            if (GamePauser.IsPaused) return;
+            if (GamePauser.IsPaused)
+                return;
 
             var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
@@ -86,7 +87,8 @@ namespace Util
             var isFirstCall = _sourceTimes.TryAdd(id, now);
 
             // return if this is not the first call and the time between calls has not yet elapsed
-            if (!isFirstCall && now <= _sourceTimes[id] + ms) return;
+            if (!isFirstCall && now <= _sourceTimes[id] + ms)
+                return;
 
             _sourceTimes[id] = now;
             callable();

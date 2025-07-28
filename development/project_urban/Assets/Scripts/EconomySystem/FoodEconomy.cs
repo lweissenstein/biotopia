@@ -81,13 +81,15 @@ namespace EconomySystem
 
         private void OnConsumeResource(ResourceType type, float amount)
         {
-            if (!totalResources.ContainsKey(type)) return;
+            if (!totalResources.ContainsKey(type))
+                return;
             totalResources[type] = Math.Max(0, totalResources[type] - amount);
         }
 
         public void ConsumeProduct(ProductType prod, int amount)
         {
-            if (!totalProducts.ContainsKey(prod)) return;
+            if (!totalProducts.ContainsKey(prod))
+                return;
             totalProducts[prod] = Math.Max(0, totalProducts[prod] - amount);
         }
 

@@ -81,7 +81,8 @@ public class GridData
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
         foreach (var pos in positionToOccupy)
         {
-            if (Get(pos) is not null) throw new Exception($"Dictionary already contains cell position {pos}");
+            if (Get(pos) is not null)
+                throw new Exception($"Dictionary already contains cell position {pos}");
             Put(pos, new PlacementData(positionToOccupy, ID, placedObjectIndex));
         }
     }
@@ -115,14 +116,16 @@ public class GridData
 
     internal int GetRepresentationIndex(Vector3Int pos)
     {
-        if (Get(pos) is null) return -1;
+        if (Get(pos) is null)
+            return -1;
         return Get(pos)!.PlacedObjectIndex;
     }
 
     internal void RemoveObjectAt(Vector3Int pos)
     {
         var obj = Get(pos);
-        if (obj is null) return;
+        if (obj is null)
+            return;
         foreach (var p in obj.occupiedPositions)
         {
             Put(p, null);
@@ -132,7 +135,8 @@ public class GridData
     public void UpdateObjectIDAt(Vector3Int pos, int newID)
     {
         var obj = Get(pos);
-        if (obj is null) return;
+        if (obj is null)
+            return;
         obj.ID = newID;
         Put(pos, obj);
     }
@@ -141,7 +145,8 @@ public class GridData
     public int GetObjectIDAt(Vector3Int pos)
     {
         var obj = Get(pos);
-        if (obj is null) return -1;
+        if (obj is null)
+            return -1;
         return obj.ID;
     }
 

@@ -6,7 +6,7 @@
 //{
 //    [SerializeField] private Camera sceneCamera;
 //    [SerializeField] private LayerMask placementLayermask;
-    
+
 //    private Vector3 lastPosition;
 
 //    public event Action OnClick, OnExit;

@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 public class MainScreen : MonoBehaviour
 {
     public UIDocument uiDocument;
@@ -30,7 +30,7 @@ public class MainScreen : MonoBehaviour
         {
             GameState.isNewGame = true;
             LoadSceneWithProgress("tutorial");
-        }; 
+        };
         play.clicked += () =>
         {
             GameState.isNewGame = true;
@@ -38,11 +38,11 @@ public class MainScreen : MonoBehaviour
         };
         quit.clicked += () =>
         {
-            #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-            #else
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
                 Application.Quit();
-            #endif
+#endif
         };
         f4f.clicked += () =>
         {

@@ -26,7 +26,7 @@ namespace Util
         {
             if (_previousTimeScale is not null)
             {
-                Time.timeScale = (float)_previousTimeScale;
+                Time.timeScale = (float) _previousTimeScale;
                 _previousTimeScale = null;
             }
             else

@@ -1,8 +1,8 @@
+using EconomySystem;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
-using EconomySystem;
+using UnityEngine.UIElements;
 public class TutorialManager : MonoBehaviour
 {
     [Header("Tutorial Settings")]
@@ -31,13 +31,13 @@ public class TutorialManager : MonoBehaviour
     void Awake()
     {
         // freeze the game state for the tutorial
-            GameState.allowProduction = false;
-            GameState.allowSaturation = false;
-            GameState.allowPlayerInput = false;
-            GameState.allowBuildingSpawn = false;
-            GameState.allowUpdates = false;
-            GameState.allowConsumption = false;
-            GameState.isTutorial = true;
+        GameState.allowProduction = false;
+        GameState.allowSaturation = false;
+        GameState.allowPlayerInput = false;
+        GameState.allowBuildingSpawn = false;
+        GameState.allowUpdates = false;
+        GameState.allowConsumption = false;
+        GameState.isTutorial = true;
     }
 
 
@@ -102,7 +102,8 @@ public class TutorialManager : MonoBehaviour
                 if (step.spinCam360)
                 {
                     cameraInputController.StartCameraSpinSmooth(step.cameraPosition, step.cameraOrthogrpahicSize, step.cameraVerticalAxis, step.cameraMoveTime);
-                } else
+                }
+                else
                 {
                     cameraInputController.StartCameraMoveSmooth(step.cameraPosition, step.cameraOrthogrpahicSize, step.cameraHorizontalAxis, step.cameraVerticalAxis, step.cameraMoveTime);
                 }
@@ -111,11 +112,11 @@ public class TutorialManager : MonoBehaviour
 
             case TutorialStepType.WaitForClick:
                 Debug.Log("not implemented yet");
-                break; 
+                break;
 
             case TutorialStepType.Cutscene:
                 Debug.Log("not implemented yet");
-                break; 
+                break;
 
             case TutorialStepType.SpectateForSeconds:
                 StartCoroutine(WaitThenNextStep(step.secondsToWait));
@@ -134,7 +135,7 @@ public class TutorialManager : MonoBehaviour
                 return;
         }
 
-        
+
     }
 
     private IEnumerator WaitThenNextStep(float seconds)
@@ -210,7 +211,7 @@ public class TutorialManager : MonoBehaviour
         {
             uiProcess.rootVisualElement.style.display = DisplayStyle.None;
         }
-        if(steppo.upgradeClose)
+        if (steppo.upgradeClose)
         {
             uiUpgrade.rootVisualElement.style.display = DisplayStyle.None;
         }
@@ -218,7 +219,7 @@ public class TutorialManager : MonoBehaviour
         {
             menuRessourcePanel.style.display = DisplayStyle.None;
         }
-       
+
     }
 
     void ShowGrayOut(TutorialStepData stippi)

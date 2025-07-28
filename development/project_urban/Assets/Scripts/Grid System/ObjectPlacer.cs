@@ -3,7 +3,7 @@ using UnityEngine;
 public class ObjectPlacer : MonoBehaviour
 {
     [SerializeField] public System.Collections.Generic.List<GameObject> placedGameObject = new();
- 
+
 
     public GameObject currentUI;
     public int PlaceObject(GameObject prefab, Vector3 position)

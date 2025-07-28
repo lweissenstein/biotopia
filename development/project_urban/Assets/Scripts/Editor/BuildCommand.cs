@@ -1,8 +1,8 @@
 #nullable enable
-using UnityEditor;
-using System.Linq;
 using System;
 using System.IO;
+using System.Linq;
+using UnityEditor;
 using UnityEditor.Build;
 
 namespace Editor
@@ -142,7 +142,7 @@ namespace Editor
                 return false;
             }
 
-            value = (TEnum)Enum.Parse(typeof(TEnum), strEnumValue);
+            value = (TEnum) Enum.Parse(typeof(TEnum), strEnumValue);
             return true;
         }
 

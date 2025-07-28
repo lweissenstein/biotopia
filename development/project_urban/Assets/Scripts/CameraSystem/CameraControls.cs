@@ -145,7 +145,8 @@ public class CameraControls : MonoBehaviour
         if (primary.phase == TouchPhase.Moved || secondary.phase == TouchPhase.Moved)
         {
             //Wenn Finger keine Historie haben, return
-            if (primary.history.Count < 1 || secondary.history.Count < 1){
+            if (primary.history.Count < 1 || secondary.history.Count < 1)
+            {
                 return;
             }
             //Distanz berechnen
@@ -158,7 +159,7 @@ public class CameraControls : MonoBehaviour
                 Vector3 rotVec = Quaternion.AngleAxis(angle, Vector3.up) * temp;
                 focus.position = focus.position + rotVec * (movementModifier * screenSizeMultiplier);
                 return;
-            }            
+            }
             if ((x1 < 5.0 && x2 > 5.0) || (x1 > 5.0 && x2 < 5.0))
             {
                 float pinchDistance = currentDistance - previousDistance;
@@ -170,9 +171,9 @@ public class CameraControls : MonoBehaviour
     {
         distance = distance * (zoomModifier * screenSizeMultiplier);
         float temp = cam.orthographicSize - distance;
-        if (temp < maxCamSize && temp > minCamSize) 
+        if (temp < maxCamSize && temp > minCamSize)
         {
-            cam.orthographicSize = temp;            
+            cam.orthographicSize = temp;
         }
     }
 

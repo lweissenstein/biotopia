@@ -1,9 +1,9 @@
-using UnityEngine.UIElements;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using Util;
 using EconomySystem;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using Util;
 
 namespace MenuSystem
 {
@@ -83,7 +83,7 @@ namespace MenuSystem
 
         private void CheckNoSaturation()
         {
-            if(foodEconomy.CurrentProteinAmount <= foodEconomy.MinProteinAmount)
+            if (foodEconomy.CurrentProteinAmount <= foodEconomy.MinProteinAmount)
             {
                 if (!loseSoundHasPlayed)
                 {
@@ -145,7 +145,7 @@ namespace MenuSystem
 
         private void OnContinueButton()
         {
- 
+
             HideMenu();
             ShowOtherUIs();
             GamePauser.ContinueGame();
@@ -174,7 +174,7 @@ namespace MenuSystem
             {
                 if (displayStyle != null)
                 {
-                    ui.rootVisualElement.style.display = (StyleEnum<DisplayStyle>)displayStyle;
+                    ui.rootVisualElement.style.display = (StyleEnum<DisplayStyle>) displayStyle;
                 }
             }
         }

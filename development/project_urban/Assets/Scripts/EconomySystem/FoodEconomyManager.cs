@@ -22,10 +22,12 @@ public class FoodEconomyManager : MonoBehaviour
 
     private void HandleConsumeProduct(ProductType prod)
     {
-        if (!foodEconomy.IsProductAvailable(prod, 1)) return;
+        if (!foodEconomy.IsProductAvailable(prod, 1))
+            return;
 
         var desc = productDatabase.GetEntry(prod);
-        if (desc == null) return;
+        if (desc == null)
+            return;
 
         Debug.Log($"Consuming product: {desc.name} with saturation: {desc.saturation} and credits: {desc.credits}");
 

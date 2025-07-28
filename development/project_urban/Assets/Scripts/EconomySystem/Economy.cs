@@ -119,10 +119,10 @@ namespace EconomySystem
             {
                 resourcePanel.style.display = DisplayStyle.Flex;
             }
-            
+
         }
 
-      
+
         void HideUI() => economyUI.rootVisualElement.style.display = DisplayStyle.None;
         void HideResourcePanel() => resourcePanel.style.display = DisplayStyle.None;
 
@@ -143,7 +143,7 @@ namespace EconomySystem
                 timeLabel.text = string.Format("{0:00}:{1:00}", minutes, seconds);
             }
 
-            if(timeElapsedFood >= 1f)
+            if (timeElapsedFood >= 1f)
             {
                 float delta = _foodEconomy.CurrentProteinAmount - lastProteinAmount;
                 proteinsPerSecond = Mathf.RoundToInt(delta);
@@ -154,12 +154,12 @@ namespace EconomySystem
 
 
             UpdateEconomyUI();
-          
 
-            algeLabel.text = "" + (int)_foodEconomy.totalResources[ResourceType.Alge];
-            qualleLabel.text = "" + (int)_foodEconomy.totalResources[ResourceType.Qualle];
-            salzpflanzeLabel.text = "" + (int)_foodEconomy.totalResources[ResourceType.Salzpflanze];
-            grilleLabel.text = "" + (int)_foodEconomy.totalResources[ResourceType.Grille];
+
+            algeLabel.text = "" + (int) _foodEconomy.totalResources[ResourceType.Alge];
+            qualleLabel.text = "" + (int) _foodEconomy.totalResources[ResourceType.Qualle];
+            salzpflanzeLabel.text = "" + (int) _foodEconomy.totalResources[ResourceType.Salzpflanze];
+            grilleLabel.text = "" + (int) _foodEconomy.totalResources[ResourceType.Grille];
 
             if (isDebug)
             {
@@ -204,7 +204,8 @@ namespace EconomySystem
 
         private void UpdateProgressBarTemplate(ProgressBar progressBar, ResourceType food)
         {
-            if (progressBar is null) return;
+            if (progressBar is null)
+                return;
             progressBar.highValue = 100;
             progressBar.lowValue = 0;
             progressBar.value = _foodEconomy.totalResources[food];
@@ -213,7 +214,7 @@ namespace EconomySystem
 
         private void UpdateCreditDisplay(int currentCredits)
         {
-            creditsLabel.text = $"{"€" +  currentCredits}";
+            creditsLabel.text = $"{"€" + currentCredits}";
         }
 
         private void UpdateFoodPerSecond()

@@ -41,8 +41,8 @@ public class PlacementSystem : MonoBehaviour
     {
         if (gridObject != null)
         {
-            gridSizeX = Mathf.RoundToInt(gridObject.transform.localScale.x*10);
-            gridSizeZ = Mathf.RoundToInt(gridObject.transform.localScale.z*10);
+            gridSizeX = Mathf.RoundToInt(gridObject.transform.localScale.x * 10);
+            gridSizeZ = Mathf.RoundToInt(gridObject.transform.localScale.z * 10);
         }
         Debug.Log($"Grid size: {gridSizeX}x{gridSizeZ} cells");
     }
@@ -68,7 +68,7 @@ public class PlacementSystem : MonoBehaviour
         randomPlacer.RandomUpgrade(3, gridSizeX, gridSizeZ, furnitureData, 1);
     }
 
-  
+
     // uses randomPlace to randomely place objects
     public void placeRandom()
     {
@@ -158,7 +158,7 @@ public class PlacementSystem : MonoBehaviour
         smallPlaceTimer--;
         smallToMediumTimer--;
         mediumToLargeTimer--;
-        parkTimer--;      
+        parkTimer--;
     }
 
     void Update()
@@ -169,7 +169,7 @@ public class PlacementSystem : MonoBehaviour
         {
             _timer.OncePerIntervallMilliseconds(() =>
             {
-                    perSecondUpdate();
+                perSecondUpdate();
             }, 20);
         }
     }

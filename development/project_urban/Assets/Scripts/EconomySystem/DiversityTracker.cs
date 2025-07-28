@@ -9,7 +9,7 @@ public class DiversityTracker : MonoBehaviour
 
     public void Register(ResourceType type)
     {
-        if(!consumed.ContainsKey(type))
+        if (!consumed.ContainsKey(type))
         {
             consumed[type] = 0;
         }
@@ -18,13 +18,15 @@ public class DiversityTracker : MonoBehaviour
 
     public float GetDiversityBonus(ResourceType type)
     {
-        if (consumed.Count < 2) return 0.6f; // Minimum diversity bonus
+        if (consumed.Count < 2)
+            return 0.6f; // Minimum diversity bonus
 
         int min = consumed.Values.Min();
         int max = consumed.Values.Max();
-        if (max == 0) return 1.0f;
+        if (max == 0)
+            return 1.0f;
 
-        float balance = (float)min / max;
+        float balance = (float) min / max;
         Debug.Log($"Diversity balance for {type}: {balance} (min: {min}, max: {max})");
         return Mathf.Lerp(0.7f, 1.2f, balance);
     }

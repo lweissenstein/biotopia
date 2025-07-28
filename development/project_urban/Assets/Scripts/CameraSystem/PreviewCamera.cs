@@ -6,7 +6,7 @@ public class PreviewCamera : MonoBehaviour
     [SerializeField] private Transform cameraRigTransform;
     private float currentYRotation = 0f; // startrotation Y
     [SerializeField] private float rotationSpeedperSecond = 45f; // drehgeschwindigkeit pro sekunde
-  
+
 
     private Camera cam;
 
@@ -35,7 +35,8 @@ public class PreviewCamera : MonoBehaviour
     float NormalizeAngle(float angle)
     {
         angle %= 360f;
-        if (angle < 0) angle += 360f;
+        if (angle < 0)
+            angle += 360f;
         return angle;
     }
 }
