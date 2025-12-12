@@ -3,6 +3,7 @@
 **Developer:** Lennart Weissenstein (Team Project)  
 **Role:** Environment 3D Artist, Tech Artist, Game Designer  
 **Platform:** Mobile / Tablet (Unity)
+**Project-website:** [BioTopia - IMI Showtime](https://showtime.f4.htw-berlin.de/ss25/bachelor/b4-urban-bio-space-simulator/)
 
 ---
 
@@ -37,11 +38,15 @@ In the [media/Screenshots/](media/Screenshots/) folder in this repository you ca
 
 Also check our [presentation](media/biotopia_presentation.pdf) for seeing the process of the development.
 
-![Main Gameplay View](Screenshots/gameplay_main.jpg)]
-*example*
+![Main Gameplay View](Screenshots/BioTopia_1.png)]
 
-![Asset Showcase](Screenshots/assets_showcase.jpg)]
-*example.*
+![Front View](Screenshots/BioTopia_4.png)]
+
+![Front View](Screenshots/BioTopia_2.png)]
+
+![Front View](Screenshots/BioTopia_6.png)]
+
+![Front View](Screenshots/BioTopia_3.png)]
 
 ## Gameplay & Features
 
@@ -84,5 +89,6 @@ This repository is for display-use only. For inquiries text the repository owner
 - [food4future](https://www.food4future.de/en/home)
 - [IGZ – Leibniz-Institut für Gemüse- und Zierpflanzenbau](https://igzev.de/)
 - [HTW Berlin](https://www.htw-berlin.de/)
+- [IMI Showtime](https://showtime.f4.htw-berlin.de/ss25/bachelor/b4-urban-bio-space-simulator/)
 
 ---
