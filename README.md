@@ -10,7 +10,7 @@
 
 **This repository is a clone of a university project hosted here for portfolio display purposes only.**
 
-I do not own the intellectual property of this project; it was developed at HTW Berlin in collaboration with external research partners. This repository serves to highlight my contributions in 3D Art, Technical Art, Design and Game Design within a great team effort. The final result was made possible by everyone contributing a great deal.
+I do not own the intellectual property of this project; it was developed at HTW Berlin in collaboration with external research partners. This repository serves to highlight my contributions in 3D Art, Technical Art, Design and Game Design within a great team effort. The final result was made possible by everyone contributing by a great deal.
 
 ---
 
