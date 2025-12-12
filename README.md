@@ -33,7 +33,7 @@ My primary focus during development was ensuring a clear visual identity and man
 
 ## Screenshots
 
-Please navigate to the `Screenshots/` folder in this repository to view high-resolution images of the environments and models.
+Please navigate to the [`media/Screenshots/`(media/Screenshots/)] folder in this repository to view high-resolution images of the environments and models.
 
 ![Main Gameplay View](Screenshots/gameplay_main.jpg)]
 *example*
