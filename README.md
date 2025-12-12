@@ -10,7 +10,7 @@
 
 **This repository is a clone of a university project hosted here for portfolio display purposes only.**
 
-I do not own the intellectual property of this project; it was developed at HTW Berlin in collaboration with external research partners. This repository serves to highlight my contributions in 3D Art, Technical Art, Design and Game Design within a great team effort. The final result was made possible by everyone contributing by a great deal.
+I do not own the intellectual property of this project; it was developed at HTW Berlin in collaboration with external research partners. This repository serves to display my contributions in 3D Art, Technical Art, Design and Game Design within a great team effort. The final result was made possible by everyone contributing by a great deal.
 
 ---
 
@@ -24,12 +24,12 @@ Originally conceptualized for PC, the project was ported to mobile and tablet de
 
 ## My Contributions
 
-My primary focus during development was ensuring a cohesive visual identity and bridging the gap between art assets and technical implementation in Unity.
+My primary focus during development was ensuring a clear visual identity and managing the gap between art assets and technical implementation in Unity.
 
 * **3D Environment Art & Modeling:** Modeled and textured key environment assets.
 * **Technical Art & Pipeline:** Responsible for the asset pipeline; I took models created by various team members and optimized them to ensure a clean, congruent state and consistent art style across the game.
 * **Material Setup:** Created and managed materials and shaders within Unity to achieve the desired visual aesthetic while maintaining performance on mobile devices.
-* **Game Design:** Collaborated on core gameplay mechanics, overall game look and implementation of research results.
+* **Game Design:** Collaborated on core gameplay mechanics, overall game look & feel and implementation of research results.
 
 ## Screenshots
 
@@ -73,6 +73,6 @@ We worked in an agile team environment with a strong focus on communication and 
 
 ## Assets & Licenses
 
-This repository is for display-use only. For inquiries text the repository owner. See [licenses.md](Licenses/licenses.md) for details.
+This repository is for display-use only. For inquiries text the repository owner. See [Assets_Licence.md](licence/Assets_Licence.md) for details.
 
 ---
