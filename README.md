@@ -38,15 +38,15 @@ In the [media/Screenshots/](media/Screenshots/) folder in this repository you ca
 
 Also check our [presentation](media/biotopia_presentation.pdf) for seeing the process of the development.
 
-![Main Gameplay View](Screenshots/BioTopia_1.png)]
+![Main Gameplay View](media/Screenshots/BioTopia_1.png)]
 
-![Front View](Screenshots/BioTopia_4.png)]
+![Front View](media/Screenshots/BioTopia_4.png)]
 
-![Front View](Screenshots/BioTopia_2.png)]
+![Front View](media/Screenshots/BioTopia_2.png)]
 
-![Front View](Screenshots/BioTopia_6.png)]
+![Front View](media/Screenshots/BioTopia_6.png)]
 
-![Front View](Screenshots/BioTopia_3.png)]
+![Front View](media/Screenshots/BioTopia_3.png)]
 
 ## Gameplay & Features
 
