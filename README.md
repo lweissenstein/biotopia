@@ -31,9 +31,11 @@ My primary focus during development was ensuring a clear visual identity and man
 * **Material Setup:** Created and managed materials and shaders within Unity to achieve the desired visual aesthetic while maintaining performance on mobile devices.
 * **Game Design:** Collaborated on core gameplay mechanics, overall game look & feel and implementation of research results.
 
-## Screenshots
+## Images
 
-Please navigate to the [`media/Screenshots/`(media/Screenshots/)] folder in this repository to view high-resolution images of the environments and models.
+In the [media/Screenshots/](media/Screenshots/) folder in this repository you can see more images of the game, environment and models.
+
+Also check our [presentation](media/biotopia_presentation.pdf) for seeing the process of the development.
 
 ![Main Gameplay View](Screenshots/gameplay_main.jpg)]
 *example*
@@ -74,5 +76,13 @@ We worked in an agile team environment with a strong focus on communication and 
 ## Assets & Licenses
 
 This repository is for display-use only. For inquiries text the repository owner. See [Assets_Licence.md](licence/Assets_Licence.md) for details.
+
+---
+
+## Links
+
+- [food4future](https://www.food4future.de/en/home)
+- [IGZ – Leibniz-Institut für Gemüse- und Zierpflanzenbau](https://igzev.de/)
+- [HTW Berlin](https://www.htw-berlin.de/)
 
 ---
