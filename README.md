@@ -34,19 +34,21 @@ My primary focus during development was ensuring a clear visual identity and man
 
 ## Images
 
-In the [media/Screenshots/](media/Screenshots/) folder in this repository you can see more images of the game, environment and models.
+![Main Gameplay View](media/Screenshots/BioTopia_1.png)
 
-Also check our [presentation](media/biotopia_presentation.pdf) for seeing the process of the development.
+![Front View](media/Screenshots/BioTopia_4.png)
 
-![Main Gameplay View](media/Screenshots/BioTopia_1.png)]
+![Front View](media/Screenshots/BioTopia_2.png)
 
-![Front View](media/Screenshots/BioTopia_4.png)]
+![Front View](media/Screenshots/BioTopia_6.png)
 
-![Front View](media/Screenshots/BioTopia_2.png)]
+![Front View](media/Screenshots/BioTopia_3.png)
 
-![Front View](media/Screenshots/BioTopia_6.png)]
+Also check our [presentation](media/biotopia_presentation.pdf) for the IMI Showtime!
 
-![Front View](media/Screenshots/BioTopia_3.png)]
+More images can be found in [media/Screenshots/](media/Screenshots/) of this repository.
+
+
 
 ## Gameplay & Features
 
