@@ -7,32 +7,11 @@
 
 ---
 
-### Portfolio Disclaimer
-
-**This repository is a clone of a university project hosted here for portfolio display purposes only.**
-
-I do not own the intellectual property of this project; it was developed at HTW Berlin in collaboration with external research partners. This repository serves to display my contributions in 3D Art, Technical Art, Design and Game Design within a great team effort. The final result was made possible by everyone contributing by a great deal.
-
----
-
 ### Overview
 
 BioTopia is a serious game developed in collaboration with the **Food4Future (f4f)** and the **Leibniz-Institut für Gemüse- und Zierpflanzenbau (IGZ)** initiatives.
-
 The game acts as a simulation of a future where agricultural land is scarce, trade is halted, and freshwater is dwindling. It challenges players to utilize alternative methods of food production—such as crickets, jellyfish, macroalgae, and halophytes—within tight urban spaces to feed a growing population.
-
 Originally conceptualized for PC, the project was ported to mobile and tablet devices to maximize accessibility for public demonstrations and industry events.
-
----
-
-### My Contributions
-
-My primary focus during development was ensuring a clear visual identity and managing the gap between art assets and technical implementation in Unity.
-
-* **3D Environment Art & Modeling:** Modeled and textured key environment assets.
-* **Technical Art & Pipeline:** Responsible for the asset pipeline; I took models created by various team members and optimized them to ensure a clean, congruent state and consistent art style across the game.
-* **Material Setup:** Created and managed materials and shaders within Unity to achieve the desired visual aesthetic while maintaining performance on mobile devices.
-* **Game Design:** Collaborated on core gameplay mechanics, overall game look & feel and implementation of research results.
 
 ---
 
@@ -51,6 +30,17 @@ My primary focus during development was ensuring a clear visual identity and man
 Also check our [presentation](media/biotopia_presentation.pdf) for the IMI Showtime!
 
 More images can be found in [media/Screenshots/](media/Screenshots/) of this repository.
+
+---
+
+### My Contributions
+
+My primary focus during development was ensuring a clear visual identity and managing the gap between art assets and technical implementation in Unity.
+
+* **3D Environment Art & Modeling:** Modeled and textured key environment assets.
+* **Technical Art & Pipeline:** Responsible for the asset pipeline; I took models created by various team members and optimized them to ensure a clean, congruent state and consistent art style across the game.
+* **Material Setup:** Created and managed materials and shaders within Unity to achieve the desired visual aesthetic while maintaining performance on mobile devices.
+* **Game Design:** Collaborated on core gameplay mechanics, overall game look & feel and implementation of research results.
 
 ---
 
@@ -90,7 +80,9 @@ We worked in an agile team environment with a strong focus on communication and 
 
 ### Assets & Licenses
 
-This repository is for display-use only. For inquiries text the repository owner. See [Assets_Licence.md](licence/Assets_Licence.md) for details.
+**DISCLAIMER:** This repository is for display-use only. The game was created as a university project in cooperation with food4future and IGZ - this repo is a clone to display my contributions in Game Design, 3D Environment Art and Tech Art.
+
+See [Assets_Licence.md](licence/Assets_Licence.md) for details of used external assets.
 
 ---
 
