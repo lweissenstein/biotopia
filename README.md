@@ -2,7 +2,7 @@
 
 **Developer:** Lennart Weissenstein (Team Project)  
 **Role:** Environment 3D Artist, Tech Artist, Game Designer  
-**Platform:** Mobile / Tablet (Unity)
+**Platform:** Mobile / Tablet (Unity)  
 **Project-website:** [BioTopia - IMI Showtime](https://showtime.f4.htw-berlin.de/ss25/bachelor/b4-urban-bio-space-simulator/)
 
 ---
